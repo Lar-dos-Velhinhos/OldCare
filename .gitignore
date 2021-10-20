@@ -10,7 +10,6 @@ bin-release/
 appsettings.json
 appsettings.Development.json
 .settings/
-.idea/
 
 # Executables
 *.swf
