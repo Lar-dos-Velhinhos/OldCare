@@ -1,5 +1,4 @@
-﻿@using OldCare.Core.ViewModels.Resident
-@model CreateResidentViewModel
+﻿@model OldCare.Core.ViewModels.Resident.CreateResidentViewModel
 
 @{
     ViewData["Title"] = "Cadastrar Residente";
@@ -11,7 +10,7 @@
         <label asp-for="Persons" class="form-label">Naturalidade</label>
         <select asp-for="Persons" class="form-control">
             <option selected>Selecione</option>
-            @foreach(var item in Persons)
+            @foreach(var item in Model.Persons)
             {
               <option value="@item.Id">@item.Name</option>  
             }
