@@ -1,9 +1,9 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace OldCare.Core.ViewModels.People;
+namespace OldCare.Core.ViewModels.Person;
 
-public class CreatePeopleViewModel
+public class CreatePersonViewModel
 {
     public Guid Id { get; set; }
     

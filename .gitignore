@@ -7,8 +7,8 @@ bin-release/
 .vscode/
 
 # Other files and folders
-[Oo]ld[Cc]are.[Ww]eb/appsettings.json
-[Oo]ld[Cc]are.[Ww]eb/appsettings.Development.json
+appsettings.json
+appsettings.Development.json
 .settings/
 .idea/
 
@@ -16,8 +16,7 @@ bin-release/
 *.swf
 *.air
 *.ipa
-*.apk
-
-# Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`
+*.apk# Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`
 # should NOT be excluded as they contain compiler settings and other important
 # information for Eclipse / Flash Builder.
+

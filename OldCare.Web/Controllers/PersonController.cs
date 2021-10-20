@@ -1,27 +1,27 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using OldCare.Core.Data;
 using OldCare.Core.Entities;
-using OldCare.Core.ViewModels.People;
+using OldCare.Core.ViewModels.Person;
 
 namespace OldCare.Web.Controllers;
 
-public class PeopleController : Controller
+public class PersonController : Controller
 {
     private OldCareDataContext _context;
 
-    public PeopleController(OldCareDataContext context) => _context = context;
+    public PersonController(OldCareDataContext context) => _context = context;
     
     public IActionResult Index() => View();
 
     public IActionResult Create()
     {
-        CreatePeopleViewModel model = new();
+        CreatePersonViewModel model = new();
 
         return View(model);
     }
     
     [HttpPost]
-    public IActionResult Create(CreatePeopleViewModel model)
+    public IActionResult Create(CreatePersonViewModel model)
     {
         if (!ModelState.IsValid)
             return View(model);
