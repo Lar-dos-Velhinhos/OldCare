@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace OldCare.Core.Entities;
+﻿namespace OldCare.Core.Entities;
 
 public class Person : Entity
 {

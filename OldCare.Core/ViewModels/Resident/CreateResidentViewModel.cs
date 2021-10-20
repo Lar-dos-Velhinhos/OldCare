@@ -1,15 +1,13 @@
 ﻿using OldCare.Core.Entities;
 using OldCare.Core.Enums;
-using System;
-using System.Collections.Generic;
 
 namespace OldCare.Core.ViewModels.Resident;
 
 public class CreateResidentViewModel
 {
     public Guid Id { get; set; }
-    public Person Person { get; set; }
-    public List<Person> Persons { get; set; }
+    public Entities.Person Person { get; set; }
+    public List<Entities.Person> Persons { get; set; }
     public Bedroom Bedroom { get; set; }
     public DateTime AdmissionDate { get; set; }
     public DateTime? DepartureDate { get; set; }
