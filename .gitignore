@@ -3,14 +3,11 @@ bin-debug/
 bin-release/
 [Oo]bj/
 [Bb]in/
-.vs/
-.vscode/
 
 # Other files and folders
 appsettings.json
 appsettings.Development.json
 .settings/
-.idea/
 
 # Executables
 *.swf

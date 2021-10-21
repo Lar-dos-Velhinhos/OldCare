@@ -29,6 +29,7 @@ public class PersonController : Controller
 
         _context.Persons.Add(new Person
         {
+            Id = Guid.NewGuid(),
             Address = model.Address,
             BirthDate = model.BirthDate,
             Citizenship = model.Citizenship,
