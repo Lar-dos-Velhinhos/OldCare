@@ -1,0 +1,1 @@
+﻿public record Person(Guid Id, string Title, bool Done);
