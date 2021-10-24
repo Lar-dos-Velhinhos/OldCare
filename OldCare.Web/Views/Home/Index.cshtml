@@ -1,6 +1,4 @@
-﻿@model OldCare.Core.Entities.Resident
-
-@{
+﻿@{
     Layout = null;
     ViewData["Title"] = "Entrada";
 }
@@ -13,29 +11,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.1/font/bootstrap-icons.css">
 </head>
 
 <body>
     <section id="header" class="container">
 
         <!-- Cards above nav -->
-        <div class="row">
+        <div class="row pt-4 pb-4">
             <!-- First column -->
             <div class="col-2 d-flex align-items-center">
-                <img src="~/media/site/images/prancheta.png" width="154" />
+                <img src="~/lib/media/site/images/prancheta.png" width="154" />
             </div>
 
             <!-- Second column -->
             <div class="col-4">
-                <div class="card mb-3" style="max-width: 540px;">
+                <div class="card border-0" style="max-width: 540px;">
                     <div class="row g-0">
-                        <div class="col-md-4">
-                            <img src="..." class="img-fluid rounded-start" alt="...">
+                        <div class="col-md-2 d-flex align-items-center">
+                            <img src="~/lib/media/site/images/phone-call.png" class="img-fluid rounded-start" alt="telefone" width="48">
                         </div>
-                        <div class="col-md-8">
+                        <div class="col-md-10 d-flex align-items-center">
                             <div class="card-body">
-                                <p class="card-text">Telefone</p>
-                                <p class="card-text"><small class="text-muted">(00) 0 0000-0000</small></p>
+                                <p class="card-text">
+                                    <small class="text-muted">
+                                        <strong>
+                                            (12) 3125-1564
+                                        </strong>
+                                    </small>
+                                    <small class="text-muted">
+                                        <strong>
+                                            larvelhinhos_franciscodeassis@yahoo.com.br
+                                        </strong>
+                                    </small>
+                                    <br />
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -44,15 +54,26 @@
 
             <!-- Thirt column -->
             <div class="col-4">
-                <div class="card mb-3" style="max-width: 540px;">
-                    <div class="row g-0">
-                        <div class="col-md-4">
-                            <img src="..." class="img-fluid rounded-start" alt="...">
+                <div class="card border-0" style="max-width: 540px;">
+                    <div class="row g-0 d-flex align-items-center">
+                        <div class="col-md-2 d-flex align-items-center">
+                            <img src="~/lib/media/site/images/localization.png" class="img-fluid rounded-start" alt="local-mapa-ponto">
                         </div>
-                        <div class="col-md-8">
+                        <div class="col-md-10 d-flex align-items-center">
                             <div class="card-body">
-                                <p class="card-text">Localização.</p>
-                                <p class="card-text"><small class="text-muted">endereço</small></p>
+                                <p class="card-text">
+                                    <small class="text-muted">
+                                        <strong>
+                                            R. Diogo Alvares, N° 6 - Nova Guará
+                                        </strong>
+                                    </small>
+                                    <br />
+                                    <small class="text-muted">
+                                        <strong>
+                                            12516-630, Guaratinguetá/SP
+                                        </strong>
+                                    </small>
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -62,22 +83,22 @@
             <!-- Fourth column -->
             <div class="col-2 d-flex align-items-center">
                 <div class="d-grid gap-2 col-12 mx-auto">
-                    <a asp-action="Login" asp-controller="Authentication" class="btn btn-primary">OldCare @Model</a>
+                    <a asp-action="Login" asp-controller="Authentication" class="btn btn-primary">OldCare</a>
                 </div>
             </div>
         </div>
 
         <!-- Navigation menu -->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <nav class="navbar navbar-expand-lg bg-oldcare-gray px-5">
             <div class="container-fluid">
-                <a asp-controller="Home" asp-action="Index" class="navbar-brand">Principal</a>
+                <a asp-controller="Home" asp-action="Index" class="navbar-brand color-default">Principal</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
                     <ul class="navbar-nav">
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class="navbar-brand nav-link dropdown-toggle color-default" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Dropdown
                             </a>
                             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
@@ -93,34 +114,54 @@
 
         <!-- Carrousel -->
         <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+@*            <div class="oldcare-carousel-indicators oldcare-carousel-visual-indicators">
+                <a data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="oldcare-carousel-dotbuttons bi bi-dot invisible-text" aria-label="Slide 1"></></a>
+                <a data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2" class="oldcare-carousel-dotbuttons bi bi-dot invisible-text"></a>
+                <a data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3" class="active oldcare-carousel-dotbuttons bi bi-dot invisible-text" aria-current="true"></a>
+            </div>*@
+            <div class="caroussel-controll-items">
+                <a aria-current="true" aria-label="Slide 1" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="caroussel-control-items-visual"></a>
+                <a aria-label="Slide 2" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" class="caroussel-control-items-visual"></a>
+                <a aria-label="Slide 3" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" class="caroussel-control-items-visual"></a>
             </div>
             <div class="carousel-inner">
-                <div class="carousel-item active" data-bs-interval="1000">
-                    <img src="https://th.bing.com/th/id/OIP.d19YdemDEmg1mGWxYp3-2QHaEK?pid=ImgDet&rs=1" class="d-block w-100" alt="...">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5>First slide label</h5>
-                        <p>Some representative placeholder content for the first slide.</p>
+                <div class="carousel-item active oldcare-carousell-item" data-bs-interval="1000">
+                    <div class="d-none d-md-block col-6 oldcare-carousel-caption">
+                        <h1 class="text-start">
+                            Transformação digital
+                        </h1>
+                        <h5>
+                            Estamos recebendo apoio para implementar tecnologias em prol nossos funcionários e residentes.
+                        </h5>
                     </div>
+                    <a class="btn btn-primary stretched-link" href=#>Saiba mais <i class="bi bi-arrow-right"></i></a>
                 </div>
-                <div class="carousel-item" data-bs-interval="2000">
-                    <img src="https://i.ytimg.com/vi/Qli9hk04HGo/maxresdefault.jpg" class="d-block w-100" alt="...">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5>Second slide label</h5>
-                        <p>Some representative placeholder content for the second slide.</p>
+                <div class="carousel-item oldcare-carousell-item" data-bs-interval="2000">
+                    <div class="d-none d-md-block col-6 oldcare-carousel-caption">
+                        <h1>
+                            Projetos Sociais
+                        </h1>
+                        <h3>
+                            Descrição
+                        </h3>
+                        <h5>
+                            Conheça nossos projetos sociais e saiba como você pode contribuir.
+                        </h5>
                     </div>
+                    <a class="btn btn-primary stretched-link" href=#>Saiba mais <i class="bi bi-arrow-right"></i></a>
+                </div>
+                <div class="carousel-item oldcare-carousell-item" data-bs-interval="3000">
+                    <div class="d-none d-md-block col-6 oldcare-carousel-caption">
+                        <h1>
+                            Transparência
+                        </h1>
+                        <h5>
+                            Descrição
+                        </h5>
+                    </div>
+                    <a class="btn btn-primary stretched-link" href=#>Saiba mais <i class="bi bi-arrow-right"></i></a>
                 </div>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
         </div>
     </section>
 
