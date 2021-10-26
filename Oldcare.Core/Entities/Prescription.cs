@@ -1,4 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations.Schema
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 [Table("Prescription")]
 public class Prescription : Entity
