@@ -1,14 +1,13 @@
-using Oldcare.Core.Data;
-
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<AppDbContext>();
+builder.Services.AddEndpointsApiExplorer();
 
 var app = builder.Build();
 
-app.MapGet("v1/todos", (AppDbContext context) =>
+app.MapGet("/v1/persons", (AppDbContext context) =>
 {
-    var todo = context.Persons.ToList();
-    return Results.Ok(todo);
-});
+    var persons = context.Persons;
+    return Results.Ok(persons);
+}).Produces<Person>();
 
 app.Run();
