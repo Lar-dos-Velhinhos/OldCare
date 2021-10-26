@@ -1,4 +1,6 @@
-﻿namespace Oldcare.Core.Entities;
+﻿using System.ComponentModel.DataAnnotations.Schema
+
+[Table("ResidentResponsible")]
 public class ResidentResponsible : Entity
 {
     public Resident Resident { get; set; }

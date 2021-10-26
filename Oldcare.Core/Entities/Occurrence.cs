@@ -1,5 +1,6 @@
-﻿namespace Oldcare.Core.Entities;
+﻿using System.ComponentModel.DataAnnotations.Schema
 
+[Table("Occurrence")]
 public class Occurrence : Entity
 {
     public Resident Resident { get; set; }

@@ -1,5 +1,6 @@
-﻿namespace Oldcare.Core.Entities;
+﻿using System.ComponentModel.DataAnnotations.Schema
 
+[Table("Medication")]
 public class Medication : Entity
 {
     public PrescriptionItem PrescriptionItem { get; set; }
