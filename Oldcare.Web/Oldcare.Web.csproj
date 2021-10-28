@@ -24,14 +24,21 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Office\Controllers\" />
-    <Folder Include="Areas\Office\Data\" />
-    <Folder Include="Areas\Office\Models\" />
-    <Folder Include="Areas\Office\Views\" />
+    <ProjectReference Include="..\Oldcare.Core\Oldcare.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Oldcare.Core\Oldcare.Core.csproj" />
+    <Folder Include="Areas\Backoffice\Data" />
+    <Folder Include="Areas\Backoffice\Models\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Areas\Backoffice\Models.config" />
+    <Content Remove="Areas\Backoffice\Views\Index2.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Areas\Backoffice\Controllers\Home.cs" />
   </ItemGroup>
 
 </Project>

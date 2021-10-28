@@ -1,8 +1,4 @@
-﻿using System.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
-using Oldcare.Web.Models;
-
-namespace Oldcare.Web.Controllers;
+﻿namespace Oldcare.Web.Controllers;
 
 [Route("/")]
 public class HomeController : Controller
