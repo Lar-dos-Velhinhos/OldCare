@@ -33,7 +33,14 @@ for details on configuring this project to bundle and minify static web assets. 
 }
 
 /* background-colors */
-.oc-btn-default {
+.oc-default-private-bg {
+    background-image: url(/lib/media/site/images/clean-logo.png);
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-size: 120%;
+    background-position: 10vw 10vh;
+    background-repeat: no-repeat;
 }
 
 .oc-default-bg {
@@ -233,15 +240,14 @@ body {
 }
 
 /* temporário */
-.img-above {
-    position: absolute;
-    z-index: 300;
+.oc-btn-transition-right {
+    z-index: 5;
 }
 
 .dar .fas.fa-arrow-right {
     background-color: red;
     position: absolute;
-    height: 12vh;
+    height: 10vh;
     left: 4vw;
     width: 64px;
     opacity: 1;
