@@ -2,6 +2,7 @@
 for details on configuring this project to bundle and minify static web assets. */
 
 :root {
+    --oc-black: #0a0a0a;
     --oldcare-blue: #0070E6;
     --oldcare-light-blue: #00CDFF;
     --oldcare-ocean-blue: #2A93C9;
@@ -10,9 +11,11 @@ for details on configuring this project to bundle and minify static web assets. 
     --oldcare-gray: #292D30;
     --oldcare-light-gray: #81838C;
     --oc-white-ice: #DFE0EB;
-    --oldcare-white: #F5F5F5;
+    --oc-white: #F5F5F5;
+    --oc-white-60: rgba(245, 245, 245, 0.6);
     --oc-deep-ocean-blue: #193278;
     --oc-green-hope: #37F092;
+    --oc-opaque-green: #98F5C6;
 }
 
 @font-face {
@@ -23,6 +26,11 @@ for details on configuring this project to bundle and minify static web assets. 
 @font-face {
     font-family: Poppins-Light;
     src: url(/lib/fonts/poppins/Poppins-Light.ttf);
+}
+
+@font-face {
+    font-family: Poppins-Bold;
+    src: url(/lib/fonts/poppins/Poppins-Bold.ttf);
 }
 
 .font-poppins-regular {
@@ -64,9 +72,9 @@ for details on configuring this project to bundle and minify static web assets. 
     background-color: var(--oc-green-hope);
 }
 
-/* text-colors */
+/* ########## text-colors ########## */
 .color-default {
-    color: var(--oldcare-white) !important;
+    color: var(--oc-white) !important;
 }
 
 .gray-text {
@@ -81,6 +89,15 @@ for details on configuring this project to bundle and minify static web assets. 
     color: var(--oc-green-hope);
 }
 
+.oc-person-link {
+    color: var(--oc-black);
+    text-decoration: none;
+}
+
+.oc-person-link:hover {
+    color: var(--oc-black);
+}
+
 /* ########## Menus ########## */
 .oc-side-menu {
 }
@@ -93,7 +110,7 @@ for details on configuring this project to bundle and minify static web assets. 
     opacity: 100%;
 }
 
-.oc-side-menu li a
+.oc-side-menu li a{}
 .active {
     opacity: 100%;
 }
@@ -103,13 +120,62 @@ for details on configuring this project to bundle and minify static web assets. 
 
 /* ########## Containers ########## */
 .oc-view-default {
-    background-color: var(--oldcare-white);
+    background-color: #FFFFFF;
     height: 76.5%;
     border: 1px solid var(--oc-white-ice);
     border-radius: 8px;
     margin: 10%;
 }
 
+/* ########## Container Items ########## */
+.oc-view-header-default {
+    margin-top: 2.5% !important;
+}
+
+.oc-view-title-default {
+    font-size: 16pt;
+    font-family: Poppins-Bold;
+}
+
+.oc-view-subtitle-default{
+    font-size: 8pt;
+    margin-top: -0.8%;
+}
+
+.oc-view-left-title-default {
+    font-size: 8pt;
+    font-family: Poppins-Bold;
+}
+
+/* ########## Cards ########## */
+.oc-person-details-card {
+    background-color: var(--oc-white-60);
+    border-left: 4px solid var(--oc-opaque-green);
+    border-radius: 4px;
+    justify-items: flex-start;
+    min-width: 250px;
+    padding: 1.3% 0%;
+    transition: 0.3s;
+    width: 20%;
+}
+
+.oc-person-details-card:hover {
+    margin-top: -0.5%;
+}
+
+.oc-person-details-card h1 {
+    font-size: 10pt;
+    font-family: Poppins-Bold;
+    margin-top: 10%;
+}
+
+.oc-person-details-card h2 {
+    margin-top: -8%;
+    font-size: 10pt;
+}
+
+.oc-person-details-card-details {
+}
 
 .oc-btn-gradient {
     margin-left: 50px;
