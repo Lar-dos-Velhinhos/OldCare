@@ -72,7 +72,7 @@ for details on configuring this project to bundle and minify static web assets. 
     background-color: var(--oc-green-hope);
 }
 
-/* ########## text-colors ########## */
+/* ########## Texts ########## */
 .color-default {
     color: var(--oc-white) !important;
 }
@@ -96,6 +96,18 @@ for details on configuring this project to bundle and minify static web assets. 
 
 .oc-person-link:hover {
     color: var(--oc-black);
+}
+
+.oc-top-left-name h1 {
+    color: var(--oldcare-light-gray);
+    font-size: 10pt;
+    text-align: right;
+}
+
+.oc-top-left-name h2 {
+    color: var(--oldcare-light-gray);
+    font-size: 8pt;
+    text-align: right;
 }
 
 /* ########## Menus ########## */
