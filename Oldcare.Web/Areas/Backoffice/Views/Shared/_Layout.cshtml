@@ -9,11 +9,10 @@
                 <div class="d-flex flex-column align-items-center align-items-sm-center px-3 text-white min-vh-100">
                     <div class="w-100 text-center p-1">
                         <a href="/">
-                            <img class="img-fluid" src="~/lib/media/site/images/clean-logotype.png" width="94" />
+                            <img class="img-fluid" src="~/lib/media/site/images/clean-logotype.png" width="94"/>
                         </a>
                     </div>
                     <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start oc-side-menu" id="menu">
-
 
 
                         <li class="nav-item pt-3 dar pb-4">
@@ -22,32 +21,37 @@
                                 <div class="col-11">
                                     <ul type="none" class="navbar" style="">
                                         <li style="color: blue;">
-                                            <img class="img-fluid" src="~/lib/media/site/images/icons/secretary-dark.svg" width="36" />
+                                            <img class="img-fluid" src="~/lib/media/site/images/icons/secretary-dark.svg" width="36"/>
                                         </li>
-                                        <li style="color: white;"><a>Item 1</a></li>
-                                        <li style="color: yellow;"><a>Item 1</a></li>
+                                        <li style="color: white;">
+                                            <a>Item 1</a>
+                                        </li>
+                                        <li style="color: yellow;">
+                                            <a>Item 1</a>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
                             <a href="#" class="nav-link align-middle px-0 my-3">
-                                <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline hope-green-text">
-                                    <img class="img-fluid hope-green-text img-above" src="~/lib/media/site/images/icons/secretary.svg" width="48" data-mdb-toggle="tooltip" title="Secretaria" />
+                                <i class="fs-4 bi-house"></i>
+                                <span class="ms-1 d-none d-sm-inline hope-green-text">
+                                    <img class="img-fluid hope-green-text img-above" src="~/lib/media/site/images/icons/secretary.svg" width="48" data-mdb-toggle="tooltip" title="Secretaria"/>
                                 </span>
                             </a>
                         </li>
                         <li>
                             <a href="#" class="nav-link px-0 align-middle px-0 my-3">
-                                <img class="img-fluid hope-green-text" src="~/lib/media/site/images/icons/nurse.svg" width="48" data-mdb-toggle="tooltip" title="Enfermaria" />
+                                <img class="img-fluid hope-green-text" src="~/lib/media/site/images/icons/nurse.svg" width="48" data-mdb-toggle="tooltip" title="Enfermaria"/>
                             </a>
                         </li>
                         <li>
                             <a href="#" class="nav-link px-0 align-middle px-0 my-3">
-                                <img class="img-fluid hope-green-text" src="~/lib/media/site/images/icons/treasurer.svg" width="48" data-mdb-toggle="tooltip" title="Tesouraria" />
+                                <img class="img-fluid hope-green-text" src="~/lib/media/site/images/icons/treasurer.svg" width="48" data-mdb-toggle="tooltip" title="Tesouraria"/>
                             </a>
                         </li>
                         <li>
                             <a href="#" class="nav-link px-0 align-middle px-0 my-3">
-                                <img class="img-fluid hope-green-text" src="~/lib/media/site/images/icons/socialwork.svg" width="48" data-mdb-toggle="tooltip" title="Assistência social" />
+                                <img class="img-fluid hope-green-text" src="~/lib/media/site/images/icons/socialwork.svg" width="48" data-mdb-toggle="tooltip" title="Assistência social"/>
                             </a>
                         </li>
                     </ul>
@@ -55,14 +59,16 @@
             </div>
             @* TODO: Transform styles in css classes *@
             <div class="col py-3" style="background-color: rgba(255, 255, 255, 0.6);">
-                <div class="row mx-2">
+                <div class="row">
                     <div class="col-10">
                         <spam style="font-size: 14pt;">
                             <b>Lar dos Velhinhos - Guaratinguetá</b>
                         </spam>
                     </div>
-                    <hr style="position: absolute; width: 75%; margin-top: 2.1%;"/>
-                    <div class="col-2">
+                    
+                    <hr style="position: absolute; width: 75%; margin-top: 2.1%; margin-left: 0.7%;"/>
+                    
+                    <div class="col-2" style="margin-left: -1%;">
                         <div class="row">
                             <div class="col-10 oc-top-left-name" style="margin-right: -8%;">
                                 <h1 style="margin-top: 8%; margin-bottom: -2%;">Gizele Bedaque</h1>
@@ -74,6 +80,18 @@
                         </div>
                     </div>
                 </div>
+                
+                <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;); position: absolute;" aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a class="oc-breadcrumb-link" asp-action="Index" asp-controller="Home">Principal</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a class="oc-breadcrumb-link" asp-area="Backoffice" asp-action="Index" asp-controller="Home">OldCare</a>
+                        </li>
+                        <li class="breadcrumb-item active oc-breadcrumb-here" aria-current="page">Residentes</li>
+                    </ol>
+                </nav>
                 <div class="container oc-view-default">
                     <main role="main" class="pb-3">
                         @RenderBody()
@@ -85,6 +103,6 @@
 </header>
 <partial name="Partials/_ScriptsPartial"/>
 <partial name="_ValidationScriptsPartial"></partial>
-    @await RenderSectionAsync("Scripts", required: false)
+@await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

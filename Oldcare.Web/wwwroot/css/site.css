@@ -110,6 +110,22 @@ for details on configuring this project to bundle and minify static web assets. 
     text-align: right;
 }
 
+/* ########## Links ########## */
+.oc-breadcrumb-link {
+    color: var(--oc-black);
+    font-size: 10pt;
+    text-decoration: none;
+}
+
+.oc-breadcrumb-link:hover {
+    color: var(--oldcare-blue);
+}
+
+.oc-breadcrumb-here {
+    font-size: 10pt;
+    margin-top: 1.5%;
+}
+
 /* ########## Menus ########## */
 .oc-side-menu {
 }
