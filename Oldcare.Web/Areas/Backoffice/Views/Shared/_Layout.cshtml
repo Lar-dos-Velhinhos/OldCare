@@ -7,54 +7,44 @@
         <div class="row ">
             <div class="oc-deep-ocean-blue-bg px-sm-2 px-0" style="width: 15vw;">
                 <div class="d-flex flex-column align-items-center align-items-sm-center px-3 text-white min-vh-100">
-                    <div class="w-100 text-center p-1">
-                        <a href="/">
+                    <div class="w-100 text-center p-1 mt-3">
+                        <a asp-area="Backoffice" asp-action="Index" asp-controller="Home">
                             <img class="img-fluid" src="~/lib/media/site/images/clean-logotype.png" width="94"/>
                         </a>
                     </div>
-                    <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start oc-side-menu" id="menu">
+                    <div style="padding-top: 60% !important;">
+                        <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start oc-side-menu" id="menu">
+                            <li class="oc-active-view-label">
+                                <ul type="none" style="display: inline-flex;">
+                                    <li class="h-100">
+                                        <img class="img-fluid hope-green-text" src="~/lib/media/site/images/icons/secretary-dark.svg" width="28" data-mdb-toggle="tooltip" title="Secretaria"/>
+                                        <span class="oc-pt-24 oc-ml-5 oc-text-dark fw-bold">Secretaria</span>
+                                    </li>
 
-
-                        <li class="nav-item pt-3 dar pb-4">
-                            <div class="row px-0 fas fa-arrow-right oc-btn-transition-right">
-                                <div class="col-1"></div>
-                                <div class="col-11">
-                                    <ul type="none" class="navbar" style="">
-                                        <li style="color: blue;">
-                                            <img class="img-fluid" src="~/lib/media/site/images/icons/secretary-dark.svg" width="36"/>
-                                        </li>
-                                        <li style="color: white;">
-                                            <a>Item 1</a>
-                                        </li>
-                                        <li style="color: yellow;">
-                                            <a>Item 1</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <a href="#" class="nav-link align-middle px-0 my-3">
-                                <i class="fs-4 bi-house"></i>
-                                <span class="ms-1 d-none d-sm-inline hope-green-text">
-                                    <img class="img-fluid hope-green-text img-above" src="~/lib/media/site/images/icons/secretary.svg" width="48" data-mdb-toggle="tooltip" title="Secretaria"/>
-                                </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="nav-link px-0 align-middle px-0 my-3">
-                                <img class="img-fluid hope-green-text" src="~/lib/media/site/images/icons/nurse.svg" width="48" data-mdb-toggle="tooltip" title="Enfermaria"/>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="nav-link px-0 align-middle px-0 my-3">
-                                <img class="img-fluid hope-green-text" src="~/lib/media/site/images/icons/treasurer.svg" width="48" data-mdb-toggle="tooltip" title="Tesouraria"/>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="nav-link px-0 align-middle px-0 my-3">
-                                <img class="img-fluid hope-green-text" src="~/lib/media/site/images/icons/socialwork.svg" width="48" data-mdb-toggle="tooltip" title="Assistência social"/>
-                            </a>
-                        </li>
-                    </ul>
+                                    <li class="h-100" style="margin-top: 14%;">
+                                        <a class="oc-side-menu-link">
+                                            <img class="img-fluid hope-green-text" src="~/lib/media/site/images/icons/resident.png" width="28" data-mdb-toggle="tooltip" title="Secretaria"/>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#" class="nav-link px-0 align-middle px-0 my-3">
+                                    <img class="img-fluid hope-green-text" src="~/lib/media/site/images/icons/nurse.svg" width="48" data-mdb-toggle="tooltip" title="Enfermaria"/>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="nav-link px-0 align-middle px-0 my-3">
+                                    <img class="img-fluid hope-green-text" src="~/lib/media/site/images/icons/treasurer.svg" width="48" data-mdb-toggle="tooltip" title="Tesouraria"/>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="nav-link px-0 align-middle px-0 my-3">
+                                    <img class="img-fluid hope-green-text" src="~/lib/media/site/images/icons/socialwork.svg" width="48" data-mdb-toggle="tooltip" title="Assistência social"/>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
             @* TODO: Transform styles in css classes *@
@@ -65,9 +55,9 @@
                             <b>Lar dos Velhinhos - Guaratinguetá</b>
                         </spam>
                     </div>
-                    
+
                     <hr style="position: absolute; width: 75%; margin-top: 2.1%; margin-left: 0.7%;"/>
-                    
+
                     <div class="col-2" style="margin-left: -1%;">
                         <div class="row">
                             <div class="col-10 oc-top-left-name" style="margin-right: -8%;">
@@ -80,7 +70,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;); position: absolute;" aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">

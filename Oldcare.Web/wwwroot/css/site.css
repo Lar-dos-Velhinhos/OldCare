@@ -16,6 +16,7 @@ for details on configuring this project to bundle and minify static web assets. 
     --oc-deep-ocean-blue: #193278;
     --oc-green-hope: #37F092;
     --oc-opaque-green: #98F5C6;
+    --oc-dark: #0E1D47;
 }
 
 @font-face {
@@ -39,6 +40,15 @@ for details on configuring this project to bundle and minify static web assets. 
 
 .font-poppins-light {
     font-family: Poppins-Light;
+}
+
+/* ########## Spacing ########## */
+.oc-pt-24 {
+    padding-top: 24%;
+}
+
+.oc-ml-5 {
+    margin-left: 5%;
 }
 
 /* background-colors */
@@ -75,6 +85,10 @@ for details on configuring this project to bundle and minify static web assets. 
 /* ########## Texts ########## */
 .color-default {
     color: var(--oc-white) !important;
+}
+
+.oc-text-dark {
+    color: var(--oc-dark);
 }
 
 .gray-text {
@@ -130,6 +144,10 @@ for details on configuring this project to bundle and minify static web assets. 
 .oc-side-menu {
 }
 
+.oc-side-menu li {
+    display: inline-flex;
+}
+
 .oc-side-menu li a {
     opacity: 30%;
 }
@@ -138,12 +156,33 @@ for details on configuring this project to bundle and minify static web assets. 
     opacity: 100%;
 }
 
-.oc-side-menu li a{}
+.oc-side-menu li a {
+    opacity: 100%;
+}
+
+.oc-side-menu-link {
+    opacity: 30% !important;
+}
+
+.oc-side-menu-link:hover {
+    opacity: 100% !important;
+}
+
 .active {
     opacity: 100%;
 }
 
 .oc-btn {
+}
+
+.oc-active-view-label {
+    position: fixed;
+    background-color: var(--oc-green-hope);
+    width: 600px;
+    height: 10%;
+    top: 13%;
+    left: 2%;
+    border-radius: 8px;
 }
 
 /* ########## Containers ########## */
@@ -165,7 +204,7 @@ for details on configuring this project to bundle and minify static web assets. 
     font-family: Poppins-Bold;
 }
 
-.oc-view-subtitle-default{
+.oc-view-subtitle-default {
     font-size: 8pt;
     margin-top: -0.8%;
 }
@@ -340,30 +379,4 @@ body {
     width: 100%;
     white-space: nowrap;
     line-height: 60px;
-}
-
-/* temporário */
-.oc-btn-transition-right {
-    z-index: 5;
-}
-
-.dar .fas.fa-arrow-right {
-    background-color: red;
-    position: absolute;
-    height: 10vh;
-    left: 4vw;
-    width: 64px;
-    opacity: 1;
-    transform: translateX(50%);
-    transition: all 0.5s ease;
-    visibility: collapse;
-    border-radius: 15px;
-}
-
-.dar:hover .fas.fa-arrow-right {
-    position: absolute;
-    left: -22vw;
-    width: 100vh;
-    opacity: 1;
-    visibility: visible;
 }
