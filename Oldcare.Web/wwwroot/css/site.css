@@ -178,11 +178,13 @@ for details on configuring this project to bundle and minify static web assets. 
 .oc-active-view-label {
     position: fixed;
     background-color: var(--oc-green-hope);
-    width: 600px;
-    height: 10%;
-    top: 13%;
+    width: max-content;
+    display: flex;
+    align-items: center;
+    height: 11%;
+    top: 14%;
     left: 2%;
-    border-radius: 8px;
+    border-radius: 10px;
 }
 
 /* ########## Containers ########## */
@@ -380,3 +382,11 @@ body {
     white-space: nowrap;
     line-height: 60px;
 }
+/*
+.horizontal-menu {
+    background-color: var(--oc-green-hope);
+    width: max-content;
+    display: flex;
+    align-items: center;
+}
+*/
