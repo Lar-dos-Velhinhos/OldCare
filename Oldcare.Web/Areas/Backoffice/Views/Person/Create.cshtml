@@ -1,0 +1,102 @@
+﻿@* @model TModel *@
+
+@{
+    ViewData["Title"] = "Adicionar residente";
+}
+
+<section xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+    <div id="header" class="row oc-view-header-default">
+        <div class="col-10">
+            <h1 class="oc-view-title-default">
+                <strong>Adicionar Pessoa</strong>
+            </h1>
+            <h2 class="oc-view-subtitle-default oc-text-light-gray">Preencha os dados iniciais da 1° etapa.</h2>
+        </div>
+    </div>
+
+    <div class="oc-steps">
+        <ul type="none">
+            <li>
+                <a>1</a>
+            </li>
+            <li>
+                <a>2</a>
+            </li>
+        </ul>
+    </div>
+
+    <form class="row mt-5">
+        <div class="col-1">
+            <img class="img-fluid" src="/lib/media/site/images/icons/person-vector.png" width="88"/>
+            @* <a href="#" style="position: relative><i class="bi bi-plus-circle-fill"></i></a> *@
+        </div>
+        <div class="col-8">
+            <div class="row">
+                <div class="col-12">
+                    <div class="row mb-4">
+                        <label class="col-2">Nome:</label>
+                        <input class="col-10 oc-form-control" type="text"/>
+                        <span class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="row mb-4">
+                        <div class="col-6">
+                            <div class="row">
+                                <label class="col-4">Nascimento:</label>
+                                <input class="col-8 oc-form-control" type="date"/>
+                                <span class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-6">
+                            <div class="row">
+                                <label class="col-4">Naturalidade:</label>
+                                <input class="col-8 oc-form-control" type="text"/>
+                                <span class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="row mb-4">
+                        <label class="col-2">Sexo:</label>
+                        <select class="col-4 oc-form-control">
+                            <option selected>Selecione</option>
+                            <option value="0">Feminino</option>
+                            <option value="1">Masculino</option>
+                        </select>
+                        <span class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="row mb-5">
+                        <div class="col-6">
+                            <div class="row">
+                                <label class="col-4">RG:</label>
+                                <input class="col-8 oc-form-control" type="text"/>
+                                <span class="text-danger"></span>
+                                <span class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-6">
+                            <div class="row">
+                                <label class="col-4">CPF:</label>
+                                <input class="col-8 oc-form-control" type="text"/>
+                                <span class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col px-5 align-self-end text-end">
+                <a class="color-default oc-dark-btn oc-text-decoration-none" href="">Avançar</a>
+            </div>
+        </div>
+    </form>
+
+</section>

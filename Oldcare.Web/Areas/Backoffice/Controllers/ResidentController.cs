@@ -8,8 +8,7 @@ public class ResidentController : Controller
 
     // GET: ResidentController/Details/5
     public ActionResult Details(int id) => View();
-
-    // GET: ResidentController/Create
+    
     public ActionResult Create() => View();
 
     // POST: ResidentController/Create

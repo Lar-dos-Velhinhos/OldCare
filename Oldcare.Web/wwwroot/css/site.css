@@ -10,11 +10,13 @@ for details on configuring this project to bundle and minify static web assets. 
     --oldcare-light-green: #00CA8A;
     --oldcare-gray: #292D30;
     --oldcare-light-gray: #81838C;
+    --oc-transparent-gray: #F7F7F7;
     --oc-white-ice: #DFE0EB;
     --oc-white: #F5F5F5;
     --oc-white-60: rgba(245, 245, 245, 0.6);
     --oc-deep-ocean-blue: #193278;
     --oc-green-hope: #37F092;
+    --oc-green-hope-30: rgba(55, 240, 146, 0.3);
     --oc-opaque-green: #98F5C6;
     --oc-dark: #0E1D47;
 }
@@ -83,12 +85,28 @@ for details on configuring this project to bundle and minify static web assets. 
 }
 
 /* ########## Texts ########## */
+.oc-text-decoration-none {
+    text-decoration: none;
+}
+
+.oc-text-decoration-none:visited {
+    text-decoration: none;
+}
+
+.oc-text-decoration-none:hover {
+    text-decoration: none;
+}
+
 .color-default {
     color: var(--oc-white) !important;
 }
 
 .oc-text-dark {
     color: var(--oc-dark);
+}
+
+.oc-text-light-gray {
+    color: var(--oldcare-light-gray);
 }
 
 .gray-text {
@@ -172,7 +190,11 @@ for details on configuring this project to bundle and minify static web assets. 
     opacity: 100%;
 }
 
-.oc-btn {
+.oc-dark-btn {
+    background-color: var(--oc-deep-ocean-blue);
+    padding: 5px 18px 5px 18px;
+    border-radius: 8px;
+    box-shadow: 2px 2px 3px gray;
 }
 
 .oc-active-view-label {
@@ -246,6 +268,13 @@ for details on configuring this project to bundle and minify static web assets. 
 .oc-person-details-card-details {
 }
 
+.oc-steps {
+    position: absolute;
+    top: 15%;
+    left: 30%;
+    background-color: var(--oc-green-hope-30);
+}
+
 .oc-btn-gradient {
     margin-left: 50px;
     padding: 5px 0;
@@ -265,7 +294,6 @@ for details on configuring this project to bundle and minify static web assets. 
     background-image: linear-gradient(165deg, #3F93FF 0%, #A1FF8B 40.83%);
 }
 
-
 .oc-default-menu {
     display: flex;
     justify-content: center;
@@ -283,6 +311,17 @@ for details on configuring this project to bundle and minify static web assets. 
     background-color: #2684B5;
     color: white;
 }
+
+/* ########## Forms ########## */
+.oc-form-control {
+    background-color: var(--oc-transparent-gray) !important;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-radius: 6px 6px 0px 0px;
+}
+
+/* ########## Carrousels ########## */
 
 .caroussel-controll-items {
     position: absolute;

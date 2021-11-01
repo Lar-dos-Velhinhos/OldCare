@@ -35,10 +35,20 @@
   <ItemGroup>
     <Content Remove="Areas\Backoffice\Models.config" />
     <Content Remove="Areas\Backoffice\Views\Index2.cshtml" />
+    <Content Remove="Areas\Backoffice\Views\Resident\Partials\**" />
   </ItemGroup>
 
   <ItemGroup>
     <Compile Remove="Areas\Backoffice\Controllers\Home.cs" />
+    <Compile Remove="Areas\Backoffice\Views\Resident\Partials\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="Areas\Backoffice\Views\Resident\Partials\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Areas\Backoffice\Views\Resident\Partials\**" />
   </ItemGroup>
 
 </Project>
