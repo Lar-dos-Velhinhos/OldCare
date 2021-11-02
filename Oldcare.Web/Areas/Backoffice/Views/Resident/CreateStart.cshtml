@@ -10,7 +10,7 @@
             <h1 class="oc-view-title-default">
                 <strong>Cadastrar Residente</strong>
             </h1>
-            <h2 class="oc-view-subtitle-default oc-text-light-gray">Preencha os dados de endereço para finalizar.</h2>
+            <h2 class="oc-view-subtitle-default oc-text-light-gray">Preencha os dados de informações adicionais.</h2>
         </div>
     </div>
 
@@ -36,38 +36,28 @@
             <div class="row">
                 <div class="col-12">
                     <div class="row mb-4">
-                        <div class="col-8">
-                            <div class="row">
-                                <label class="col-3">Logradouro:</label>
-                                <input class="col-9 oc-form-control" type="text"/>
-                                <span class="text-danger"></span>
-                            </div>
-                        </div>
-
-                        <div class="col-4">
-                            <div class="row">
-                                <span class="col-4"></span>
-                                <label class="col-4">Número:</label>
-                                <input class="col-4 oc-form-control" type="text"/>
-                                <span class="text-danger"></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12">
-                    <div class="row mb-4">
                         <div class="col-6">
                             <div class="row">
-                                <label class="col-4">Bairro:</label>
-                                <input class="col-8 oc-form-control" type="text"/>
+                                <label class="col-4">Escolaridade:</label>
+                                <select class="col-8 oc-form-control">
+                                    <option selected>Selecione</option>
+                                    <option value="0">Não alfabetizado(a)</option>
+                                    <option value="1">Fundamental incompleto</option>
+                                    <option value="2">Fundamental completo</option>
+                                    <option value="3">Médio imcompleto</option>
+                                    <option value="4">Médio completo</option>
+                                    <option value="5">Graduação</option>
+                                    <option value="6">Pós-Graduação</option>
+                                    <option value="7">Mestrado</option>
+                                    <option value="8">Doutorado</option>
+                                </select>
                                 <span class="text-danger"></span>
                             </div>
                         </div>
 
                         <div class="col-6">
                             <div class="row">
-                                <span class="col-1"></span>
-                                <label class="col-3">Cidade:</label>
+                                <label class="col-4">Profissão:</label>
                                 <input class="col-8 oc-form-control" type="text"/>
                                 <span class="text-danger"></span>
                             </div>
@@ -78,7 +68,7 @@
                     <div class="row mb-4">
                         <div class="col-6">
                             <div class="row">
-                                <label class="col-4">Estado:</label>
+                                <label class="col-4">Estado civil:</label>
                                 <input class="col-8 oc-form-control" type="text"/>
                                 <span class="text-danger"></span>
                             </div>
@@ -86,8 +76,33 @@
 
                         <div class="col-6">
                             <div class="row">
-                                <span class="col-1"></span>
-                                <label class="col-3">Cep:</label>
+                                <label class="col-4">Mobilidade:</label>
+                                <select class="col-8 oc-form-control">
+                                    <option selected>Selecione</option>
+                                    <option value="0">Auto-Suficiente</option>
+                                    <option value="1">Usa bengala</option>
+                                    <option value="2">Usa andador</option>
+                                    <option value="3">Cadeirante</option>
+                                    <option value="4">Acamado</option>
+                                </select>
+                                <span class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="row mb-4">
+                        <div class="col-6">
+                            <div class="row">
+                                <label class="col-4">Mãe:</label>
+                                <input class="col-8 oc-form-control" type="text"/>
+                                <span class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-6">
+                            <div class="row">
+                                <label class="col-4">Pai:</label>
                                 <input class="col-8 oc-form-control" type="text"/>
                                 <span class="text-danger"></span>
                             </div>
@@ -95,11 +110,19 @@
                     </div>
                 </div>
                 <div class="col-12">
-                    <div class="row mb-5">
-                        <div class="col-12">
+                    <div class="row mb-4">
+                        <div class="col-6">
                             <div class="row">
-                                <label class="col-2">Observação:</label>
-                                <textarea class="col-10 oc-form-control"></textarea>
+                                <label class="col-4">SUS:</label>
+                                <input class="col-8 oc-form-control" type="text"/>
+                                <span class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-6">
+                            <div class="row">
+                                <label class="col-4">Título de eleitor:</label>
+                                <input class="col-8 oc-form-control" type="text"/>
                                 <span class="text-danger"></span>
                             </div>
                         </div>
