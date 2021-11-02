@@ -2,10 +2,10 @@
 
 public enum EMobility
 {
-    Abed = 1,
-    SelfLocomotion = 2,
-    Walker = 3,
-    WalkingStick = 4,
-    WeelChair = 5
+    SelfLocomotion = 0,
+    WalkingStick = 1,
+    Walker = 2,
+    WeelChair = 3,
+    Abed = 4
 }
 

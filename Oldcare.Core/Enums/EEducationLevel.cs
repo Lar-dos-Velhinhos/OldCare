@@ -2,14 +2,14 @@
 
 public enum EEducationLevel
 {
-    CompleteHighSchool = 1,
+    Unlettered = 0,
+    UnCompletePrimaryEducation = 1,
     CompletePrimaryEducation = 2,
-    Graduate = 3,
-    Master = 4,
-    PHD = 5,
-    UnCompleteHighSchool = 6,
-    UnCompletePrimaryEducation = 7,
-    UnderGraduate = 8,
-    Unlettered = 9
+    UnCompleteHighSchool = 3,
+    CompleteHighSchool = 4,
+    UnderGraduate = 5,
+    Graduate = 6,
+    Master = 7,
+    PHD = 8,
 }
 
