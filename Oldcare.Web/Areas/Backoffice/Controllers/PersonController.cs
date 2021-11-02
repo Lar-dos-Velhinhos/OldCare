@@ -9,6 +9,9 @@ public class PersonController : Controller
     [Route("Principal")]
     public IActionResult Index() => View();
     
-    [Route("Cadastrar")]
-    public IActionResult Create() => View();
+    [Route("Cadastrar-Inicio")]
+    public IActionResult CreateStart() => View();
+    
+    [Route("Cadastrar-Final")]
+    public IActionResult CreateEnd() => View();
 }
