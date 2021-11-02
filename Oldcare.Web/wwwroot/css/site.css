@@ -272,9 +272,9 @@ for details on configuring this project to bundle and minify static web assets. 
     height: 45px;
     background-color: var(--oc-green-hope-30);
     border-radius: 0px 8px 8px 0px;
-    left: 31.1%;
+    left: 33.1%;
     position: absolute;
-    top: 16.5%;
+    top: 15.5%;
 }
 
 .oc-btn-gradient {
@@ -423,11 +423,33 @@ body {
     white-space: nowrap;
     line-height: 60px;
 }
+
+
+.numberCircle {
+    background-color: var(--oc-black); 
+    color: white; 
+    border-radius: 50%; 
+    padding: 4px 8px 4px 8px;
+}
+.add{
+    position: fixed;
+    left: 26%;
+    top: 54%;
+    font-size: x-large;
+}
+
 /*
-.horizontal-menu {
-    background-color: var(--oc-green-hope);
+    .horizontal-menu {
+    position: fixed;
+    background-color: var(--oc-green-hope-30);
     width: max-content;
     display: flex;
     align-items: center;
+    height: 8%;
+    top: 10%;
+    left: 22%;
+    border-radius: 10px;
 }
+
 */
+   
