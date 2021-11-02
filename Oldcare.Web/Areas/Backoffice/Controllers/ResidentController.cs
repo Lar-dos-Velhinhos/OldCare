@@ -11,6 +11,12 @@ public class ResidentController : Controller
     
     public ActionResult Create() => View();
 
+    [Route("Cadastrar-Inicio")]
+    public IActionResult CreateStart() => View();
+
+    [Route("Cadastrar-Final")]
+    public IActionResult CreateEnd() => View();
+
     // POST: ResidentController/Create
     [HttpPost]
     [ValidateAntiForgeryToken]
