@@ -212,10 +212,12 @@ for details on configuring this project to bundle and minify static web assets. 
 /* ########## Containers ########## */
 .oc-view-default {
     background-color: #FFFFFF;
-    height: 76.5%;
+    height: 69vh;
+    width: 82vw !important;
     border: 1px solid var(--oc-white-ice);
     border-radius: 8px;
-    margin: 10%;
+    margin-left: 200px;
+    margin-top: 150px;
 }
 
 /* ########## Container Items ########## */
@@ -431,6 +433,7 @@ body {
     border-radius: 50%; 
     padding: 4px 8px 4px 8px;
 }
+
 .add{
     position: fixed;
     left: 22%;
