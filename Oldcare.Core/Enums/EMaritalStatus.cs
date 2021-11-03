@@ -2,9 +2,9 @@
 
 public enum EMaritalStatus
 {
-    Divorced = 1,
-    Married = 2,
-    Single = 3,
-    Widow = 4
+    Single = 0,
+    Married = 1,
+    Divorced = 2,
+    Widow = 3
 }
 

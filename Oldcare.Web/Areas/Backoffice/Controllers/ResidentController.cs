@@ -1,9 +1,11 @@
 ﻿namespace Oldcare.Web.Areas.Backoffice.Controllers;
 
 [Area("Backoffice")]
+[Route("Backoffice")]
 public class ResidentController : Controller
 {
     // GET: ResidentController
+    [Route("Residentes")]
     public ActionResult Index() => View();
 
     // GET: ResidentController/Details/5
@@ -11,10 +13,10 @@ public class ResidentController : Controller
     
     public ActionResult Create() => View();
 
-    [Route("Cadastrar-Inicio")]
+    [Route("Residentes/Cadastrar-Inicio")]
     public IActionResult CreateStart() => View();
 
-    [Route("Cadastrar-Final")]
+    [Route("Residentes/Cadastrar-Final")]
     public IActionResult CreateEnd() => View();
 
     // POST: ResidentController/Create
@@ -32,23 +34,8 @@ public class ResidentController : Controller
         }
     }
 
-    // GET: ResidentController/Edit/5
-    public ActionResult Edit(int id) => View(id);
-
-    // POST: ResidentController/Edit/5
-    [HttpPost]
-    [ValidateAntiForgeryToken]
-    public ActionResult Edit(int id, IFormCollection collection)
-    {
-        try
-        {
-            return RedirectToAction(nameof(Index));
-        }
-        catch
-        {
-            return View();
-        }
-    }
+    [Route("~/Residentes/Editar")]
+    public ActionResult Edit() => View();
 
     // GET: ResidentController/Delete/5
     public ActionResult Delete(int id) => View(id);

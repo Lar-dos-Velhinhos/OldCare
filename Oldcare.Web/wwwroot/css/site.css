@@ -219,6 +219,15 @@ for details on configuring this project to bundle and minify static web assets. 
     margin-top: 11.5%;
 }
 
+.oc-view-secondary {
+    background-color: transparent;
+    height: 72%;
+    width: 98% !important;
+    border: 1px solid var(--oc-white-ice);
+    border-radius: 8px;
+    margin-top: 11.5%;
+}
+
 /* ########## Container Items ########## */
 .oc-view-header-default {
     margin-top: 2.5% !important;

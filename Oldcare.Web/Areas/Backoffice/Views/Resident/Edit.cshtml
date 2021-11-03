@@ -1,0 +1,253 @@
+﻿@* @model TModel *@
+@{
+    ViewData["Title"] = "Editar residente";
+    Layout = "_SecondaryLayout";
+}
+
+<nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;); position: absolute; top: 7%; left: 15.8%;" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a class="oc-breadcrumb-link" asp-action="Index" asp-controller="Home">Principal</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a class="oc-breadcrumb-link" asp-area="Backoffice" asp-action="Index" asp-controller="Home">OldCare</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a class="oc-breadcrumb-link" asp-area="Backoffice" asp-action="Index" asp-controller="Resident">Residentes</a>
+        </li>
+        <li class="breadcrumb-item active oc-breadcrumb-here" aria-current="page">Editar</li>
+    </ol>
+</nav>
+
+<div class="container" style="margin-top:  -30px; margin-left:  -12px;">
+<section xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<div id="header" class="row oc-view-header-default">
+<div class="col-9" style="background-color: white; border-radius:  8px; border: 1px solid lightgray; padding-top: 2.2%; padding-left: 3%; !important;">
+<h1 class="oc-view-title-default">
+    <strong>Abiratan Lopes</strong>
+</h1>
+<h2 class="oc-view-subtitle-default oc-text-light-gray">59 anos</h2>
+
+<div class="row mt-4">
+    <div class="col-2">
+        <img src="~/lib/media/site/images/icons/person-vector.png" width="88" height="88" alt=""/>
+    </div>
+    <div class="col-10">
+        <div class="row mb-3">
+            <label class="col-2">Nome:</label>
+            <input class="col-9 oc-form-control" type="text"/>
+            <span class="text-danger"></span>
+        </div>
+        <div class="row mb-3">
+            <div class="col-6">
+                <div class="row">
+                    <label class="col-4">Nascimento:</label>
+                    <input class="col-6 oc-form-control" type="date"/>
+                    <span class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="row">
+                    <label class="col-5">Naturalidade:</label>
+                    <input class="col-5 oc-form-control" type="text"/>
+                    <span class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-4">
+                <div class="row">
+                    <label class="col-6">Sexo:</label>
+                    <select class="col-6 oc-form-control">
+                        <option selected>Selecione</option>
+                        <option value="0">Feminino</option>
+                        <option value="1">Masculino</option>
+                    </select>
+                    <span class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="row">
+                    <label class="col-3">CPF:</label>
+                    <input class="col-9 oc-form-control" type="text"/>
+                    <span class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="row">
+                    <label class="col-2">RG:</label>
+                    <input class="col-7 oc-form-control" type="text"/>
+                    <span class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-6">
+                <div class="row">
+                    <label class="col-4">Quarto:</label>
+                    <select class="col-6 oc-form-control">
+                        <option selected>Selecione</option>
+                        <option value="0">Quarto 1</option>
+                        <option value="1">quarto 2</option>
+                        <option value="2">quarto 3</option>
+                        <option value="3">quarto 4</option>
+                        <option value="4">quarto 5</option>
+                        <option value="5">quarto 6</option>
+                        <option value="6">quarto 7</option>
+                    </select>
+                    <span class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row" style="margin-right: -3%;">
+    <div class="col-11">
+        <div class="row mb-3">
+            <div class="col-6">
+                <div class="row">
+                    <label class="col-4">Logradouro:</label>
+                    <input class="col-8 oc-form-control" type="text"/>
+                    <span class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="row">
+                    <label class="col-6">Número:</label>
+                    <input class="col-6 oc-form-control" type="text"/>
+                    <span class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="row">
+                    <label class="col-4">Bairro:</label>
+                    <input class="col-8 oc-form-control" type="text"/>
+                    <span class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-6">
+                <div class="row">
+                    <label class="col-4">Cidade:</label>
+                    <input class="col-8 oc-form-control" type="text"/>
+                    <span class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="row">
+                    <label class="col-6">Estado:</label>
+                    <input class="col-6 oc-form-control" type="text"/>
+                    <span class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="row">
+                    <label class="col-4">Cep:</label>
+                    <input class="col-8 oc-form-control" type="text"/>
+                    <span class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-4">
+                <div class="row">
+                    <label class="col-6">Estado civil:</label>
+                    <select class="col-6 oc-form-control">
+                        <option selected>Selecione</option>
+                        <option selected>Selecione</option>
+                        <option value="0">Solteiro(a)</option>
+                        <option value="1">Casado(a)</option>
+                        <option value="2">Divorciado(a)</option>
+                        <option value="3">Viúvo(a)</option>
+                    </select>
+                    <span class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="row">
+                    <label class="col-6">Escolaridade:</label>
+                    <select class="col-6 oc-form-control">
+                        <option selected>Selecione</option>
+                        <option value="0">Não alfabetizado(a)</option>
+                        <option value="1">Fundamental incompleto</option>
+                        <option value="2">Fundamental completo</option>
+                        <option value="3">Médio imcompleto</option>
+                        <option value="4">Médio completo</option>
+                        <option value="5">Graduação</option>
+                        <option value="6">Pós-Graduação</option>
+                        <option value="7">Mestrado</option>
+                        <option value="8">Doutorado</option>
+                    </select>
+                    <span class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="row">
+                    <label class="col-4">Profissão:</label>
+                    <input class="col-8 oc-form-control" type="text"/>
+                    <span class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-6">
+                <div class="row">
+                    <label class="col-4">Mãe:</label>
+                    <input class="col-8 oc-form-control" type="text"/>
+                    <span class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="row">
+                    <span class="col-2"></span>
+                    <label class="col-2">Pai:</label>
+                    <input class="col-8 oc-form-control" type="text"/>
+                    <span class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-6">
+                <div class="row">
+                    <label class="col-4">SUS:</label>
+                    <input class="col-8 oc-form-control" type="text"/>
+                    <span class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="row">
+                    <span class="col-1"></span>
+                    <label class="col-3">T. eleitor:</label>
+                    <input class="col-8 oc-form-control" type="text"/>
+                    <span class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <br/>
+        <hr/>
+        <div class="col-12">
+            <div class="row">
+                <div class="col-6">
+                    <a class="color-default oc-dark-btn oc-text-decoration-none" href="">Voltar</a>
+                </div>
+                <div class="col-6 px-5 align-self-end text-end">
+                    <a class="color-default oc-dark-btn oc-text-decoration-none" href="">Salvar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<div class="col-3">
+    <h1 class="oc-view-title-default">
+        <strong>Abiratan Lopes</strong>
+    </h1>
+    <h2 class="oc-view-subtitle-default oc-text-light-gray">59 anos</h2>
+</div>
+</div>
+</section>
+</div>
