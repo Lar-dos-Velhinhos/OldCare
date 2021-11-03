@@ -1,10 +1,8 @@
 ﻿namespace Oldcare.Web.Areas.Backoffice.Controllers;
 
 [Area("Backoffice")]
-[Route("Backoffice")]
 public class ResidentController : Controller
 {
-    // GET: ResidentController
     [Route("Residentes")]
     public ActionResult Index() => View();
 
