@@ -279,12 +279,14 @@ for details on configuring this project to bundle and minify static web assets. 
 }
 
 .oc-steps {
-    height: 45px;
+    font-weight: bold;
+    height: 7%;
+    width: 15%;
     background-color: var(--oc-green-hope-30);
     border-radius: 0px 8px 8px 0px;
     left: 33.1%;
     position: absolute;
-    top: 15.5%;
+    top: 16%;
 }
 
 .oc-btn-gradient {
@@ -425,6 +427,7 @@ html {
 body {
     margin-bottom: 60px;
 }
+
 
 .footer {
     position: absolute;
