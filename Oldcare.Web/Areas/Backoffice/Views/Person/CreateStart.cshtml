@@ -1,11 +1,11 @@
-﻿@* @model TModel *@
+﻿@model CreateStartPersonViewModel
 
 @{
     ViewData["Title"] = "Cadastrar residente";
 }
 
 <section xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
-    <div id="header"left"row oc-view-header-default">
+    <div id="header" class="row oc-view-header-default">
         <div class="col-10">
             <h1 class="oc-view-title-default">
                 <strong>Cadastrar Pessoa</strong>
@@ -31,7 +31,7 @@
         </ul>
     </div>
 
-    <form class="row mt-5">
+    <form asp-action="CreateStart" class="row mt-5">
         <div class="col-1">
             <img class="img-fluid" src="/lib/media/site/images/icons/person-vector.png" width="128"/>
             <a href="#" class="add"><i class="bi bi-plus-circle-fill"></i></a>
@@ -40,57 +40,56 @@
             <div class="row">
                 <div class="col-12">
                     <div class="row mb-4">
-                        <label class="col-2">Nome:</label>
-                        <input class="col-10 oc-form-control" type="text"/>
-                        <span class="text-danger"></span>
+                        <label asp-for="Name" class="col-2"></label>
+                        <input asp-for="Name" class="col-10 oc-form-control" type="text"/>
+                        <span asp-validation-for="Name" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="col-12">
                     <div class="row mb-4">
                         <div class="col-6">
                             <div class="row">
-                                <label class="col-4">Nascimento:</label>
-                                <input class="col-8 oc-form-control" type="date"/>
-                                <span class="text-danger"></span>
+                                <label asp-for="BirthDate" class="col-4"></label>
+                                <input asp-for="BirthDate" class="col-8 oc-form-control" type="date"/>
+                                <span asp-validation-for="BirthDate" class="text-danger"></span>
                             </div>
                         </div>
 
                         <div class="col-6">
                             <div class="row">
-                                <label class="col-4">Naturalidade:</label>
-                                <input class="col-8 oc-form-control" type="text"/>
-                                <span class="text-danger"></span>
+                                <label asp-for="Citizenship" class="col-4"></label>
+                                <input asp-for="Citizenship" class="col-8 oc-form-control" type="text"/>
+                                <span asp-validation-for="Citizenship" class="text-danger"></span>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-12">
                     <div class="row mb-4">
-                        <label class="col-2">Sexo:</label>
-                        <select class="col-4 oc-form-control">
+                        <label asp-for="Gender" class="col-2"></label>
+                        <select asp-for="Gender" class="col-4 oc-form-control">
                             <option selected>Selecione</option>
-                            <option value="0">Feminino</option>
-                            <option value="1">Masculino</option>
+                            <option value="false">Feminino</option>
+                            <option value="true">Masculino</option>
                         </select>
-                        <span class="text-danger"></span>
+                        <span asp-validation-for="Gender" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="col-12">
                     <div class="row mb-5">
                         <div class="col-6">
                             <div class="row">
-                                <label class="col-4">RG:</label>
-                                <input class="col-8 oc-form-control" type="text"/>
-                                <span class="text-danger"></span>
-                                <span class="text-danger"></span>
+                                <label asp-for="RG" class="col-4"></label>
+                                <input asp-for="RG" class="col-8 oc-form-control" type="text"/>
+                                <span asp-validation-for="RG" class="text-danger"></span>
                             </div>
                         </div>
 
                         <div class="col-6">
                             <div class="row">
-                                <label class="col-4">CPF:</label>
-                                <input class="col-8 oc-form-control" type="text"/>
-                                <span class="text-danger"></span>
+                                <label asp-for="CPF" class="col-4"></label>
+                                <input asp-for="CPF" class="col-8 oc-form-control" type="text"/>
+                                <span asp-validation-for="CPF" class="text-danger"></span>
                             </div>
                         </div>
                     </div>
@@ -100,7 +99,7 @@
 
         <div class="row">
             <div class="col px-5 align-self-end text-end">
-                <a asp-area="Backoffice" asp-action="CreateEnd" asp-controller="Person" class="color-default oc-dark-btn oc-text-decoration-none">Avançar</a>
+                <button type="submit" class="color-default oc-dark-btn oc-text-decoration-none">Avançar</button>
             </div>
         </div>
     </form>

@@ -2,11 +2,11 @@
 
 namespace Oldcare.Core.ViewModels.Backoffice.Person;
 
-public class CreateEndPersonViewModel
+public class CreateEndPersonViewModel : CreateStartPersonViewModel
 {
     [Display(Name = "Endereço")]
     [MaxLength(255, ErrorMessage = "O campo \'endereço\' precisa ter um tamanho máximode 255 caracteres.")]
-    [MinLength(10, ErrorMessage = "O campo \'endereço\' precisa ter um tamanho mínimo de 10 caracteres.")]
+    [MinLength(4, ErrorMessage = "O campo \'endereço\' precisa ter um tamanho mínimo de 4 caracteres.")]
     [Required(ErrorMessage = "O campo \'endereço\' não pode estar vazio.")]
     public string Address { get; set; }
 
@@ -26,9 +26,7 @@ public class CreateEndPersonViewModel
     public string City { get; set; }
     
     [Display(Name = "Estado")]
-    [MaxLength(180, ErrorMessage = "O campo \'bairro\' precisa ter um tamanho máximo de 180 caracteres.")]
-    [MinLength(4, ErrorMessage = "O campo \'bairro\' precisa ter um tamanho mínimo de 4 caracteres.")]
-    [Required(ErrorMessage = "Uma opção válida de \'Estado\' deve ser selecionada.")]
+    [Required(ErrorMessage = "Uma opção válida de \'estado\' deve ser selecionada.")]
     public string UF { get; set; }
     
     [Display(Name = "CEP")]

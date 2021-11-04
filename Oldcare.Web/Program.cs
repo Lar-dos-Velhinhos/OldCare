@@ -1,7 +1,9 @@
 using Microsoft.AspNetCore.Localization;
 using System.Globalization;
+using Oldcare.Core.Data;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<AppDbContext>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
