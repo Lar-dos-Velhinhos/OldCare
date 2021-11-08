@@ -6,8 +6,8 @@ public class Resident : Entity
 {
     public Person Person { get; set; }
     public Bedroom Bedroom { get; set; }
-    public DateOnly AdmissionDate { get; set; }
-    public DateOnly? DepartureDate { get; set; }
+    public DateTime AdmissionDate { get; set; }
+    public DateTime? DepartureDate { get; set; }
     public string Father { get; set; }
     public string HealthInsurance { get; set; }
     public EMaritalStatus MaritalStatus { get; set; }

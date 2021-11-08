@@ -5,6 +5,6 @@ public class Prescription : Entity
 {
     public Resident Resident { get; set; }
     public string PrescriptionAuthor { get; set; }
-    public DateOnly PrescriptionDate { get; set; }
+    public DateTime PrescriptionDate { get; set; }
 }
 
