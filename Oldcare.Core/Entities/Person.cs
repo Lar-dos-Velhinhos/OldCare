@@ -4,7 +4,7 @@
 public class Person : Entity
 {
     public string Address { get; set; }
-    public DateTime? BirthDate { get; set; }
+    public DateOnly? BirthDate { get; set; }
     public string? Citizenship { get; set; }
     public int? CEP { get; set; }
     public string City { get; set; }
