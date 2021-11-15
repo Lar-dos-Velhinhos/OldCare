@@ -8,6 +8,8 @@ bin-release/
 appsettings.json
 appsettings.Development.json
 .settings/
+.idea/
+.vs/
 
 # Executables
 *.swf
