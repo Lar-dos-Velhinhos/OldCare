@@ -10,6 +10,7 @@ public class PrescriptionItem : Entity
     public double Amount { get; set; }
     public int Frequency { get; set; }
     public EInterval Interval { get; set; }
+    public bool IsCompleted { get; set; }
     public string? Note { get; set; }
     public string? Presentation { get; set; }
 }
