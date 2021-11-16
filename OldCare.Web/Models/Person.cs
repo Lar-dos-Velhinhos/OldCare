@@ -3,7 +3,7 @@
 [Table("Person")]
 public class Person : Entity
 {
-    public Person(string address, DateTime? birthDate, string? citizenship, int? cEP, string city, long? cPF, string district, bool? gender, string name, string? note, string? photo, long? rG, string? uF)
+    public Person(string address, DateTime? birthDate, string? citizenship, int? cEP, string city, long? cPF, string district, bool? gender, string name, string? note, string? phonenumber, string? photo, string? rG, string? uF)
     {
         Address = address;
         BirthDate = birthDate;
@@ -15,6 +15,7 @@ public class Person : Entity
         Gender = gender;
         Name = name;
         Note = note;
+        PhoneNumber = phonenumber;
         Photo = photo;
         RG = rG;
         UF = uF;
@@ -30,7 +31,8 @@ public class Person : Entity
     public bool? Gender { get; set; }
     public string Name { get; set; }
     public string? Note { get; set; }
+    public string? PhoneNumber { get; set; }
     public string? Photo { get; set; }
-    public long? RG { get; set; }
+    public string? RG { get; set; }
     public string? UF { get; set; }
 }

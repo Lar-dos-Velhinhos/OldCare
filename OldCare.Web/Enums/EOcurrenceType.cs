@@ -2,8 +2,8 @@
 
 public enum EOccurrenceType
 {
-    General = 1,
-    Health = 2,
-    Personal = 3,
-    Secret = 4
+    General = 0,
+    Medical = 1,
+    Personal = 2,
+    Secret = 3
 }
