@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Identity\Views\AccountManager\" />
+    <Folder Include="Areas\Identity\Data\" />
   </ItemGroup>
 
 </Project>
