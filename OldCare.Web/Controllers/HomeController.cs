@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using OldCare.Web.Models;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 
 namespace OldCare.Web.Controllers
 {

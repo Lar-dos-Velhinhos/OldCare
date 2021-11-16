@@ -1,4 +1,5 @@
 ﻿global using Microsoft.AspNetCore.Authentication;
+global using Microsoft.AspNetCore.Authorization;
 global using Microsoft.AspNetCore.Identity;
 global using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 global using Microsoft.AspNetCore.Identity.UI.Services;
@@ -9,6 +10,7 @@ global using Microsoft.EntityFrameworkCore.Metadata.Builders;
 global using OldCare.Web.Data.Mappings;
 global using OldCare.Web.Enums;
 global using OldCare.Web.Models;
+global using SecureIdentity.Password;
 global using System.ComponentModel.DataAnnotations;
 global using System.ComponentModel.DataAnnotations.Schema;
 global using System.Text;

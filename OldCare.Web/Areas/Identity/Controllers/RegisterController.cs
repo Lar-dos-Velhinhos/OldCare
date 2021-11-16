@@ -1,30 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Text.Encodings.Web;
-using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.WebUtilities;
-using Microsoft.Extensions.Logging;
-using OldCare.Web.Models;
-using SecureIdentity.Password;
+﻿using System.Diagnostics;
 
 namespace OldCare.Web.Areas.Identity.Controllers;
 
+[Area("Identity")]
+[AllowAnonymous]
 public class RegisterController : Controller
 {
-    private readonly SignInManager<IdentityUser> _signInManager;
-    private readonly UserManager<IdentityUser> _userManager;
-    private readonly IUserStore<IdentityUser> _userStore;
-    private readonly IUserEmailStore<IdentityUser> _emailStore;
+    private readonly SignInManager<IdentityUser<Guid>> _signInManager;
+    private readonly UserManager<IdentityUser<Guid>> _userManager;
+    private readonly IUserStore<IdentityUser<Guid>> _userStore;
+    private readonly IUserEmailStore<IdentityUser<Guid>> _emailStore;
     private readonly ILogger<RegisterModel> _logger;
     private readonly IEmailSender _emailSender;
 
@@ -32,9 +17,9 @@ public class RegisterController : Controller
     public string StatusMessage { get; set; }
 
     public RegisterController(
-        UserManager<IdentityUser> userManager,
-        IUserStore<IdentityUser> userStore,
-        SignInManager<IdentityUser> signInManager,
+        UserManager<IdentityUser<Guid>> userManager,
+        IUserStore<IdentityUser<Guid>> userStore,
+        SignInManager<IdentityUser<Guid>> signInManager,
         ILogger<RegisterModel> logger,
         IEmailSender emailSender)
     {
@@ -46,9 +31,11 @@ public class RegisterController : Controller
         _emailSender = emailSender;
     }
 
+    [AllowAnonymous]
     public IActionResult Register() => View();
 
     [HttpPost]
+    [AllowAnonymous]
     public async Task<IActionResult> Register(
         [FromForm] string email,
         [FromQuery] string returnUrl = "~/")
@@ -61,13 +48,18 @@ public class RegisterController : Controller
             includeSpecialChars: true,
             upperCase: true);
 
-        var user = new IdentityUser { 
-            Id = Guid.NewGuid().ToString(),
+        password = PasswordHasher.Hash(password);
+
+        var user = new IdentityUser<Guid>
+        { 
+            Id = Guid.NewGuid(),
             UserName = email,
-            Email = email };
+            Email = email,
+            PasswordHash = password
+        };
 
         await _userStore.SetUserNameAsync(user, email, CancellationToken.None);
-        await _emailStore.SetEmailAsync(user, email, CancellationToken.None);
+        //await _emailStore.SetEmailAsync(user, email, CancellationToken.None);
         var result = await _userManager.CreateAsync(user, password);
 
         if (result.Succeeded)
@@ -87,9 +79,7 @@ public class RegisterController : Controller
                 $"Uma nova conta foi criada com este endereço de e-mail, para confirmar visite: <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>OldCare</a>.");
 
             if (_userManager.Options.SignIn.RequireConfirmedAccount)
-            {
                 return RedirectToPage("RegisterConfirmation", new { email = user.Email, returnUrl = returnUrl });
-            }
             else
             {
                 await _signInManager.SignInAsync(user, isPersistent: false);
@@ -154,4 +144,7 @@ public class RegisterController : Controller
         StatusMessage = result.Succeeded ? "Obrigado por confirmar a sua conta." : "Erro ao confirmar o e-mail.";
         return View();
     }
+
+    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+    public IActionResult Error() => View(new ErrorModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
 }

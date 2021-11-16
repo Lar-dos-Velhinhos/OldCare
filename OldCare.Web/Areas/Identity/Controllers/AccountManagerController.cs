@@ -4,16 +4,70 @@
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly IEmailSender _emailSender;
         private readonly ILogger<ChangePasswordModel> _logger;
 
         public AccountManagerController(
             UserManager<IdentityUser> userManager,
             SignInManager<IdentityUser> signInManager,
+            IEmailSender emailSender,
             ILogger<ChangePasswordModel> logger)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _emailSender = emailSender;
             _logger = logger;
+        }
+
+        private async Task<AccountManagerIndexModel> LoadUserAsync(IdentityUser user)
+        {
+            var userName = await _userManager.GetUserNameAsync(user);
+            var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
+            AccountManagerIndexModel model = new() {
+                Username = userName,
+                PhoneNumber = phoneNumber
+            };
+
+            return model;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Index()
+        {
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null)
+                return NotFound($"Não foi encontrado um usuário com o Id '{_userManager.GetUserId(User)}'.");
+
+            AccountManagerIndexModel model = await LoadUserAsync(user);
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Index(AccountManagerIndexModel mode)
+        {
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null)
+                return NotFound($"Não foi encontrado um usuário com o Id '{_userManager.GetUserId(User)}'.");
+
+            AccountManagerIndexModel model = await LoadUserAsync(user);
+
+            if (!ModelState.IsValid)
+                return View(model);
+
+            var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
+            if (model.PhoneNumber != phoneNumber)
+            {
+                var setPhoneResult = await _userManager.SetPhoneNumberAsync(user, model.PhoneNumber);
+                if (!setPhoneResult.Succeeded)
+                {
+                    model.StatusMessage = "Um erro inesperado ocorreu ao tentar salvar o telefone.";
+                    return RedirectToAction();
+                }
+            }
+
+            await _signInManager.RefreshSignInAsync(user);
+            model.StatusMessage = "Seu perfil foi atualizado.";
+            return RedirectToAction();
         }
 
         [HttpGet]
@@ -57,79 +111,76 @@
             return RedirectToAction();
         }
 
-        private async Task<IdentityUser> LoadEmailAsync(IdentityUser user)
+        private async Task<EmailModel> LoadEmailAsync(IdentityUser user, EmailModel model)
         {
-            EmailModel model = new();
-            model.Email = await _userManager.GetEmailAsync(user);
-            var email = model.Email;
-            model.NewEmail = email;
-            model.IsEmailConfirmed = await _userManager.IsEmailConfirmedAsync(user);
+            var email = await _userManager.GetEmailAsync(user);
+            EmailModel response = new();
+            response.Email = email;
+            response.NewEmail = model.NewEmail;
+            response.IsEmailConfirmed = await _userManager.IsEmailConfirmedAsync(user);
 
-            // return RedirectToAction("EmailAsync");
+            return response;
         }
 
         [HttpGet]
-        public async Task<IActionResult> EmailAsync()
+        public async Task<IActionResult> EmailAsync(EmailModel model)
         {
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
                 return NotFound($"Não foi encontrado um usuário com o Id '{_userManager.GetUserId(User)}'.");
 
-            var ss = await LoadEmailAsync(user);
+            await LoadEmailAsync(user, model);
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> ChangeEmailAsync()
+        public async Task<IActionResult> ChangeEmailAsync(EmailModel model)
         {
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
-            {
                 return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
-            }
 
             if (!ModelState.IsValid)
             {
-                await LoadAsync(user);
-                return Page();
+                await LoadEmailAsync(user, model);
+                return View();
             }
 
-            var email = await _userManager.GetEmailAsync(user);
-            if (Input.NewEmail != email)
+            if (model.NewEmail != model.Email)
             {
                 var userId = await _userManager.GetUserIdAsync(user);
-                var code = await _userManager.GenerateChangeEmailTokenAsync(user, Input.NewEmail);
+                var code = await _userManager.GenerateChangeEmailTokenAsync(user, model.NewEmail);
                 code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
                 var callbackUrl = Url.Page(
                     "/Account/ConfirmEmailChange",
                     pageHandler: null,
-                    values: new {area = "Identity", userId = userId, email = Input.NewEmail, code = code},
+                    values: new { area = "Identity", userId = userId, email = model.NewEmail, code = code },
                     protocol: Request.Scheme);
                 await _emailSender.SendEmailAsync(
-                    Input.NewEmail,
-                    "Confirm your email",
-                    $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                    model.NewEmail,
+                    "Confirmar e-mail",
+                    $"Uma conta foi vinculada a este endereço de e-mail, para confirmar visite <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>OldCare</a>.");
 
-                StatusMessage = "Confirmation link to change email sent. Please check your email.";
-                return RedirectToPage();
+                model.StatusMessage = "Confirmation link to change email sent. Please check your email.";
+                return RedirectToAction();
             }
 
-            StatusMessage = "Your email is unchanged.";
-            return RedirectToPage();
+            model.StatusMessage = "Seu e-mail não foi modificado.";
+            return RedirectToAction();
         }
 
-        public async Task<IActionResult> OnPostSendVerificationEmailAsync()
+        public async Task<IActionResult> OnPostSendVerificationEmailAsync(EmailModel model)
         {
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
-            {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
-            }
+                return NotFound($"Não foi encontrado um usuário com este Id '{_userManager.GetUserId(User)}'.");
+
+            EmailModel response = new();
 
             if (!ModelState.IsValid)
             {
-                await LoadAsync(user);
-                return View();
+                response = await LoadEmailAsync(user, model);
+                return View(response);
             }
 
             var userId = await _userManager.GetUserIdAsync(user);
@@ -143,11 +194,11 @@
                 protocol: Request.Scheme);
             await _emailSender.SendEmailAsync(
                 email,
-                "Confirm your email",
-                $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                "Confirme seu e-mail",
+                $"Uma conta foi vinculada a este endereço de e-mail, para confirmar visite <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>OldCare</a>.");
 
-            StatusMessage = "Verification email sent. Please check your email.";
-            return RedirectToPage();
+            model.StatusMessage = "E-mail de verificação enviado. Por favor verifique a caixa de entrada.";
+            return RedirectToAction();
         }
 
         [HttpGet]
