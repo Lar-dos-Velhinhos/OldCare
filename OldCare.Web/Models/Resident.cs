@@ -4,9 +4,9 @@
 public class Resident : Entity
 {
     public Guid PersonId { get; set; }
-    public Person? Person { get; set; }
+    public virtual Person? Person { get; set; }
     public Guid BedroomId { get; set; }
-    public Bedroom? Bedroom { get; set; }
+    public virtual Bedroom? Bedroom { get; set; }
     public DateTime AdmissionDate { get; set; }
     public DateTime? DepartureDate { get; set; }
     public string? Father { get; set; }
