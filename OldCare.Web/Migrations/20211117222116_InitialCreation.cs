@@ -68,6 +68,7 @@ namespace OldCare.Web.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AddressNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     BirthDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Citizenship = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CEP = table.Column<int>(type: "int", nullable: true),
@@ -271,6 +272,7 @@ namespace OldCare.Web.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ResidentId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     AuthorId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IsCompleted = table.Column<bool>(type: "bit", nullable: false),
                     PrescriptionDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
@@ -327,6 +329,7 @@ namespace OldCare.Web.Migrations
                     Amount = table.Column<double>(type: "float", nullable: false),
                     Frequency = table.Column<int>(type: "int", nullable: false),
                     Interval = table.Column<int>(type: "int", nullable: false),
+                    IsCompleted = table.Column<bool>(type: "bit", nullable: false),
                     Note = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Presentation = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
