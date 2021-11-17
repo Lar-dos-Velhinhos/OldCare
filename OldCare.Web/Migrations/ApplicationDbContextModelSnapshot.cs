@@ -338,11 +338,14 @@ namespace OldCare.Web.Migrations
                     b.Property<string>("Note")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Photo")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long?>("RG")
-                        .HasColumnType("bigint");
+                    b.Property<string>("RG")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UF")
                         .HasColumnType("nvarchar(max)");
@@ -488,7 +491,7 @@ namespace OldCare.Web.Migrations
                     b.ToTable("Resident", (string)null);
                 });
 
-            modelBuilder.Entity("OldCare.Web.Models.ResidentResponsible", b =>
+            modelBuilder.Entity("OldCare.Web.Models.Responsible", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -500,13 +503,16 @@ namespace OldCare.Web.Migrations
                     b.Property<bool>("Forwarder")
                         .HasColumnType("bit");
 
+                    b.Property<int>("Kinship")
+                        .HasColumnType("int");
+
+                    b.Property<Guid?>("PersonId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<bool>("Primary")
                         .HasColumnType("bit");
 
-                    b.Property<Guid>("ResidentId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("ResponsibleId")
+                    b.Property<Guid?>("ResidentId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("StartDate")
@@ -514,27 +520,9 @@ namespace OldCare.Web.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ResidentResponsible", (string)null);
-                });
-
-            modelBuilder.Entity("OldCare.Web.Models.Responsible", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("Kinship")
-                        .HasColumnType("int");
-
-                    b.Property<Guid>("PersonId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<long>("PhoneNumber")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("Id");
-
                     b.HasIndex("PersonId");
+
+                    b.HasIndex("ResidentId");
 
                     b.ToTable("Responsible", (string)null);
                 });
@@ -671,11 +659,15 @@ namespace OldCare.Web.Migrations
                 {
                     b.HasOne("OldCare.Web.Models.Person", "Person")
                         .WithMany()
-                        .HasForeignKey("PersonId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PersonId");
+
+                    b.HasOne("OldCare.Web.Models.Resident", "Resident")
+                        .WithMany()
+                        .HasForeignKey("ResidentId");
 
                     b.Navigation("Person");
+
+                    b.Navigation("Resident");
                 });
 #pragma warning restore 612, 618
         }

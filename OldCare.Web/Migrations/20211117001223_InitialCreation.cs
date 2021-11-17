@@ -77,8 +77,9 @@ namespace OldCare.Web.Migrations
                     Gender = table.Column<bool>(type: "bit", nullable: true),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Note = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Photo = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    RG = table.Column<long>(type: "bigint", nullable: true),
+                    RG = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UF = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
@@ -97,23 +98,6 @@ namespace OldCare.Web.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Product", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ResidentResponsible",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ResidentId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ResponsibleId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Forwarder = table.Column<bool>(type: "bit", nullable: false),
-                    EndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Primary = table.Column<bool>(type: "bit", nullable: false),
-                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ResidentResponsible", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -260,26 +244,6 @@ namespace OldCare.Web.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Responsible",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    PersonId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Kinship = table.Column<int>(type: "int", nullable: false),
-                    PhoneNumber = table.Column<long>(type: "bigint", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Responsible", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Responsible_Person_PersonId",
-                        column: x => x.PersonId,
-                        principalTable: "Person",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Occurrence",
                 columns: table => new
                 {
@@ -320,6 +284,34 @@ namespace OldCare.Web.Migrations
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Prescription_Resident_ResidentId",
+                        column: x => x.ResidentId,
+                        principalTable: "Resident",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Responsible",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    PersonId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    ResidentId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    EndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Forwarder = table.Column<bool>(type: "bit", nullable: false),
+                    Primary = table.Column<bool>(type: "bit", nullable: false),
+                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Kinship = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Responsible", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Responsible_Person_PersonId",
+                        column: x => x.PersonId,
+                        principalTable: "Person",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Responsible_Resident_ResidentId",
                         column: x => x.ResidentId,
                         principalTable: "Resident",
                         principalColumn: "Id");
@@ -460,6 +452,11 @@ namespace OldCare.Web.Migrations
                 name: "IX_Responsible_PersonId",
                 table: "Responsible",
                 column: "PersonId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Responsible_ResidentId",
+                table: "Responsible",
+                column: "ResidentId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -484,9 +481,6 @@ namespace OldCare.Web.Migrations
 
             migrationBuilder.DropTable(
                 name: "Occurrence");
-
-            migrationBuilder.DropTable(
-                name: "ResidentResponsible");
 
             migrationBuilder.DropTable(
                 name: "Responsible");

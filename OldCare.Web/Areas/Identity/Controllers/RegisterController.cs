@@ -59,6 +59,7 @@ public class RegisterController : Controller
         };
 
         await _userStore.SetUserNameAsync(user, email, CancellationToken.None);
+        // TODO: Review _emailStore
         //await _emailStore.SetEmailAsync(user, email, CancellationToken.None);
         var result = await _userManager.CreateAsync(user, password);
 
@@ -95,27 +96,34 @@ public class RegisterController : Controller
         return View();
     }
 
-    public async Task<IActionResult> RegisterConfirmationAsync(RegisterConfirmationModel model)
+    public async Task<IActionResult> RegisterConfirmationAsync(
+        [FromQuery] Guid userId,
+        [FromQuery] string code,
+        [FromQuery] string returnUrl)
     {
+        var user = await _userManager.FindByIdAsync(userId.ToString());
+        if (user == null)
+            return NotFound($"Não foi encontardo um usuário com o Id '{userId}'.");
+
+        RegisterConfirmationModel model = new()
+        {
+            Email = user.Email,
+            ReturnUrl = returnUrl
+        };
+
         if (model.Email == null)
         {
             return RedirectToPage("/Index");
         }
         model.ReturnUrl = model.ReturnUrl ?? Url.Content("~/");
 
-        var user = await _userManager.FindByEmailAsync(model.Email);
-        if (user == null)
-        {
-            return NotFound($"Não foi encontardo um usuário com o e-mail: '{model.Email}'.");
-        }
-
         model.Email = model.Email;
         // Once you add a real email sender, you should remove this code that lets you confirm the account
         model.DisplayConfirmAccountLink = true;
         if (model.DisplayConfirmAccountLink)
         {
-            var userId = await _userManager.GetUserIdAsync(user);
-            var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+            //var userId = await _userManager.GetUserIdAsync(user);
+            //var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
             code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
 #pragma warning disable CS8601 // Possible null reference assignment.
             model.EmailConfirmationUrl = Url.Page(
