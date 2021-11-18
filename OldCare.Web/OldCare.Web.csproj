@@ -22,7 +22,6 @@
     <Folder Include="Areas\Backoffice\Data\" />
     <Folder Include="Areas\Backoffice\Models\" />
     <Folder Include="Areas\Identity\Data\" />
-    <Folder Include="wwwroot\lib\media\images\" />
   </ItemGroup>
 
 </Project>
