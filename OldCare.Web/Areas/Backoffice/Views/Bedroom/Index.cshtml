@@ -1,0 +1,12 @@
+﻿@model List<Bedroom>
+
+@{
+    ViewData["Title"] = "Novo Quarto";
+}
+
+@foreach(var bedroom in Model){
+    <div>
+        <h1>@bedroom.Id</h1>
+        <p>@bedroom.Capacity</p>
+    </div>
+}

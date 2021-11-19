@@ -20,7 +20,7 @@ public class Person : Entity
     [DisplayName("Bairro")]
     public string District { get; set; }
     [DisplayName("Gênero")]
-    public bool? Gender { get; set; }
+    public bool Gender { get; set; }
     [DisplayName("Nome")]
     public string Name { get; set; }
     [DisplayName("Observação")]

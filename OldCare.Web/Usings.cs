@@ -7,6 +7,7 @@ global using Microsoft.AspNetCore.Mvc;
 global using Microsoft.AspNetCore.WebUtilities;
 global using Microsoft.EntityFrameworkCore;
 global using Microsoft.EntityFrameworkCore.Metadata.Builders;
+global using OldCare.Web.Data;
 global using OldCare.Web.Data.Mappings;
 global using OldCare.Web.Enums;
 global using OldCare.Web.Models;
