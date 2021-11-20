@@ -318,8 +318,8 @@ namespace OldCare.Web.Migrations
                     b.Property<int?>("CEP")
                         .HasColumnType("int");
 
-                    b.Property<long?>("CPF")
-                        .HasColumnType("bigint");
+                    b.Property<string>("CPF")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Citizenship")
                         .HasColumnType("nvarchar(max)");
@@ -332,8 +332,8 @@ namespace OldCare.Web.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool?>("Gender")
-                        .HasColumnType("bit");
+                    b.Property<int>("Gender")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()

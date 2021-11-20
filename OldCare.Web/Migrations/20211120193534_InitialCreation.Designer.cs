@@ -12,7 +12,7 @@ using OldCare.Web.Data;
 namespace OldCare.Web.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20211117222116_InitialCreation")]
+    [Migration("20211120193534_InitialCreation")]
     partial class InitialCreation
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -320,8 +320,8 @@ namespace OldCare.Web.Migrations
                     b.Property<int?>("CEP")
                         .HasColumnType("int");
 
-                    b.Property<long?>("CPF")
-                        .HasColumnType("bigint");
+                    b.Property<string>("CPF")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Citizenship")
                         .HasColumnType("nvarchar(max)");
@@ -334,8 +334,8 @@ namespace OldCare.Web.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool?>("Gender")
-                        .HasColumnType("bit");
+                    b.Property<int>("Gender")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()

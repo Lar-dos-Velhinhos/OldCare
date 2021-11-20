@@ -16,11 +16,11 @@ public class Person : Entity
     public int? CEP { get; set; }
     [DisplayName("Cidade")]
     public string City { get; set; }
-    public long? CPF { get; set; }
+    public string? CPF { get; set; }
     [DisplayName("Bairro")]
     public string District { get; set; }
     [DisplayName("Gênero")]
-    public bool Gender { get; set; }
+    public EGender Gender { get; set; }
     [DisplayName("Nome")]
     public string Name { get; set; }
     [DisplayName("Observação")]

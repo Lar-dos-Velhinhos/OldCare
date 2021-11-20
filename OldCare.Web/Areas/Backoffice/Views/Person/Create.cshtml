@@ -1,0 +1,143 @@
+﻿@model Person
+@{
+    ViewData["Title"] = "Cadastrar Pessoa";
+}
+<div class="container" style="background-color: Gray91;">
+    <form asp-action="Create" method="post">
+        
+        <!-- <!-- start row one -->
+        <div class="row mt-2">
+            <div class="col-7">
+                <input asp-for="Id" type="text" hidden placeholder="">
+                <label asp-for="Photo"></label>
+                <input asp-for="Photo" type="text" class="form-control" placeholder="">
+                <span asp-validation-for="Photo" class="text-danger" />
+            </div>
+            <div class="col-7">
+                <label asp-for="Name"></label>
+                <input asp-for="Name" type="text" class="form-control" placeholder="">
+                <span asp-validation-for="Name" class="text-danger" />
+            </div>
+            <div class="col">
+                <div class="col">
+                    <label asp-for="BirthDate"></label>
+                    <input asp-for="BirthDate" type="date" class="form-control" placeholder="">
+                    <span asp-validation-for="BirthDate" class="text-danger" />
+                </div>
+                <div class="col">
+                    <label asp-for="Gender"></label>
+                    <select asp-for="Gender" class="form-control">
+                        <option selected>Selecione</option>
+                        <option value="0">Feminino</option>
+                        <option value="1">Masculino</option>
+                    </select>
+                    <span asp-validation-for="Gender" class="text-danger" />
+                </div>
+            </div>
+            <!-- End line one -->
+            <!-- <!-- Start line two -->
+            <div class="row mt-2">
+                <div class="col">
+                    <label asp-for="CPF"></label>
+                    <input asp-for="CPF" type="text" class="form-control" placeholder="">
+                    <span asp-validation-for="CPF" class="text-danger" />
+                </div>
+                <div class="col">
+                    <label asp-for="RG"></label>
+                    <input asp-for="RG" type="text" class="form-control" placeholder="">
+                    <span asp-validation-for="RG" class="text-danger" />
+                </div>
+                <div class="col-6">
+                    <label asp-for="Citizenship"></label>
+                    <input asp-for="Citizenship" type="text" class="form-control" placeholder="">
+                    <span asp-validation-for="Citizenship" class="text-danger" />
+                </div>
+            </div>
+            <!-- End line two -->
+            <!-- <!-- Start line three -->
+            <div class="row mt-2">
+                <div class="col-2">
+                    <label asp-for="CEP"></label>
+                    <input asp-for="CEP" type="number" class="form-control" placeholder="">
+                    <span asp-validation-for="CEP" class="text-danger" />
+                </div>
+                <div class="col-8">
+                    <label asp-for="Address"></label>
+                    <input asp-for="Address" type="text" class="form-control" placeholder="">
+                    <span asp-validation-for="Address" class="text-danger" />
+                </div>
+                <div class="col">
+                    <label asp-for="AddressNumber"></label>
+                    <input asp-for="AddressNumber" type="text" class="form-control" placeholder="">
+                    <span asp-validation-for="AddressNumber" class="text-danger" />
+                </div>
+            </div>
+            <!-- End line three -->
+            <!-- <!-- Start line four -->
+            <div class="row mt-2">
+                <div class="col-3">
+                    <label asp-for="District"></label>
+                    <input asp-for="District" type="text" class="form-control" placeholder="">
+                    <span asp-validation-for="District" class="text-danger" />
+                </div>
+                <div class="col-3">
+                    <label asp-for="City"></label>
+                    <input asp-for="City" type="text" class="form-control" placeholder="">
+                    <span asp-validation-for="City" class="text-danger" />
+                </div>
+                <div class="col-3">
+                    <label asp-for="UF"></label>
+                    <select asp-for="UF" class="form-control">
+                        <option selected>Selecione</option>
+                        <option value="AC">Acre</option>
+                        <option value="AL">Alagoas</option>
+                        <option value="AP">Amapá</option>
+                        <option value="AM">Amazonas</option>
+                        <option value="BA">Bahia</option>
+                        <option value="CE">Ceará</option>
+                        <option value="DF">Distrito Federal</option>
+                        <option value="ES">Espírito Santo</option>
+                        <option value="GO">Goiás</option>
+                        <option value="MA">Maranhão</option>
+                        <option value="MT">Mato Grosso</option>
+                        <option value="MS">Mato Grosso do Sul</option>
+                        <option value="MG">Minas Gerais</option>
+                        <option value="PA">Pará</option>
+                        <option value="PB">Paraíba</option>
+                        <option value="PR">Paraná</option>
+                        <option value="PE">Pernambuco</option>
+                        <option value="PI">Piauí</option>
+                        <option value="RJ">Rio de Janeiro</option>
+                        <option value="RN">Rio Grande do Norte</option>
+                        <option value="RS">Rio Grande do Sul</option>
+                        <option value="RO">Rondônia</option>
+                        <option value="RR">Roraima</option>
+                        <option value="SC">Santa Catarina</option>
+                        <option value="SP">São Paulo</option>
+                        <option value="SE">Sergipe</option>
+                        <option value="TO">Tocantins</option>
+                    </select>
+                    <span asp-validation-for="UF" class="text-danger" />
+                </div>
+                <div class="col-3">
+                    <label asp-for="PhoneNumber"></label>
+                    <input asp-for="PhoneNumber" type="text" class="form-control" placeholder="">
+                    <span asp-validation-for="PhoneNumber" class="text-danger" />
+                </div>
+            </div>
+            <!-- End line four -->
+            <!-- Start line five -->
+            <div class="row mt-2">
+                <div class="col">
+                    <label asp-for="Note"></label>
+                    <input asp-for="Note" type="text" class="form-control" placeholder="">
+                    <span asp-validation-for="Note" class="text-danger" />
+                </div>
+
+            </div>
+            <!-- End line five -->
+            <button class="btn-primary m-3 " type="submit" style="">Salvar</button>
+    </form>
+</div>
+
+
