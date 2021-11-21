@@ -11,6 +11,7 @@ global using OldCare.Web.Data;
 global using OldCare.Web.Data.Mappings;
 global using OldCare.Web.Enums;
 global using OldCare.Web.Models;
+global using OldCare.Web.ViewModels.Backoffice.Resident;
 global using SecureIdentity.Password;
 global using System.ComponentModel.DataAnnotations;
 global using System.ComponentModel.DataAnnotations.Schema;

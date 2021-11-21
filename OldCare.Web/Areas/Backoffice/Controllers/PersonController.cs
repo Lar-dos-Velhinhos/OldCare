@@ -1,6 +1,4 @@
-﻿using OldCare.Web.Data;
-
-namespace OldCare.Web.Areas.Backoffice.Controllers;
+﻿namespace OldCare.Web.Areas.Backoffice.Controllers;
 
 [Area("Backoffice")]
 public class PersonController : Controller
@@ -40,7 +38,7 @@ public class PersonController : Controller
             context.Persons.Add(person);
             context.SaveChanges();
 
-            return View(nameof(Index));
+            return RedirectToAction(nameof(Index));
         }
         catch (Exception ex)
         {
@@ -74,7 +72,7 @@ public class PersonController : Controller
         context.Persons.Update(model);
         context.SaveChanges();
 
-        return View(nameof(Index));
+        return RedirectToAction(nameof(Index));
     }
 
     public bool existingPerson(Person person)
