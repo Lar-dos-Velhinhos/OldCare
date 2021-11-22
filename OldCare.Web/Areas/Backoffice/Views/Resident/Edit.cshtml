@@ -1,11 +1,10 @@
-﻿@model CreateResidentViewModel
+﻿@model EditResidentViewModel
 
 @{
-    ViewData["Title"] = "Cadastrar Residente";
-    }
-        
+    ViewData["Title"] = "Editar";
+}
 
-    <div class="container mt-2" style="">        
+<div class="container mt-2" style="">        
         <form asp-action="Create" method="post">
             <!-- <!-- start row one -->
             <input asp-for="Id" type="text" hidden placeholder="">

@@ -38,7 +38,7 @@ public class ResidentController : Controller
     }
 
     [HttpPost]
-    public async Task<IActionResult> Create(Resident resident)
+    public async Task<IActionResult> Create(ResidentModel resident)
     {
         //if (!ModelState.IsValid)
         //    return View(person);
@@ -54,5 +54,39 @@ public class ResidentController : Controller
         {
             throw new BadHttpRequestException("Ocorreu um erro ao tentar salvar os dados. Recarregue a página e tente novamente.");
         }
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> Edit([FromQuery] Guid residentId)
+    {
+        //if (!ModelState.IsValid)
+        //    return View();
+
+        var resident = await context.Residents
+            .AsNoTracking()
+            .Where(x => x.Id == residentId)
+            .FirstOrDefaultAsync();
+
+        var result = new EditResidentViewModel(resident);
+
+        if (resident == null)
+            throw new KeyNotFoundException("Um residente com este Id não foi encontrado.");
+
+        return View(result);
+    }
+
+
+    [HttpPost]
+    public async Task<IActionResult> Edit(EditResidentViewModel model)
+    {
+        if (!ModelState.IsValid)
+            return View();
+
+        var resident = new ResidentModel(model);
+
+        context.Residents.Update(resident);
+        context.SaveChanges();
+
+        return RedirectToAction(nameof(Index));
     }
 }
