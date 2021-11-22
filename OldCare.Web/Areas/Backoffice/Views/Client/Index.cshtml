@@ -1,0 +1,18 @@
+﻿@model List<Client>
+
+@{
+    ViewData["Title"] = "Clientes";
+}
+
+<a asp-action="create">Cadastrar Cliente</a>
+
+@foreach(var client in Model)
+{
+    <div>
+        <div>
+            <h1>@client.Name</h1>
+            <p>@client.CPFCNPJ</p>
+            <a asp-action="Edit" asp-route-clientId="@client.Id">Editar</a>
+        </div>
+    </div>
+}

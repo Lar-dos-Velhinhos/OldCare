@@ -63,6 +63,33 @@ namespace OldCare.Web.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Client",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CPFCNPJ = table.Column<long>(type: "bigint", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Client", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "History",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Descriction = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    HistoryType = table.Column<bool>(type: "bit", nullable: false),
+                    Categoria = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_History", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Person",
                 columns: table => new
                 {
@@ -208,6 +235,36 @@ namespace OldCare.Web.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "FinancialRecord",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ClientId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    HistoryId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    AccountingEntryDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Document = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DocumentNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    MonetaryValue = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Note = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FinancialRecord", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_FinancialRecord_Client_ClientId",
+                        column: x => x.ClientId,
+                        principalTable: "Client",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_FinancialRecord_History_HistoryId",
+                        column: x => x.HistoryId,
+                        principalTable: "History",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Resident",
                 columns: table => new
                 {
@@ -240,6 +297,29 @@ namespace OldCare.Web.Migrations
                         name: "FK_Resident_Person_PersonId",
                         column: x => x.PersonId,
                         principalTable: "Person",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Comorbidity",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ResidentId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    EndDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Note = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Restriction = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Comorbidity", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Comorbidity_Resident_ResidentId",
+                        column: x => x.ResidentId,
+                        principalTable: "Resident",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -412,6 +492,21 @@ namespace OldCare.Web.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Comorbidity_ResidentId",
+                table: "Comorbidity",
+                column: "ResidentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FinancialRecord_ClientId",
+                table: "FinancialRecord",
+                column: "ClientId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FinancialRecord_HistoryId",
+                table: "FinancialRecord",
+                column: "HistoryId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Medication_PrescriptionItemId",
                 table: "Medication",
                 column: "PrescriptionItemId");
@@ -480,6 +575,12 @@ namespace OldCare.Web.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "Comorbidity");
+
+            migrationBuilder.DropTable(
+                name: "FinancialRecord");
+
+            migrationBuilder.DropTable(
                 name: "Medication");
 
             migrationBuilder.DropTable(
@@ -493,6 +594,12 @@ namespace OldCare.Web.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Client");
+
+            migrationBuilder.DropTable(
+                name: "History");
 
             migrationBuilder.DropTable(
                 name: "PrescriptionItem");

@@ -1,0 +1,23 @@
+﻿@model Client
+
+@{
+    ViewData["Title"] = "Cadastrar Cliente";
+}
+
+<div class="container mt-2" style="">
+    <form asp-action="Create" method="post">
+        <!-- <!-- start row one -->
+        <input asp-for="Id" type="text" hidden placeholder="">
+        <div>
+            <label asp-for="Name"></label>
+            <input asp-for="Name" type="text" class="form-control" placeholder="">
+            <span asp-validation-for="Name" class="text-danger" />
+        </div> 
+        <div>
+            <label asp-for="CPFCNPJ"></label>
+            <input asp-for="CPFCNPJ" type="text" class="form-control" placeholder="">
+            <span asp-validation-for="CPFCNPJ" class="text-danger" />
+        </div>
+        <button class="btn-primary m-3 " type="submit" style="height: 30px;">Salvar</button>
+    </form>
+</div>

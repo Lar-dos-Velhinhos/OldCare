@@ -9,8 +9,10 @@ public class Bedroom : Entity
         Gender = gender;
         Number = number;
     }
-
+    [Display(Name ="Capacidade")]
     public int Capacity { get; set; }
+    [Display(Name = "Gênero")]
     public bool Gender { get; set; }
+    [Display(Name = "Número")]
     public int Number { get; set; }
 }

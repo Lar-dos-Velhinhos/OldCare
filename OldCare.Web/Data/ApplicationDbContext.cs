@@ -11,6 +11,10 @@ public class ApplicationDbContext : IdentityDbContext<
     }
 
     public DbSet<Bedroom>? Bedrooms { get; set; }
+    public DbSet<Client>? Clients { get; set; }
+    public DbSet<Comorbidity>? Comorbidities { get; set; }
+    public DbSet<FinancialRecord>? FinancialRecords { get; set; }
+    public DbSet<History>? Histories { get; set; }
     public DbSet<Medication>? Medications { get; set; }
     public DbSet<Occurrence>? Occurrences { get; set; }
     public DbSet<Person>? Persons { get; set; }
@@ -23,6 +27,10 @@ public class ApplicationDbContext : IdentityDbContext<
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfiguration(new BedroomMap());
+        modelBuilder.ApplyConfiguration(new ClientMap());
+        modelBuilder.ApplyConfiguration(new ComorbidityMap());
+        modelBuilder.ApplyConfiguration(new FinancialRecordMap());
+        modelBuilder.ApplyConfiguration(new HistoryMap());
         modelBuilder.ApplyConfiguration(new MedicationMap());
         modelBuilder.ApplyConfiguration(new OccurrenceMap());
         modelBuilder.ApplyConfiguration(new PersonMap());
