@@ -1,27 +1,8 @@
 ﻿namespace OldCare.Web.Models;
 
 [Table("Resident")]
-public class ResidentModel : Entity
+public class Resident : Entity
 {
-    public ResidentModel(EditResidentViewModel model)
-    {
-        Id = Guid.NewGuid();
-        PersonId = model.PersonId;
-        BedroomId = model.BedroomId;
-        AdmissionDate = model.AdmissionDate;
-        DepartureDate = model.DepartureDate;
-        Father = model.Father;
-        HealthInsurance = model.HealthInsurance;
-        MaritalStatus = model.MaritalStatus;
-        Mobility = model.Mobility;
-        Mother = model.Mother;
-        Note = model.Note;
-        Profession = model.Profession;
-        EducationLevel = model.EducationLevel;
-        SUS = model.SUS;
-        VoterRegCardNumber = model.VoterRegCardNumber;
-    }
-
     public Guid PersonId { get; set; }
     public virtual Person? Person { get; set; }
     public Guid BedroomId { get; set; }

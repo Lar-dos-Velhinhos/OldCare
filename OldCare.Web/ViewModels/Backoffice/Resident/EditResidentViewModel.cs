@@ -2,27 +2,6 @@
 {
     public class EditResidentViewModel : Entity
     {
-        public EditResidentViewModel(ResidentModel model)
-        {
-            Id = model.Id;
-            PersonId = model.PersonId;
-            Person = model.Person;
-            BedroomId = model.BedroomId;
-            Bedroom = model.Bedroom;    
-            AdmissionDate = model.AdmissionDate;
-            DepartureDate = model.DepartureDate;
-            Father = model.Father;
-            HealthInsurance = model.HealthInsurance;
-            MaritalStatus = model.MaritalStatus;
-            Mobility = model.Mobility;
-            Mother = model.Mother;
-            Note = model.Note;
-            Profession = model.Profession;
-            EducationLevel = model.EducationLevel;
-            SUS = model.SUS;
-            VoterRegCardNumber = model.VoterRegCardNumber;
-        }
-
         [Display(Name ="Pessoa")]
         public Guid PersonId { get; set; }
         public virtual Person? Person { get; set; }

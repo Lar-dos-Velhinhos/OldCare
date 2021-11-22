@@ -12,7 +12,7 @@ using OldCare.Web.Data;
 namespace OldCare.Web.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20211120193534_InitialCreation")]
+    [Migration("20211121175742_InitialCreation")]
     partial class InitialCreation
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

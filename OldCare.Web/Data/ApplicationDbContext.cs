@@ -17,7 +17,7 @@ public class ApplicationDbContext : IdentityDbContext<
     public DbSet<Prescription>? Prescriptions { get; set; }
     public DbSet<PrescriptionItem>? PrescriptionItems { get; set; }
     public DbSet<Product>? Products { get; set; }
-    public DbSet<ResidentModel>? Residents { get; set; }
+    public DbSet<Resident>? Residents { get; set; }
     public DbSet<Responsible>? Responsibles { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -29,7 +29,7 @@ public class ApplicationDbContext : IdentityDbContext<
         modelBuilder.ApplyConfiguration(new PrescriptionMap());
         modelBuilder.ApplyConfiguration(new PrescriptionItemMap());
         modelBuilder.ApplyConfiguration(new ProductMap());
-        modelBuilder.ApplyConfiguration(new ResidentModelMap());
+        modelBuilder.ApplyConfiguration(new ResidentMap());
         modelBuilder.ApplyConfiguration(new ResponsibleMap());
 
         modelBuilder.ApplyConfiguration(new AspNetUserMap());

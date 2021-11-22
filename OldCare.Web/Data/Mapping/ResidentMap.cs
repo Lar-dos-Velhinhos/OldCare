@@ -1,8 +1,8 @@
 ﻿namespace OldCare.Web.Data.Mappings;
 
-public class ResidentModelMap : IEntityTypeConfiguration<ResidentModel>
+public class ResidentMap : IEntityTypeConfiguration<Resident>
 {
-    public void Configure(EntityTypeBuilder<ResidentModel> builder)
+    public void Configure(EntityTypeBuilder<Resident> builder)
     {
         // Table
         builder.ToTable("Resident");
