@@ -1,12 +1,15 @@
 ﻿@model List<Bedroom>
 
 @{
-    ViewData["Title"] = "Novo Quarto";
+    ViewData["Title"] = "Quartos";
 }
+
+<a asp-action = "Create">Cadastrar Quarto</a>
 
 @foreach(var bedroom in Model){
     <div>
-        <h1>@bedroom.Id</h1>
+        <h1>@bedroom.Number</h1>
         <p>@bedroom.Capacity</p>
+        <a asp-action="Edit" asp-route-bedroomId="@bedroom.Id">Editar</a>
     </div>
 }

@@ -237,8 +237,8 @@ namespace OldCare.Web.Migrations
                     b.Property<int>("Capacity")
                         .HasColumnType("int");
 
-                    b.Property<bool>("Gender")
-                        .HasColumnType("bit");
+                    b.Property<int>("Gender")
+                        .HasColumnType("int");
 
                     b.Property<int>("Number")
                         .HasColumnType("int");
@@ -298,6 +298,40 @@ namespace OldCare.Web.Migrations
                     b.ToTable("Comorbidity", (string)null);
                 });
 
+            modelBuilder.Entity("OldCare.Web.Models.Emploee", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("HiringDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("PIS")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("PersonId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Post")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Registry")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("ResignationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal?>("Salary")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PersonId");
+
+                    b.ToTable("Emploee", (string)null);
+                });
+
             modelBuilder.Entity("OldCare.Web.Models.FinancialRecord", b =>
                 {
                     b.Property<Guid>("Id")
@@ -346,12 +380,12 @@ namespace OldCare.Web.Migrations
                     b.Property<int>("Categoria")
                         .HasColumnType("int");
 
-                    b.Property<string>("Descriction")
+                    b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("HistoryType")
-                        .HasColumnType("bit");
+                    b.Property<int>("HistoryType")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -364,8 +398,8 @@ namespace OldCare.Web.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("COREN")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("EmploeeId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("MedicationDate")
                         .HasColumnType("datetime2");
@@ -373,10 +407,12 @@ namespace OldCare.Web.Migrations
                     b.Property<string>("Note")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("PrescriptionItemId")
+                    b.Property<Guid>("PrescriptionItemId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("EmploeeId");
 
                     b.HasIndex("PrescriptionItemId");
 
@@ -475,8 +511,9 @@ namespace OldCare.Web.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("AuthorId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("Author")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsCompleted")
                         .HasColumnType("bit");
@@ -489,8 +526,6 @@ namespace OldCare.Web.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AuthorId");
-
                     b.HasIndex("ResidentId");
 
                     b.ToTable("Prescription", (string)null);
@@ -501,6 +536,9 @@ namespace OldCare.Web.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("AdministrationVia")
+                        .HasColumnType("int");
 
                     b.Property<double>("Amount")
                         .HasColumnType("float");
@@ -566,6 +604,9 @@ namespace OldCare.Web.Migrations
                     b.Property<Guid>("BedroomId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid?>("ComorbidityId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<DateTime?>("DepartureDate")
                         .HasColumnType("datetime2");
 
@@ -605,6 +646,8 @@ namespace OldCare.Web.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("BedroomId");
+
+                    b.HasIndex("ComorbidityId");
 
                     b.HasIndex("PersonId");
 
@@ -709,30 +752,51 @@ namespace OldCare.Web.Migrations
                     b.Navigation("Resident");
                 });
 
+            modelBuilder.Entity("OldCare.Web.Models.Emploee", b =>
+                {
+                    b.HasOne("OldCare.Web.Models.Person", "Person")
+                        .WithMany()
+                        .HasForeignKey("PersonId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Person");
+                });
+
             modelBuilder.Entity("OldCare.Web.Models.FinancialRecord", b =>
                 {
-                    b.HasOne("OldCare.Web.Models.Client", "Person")
+                    b.HasOne("OldCare.Web.Models.Client", "Client")
                         .WithMany()
                         .HasForeignKey("ClientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("OldCare.Web.Models.History", "Bedroom")
+                    b.HasOne("OldCare.Web.Models.History", "History")
                         .WithMany()
                         .HasForeignKey("HistoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Bedroom");
+                    b.Navigation("Client");
 
-                    b.Navigation("Person");
+                    b.Navigation("History");
                 });
 
             modelBuilder.Entity("OldCare.Web.Models.Medication", b =>
                 {
+                    b.HasOne("OldCare.Web.Models.Emploee", "Emploee")
+                        .WithMany()
+                        .HasForeignKey("EmploeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("OldCare.Web.Models.PrescriptionItem", "PrescriptionItem")
                         .WithMany()
-                        .HasForeignKey("PrescriptionItemId");
+                        .HasForeignKey("PrescriptionItemId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Emploee");
 
                     b.Navigation("PrescriptionItem");
                 });
@@ -750,19 +814,11 @@ namespace OldCare.Web.Migrations
 
             modelBuilder.Entity("OldCare.Web.Models.Prescription", b =>
                 {
-                    b.HasOne("OldCare.Web.Models.Person", "Author")
-                        .WithMany()
-                        .HasForeignKey("AuthorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("OldCare.Web.Models.Resident", "Resident")
                         .WithMany()
                         .HasForeignKey("ResidentId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
-
-                    b.Navigation("Author");
 
                     b.Navigation("Resident");
                 });
@@ -794,6 +850,10 @@ namespace OldCare.Web.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("OldCare.Web.Models.Comorbidity", null)
+                        .WithMany("Residents")
+                        .HasForeignKey("ComorbidityId");
+
                     b.HasOne("OldCare.Web.Models.Person", "Person")
                         .WithMany()
                         .HasForeignKey("PersonId")
@@ -818,6 +878,11 @@ namespace OldCare.Web.Migrations
                     b.Navigation("Person");
 
                     b.Navigation("Resident");
+                });
+
+            modelBuilder.Entity("OldCare.Web.Models.Comorbidity", b =>
+                {
+                    b.Navigation("Residents");
                 });
 #pragma warning restore 612, 618
         }

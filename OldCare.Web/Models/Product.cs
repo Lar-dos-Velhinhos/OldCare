@@ -3,12 +3,9 @@
 [Table("Product")]
 public class Product : Entity
 {
-    public Product(string name, string unitOfMeasurement)
-    {
-        Name = name;
-        UnitOfMeasurement = unitOfMeasurement;
-    }
-
+    [Display(Name ="Nome")]
     public string Name { get; set; }
+
+    [Display(Name ="Unidade de Medida")]
     public string UnitOfMeasurement { get; set; }
 }

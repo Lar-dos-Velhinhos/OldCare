@@ -3,7 +3,7 @@
 [Table("Bedroom")]
 public class Bedroom : Entity
 {
-    public Bedroom(int capacity, bool gender, int number)
+    public Bedroom(int capacity, EGender gender, int number)
     {
         Capacity = capacity;
         Gender = gender;
@@ -12,7 +12,7 @@ public class Bedroom : Entity
     [Display(Name ="Capacidade")]
     public int Capacity { get; set; }
     [Display(Name = "Gênero")]
-    public bool Gender { get; set; }
+    public EGender Gender { get; set; }
     [Display(Name = "Número")]
     public int Number { get; set; }
 }

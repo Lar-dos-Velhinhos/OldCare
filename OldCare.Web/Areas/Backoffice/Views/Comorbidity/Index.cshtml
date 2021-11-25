@@ -1,0 +1,20 @@
+﻿@model List<Comorbidity>
+
+@{
+    ViewData["Title"] = "Comorbidades";
+}
+
+<a asp-action="Create">Cadastrar Comorbidade</a>
+
+@foreach (var comorbidity in Model)
+{
+    <div>
+        <div>
+            <h1>@comorbidity.Description</h1>
+            <p>@comorbidity.StartDate</p>
+            <a asp-action="Edit" asp-route-comorbidityId="@comorbidity.Id">Editar</a>
+        </div>
+    </div>
+
+    <hr/>
+}

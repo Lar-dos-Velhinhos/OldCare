@@ -12,6 +12,7 @@
             <h1>@resident.Person.Name</h1>
             <p>@resident.Person.BirthDate</p>
             <a asp-action="Edit"  asp-route-residentId="@resident.Id">Editar</a>
+            <a asp-area="Backoffice" asp-controller="Comorbidity" asp-action="Create" asp-route-residentId="@resident.Id">Adicionar Comorbidade</a>
         </div>        
     </div>
     <hr>

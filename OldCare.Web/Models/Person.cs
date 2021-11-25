@@ -1,34 +1,50 @@
-﻿ using System.ComponentModel;
-
-namespace OldCare.Web.Models;
+﻿namespace OldCare.Web.Models;
 
 [Table("Person")]
 public class Person : Entity
 {
-    [DisplayName("Endereço")]
+    [Display(Name = "Endereço")]
     public string Address { get; set; }
-    [DisplayName("Número")]
+
+    [Display(Name = "Número")]
     public string AddressNumber { get; set; }
-    [DisplayName("Data de Nascimento")]
+
+    [Display(Name = "Data de Nascimento")]
     public DateTime? BirthDate { get; set; }
-    [DisplayName("Naturalidade")]
+
+    [Display(Name = "Naturalidade")]
     public string? Citizenship { get; set; }
+
+    [Display(Name = "CEP")]
     public int? CEP { get; set; }
-    [DisplayName("Cidade")]
+
+    [Display(Name = "Cidade")]
     public string City { get; set; }
+
+    [Display(Name = "CPF")]
     public string? CPF { get; set; }
-    [DisplayName("Bairro")]
+
+    [Display(Name = "Bairro")]
     public string District { get; set; }
-    [DisplayName("Gênero")]
+
+    [Display(Name = "Gênero")]
     public EGender Gender { get; set; }
-    [DisplayName("Nome")]
+
+    [Display(Name = "Nome")]
     public string Name { get; set; }
-    [DisplayName("Observação")]
+
+    [Display(Name = "Observação")]
     public string? Note { get; set; }
-    [DisplayName("Telefone")]
+
+    [Display(Name = "Telefone")]
     public string? PhoneNumber { get; set; }
+
+    [Display(Name = "Foto")]
     public string? Photo { get; set; }
+
+    [Display(Name = "RG")]
     public string? RG { get; set; }
-    [DisplayName("Estado")]
+
+    [Display(Name = "Estado")]
     public string? UF { get; set; }
 }

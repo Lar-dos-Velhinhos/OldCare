@@ -9,35 +9,38 @@ public class ClientController : Controller
 
     public async Task<IActionResult> Index()
     {
-        var clients = await context.Clients
+        var client = await context.Clients
             .AsNoTracking()
             .OrderBy(x => x.Name)
             .AsQueryable()
             .ToListAsync();
 
-        if (clients == null)
+        if (client == null)
             throw new KeyNotFoundException("Não existem dados para serem exibidos");
 
-        return View(clients);
+        return View(client);
     }
 
     [HttpGet]
-    public async Task<IActionResult> Create() => View();
+    public async Task<ActionResult> Create() => View();
 
     [HttpPost]
+    [ValidateAntiForgeryToken]
     public async Task<IActionResult> Create(Client client)
     {
         //if (!ModelState.IsValid)
-        //    return View(person);
-
-        //if (existingClient(client))
         //    return View(client);
+
+        if (context.Clients.Any(x => x.CPFCNPJ == client.CPFCNPJ))
+        {
+            //throw new BadHttpRequestException("Registro duplicado");
+            return View(client);
+        }
 
         try
         {
             context.Clients.Add(client);
             context.SaveChanges();
-
             return RedirectToAction(nameof(Index));
         }
         catch (Exception ex)
@@ -46,6 +49,7 @@ public class ClientController : Controller
         }
     }
 
+    //Get Client
     [HttpGet]
     public async Task<IActionResult> Edit([FromQuery] Guid clientId)
     {
@@ -58,32 +62,25 @@ public class ClientController : Controller
             .FirstOrDefaultAsync();
 
         if (client == null)
-            throw new KeyNotFoundException("Uma pessoa com este Id não foi encontrada.");
+            throw new KeyNotFoundException("Uma cliente com este Id não foi encontrado.");
 
         return View(client);
     }
 
     [HttpPost]
-    public async Task<IActionResult> Edit(Client model)
+    public async Task<IActionResult> Edit(Client client)
     {
-        if (!ModelState.IsValid)
+        if (!ModelState.IsValid)  
             return View();
-
-        context.Clients.Update(model);
-        context.SaveChanges();
-
-        return RedirectToAction(nameof(Index));
-    }
-
-    public bool existingClient(Client client)
-    {
-        if (client.CPFCNPJ == null)
-            return false;
-
-        var result = context.Clients
-            .AsNoTracking()
-            .Where(x => x.CPFCNPJ == client.CPFCNPJ);
-
-        return (result == null ? false : true);
+        try
+        {
+            context.Clients.Update(client);
+            context.SaveChanges();
+            return RedirectToAction(nameof(Index));
+        }
+        catch (Exception ex)
+        {
+            throw new BadHttpRequestException("Ocorreu um erro ao tentar salvar os dados. Recarregue a página e tente novamente.");
+        }
     }
 }

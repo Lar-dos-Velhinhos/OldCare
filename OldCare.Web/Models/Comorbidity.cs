@@ -1,13 +1,25 @@
-﻿namespace OldCare.Web.Models
+﻿namespace OldCare.Web.Models;
+
+[Table("Comorbidity")]
+public class Comorbidity : Entity
 {
-    public class Comorbidity : Entity
-    {
-        public Guid ResidentId { get; set; }
-        public virtual Resident? Resident { get; set; }
-        public string Description  { get; set; }
-        public DateTime? EndDate { get; set; }
-        public string? Note { get; set; }
-        public string? Restriction { get; set; }
-        public DateTime StartDate { get; set; }
-    }
+    [Display(Name = "Residente")]
+    public Guid ResidentId { get; set; }
+
+    public virtual Resident? Resident { get; set; }
+
+    [Display(Name = "Descrição")]
+    public string Description { get; set; }
+
+    [Display(Name = "Data de Término")]
+    public DateTime? EndDate { get; set; } = null;
+
+    [Display(Name = "Observação")]
+    public string? Note { get; set; }
+
+    [Display(Name = "Restrição")]
+    public string? Restriction { get; set; }
+
+    [Display(Name = "Data de Início")]
+    public DateTime StartDate { get; set; } = DateTime.Now;
 }

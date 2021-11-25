@@ -1,0 +1,20 @@
+﻿@model List<Product>
+
+@{
+    ViewData["Title"] = "Produtos";
+}
+
+<a asp-action="Create">Cadastrar Produto</a>
+
+@foreach (var product in Model)
+{
+    <div>
+        <div>
+            <h1>@product.Name</h1>
+            <p>@product.UnitOfMeasurement</p>
+            <a asp-area="Backoffice" asp-action="Edit" asp-controller="Product" asp-route-productId="@product.Id">Editar</a>
+        </div>
+    </div>
+
+    <hr/>
+}

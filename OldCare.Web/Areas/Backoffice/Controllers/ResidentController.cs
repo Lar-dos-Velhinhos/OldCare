@@ -99,6 +99,11 @@ public class ResidentController : Controller
             .AsNoTracking()
             .ToListAsync();
 
+        result.Comorbidities = await context.Comorbidities
+            .AsNoTracking()
+            .Where(x => x.ResidentId == resident.Id)
+            .ToListAsync();
+
         return View(result);
     }
 

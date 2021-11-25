@@ -1,23 +1,23 @@
 ﻿namespace OldCare.Web.Areas.Backoffice.Controllers;
 
 [Area("Backoffice")]
-public class BedroomController : Controller
+public class HistoryController : Controller
 {
     ApplicationDbContext context;
 
-    public BedroomController(ApplicationDbContext _context) => context = _context;
+    public HistoryController(ApplicationDbContext _context) => context = _context;
     public async Task<IActionResult> Index()
     {
-        var bedrooms = await context.Bedrooms
+        var histories = await context.Histories
             .AsNoTracking()
-            .OrderBy(x => x.Number)
+            .OrderBy(x => x.Description)
             .AsQueryable()
             .ToListAsync();
 
-        if (bedrooms == null)
+        if (histories == null)
             throw new KeyNotFoundException("Não existem dados para serem exibidos");
 
-        return View(bedrooms);
+        return View(histories);
     }
 
     [HttpGet]
@@ -25,19 +25,19 @@ public class BedroomController : Controller
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create(Bedroom bedroom)
+    public async Task<IActionResult> Create(History history)
     {
         //if (!ModelState.IsValid)    
         //    return View();
-        if (context.Bedrooms.Any(x => x.Number == bedroom.Number))
+        if (context.Histories.Any(x => x.Description == history.Description))
         {
             //throw new BadHttpRequestException("Registro duplicado");
-            return View(bedroom);
+            return View(history);
         }
 
         try
         {
-            context.Bedrooms.Add(bedroom);
+            context.Histories.Add(history);
             await context.SaveChangesAsync();
             RedirectToAction(nameof(Index));
         }
@@ -45,34 +45,34 @@ public class BedroomController : Controller
         {
             throw new BadHttpRequestException("Ocorreu um erro ao tentar salvar os dados. Recarregue a página e tente novamente.");
         }
-        return View(bedroom);
+        return View(history);
     }
 
     [HttpGet]
-    public async Task<ActionResult> Edit([FromQuery] Guid bedroomId)
+    public async Task<ActionResult> Edit([FromQuery] Guid historyId)
     {
         if (!ModelState.IsValid)
             return View();
 
-        var bedroom = await context.Bedrooms
+        var history = await context.Histories
                       .AsNoTracking()
-                      .Where(x => x.Id == bedroomId)
+                      .Where(x => x.Id == historyId)
                       .FirstOrDefaultAsync();
-        if (bedroom == null)
+        if (history == null)
             throw new KeyNotFoundException("Nenhum quarto com este Id foi encontrado.");
 
-        return View(bedroom);
+        return View(history);
     }
 
     [HttpPost]
-    public async Task<IActionResult> Edit(Bedroom bedroom)
+    public async Task<IActionResult> Edit(History history)
     {
         if (!ModelState.IsValid)
-            return View(bedroom);
+            return View(history);
 
         try
         {
-            context.Bedrooms.Update(bedroom);
+            context.Histories.Update(history);
             context.SaveChanges();
             return RedirectToAction(nameof(Index));
         }
