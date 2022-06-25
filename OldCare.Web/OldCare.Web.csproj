@@ -18,7 +18,6 @@
 
     <ItemGroup>
         <ProjectReference Include="..\OldCare.Contexts.AccountContext\OldCare.Contexts.AccountContext.csproj" />
-        <ProjectReference Include="..\OldCare.Contexts.FinancialContext\OldCare.Contexts.FinancialContext.csproj" />
         <ProjectReference Include="..\OldCare.Data\OldCare.Data.csproj" />
     </ItemGroup>
 

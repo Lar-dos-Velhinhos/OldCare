@@ -121,43 +121,6 @@ public class ProfileController : Controller
 
     #endregion
 
-    #region Delete
-
-    [HttpGet("minha-conta/excluir")]
-    public IActionResult Delete(
-        [FromQuery] string? returnUrl = null)
-    {
-        var model = new Contexts.AccountContext.UseCases.Delete.Request
-        {
-            ReturnUrl = returnUrl
-        };
-
-        return View(model);
-    }
-
-    [HttpPost("minha-conta/excluir")]
-    [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Delete(Contexts.AccountContext.UseCases.Delete.Request request)
-    {
-        request.Email = User.Identity?.Name ?? string.Empty;
-        try
-        {
-            var result = await _mediator.Send(request);
-            if (result.IsSuccess)
-                return Redirect("~/sair");
-
-            ModelState.AddResultErrors(result.Errors);
-            return View(request);
-        }
-        catch (Exception ex)
-        {
-            ModelState.AddModelError("Error", ex.Message);
-            return View(request);
-        }
-    }
-
-    #endregion
-
     #region Edit
 
     [Authorize]

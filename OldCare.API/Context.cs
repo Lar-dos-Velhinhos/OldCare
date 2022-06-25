@@ -5,7 +5,7 @@ using OldCare.Data;
 using OldCare.Data.Contexts.AccountContext.UseCases.Create;
 using Microsoft.EntityFrameworkCore;
 
-namespace OldCare.Web.Areas.Account;
+namespace OldCare.API;
 
 public static class Context
 {

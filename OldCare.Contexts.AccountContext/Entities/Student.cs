@@ -147,21 +147,6 @@ public class Student : Entity, IAggregateRoot
         Tracker.Update();
     }
 
-    public void EraseData(EEvasionReason evasionReason, string? feedbackMessage)
-    {
-        Name = new("erased", "data");
-        Email = new($"{Id}@mail.com");
-        Phone = new(00, 00, "00000000");
-        Title = "erased data";
-        Bio = "erased data";
-        User.EraseData();
-
-        if (!string.IsNullOrEmpty(feedbackMessage))
-            Tracker.Update($"{evasionReason} | {feedbackMessage}");
-        else
-            Tracker.Update($"{evasionReason} | Dados exluídos");
-    }
-
     public void GenerateEmailVerificationCode()
     {
         Email.GenerateVerificationCode();
