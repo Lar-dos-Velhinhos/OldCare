@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>@ViewData["Title"] - balta.io</title>
+
+    @{ await Html.RenderPartialAsync("~/Views/Shared/Partials/_FontsPartial.cshtml"); }
+    @{ await Html.RenderPartialAsync("~/Views/Shared/Partials/_StylesPartial.cshtml"); }
+
+</head>
+<body>
+
+<main>
+    @{ await Html.RenderPartialAsync("Partials/_SideBarPartial"); }
+    <div class="page-content">
+        @RenderBody()
+    </div>
+</main>
+
+<div class="back-top">
+    <i class="bi bi-arrow-up-short position-absolute top-50 start-50 translate-middle"></i>
+</div>
+
+<script src="~/assets/vendor/apexcharts/js/apexcharts.min.js"></script>
+@{ await Html.RenderPartialAsync("~/Views/Shared/Partials/_ScriptsPartial.cshtml"); }
+@{ await Html.RenderPartialAsync("~/Views/Shared/Partials/_ValidationScriptsPartial.cshtml"); }
+
+@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

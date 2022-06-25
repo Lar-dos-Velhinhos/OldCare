@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <RootNamespace>OldCare.Contexts.AccountContext</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\OldCare.Services.ActiveCampaign\OldCare.Services.ActiveCampaign.csproj" />
+        <ProjectReference Include="..\OldCare.Services.Google\OldCare.Services.Google.csproj" />
+        <ProjectReference Include="..\OldCare.Contexts.SharedContext\OldCare.Contexts.SharedContext.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Flunt" Version="2.0.5" />
+        <PackageReference Include="Flunt.Extensions.Br" Version="1.0.1" />
+        <PackageReference Include="MediatR" Version="10.0.1" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.6" />
+        <PackageReference Include="Twilio" Version="5.75.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="UseCases\EditSocialProfile" />
+    </ItemGroup>
+  
+</Project>

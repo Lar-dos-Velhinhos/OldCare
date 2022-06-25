@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <RootNamespace>OldCare.Contexts.SharedContext</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="RestSharp" Version="107.3.0" />
+        <PackageReference Include="SecureIdentity" Version="1.0.3" />
+        <PackageReference Include="SendGrid" Version="9.28.0" />
+    </ItemGroup>
+
+</Project>

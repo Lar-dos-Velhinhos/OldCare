@@ -1,0 +1,120 @@
+@model OldCare.Contexts.AccountContext.UseCases.Edit.Request
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "";
+    ViewData["Description"] = "";
+    ViewData["Keywords"] = "";
+    ViewData["URL"] = "";
+    ViewData["Image"] = "";
+}
+
+<style>
+    .profile-details-bg {
+        background:url('/assets/images/pattern/04.png') no-repeat center center; background-size:cover;
+    }
+</style>
+
+<partial name="Partials/_ProfileHeaderPartial"/>
+
+<section class="pt-0">
+    <div class="container">
+        <div class="row">
+            <partial name="Partials/_SideMenuPartial"/>
+
+            <div class="col-xl-9">
+                <div class="card bg-transparent border rounded-3">
+                    <div class="card-header bg-transparent border-bottom">
+                        <h3 class="card-header-title mb-0">Editar perfil</h3>
+                    </div>
+
+                    <div class="card-body">
+                        <br/>
+                        @if (!string.IsNullOrEmpty(ViewBag.Success))
+                        {
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                @ViewBag.Success
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        }
+                        <div asp-validation-summary="All" class="text-danger"></div>
+
+                        <form asp-action="Edit" class="row g-4" method="post">
+                            <div class="col-12 justify-content-center align-items-center">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label class="form-label">Primeiro nome</label>
+                                        <input asp-for="FirstName" type="text" class="form-control" placeholder="Nome">
+                                        <span asp-validation-for="FirstName" class="form-text text-danger"></span>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label class="form-label">Último nome</label>
+                                        <input asp-for="LastName" type="text" class="form-control" placeholder="Sobrenome">
+                                        <span asp-validation-for="LastName" class="form-text text-danger"></span>
+                                    </div>
+                                </div>
+
+                                <br/>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label class="form-label">E-mail</label>
+                                        <input asp-for="Email" class="form-control" type="email" placeholder="Email" readonly>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label asp-for="Phone" class="form-label"></label>
+                                        <input asp-for="Phone" type="text" class="form-control phone_with_ddd" placeholder="Celular">
+                                        <span asp-validation-for="Phone" class="form-text text-danger"></span>
+                                    </div>
+                                </div>
+
+                                <br/>
+                                <div class="row">
+
+
+                                    <div class="col-md-6">
+                                        <label asp-for="Document" class="form-label"></label>
+                                        <input asp-for="Document" type="text" class="form-control cpf" placeholder="CPF">
+                                        <span asp-validation-for="Document" class="form-text text-danger"></span>
+                                    </div>
+                                    
+                                    <div class="col-md-6">
+                                        <label asp-for="BirthDate" class="form-label">Data de Nascimento</label>
+                                        <input asp-for="BirthDate" asp-format="" type="date" class="form-control" placeholder="Data de Nascimento">
+                                        <span asp-validation-for="BirthDate" class="form-text text-danger"></span>
+                                    </div>
+                                </div>
+                                
+                                <hr class="mt-5 mb-5"/>
+                                
+                                <div class="col-12">
+                                    <div class="d-sm-flex justify-content-end">
+                                        <button type="submit" class="btn btn-primary mb-0">Salvar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script src="~/assets/vendor/choices/js/choices.min.js"></script>
+    <script src="~/assets/vendor/purecounterjs/dist/purecounter_vanilla.js"></script>
+    <script src="~/assets/vendor/aos/aos.js"></script>
+    <script src="~/assets/js/jquery.mask.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.phone_with_ddd').mask('00 (00) 00000-0000');
+            $('.cpf').mask('000.000.000-00', { reverse: true });
+        });
+    </script>
+    <script src="~/assets/js/jquery.validate.min.js"></script>
+    <script src="assets/js/temporarily-alerts.js"></script>
+
+    @{ await Html.RenderPartialAsync("~/Views/Shared/Partials/_ValidationScriptsPartial.cshtml"); }
+}

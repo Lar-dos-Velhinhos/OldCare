@@ -1,0 +1,155 @@
+<header class="navbar-light navbar-sticky header-static">
+    <nav class="navbar navbar-expand-xl">
+        <div class="container-fluid px-3 px-xl-5">
+            <a class="navbar-brand" href="~/">
+                <img class="light-mode-item navbar-brand-item" src="~/assets/images/logo.svg" alt="balta.io">
+                <img class="dark-mode-item navbar-brand-item" src="~/assets/images/logo-light.svg" alt="balta.io">
+            </a>
+
+            <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-animation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </span>
+            </button>
+
+            <div class="navbar-collapse w-100 collapse" id="navbarCollapse">
+                <ul class="navbar-nav navbar-nav-scroll me-auto">
+                    <li class="nav-item dropdown dropdown-menu-shadow-stacked">
+                        <a class="nav-link bg-primary bg-opacity-10 rounded-3 text-primary px-3 py-3 py-xl-0"
+                           href="#" id="categoryMenu" data-bs-toggle="dropdown" aria-haspopup="true"
+                           aria-expanded="false">
+                            <i class="bi bi-ui-checks me-2"></i>
+                            <span>Carreiras</span>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="categoryMenu">
+                            <li class="dropdown-submenu">
+                                <a class="dropdown-item" href="#">.NET Developer</a>
+                            </li>
+                            <li class="dropdown-submenu">
+                                <a class="dropdown-item" href="#">Flutter Developer</a>
+                            </li>
+                            <li class="dropdown-submenu">
+                                <a class="dropdown-item" href="#">Angular Developer</a>
+                            </li>
+                            <li class="dropdown-submenu">
+                                <a class="dropdown-item" href="#">Node Developer</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <ul class="navbar-nav navbar-nav-scroll me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            Cursos
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            Eventos
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        Blog
+                    </a>
+                </ul>
+
+                <div class="nav my-3 my-xl-0 px-4 flex-nowrap align-items-center">
+                    <div class="nav-item w-100">
+                        <form class="position-relative">
+                            <input class="form-control pe-5 bg-transparent" type="search" placeholder="Pesquisar..."
+                                   aria-label="Search">
+                            <button
+                                class="btn bg-transparent px-2 py-0 position-absolute top-50 end-0 translate-middle-y"
+                                type="submit">
+                                <i class="fas fa-search fs-6 "></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="navbar-nav ms-2">
+                    <a href="~/entrar" class="btn btn-sm btn-purple mb-0"><i class="bi bi-star me-2"></i>Premium</a>
+                    &nbsp;
+                    <a href="~/entrar" class="btn btn-sm btn-dark mb-0">Pro 👑</a>
+                    &nbsp;&nbsp;
+                </div>
+            </div>
+
+            @if (User.Identity is not null && User.Identity.IsAuthenticated)
+            {
+                <div class="dropdown ms-1 ms-lg-0">
+                    <a class="avatar avatar-sm p-0" href="#" id="profileDropdown" role="button"
+                       data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown"
+                       aria-expanded="false">
+                        <div class="avatar align-middle">
+                            <img class="avatar-img rounded-circle" src="https://www.gravatar.com/avatar/8d9f6b0ffc9150878f1ae9e3ae9bfb07" alt="avatar">
+                        </div>
+                    </a>
+                    <ul class="dropdown-menu dropdown-animation dropdown-menu-end shadow pt-3"
+                        aria-labelledby="profileDropdown">
+                        <li class="px-3">
+                            <div class="d-flex align-items-center">
+                                <div class="avatar avatar-xl position-relative mt-n3">
+                                    <img class="avatar-img rounded-circle border border-white border-3 shadow mr-4" src="https://www.gravatar.com/avatar/8d9f6b0ffc9150878f1ae9e3ae9bfb07" alt="@User.Identity?.Name">
+                                </div>
+                                <div>
+                                    <a class="h6" href="#">@User?.Identity?.Name</a>
+                                    <p class="small m-0">@User?.Identity?.Name</p>
+                                    <span class="badge bg-black text-white rounded-pill">Pro</span>
+                                </div>
+                            </div>
+                            <hr>
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item" href="~/minha-conta">
+                                <i class="bi bi-person fa-fw me-2"></i>Meu Perfil
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">
+                                <i class="bi bi-gear fa-fw me-2"></i>Configurações
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">
+                                <i class="bi bi-info-circle fa-fw me-2"></i>Ajuda e Suporte
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item bg-danger-soft-hover" href="~/sair">
+                                <i
+                                    class="bi bi-power fa-fw me-2">
+                                </i>Sair
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li>
+                            <div class="modeswitch-wrap" id="darkModeSwitch">
+                                <div class="modeswitch-item">
+                                    <div class="modeswitch-icon"></div>
+                                </div>
+                                <span>Dark Mode</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            }
+            else
+            {
+                <div class="navbar-nav ms-2">
+                    <a href="~/entrar" class="btn btn-sm btn-dark mb-0"><i class="bi bi-person me-2"></i>Entrar</a>
+                </div>
+            }
+        </div>
+    </nav>
+</header>
