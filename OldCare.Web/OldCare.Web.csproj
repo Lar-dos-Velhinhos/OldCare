@@ -8,6 +8,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="bootstrap" Version="5.1.3" />
         <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.5">
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -23,6 +24,24 @@
 
     <ItemGroup>
       <_ContentIncludedByDefault Remove="Areas\Account\Views\Order\Checkout.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Backoffice\Views\Home\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Backoffice\Views\Shared\Partials\_SideBarPartial.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Backoffice\Views\Shared\_Layout.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Backoffice\_ViewImports.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Backoffice\_ViewStart.cshtml" />
+      <_ContentIncludedByDefault Remove="wwwroot\assets\css\color.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\assets\css\style-dark-rtl.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\assets\css\style-dark-rtl.css.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\assets\css\style-dark.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\assets\css\style-dark.css.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\assets\css\style-rtl.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\assets\css\style-rtl.css.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\assets\css\style.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\assets\css\style.css.map" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="wwwroot\lib" />
     </ItemGroup>
 
 </Project>

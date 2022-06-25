@@ -1,0 +1,33 @@
+﻿:root {
+    --public-default: #2A93C9;
+    --public-selection: #2684B5;
+    --public-light: #95C9E4;
+}
+
+/* lar dos velhinhos */
+
+.public-default-text {
+    color: var(--public-default);
+}
+
+.public-selection-text {
+    color: var(--public-selection);
+}
+
+.public-light-text {
+    color: var(--public-light);
+}
+
+.public-default-background {
+    background-color: var(--public-default);
+}
+
+.public-selection-background {
+    background-color: var(--public-selection);
+}
+
+.public-light-background {
+    background-color: var(--public-light);
+}
+
+/* oldcare */
