@@ -37,17 +37,26 @@
 
     <partial name="Partials/_FontsPartial"/>
     <partial name="Partials/_StylesPartial"/>
-    <partial name="Partials/PublicHome/_PublicSliderPartial"/>
 </head>
 <body class="font-poppins">
 <main>
-
     <section id="header" class="bg-oldcare">
         <partial name="Partials/PublicHome/_HeaderPartialPartial"/>
         <partial name="Partials/PublicHome/_HorizontalTopMenuPartial"/>
+        <partial name="Partials/PublicHome/_PublicSliderPartial"/>
     </section>
-
+    
+    <section id="body">
+        <partial name="Partials/PublicHome/_TextCardsPartial"/>
+        <partial name="Partials/PublicHome/_LocalDetailsPartial"/>
+        <partial name="Partials/PublicHome/_SecondaryBannerPartial"/>
+        <partial name="Partials/PublicHome/_GalleryPartial"/>
+    </section>
 </main>
+
+<footer>
+    <partial name="Partials/PublicHome/_FooterPartial"/>
+</footer>
 
 <div class="back-top">
     <i class="bi bi-arrow-up-short position-absolute top-50 start-50 translate-middle"></i>

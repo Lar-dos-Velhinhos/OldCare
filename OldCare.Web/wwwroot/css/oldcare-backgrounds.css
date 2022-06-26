@@ -1,3 +1,11 @@
 ﻿.bg-oldcare {
     background-image: url("/media/images/backgrounds/publichome-background.png");
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    height: 600px;
+}
+
+.bg-cian {
+    background-color: var(--public-default);
 }

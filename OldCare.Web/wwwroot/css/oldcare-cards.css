@@ -1,0 +1,16 @@
+﻿.oc-resume-card-body {
+    flex: 1 1 auto;
+    padding: 1rem 1rem;
+}
+
+.dados {
+    bottom: 10px;
+    right: 10px;
+}
+
+.text {
+    font-family: "Arial Bold", Arial, sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    color: #ffffff !important;
+}
