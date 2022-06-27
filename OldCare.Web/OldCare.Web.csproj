@@ -23,12 +23,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <_ContentIncludedByDefault Remove="Areas\Account\Views\Order\Checkout.cshtml" />
-      <_ContentIncludedByDefault Remove="Areas\Backoffice\Views\Home\Index.cshtml" />
-      <_ContentIncludedByDefault Remove="Areas\Backoffice\Views\Shared\Partials\_SideBarPartial.cshtml" />
-      <_ContentIncludedByDefault Remove="Areas\Backoffice\Views\Shared\_Layout.cshtml" />
-      <_ContentIncludedByDefault Remove="Areas\Backoffice\_ViewImports.cshtml" />
-      <_ContentIncludedByDefault Remove="Areas\Backoffice\_ViewStart.cshtml" />
       <_ContentIncludedByDefault Remove="wwwroot\assets\css\color.css" />
       <_ContentIncludedByDefault Remove="wwwroot\assets\css\style-dark-rtl.css" />
       <_ContentIncludedByDefault Remove="wwwroot\assets\css\style-dark-rtl.css.map" />
@@ -38,6 +32,11 @@
       <_ContentIncludedByDefault Remove="wwwroot\assets\css\style-rtl.css.map" />
       <_ContentIncludedByDefault Remove="wwwroot\assets\css\style.css" />
       <_ContentIncludedByDefault Remove="wwwroot\assets\css\style.css.map" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <AdditionalFiles Include="Areas\Resident\Views\Shared\Partials\_SidePanelPartial.cshtml" />
+      <AdditionalFiles Include="Areas\Resident\Views\Shared\_Layout.cshtml" />
     </ItemGroup>
 
 </Project>

@@ -13,11 +13,13 @@ public class DataContext : DbContext
 
     #region Account
 
+    public DbSet<Bedroom> Bedrooms { get; set; } = null!;
+    public DbSet<BlackList> BlackLists { get; set; } = null!;
     public DbSet<User> Users { get; set; } = null!;
     public DbSet<Role> Roles { get; set; } = null!;
     public DbSet<UserRole> UserRoles { get; set; } = null!;
     public DbSet<Person> People { get; set; } = null!;
-    public DbSet<BlackList> BlackLists { get; set; } = null!;
+    public DbSet<Resident> Residents { get; set; } = null!;
 
     #endregion
 
@@ -25,11 +27,13 @@ public class DataContext : DbContext
     {
         #region Account
 
+        builder.ApplyConfiguration(new BlackListMap());
+        builder.ApplyConfiguration(new BedroomMap());
         builder.ApplyConfiguration(new UserMap());
         builder.ApplyConfiguration(new RoleMap());
         builder.ApplyConfiguration(new UserRoleMap());
         builder.ApplyConfiguration(new PersonMap());
-        builder.ApplyConfiguration(new BlackListMap());
+        builder.ApplyConfiguration(new ResidentMap());
 
         #endregion
     }

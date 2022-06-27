@@ -8,7 +8,7 @@
     }
   },
   "profiles": {
-    "Balta.Interfaces.Web": {
+    "OldCare.Interfaces.Web": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,

@@ -1,6 +1,4 @@
 using System.Security.Claims;
-using OldCare.Contexts.AccountContext.UseCases.VerifyPhone;
-using OldCare.Contexts.SharedContext.ValueObjects;
 using OldCare.Data;
 using OldCare.Web.Extensions;
 using MediatR;

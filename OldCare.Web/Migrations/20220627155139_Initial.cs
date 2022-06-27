@@ -10,6 +10,20 @@ namespace OldCare.Web.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Bedroom",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Capacity = table.Column<byte>(type: "TINYINT", nullable: false),
+                    Gender = table.Column<bool>(type: "BIT", nullable: false),
+                    Number = table.Column<int>(type: "INT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Bedroom", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "BlackList",
                 columns: table => new
                 {
@@ -92,6 +106,43 @@ namespace OldCare.Web.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Resident",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    PersonId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    BedroomId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    AdmissionDate = table.Column<DateTime>(type: "DATETIME2", nullable: false),
+                    DepartureDate = table.Column<DateTime>(type: "DATETIME2", nullable: true),
+                    Father = table.Column<string>(type: "NVARCHAR(160)", maxLength: 160, nullable: false),
+                    HealthInsurance = table.Column<string>(type: "NVARCHAR(160)", maxLength: 160, nullable: false),
+                    MaritalStatus = table.Column<byte>(type: "TINYINT", nullable: false),
+                    Mobility = table.Column<byte>(type: "TINYINT", nullable: false),
+                    Mother = table.Column<string>(type: "NVARCHAR(160)", maxLength: 160, nullable: false),
+                    Note = table.Column<string>(type: "NVARCHAR(255)", maxLength: 255, nullable: false),
+                    Profession = table.Column<string>(type: "NVARCHAR(160)", maxLength: 160, nullable: false),
+                    EducationLevel = table.Column<byte>(type: "TINYINT", nullable: false),
+                    SUS = table.Column<int>(type: "INT", nullable: false),
+                    VoterRegCardNumber = table.Column<int>(type: "INT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Resident", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Resident_Bedroom_BedroomId",
+                        column: x => x.BedroomId,
+                        principalTable: "Bedroom",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Resident_Person_PersonId",
+                        column: x => x.PersonId,
+                        principalTable: "Person",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "User",
                 columns: table => new
                 {
@@ -147,6 +198,16 @@ namespace OldCare.Web.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_Resident_BedroomId",
+                table: "Resident",
+                column: "BedroomId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Resident_PersonId",
+                table: "Resident",
+                column: "PersonId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_User_PersonId",
                 table: "User",
                 column: "PersonId");
@@ -171,7 +232,13 @@ namespace OldCare.Web.Migrations
                 name: "Document");
 
             migrationBuilder.DropTable(
+                name: "Resident");
+
+            migrationBuilder.DropTable(
                 name: "UserRole");
+
+            migrationBuilder.DropTable(
+                name: "Bedroom");
 
             migrationBuilder.DropTable(
                 name: "Role");

@@ -48,7 +48,6 @@ public class User : Entity, IAggregateRoot
     
     public void Authenticate(string password)
     {
-        var ss = PasswordHasher.Hash(password);
         var result = PasswordHasher.Verify(
             Password.Hash,
             password,

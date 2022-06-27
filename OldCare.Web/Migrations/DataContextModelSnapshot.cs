@@ -22,6 +22,26 @@ namespace OldCare.Web.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("OldCare.Contexts.AccountContext.Entities.Bedroom", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<byte>("Capacity")
+                        .HasColumnType("TINYINT");
+
+                    b.Property<bool>("Gender")
+                        .HasColumnType("BIT");
+
+                    b.Property<int>("Number")
+                        .HasColumnType("INT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Bedroom", (string)null);
+                });
+
             modelBuilder.Entity("OldCare.Contexts.AccountContext.Entities.BlackList", b =>
                 {
                     b.Property<Guid>("Id")
@@ -59,6 +79,73 @@ namespace OldCare.Web.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Person", (string)null);
+                });
+
+            modelBuilder.Entity("OldCare.Contexts.AccountContext.Entities.Resident", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("AdmissionDate")
+                        .HasColumnType("DATETIME2");
+
+                    b.Property<Guid>("BedroomId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("DepartureDate")
+                        .HasColumnType("DATETIME2");
+
+                    b.Property<byte>("EducationLevel")
+                        .HasColumnType("TINYINT");
+
+                    b.Property<string>("Father")
+                        .IsRequired()
+                        .HasMaxLength(160)
+                        .HasColumnType("NVARCHAR(160)");
+
+                    b.Property<string>("HealthInsurance")
+                        .IsRequired()
+                        .HasMaxLength(160)
+                        .HasColumnType("NVARCHAR(160)");
+
+                    b.Property<byte>("MaritalStatus")
+                        .HasColumnType("TINYINT");
+
+                    b.Property<byte>("Mobility")
+                        .HasColumnType("TINYINT");
+
+                    b.Property<string>("Mother")
+                        .IsRequired()
+                        .HasMaxLength(160)
+                        .HasColumnType("NVARCHAR(160)");
+
+                    b.Property<string>("Note")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("NVARCHAR(255)");
+
+                    b.Property<Guid>("PersonId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Profession")
+                        .IsRequired()
+                        .HasMaxLength(160)
+                        .HasColumnType("NVARCHAR(160)");
+
+                    b.Property<int>("SUS")
+                        .HasColumnType("INT");
+
+                    b.Property<int>("VoterRegCardNumber")
+                        .HasColumnType("INT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BedroomId");
+
+                    b.HasIndex("PersonId");
+
+                    b.ToTable("Resident", (string)null);
                 });
 
             modelBuilder.Entity("OldCare.Contexts.AccountContext.Entities.Role", b =>
@@ -373,6 +460,25 @@ namespace OldCare.Web.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("OldCare.Contexts.AccountContext.Entities.Resident", b =>
+                {
+                    b.HasOne("OldCare.Contexts.AccountContext.Entities.Bedroom", "Bedroom")
+                        .WithMany("Residents")
+                        .HasForeignKey("BedroomId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("OldCare.Contexts.AccountContext.Entities.Person", "Person")
+                        .WithMany()
+                        .HasForeignKey("PersonId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Bedroom");
+
+                    b.Navigation("Person");
+                });
+
             modelBuilder.Entity("OldCare.Contexts.AccountContext.Entities.User", b =>
                 {
                     b.HasOne("OldCare.Contexts.AccountContext.Entities.Person", "Person")
@@ -504,6 +610,11 @@ namespace OldCare.Web.Migrations
                     b.Navigation("Role");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("OldCare.Contexts.AccountContext.Entities.Bedroom", b =>
+                {
+                    b.Navigation("Residents");
                 });
 #pragma warning restore 612, 618
         }

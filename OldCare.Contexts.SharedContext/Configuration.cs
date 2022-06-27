@@ -4,7 +4,7 @@ namespace OldCare.Contexts.SharedContext;
 
 public static class Configuration
 {
-    public static string Host { get; set; } = "https://balta.io/";
+    public static string Host { get; set; } = "https://oldcare.azurewebhosts.com/";
     public static SecretsConfiguration Secrets { get; set; } = new();
     public static DatabaseConfiguration Database { get; set; } = new();
     public static SendGridConfiguration SendGrid { get; set; } = new();
