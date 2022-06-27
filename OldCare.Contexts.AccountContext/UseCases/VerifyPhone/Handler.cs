@@ -31,14 +31,14 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
     {
         #region 01. Recuperar aluno por email
 
-        Student? student;
+        User? user;
 
         try
         {
-            student = await _repository.GetStudentByEmailAsync(request.Email);
+            user = await _repository.GetUserByUsernameAsync(request.Email);
             
-            if (student is not null)
-                request.PhoneNumber = student.Phone;
+            if (user is not null)
+                request.PhoneNumber = user.Person.Phone;
         }
         catch (Exception ex)
         {
@@ -49,7 +49,7 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
 
         #region 02. Verifica se o aluno existe
 
-        if (student is null)
+        if (user is null)
             return new BaseResponse<ResponseData>("Conta não encontrada", "Student", 404);
 
         #endregion
@@ -58,7 +58,7 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
 
         try
         {
-            student.VerifyPhone(request.VerificationCode);
+            user.Person.VerifyPhone(request.VerificationCode);
         }
         catch (Exception ex)
         {
@@ -71,7 +71,7 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
 
         try
         {
-            await _repository.SaveAsync(student);
+            await _repository.SaveAsync(user);
         }
         catch (Exception ex)
         {

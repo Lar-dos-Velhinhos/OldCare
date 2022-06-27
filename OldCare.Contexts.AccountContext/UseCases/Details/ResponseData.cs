@@ -14,7 +14,7 @@ public class ResponseData : IResponseData
         FirstName = detailsModel.FirstName;
         LastName = detailsModel.LastName;
         Email = detailsModel.Email;
-        Document = detailsModel.Document;
+        Documents = detailsModel.Documents;
         BirthDate = detailsModel.Birthdate;
         Phone = detailsModel.Phone;
         Title = detailsModel.Title;
@@ -42,7 +42,7 @@ public class ResponseData : IResponseData
 
     [Display(Name = "CPF")]
     [Required(ErrorMessage = "CPF é necessário para continuar")]
-    public string Document { get; set; }
+    public List<Document>? Documents { get; set; }
     
     [Display(Name = "Data de nascimento")]
     [Required(ErrorMessage = "A data de nascimento é necessária para continuar")]

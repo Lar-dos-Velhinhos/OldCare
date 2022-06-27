@@ -13,3 +13,15 @@
 .oc-btn-default-gradient:hover {
     background: linear-gradient(135deg, #3F93FF 0%, #A1FF8B 96.83%);
 }
+
+.oc-btn-primary {
+    color: #fff;
+    background-color: #193278;
+    border-color: #5e616e;
+}
+
+.oc-btn-primary:hover {
+    color: #fff;
+    background-color: #19a857;
+    border-color: #19a857;
+}

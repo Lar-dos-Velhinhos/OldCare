@@ -1,84 +1,83 @@
 ﻿@model OldCare.Contexts.AccountContext.UseCases.Authenticate.Request
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewData["Title"] = "";
-    ViewData["Description"] = "";
-    ViewData["Keywords"] = "";
-    ViewData["URL"] = "";
-    ViewData["Image"] = "";
+    Layout = null;
+    ViewData["Title"] = "OldCare";
+    ViewData["Description"] = "Instituição de permanencia para idosos";
+    ViewData["Keywords"] = "casa, repouso, convivencia, social";
+    ViewData["URL"] = "https://oldcare.azurewebsites.net";
+    ViewData["Image"] = "/media/images/banners/index_banner.png";
 }
 
-<section class="p-0 d-flex align-items-center position-relative overflow-hidden">
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>@ViewData["Title"] - OldCare</title>
 
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-12 col-lg-6 d-md-flex align-items-center justify-content-center bg-primary bg-opacity-10 vh-lg-100">
-                @{ await Html.RenderPartialAsync("Partials/_SidePanelPartial"); }
+    <meta name="description" content="@ViewData["Description"]">
+    <meta name="keywords" content="@ViewData["Keywords"]">
+    <meta name="author" content="OldCare">
+
+    <!--Twitter Share-->
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:site" content="@ViewData["Url"]"/>
+    <meta name="twitter:creator" content="@@Oldcare"/>
+    <meta name="twitter:title" content="@ViewData["Title"]"/>
+    <meta name="twitter:description" content="@ViewData["Description"]"/>
+    <meta name="twitter:image" content="@ViewData["Image"]"/>
+
+    <!--Facebook/LinkedIn Share-->
+    <meta property="og:url" content="@ViewData["Url"]"/>
+    <meta property="og:title" content="@ViewData["Title"] - OldCare"/>
+    <meta property="og:description" content='@ViewData["Description"]'/>
+    <meta property="og:image" content='@ViewData["Image"]'/>
+
+    <link rel="icon" type="image/x-icon" href="/media/images/icons/oldcare_logo.ico"/>
+    <link rel="shortcut icon" type="image/x-icon" href="/media/images/icons/oldcare_logo.ico"/>
+
+    <partial name="Partials/_StylesPartial"/>
+</head>
+<body class="font-poppins">
+
+<main class="login-background d-flex justify-content-center align-items-center">
+    <section class="container-fluid d-flex justify-content-center align-items-center">
+        <div class="row w-100 d-flex justify-content-center align-items-center">
+            <div class="col-lg-6 col-sm-12 d-flex justify-content-center">
+                <img alt="oldcare-logo" class="img img-fluid" src="media/images/logos/oldcare-logo.png" width="90%"/>
             </div>
-
-            <div class="col-12 col-lg-6 m-auto">
-                <div class="row my-5">
-                    <div class="col-sm-10 col-xl-8 m-auto">
-                        <h2>Vamos começar?</h2>
-                        <p class="lead mb-4">Aqui é o início da sua jornada 💜</p>
-
-                        <form asp-action="Login">
-
-                            <div class="mb-2">
-                                <div class="input-group input-group-lg">
-                                    <span class="input-group-text bg-light rounded-start border-0 text-secondary px-3">
-                                        <i class="bi bi-envelope-fill"></i>
-                                    </span>
-                                    <input type="email" class="form-control border-0 bg-light rounded-end ps-1" placeholder="E-mail" asp-for="Email">
-                                </div>
-                            </div>
-
-                            <div class="mb-2">
-                                <div class="input-group input-group-lg">
-                                    <span class="input-group-text bg-light rounded-start border-0 text-secondary px-3">
-                                        <i class="bi bi-lock-fill"></i>
-                                    </span>
-                                    <input type="password" class="form-control border-0 bg-light rounded-end ps-1" placeholder="Senha" asp-for="Password">
-                                </div>
-                            </div>
-
-                            <input asp-for="ReturnUrl" type="hidden" class="form-control"/>
-
-                            <div asp-validation-summary="All" class="mt-2 text-danger"></div>
-
-                            <div class="align-items-center mt-0">
-                                <div class="d-grid">
-                                    <button class="btn btn-primary mb-0" type="submit">
-                                        Entrar
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-
-                        <div class="mt-4 text-center">
-                            <span>Ainda não tem uma conta?<a href="~/comecar"> Clique aqui para começar <strong>gratuitamente</strong></a></span> <br>
-                            <br>
-                            <strong>
-                                <a href="~/minha-conta/senha/restaurar">
-                                    Esqueci minha senha
-                                </a>
-                            </strong>
-                            <br>
-                            <hr>
-                            <br>
-                            <small>
-                                Caso não tenha recebido o código de verificação da sua conta via E-mail
-                            </small>
-                            <br>
-                            <strong>
-                                <a href="~/minha-conta/email/verificar/reenviar">
-                                    Preciso de um novo código de verificação
-                                </a>
-                            </strong>
+            <div class="col-lg-6 col-sm-12 d-flex justify-content-center">
+                <div class="wrapper">
+                    <div class="logo">
+                        <img alt="oldcare-logo" src="media/images/logos/oldcare-logo.png">
+                    </div>
+                    <div class="text-center name">
+                        OldCare
+                    </div>
+                    <form asp-action="Login" class="p-3 mt-3" method="post">
+                        <div class="form-field d-flex align-items-center">
+                            <span class="far fa-user"></span>
+                            <input asp-for="Email" type="text" value="nome@mail.com">
                         </div>
+                        <div class="form-field d-flex align-items-center">
+                            <span class="fas fa-key"></span>
+                            <input asp-for="Password" type="password" placeholder="senha" value="senha">
+                        </div>
+
+                        <div asp-validation-summary="All" class="text-danger"></div>
+                        <button type="submit" class="btn mt-3">Entrar</button>
+                    </form>
+                    <div class="text-center fs-6">
+                        <a href="#">Esqueceu sua senha?</a>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+</main>
+
+<div class="back-top">
+    <i class="bi bi-arrow-up-short position-absolute top-50 start-50 translate-middle"></i>
+</div>
+</body>
+</html>

@@ -13,6 +13,6 @@ public class Repository : IRepository
     public async Task<bool> CheckAccountIsBlackListedAsync(string email)
         => await _context.BlackLists.AnyAsync(x => x.Email.Address == email.ToLower());
 
-    public async Task<Student?> GetStudentByEmailAsync(string email) 
-        => await _context.Students.Where(x => x.Email.Address == email.ToLower()).FirstOrDefaultAsync();
+    public async Task<User?> GetUserByUsernameAsync(string email) 
+        => await _context.Users.Where(x => x.Username.Address == email.ToLower()).FirstOrDefaultAsync();
 }

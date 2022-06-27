@@ -4,6 +4,6 @@ namespace OldCare.Contexts.AccountContext.UseCases.RequestPasswordResetCode.Cont
 
 public interface IRepository
 {
-    Task<bool> CheckAccountIsBlackListedAsync(string email);
-    Task<Student?> GetStudentByEmailAsync(string email);
+    Task<bool> CheckAccountIsBlackListedAsync(string username);
+    Task<User?> GetUserByUsernameAsync(string username);
 }

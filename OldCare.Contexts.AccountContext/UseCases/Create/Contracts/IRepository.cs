@@ -3,10 +3,9 @@ using OldCare.Contexts.SharedContext.Repositories.Contracts;
 
 namespace OldCare.Contexts.AccountContext.UseCases.Create.Contracts;
 
-public interface IRepository : IBaseRepository<Student>
+public interface IRepository : IBaseRepository<User>
 {
-    Task CreateAsync(Student student);
-    Task<IEnumerable<Tag>> GetTagsAsync();
-    Task<bool> CheckAccountExistsAsync(string email);
-    Task<bool> CheckAccountIsBlackListedAsync(string email);
+    Task CreateAsync(User user);
+    Task<bool> CheckAccountExistsAsync(string username);
+    Task<bool> CheckAccountIsBlackListedAsync(string username);
 }

@@ -10,31 +10,20 @@ public class Repository : IRepository
 
     public Repository(DataContext context) => _context = context;
 
-    public async Task<IEnumerable<Tag>> GetTagsAsync()
+    public async Task CreateAsync(User user)
     {
-        return await _context
-            .Tags
-            .Where(x => x.Slug == "newbie" ||
-                        x.Slug == "email_unconfirmed" ||
-                        x.Slug == "newsletter" ||
-                        x.Slug == "promos")
-            .ToListAsync();
-    }
-
-    public async Task CreateAsync(Student student)
-    {
-        await _context.Students.AddAsync(student);
+        await _context.Users.AddAsync(user);
         await _context.SaveChangesAsync();
     }
 
-    public async Task<bool> CheckAccountExistsAsync(string email)
+    public async Task<bool> CheckAccountExistsAsync(string username)
     {
-        if (await _context.Students.AnyAsync(x => x.Email.Address == email.ToLower()))
+        if (await _context.Users.AnyAsync(x => x.Username.Address == username.ToLower()))
             return true;
 
-        return await _context.Users.AnyAsync(x => x.Username.Address == email.ToLower());
+        return await _context.Users.AnyAsync(x => x.Username.Address == username.ToLower());
     }
 
-    public async Task<bool> CheckAccountIsBlackListedAsync(string email)
-        => await _context.BlackLists.AnyAsync(x => x.Email.Address == email.ToLower());
+    public async Task<bool> CheckAccountIsBlackListedAsync(string username)
+        => await _context.BlackLists.AnyAsync(x => x.Email.Address == username.ToLower());
 }

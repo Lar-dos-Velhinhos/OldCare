@@ -4,5 +4,5 @@ namespace OldCare.Contexts.AccountContext.UseCases.Create.Contracts;
 
 public interface IService
 {
-    Task SendEmailVerificationCodeAsync(Student student, string? returnUrl);
+    Task SendEmailVerificationCodeAsync(User user, string? returnUrl);
 }

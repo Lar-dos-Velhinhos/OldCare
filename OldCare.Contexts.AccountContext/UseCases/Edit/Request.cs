@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using OldCare.Contexts.SharedContext.UseCases;
 using MediatR;
+using OldCare.Contexts.SharedContext.ValueObjects;
 
 namespace OldCare.Contexts.AccountContext.UseCases.Edit;
 
@@ -24,7 +25,7 @@ public class Request : IRequest<BaseResponse<ResponseData>>
 
     [Display(Name = "CPF")]
     [Required(ErrorMessage = "CPF é necessário para continuar")]
-    public string? Document { get; set; }
+    public List<Document>? Documents { get; set; }
 
     [Display(Name = "Telefone")]
     [Required(ErrorMessage = "Número de telefone inválido")]

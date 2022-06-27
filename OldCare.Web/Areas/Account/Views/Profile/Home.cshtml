@@ -1,0 +1,19 @@
+﻿@{
+    ViewData["Title"] = "Principal";
+}
+
+<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a asp-action="Home" style="text-decoration: none;">OldCare</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">Início</li>
+    </ol>
+</nav>
+                
+<div class="bg-light container-fluid p-5" style="border-radius: 8px; height: 85vh;">
+    <button type="button" class="btn oc-btn-primary">Relatórios</button>
+    <button type="button" class="btn oc-btn-primary">Residentes</button>
+    <button type="button" class="btn oc-btn-primary">Funcionários</button>
+    <button type="button" class="btn oc-btn-primary">Quartos</button>
+</div>

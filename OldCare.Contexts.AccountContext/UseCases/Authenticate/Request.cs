@@ -15,7 +15,6 @@ public class Request : IRequest<BaseResponse<ResponseData>>
 
     [DisplayName("Senha")]
     [Required(ErrorMessage = "Senha inválida")]
-    [StringLength(40, MinimumLength = 8, ErrorMessage = "A senha deve conter entre 3 e 40 caracteres")]
     public string Password { get; set; } = string.Empty;
 
     public string? ReturnUrl { get; set; }

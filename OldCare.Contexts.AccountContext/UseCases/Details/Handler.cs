@@ -28,13 +28,13 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
     #endregion
     public async Task<BaseResponse<ResponseData>> Handle(Request request, CancellationToken cancellationToken)
     {
-        #region 01. Recuperar aluno por email
+        #region 01. Get by username
 
-        DetailsModel? student;
+        DetailsModel? user;
 
         try
         {
-            student = await _repository.GetStudentByEmailAsync(request.Email);
+            user = await _repository.GetUserByUsernameAsync(request.Email);
         }
         catch (Exception ex)
         {
@@ -44,19 +44,19 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
 
         #endregion
         
-        #region 02. Verifica se o aluno existe
+        #region 02. Verify if user exists
 
-        if (student is null)
+        if (user is null)
         {
             await _logService.LogAsync($"{request.Email} | Conta não encontrada.");
-            return new BaseResponse<ResponseData>("Conta não encontrada", "Student", 404);
+            return new BaseResponse<ResponseData>("Conta não encontrada", "765da45a", 404);
         }
 
         #endregion
 
         #region 05. Retornar mensagem de sucesso
 
-        return new BaseResponse<ResponseData>(new ResponseData(student), 200);
+        return new BaseResponse<ResponseData>(new ResponseData(user), 200);
 
         #endregion
     }

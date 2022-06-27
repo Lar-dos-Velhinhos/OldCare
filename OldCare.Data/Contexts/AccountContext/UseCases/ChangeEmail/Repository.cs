@@ -8,22 +8,22 @@ public class Repository : IRepository
 {
     private readonly DataContext _context;
 
-    public async Task<bool> CheckAccountExistAsync(string email)
-        => await _context.Students.AnyAsync(x => x.Email.Address == email.ToLower());
+    public async Task<bool> CheckAccountExistAsync(string username)
+        => await _context.Users.AnyAsync(x => x.Username.Address == username.ToLower());
 
     public Repository(DataContext context) => _context = context;
 
-    public async Task<bool> CheckAccountIsBlackListedAsync(string email)
-        => await _context.BlackLists.AnyAsync(x => x.Email.Address == email.ToLower());
+    public async Task<bool> CheckAccountIsBlackListedAsync(string username)
+        => await _context.BlackLists.AnyAsync(x => x.Email.Address == username.ToLower());
 
-    public async Task<Student?> GetStudentByEmailAsync(string email)
-        => await _context.Students
-            .Include(x => x.User)
-            .Where(x => x.Email.Address == email.ToLower()).FirstOrDefaultAsync();
+    public async Task<User?> GetUserByUsernameAsync(string username)
+        => await _context.Users
+            .Include(x => x.Person)
+            .Where(x => x.Username.Address == username.ToLower()).FirstOrDefaultAsync();
 
-    public async Task SaveAsync(Student student)
+    public async Task SaveAsync(User user)
     {
-        _context.Students.Update(student);
+        _context.Users.Update(user);
         await _context.SaveChangesAsync();
     }
 }

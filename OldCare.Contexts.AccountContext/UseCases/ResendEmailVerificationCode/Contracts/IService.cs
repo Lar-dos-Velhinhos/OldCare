@@ -4,5 +4,5 @@ namespace OldCare.Contexts.AccountContext.UseCases.ResendEmailVerificationCode.C
 
 public interface IService
 {
-    Task ResendEmailVerificationCodeAsync(Student student, string? returnUrl = null);
+    Task ResendEmailVerificationCodeAsync(User user, string? returnUrl = null);
 }

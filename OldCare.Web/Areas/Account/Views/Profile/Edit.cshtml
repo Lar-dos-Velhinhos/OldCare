@@ -13,14 +13,9 @@
         background:url('/assets/images/pattern/04.png') no-repeat center center; background-size:cover;
     }
 </style>
-
-<partial name="Partials/_ProfileHeaderPartial"/>
-
 <section class="pt-0">
     <div class="container">
         <div class="row">
-            <partial name="Partials/_SideMenuPartial"/>
-
             <div class="col-xl-9">
                 <div class="card bg-transparent border rounded-3">
                     <div class="card-header bg-transparent border-bottom">
@@ -72,11 +67,11 @@
                                 <div class="row">
 
 
-                                    <div class="col-md-6">
-                                        <label asp-for="Document" class="form-label"></label>
-                                        <input asp-for="Document" type="text" class="form-control cpf" placeholder="CPF">
-                                        <span asp-validation-for="Document" class="form-text text-danger"></span>
-                                    </div>
+                                    @* <div class="col-md-6"> *@
+                                    @*     <label asp-for="Document" class="form-label"></label> *@
+                                    @*     <input asp-for="Document" type="text" class="form-control cpf" placeholder="CPF"> *@
+                                    @*     <span asp-validation-for="Document" class="form-text text-danger"></span> *@
+                                    @* </div> *@
                                     
                                     <div class="col-md-6">
                                         <label asp-for="BirthDate" class="form-label">Data de Nascimento</label>

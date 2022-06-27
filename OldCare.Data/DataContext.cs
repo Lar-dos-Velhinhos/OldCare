@@ -16,10 +16,8 @@ public class DataContext : DbContext
     public DbSet<User> Users { get; set; } = null!;
     public DbSet<Role> Roles { get; set; } = null!;
     public DbSet<UserRole> UserRoles { get; set; } = null!;
-    public DbSet<Student> Students { get; set; } = null!;
+    public DbSet<Person> People { get; set; } = null!;
     public DbSet<BlackList> BlackLists { get; set; } = null!;
-    public DbSet<Tag> Tags { get; set; } = null!;
-    public DbSet<Activity> Activities { get; set; } = null!;
 
     #endregion
 
@@ -30,10 +28,8 @@ public class DataContext : DbContext
         builder.ApplyConfiguration(new UserMap());
         builder.ApplyConfiguration(new RoleMap());
         builder.ApplyConfiguration(new UserRoleMap());
-        builder.ApplyConfiguration(new StudentMap());
+        builder.ApplyConfiguration(new PersonMap());
         builder.ApplyConfiguration(new BlackListMap());
-        builder.ApplyConfiguration(new TagMap());
-        builder.ApplyConfiguration(new ActivityMap());
 
         #endregion
     }

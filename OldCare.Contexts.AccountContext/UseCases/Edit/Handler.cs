@@ -33,20 +33,20 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
     {
         #region 01. Validar CPF do aluno
         
-        Document cpf = request.Document;
-        
-        if (!cpf.IsCpf())
-            return new BaseResponse<ResponseData>("Cpf inválido", "b95ad2df");
+        // Document cpf = request.Document;
+        //
+        // if (!cpf.IsCpf())
+        //     return new BaseResponse<ResponseData>("Cpf inválido", "b95ad2df");
 
         #endregion
         
         #region 02. Recuperar aluno por email
 
-        Student? student;
+        User? user;
 
         try
         {
-            student = await _repository.GetStudentByEmailAsync(request.Email);
+            user = await _repository.GetUserByUsernameAsync(request.Email);
         }
         catch (Exception ex)
         {
@@ -57,7 +57,7 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
 
         #region 03. Verificar se o aluno existe
 
-        if (student is null)
+        if (user is null)
             return new BaseResponse<ResponseData>("Conta não encontrada", "Student", 404);
 
         #endregion
@@ -66,23 +66,25 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
 
         try
         {
-            student.ChangeInformation(
+            user.Person.ChangeInformation(
                 request.FirstName,
                 request.LastName,
-                cpf,
-                request.BirthDate);
+                request.BirthDate,
+                "");
         }
         catch
         {
             return new BaseResponse<ResponseData>("Não foi possível salvar as alterações!", "7b2d523d");
         }
+        
+        #endregion
 
         #region 05. Atribuir telefone ao aluno
 
         try
         {
             if (request.Phone != null)
-                student.ChangePhone(request.Phone.ToNumbersOnly());
+                user.Person.ChangePhone(request.Phone.ToNumbersOnly());
         }
         catch
         {
@@ -91,13 +93,11 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
 
         #endregion
 
-        #endregion
-
         #region 06. Persistir os dados no banco
 
         try
         {
-            await _repository.SaveAsync(student);
+            await _repository.SaveAsync(user);
         }
         catch
         {

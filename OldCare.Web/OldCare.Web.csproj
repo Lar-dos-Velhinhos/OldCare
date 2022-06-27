@@ -40,8 +40,4 @@
       <_ContentIncludedByDefault Remove="wwwroot\assets\css\style.css.map" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="wwwroot\lib" />
-    </ItemGroup>
-
 </Project>

@@ -12,49 +12,65 @@ public class UserMap : IEntityTypeConfiguration<User>
 
         builder.HasKey(x => x.Id);
 
+        builder.HasOne(x => x.Person);
+
         builder.Property(x => x.Active)
-            .HasColumnName("Active")
-            .IsRequired(true)
+            .IsRequired()
             .HasColumnType("BIT");
 
         builder.OwnsOne(x => x.Username)
-            .Ignore(x => x.Verification)
             .Property(x => x.Address)
-            .HasColumnName("Username")
+            .HasColumnName("Email")
             .IsRequired(true)
             .HasMaxLength(120)
             .HasColumnType("VARCHAR");
 
+        builder.OwnsOne(x => x.Username)
+            .OwnsOne(x => x.Verification)
+            .Property(x => x.IsVerified)
+            .HasColumnName("EmailVerified")
+            .IsRequired(true)
+            .HasColumnType("BIT");
+
+        builder.OwnsOne(x => x.Username)
+            .OwnsOne(x => x.Verification)
+            .Property(x => x.Code)
+            .HasColumnName("EmailVerificationCode")
+            .IsRequired(true)
+            .HasMaxLength(8)
+            .HasColumnType("CHAR");
+
+        builder.OwnsOne(x => x.Username)
+            .OwnsOne(x => x.Verification)
+            .Property(x => x.CodeExpireDate)
+            .HasColumnName("EmailVerificationCodeExpireDate")
+            .IsRequired(true)
+            .HasColumnType("DATETIME2");
+
         builder.OwnsOne(x => x.Password)
             .Property(x => x.Hash)
-            .HasColumnName("PasswordHash")
-            .IsRequired(true)
+            .IsRequired()
             .HasMaxLength(120)
             .HasColumnType("VARCHAR");
 
         builder.OwnsOne(x => x.Password)
             .Property(x => x.Expired)
-            .HasColumnName("PasswordExpired")
-            .IsRequired(true)
+            .IsRequired()
             .HasColumnType("BIT");
 
         builder.OwnsOne(x => x.Tracker)
             .Property(x => x.CreatedAt)
-            .HasColumnName("CreatedAt")
-            .IsRequired(true)
+            .IsRequired()
             .HasColumnType("SMALLDATETIME");
 
         builder.OwnsOne(x => x.Tracker)
             .Property(x => x.UpdatedAt)
-            .HasColumnName("UpdatedAt")
-            .IsRequired(true)
+            .IsRequired()
             .HasColumnType("SMALLDATETIME");
 
         builder.OwnsOne(x => x.Tracker)
             .Property(x => x.Notes)
-            .HasColumnName("Notes")
             .HasMaxLength(1024)
-            .IsRequired(false)
             .HasColumnType("NVARCHAR");
     }
 }

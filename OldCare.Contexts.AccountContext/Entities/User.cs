@@ -1,11 +1,13 @@
 using OldCare.Contexts.SharedContext.Entities;
+using OldCare.Contexts.SharedContext.Extensions;
+using OldCare.Contexts.SharedContext.UseCases.Contracts;
 using OldCare.Contexts.SharedContext.ValueObjects;
 using OldCare.Contexts.SharedContext.ValueObjects.Exceptions;
 using SecureIdentity.Password;
 
 namespace OldCare.Contexts.AccountContext.Entities;
 
-public class User : Entity
+public class User : Entity, IAggregateRoot
 {
     #region Constructors
 
@@ -28,7 +30,7 @@ public class User : Entity
     public Email Username { get; private set; } = null!;
     public Password Password { get; private set; } = null!;
     public Tracker Tracker { get; } = null!;
-
+    public Person Person { get; private set; }
     public bool Active { get; private set; }
 
     #endregion
@@ -43,6 +45,26 @@ public class User : Entity
     #endregion
 
     #region Methods
+    
+    public void Authenticate(string password)
+    {
+        var ss = PasswordHasher.Hash(password);
+        var result = PasswordHasher.Verify(
+            Password.Hash,
+            password,
+            privateKey: SharedContext.Configuration.Secrets.PrivateKey);
+
+        if (!result)
+            throw new Exception("Usuário ou senha inválidos");
+
+        if (!CanLogIn)
+            throw new Exception("Conta com acesso bloqueado");
+
+        if (!Username.Verification.IsVerified)
+            throw new Exception("Conta não verificada");
+
+        Tracker.Update("Realizou login");
+    }
 
     public bool ChallengePassword(string password)
         => Password.Challenge(password);
@@ -95,8 +117,14 @@ public class User : Entity
 
         Tracker.Update(notes);
     }
+    
+    public void GenerateEmailVerificationCode()
+    {
+        Username.GenerateVerificationCode();
+        Tracker.Update("Código de verificação recriado");
+    }
 
-    public void ResetPassword(string newPassword, bool expireEmail = false, string notes = "Senha restaurada")
+    private void ResetPassword(string newPassword, bool expireEmail = false, string notes = "Senha restaurada")
     {
         Password = new Password(newPassword);
 
@@ -104,6 +132,25 @@ public class User : Entity
             Username.Expire();
 
         Tracker.Update(notes);
+    }
+    
+    public void ResetPassword(string password, string base64Code)
+    {
+        try
+        {
+            var data = base64Code.FromBase64().Split(":");
+            var email = data[1];
+            var id = data[0];
+
+            if (email.ToLower() != Username || Id.ToString().ToLower() != id.ToLower())
+                throw new Exception("Código de ativação inválido!");
+        }
+        catch
+        {
+            throw new Exception("Código de ativação inválido!");
+        }
+
+        ResetPassword(password, true, "Senha alterada.");
     }
 
     #endregion

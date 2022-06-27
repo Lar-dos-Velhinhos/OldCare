@@ -47,11 +47,11 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
 
         #region 01. Recuperar aluno por email
 
-        Student? student;
+        User? user;
 
         try
         {
-            student = await _repository.GetStudentByEmailAsync(request.Email);
+            user = await _repository.GetUserByUsernameAsync(request.Email);
         }
         catch
         {
@@ -62,20 +62,20 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
 
         #region 02. Verifica se o aluno existe
 
-        if (student is null)
+        if (user is null)
             return new BaseResponse<ResponseData>("Conta não encontrada", "Student", 404);
 
         #endregion
 
         #region 03. Verificar o código
 
-        var base64Code = $"{student.Id}:{student.Email}".ToBase64();
+        var base64Code = $"{user.Id}:{user.Username}".ToBase64();
         if (request.VerificationCode != base64Code)
             return new BaseResponse<ResponseData>("Código de verificação inválido.");
 
         try
         {
-            student.ResetPassword(request.Password, request.VerificationCode);
+            user.ResetPassword(request.Password, request.VerificationCode);
         }
         catch (Exception ex)
         {
@@ -88,7 +88,7 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
 
         try
         {
-            await _repository.SaveAsync(student);
+            await _repository.SaveAsync(user);
         }
         catch
         {

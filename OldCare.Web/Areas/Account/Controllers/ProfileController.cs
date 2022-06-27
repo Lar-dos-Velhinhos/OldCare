@@ -124,29 +124,29 @@ public class ProfileController : Controller
     #region Edit
 
     [Authorize]
-    [HttpGet("minha-conta")]
+    [HttpGet("minha-conta/edit")]
     public async Task<IActionResult> Edit([FromServices] DataContext context)
     {
         var email = User.Identity?.Name ?? string.Empty;
         var request = await context
-            .Students
+            .Users
             .AsNoTracking()
-            .Where(x => x.Email.Address == email)
+            .Where(x => x.Username.Address == email)
             .Select(x => new Contexts.AccountContext.UseCases.Edit.Request
             {
-                FirstName = x.Name.FirstName,
-                LastName = x.Name.LastName,
-                Phone = x.Phone == null ? string.Empty : x.Phone.FullNumber,
-                Document = x.Document == null ? string.Empty : x.Document.Number,
-                Email = x.Email.Address,
-                BirthDate = x.BirthDate
+                FirstName = x.Person.Name.FirstName,
+                LastName = x.Person.Name.LastName,
+                Phone = x.Person.Phone == null ? string.Empty : x.Person.Phone.FullNumber,
+                Documents = x.Person.Documents,
+                Email = x.Username.Address,
+                BirthDate = x.Person.BirthDate
             })
             .FirstOrDefaultAsync();
 
         return View(request);
     }
 
-    [HttpPost("minha-conta")]
+    [HttpPost("minha-conta/edit")]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Edit(
         Contexts.AccountContext.UseCases.Edit.Request request)
@@ -173,17 +173,34 @@ public class ProfileController : Controller
 
     #endregion
 
+    #region Home
+    
+    [Authorize]
+    [HttpGet("minha-conta")]
+    public async Task<IActionResult> Home() => View();
+
+    // [HttpPost("minha-conta")]
+    // [ValidateAntiForgeryToken]
+    // public async Task<IActionResult> Home() => View();
+
+    #endregion
+
     #region Login
 
     [HttpGet("entrar")]
     public IActionResult Login(string? returnUrl)
-        => View(new Contexts.AccountContext.UseCases.Authenticate.Request { ReturnUrl = returnUrl });
+    {
+        if (!@User.Identity.IsAuthenticated)
+            return View(new Contexts.AccountContext.UseCases.Authenticate.Request { ReturnUrl = returnUrl });
+
+        return RedirectToAction("Home");
+    }
 
     [HttpPost("entrar")]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Login(
         [FromServices] IMediator mediator,
-        [Bind] Contexts.AccountContext.UseCases.Authenticate.Request request)
+        Contexts.AccountContext.UseCases.Authenticate.Request request)
     {
         OldCare.Contexts.SharedContext.UseCases.BaseResponse<Contexts.AccountContext.UseCases.Authenticate.ResponseData>
             result;
@@ -235,7 +252,7 @@ public class ProfileController : Controller
             authProperties);
 
         return string.IsNullOrEmpty(request.ReturnUrl)
-            ? Redirect("~/")
+            ? Redirect("~/minha-conta")
             : Redirect(request.ReturnUrl);
     }
 
@@ -248,7 +265,7 @@ public class ProfileController : Controller
     {
         await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
         return string.IsNullOrEmpty(returnUrl)
-            ? Redirect("~/")
+            ? Redirect("~/entrar")
             : Redirect(returnUrl);
     }
 

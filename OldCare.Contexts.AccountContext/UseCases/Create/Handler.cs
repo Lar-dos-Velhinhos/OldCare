@@ -38,7 +38,7 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
 
     public async Task<BaseResponse<ResponseData>> Handle(Request request, CancellationToken cancellationToken)
     {
-        #region 01. Verifica o ReCaptcha
+        #region 01. Verify recaptcha
 
         try
         {
@@ -53,21 +53,14 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
 
         #endregion
 
-        #region 02. Gera a agregado raiz
+        #region 02. Create entity
 
-        Student student;
+        User user;
         try
         {
-            var utm = new Utm(request.UtmSource, request.UtmCampaign, request.UtmContent, request.UtmMedium);
-            student = new Student(
-                request.FirstName,
-                request.LastName,
+            user = new User(
                 request.Email,
-                request.Password,
-                null,
-                null,
-                utm);
-            student.AddActivity("Criação da conta");
+                request.Password);
         }
         catch (Exception ex)
         {
@@ -76,7 +69,7 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
 
         #endregion
 
-        #region 03. Verifica se a conta está no BlackList
+        #region 03. Check if account is blacklisted
 
         var accountIsBlackListed = await _repository.CheckAccountIsBlackListedAsync(request.Email);
         if (accountIsBlackListed)
@@ -87,7 +80,7 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
 
         #endregion
 
-        #region 04. Verifica se o E-mail já está em uso
+        #region 04. Verify if e-mail is already in use
 
         var accountExists = await _repository.CheckAccountExistsAsync(request.Email);
         if (accountExists)
@@ -95,14 +88,11 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
 
         #endregion
 
-        var tags = await _repository.GetTagsAsync();
-        student.AddDefaultTags(tags.ToList(), request.SubscribeToNewsletter);
-
-        #region 05. Persiste os dados no banco
+        #region 05. Persist data
 
         try
         {
-            await _repository.CreateAsync(student);
+            await _repository.CreateAsync(user);
         }
         catch (Exception ex)
         {
@@ -112,11 +102,11 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
 
         #endregion
 
-        #region 07. Envia E-mail de ativação da conta
+        #region 07. Send account verification e-mail
 
         try
         {
-            await _service.SendEmailVerificationCodeAsync(student, request.ReturnUrl);
+            await _service.SendEmailVerificationCodeAsync(user, request.ReturnUrl);
         }
         catch (Exception ex)
         {
@@ -125,9 +115,9 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
 
         #endregion
 
-        #region 08. Retorna uma resposta de sucesso
+        #region 08. Return success response
 
-        return new BaseResponse<ResponseData>(new ResponseData("Bem vindo(a) ao balta.io!"), 201);
+        return new BaseResponse<ResponseData>(new ResponseData("Bem vindo(a) ao OldCare!"), 201);
 
         #endregion
     }

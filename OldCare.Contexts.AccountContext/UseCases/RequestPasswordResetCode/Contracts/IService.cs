@@ -4,5 +4,5 @@ namespace OldCare.Contexts.AccountContext.UseCases.RequestPasswordResetCode.Cont
 
 public interface IService
 {
-    Task SendPasswordVerificationCodeAsync(Student student, string? returnUrl = null);
+    Task SendPasswordVerificationCodeAsync(User user, string? returnUrl = null);
 }

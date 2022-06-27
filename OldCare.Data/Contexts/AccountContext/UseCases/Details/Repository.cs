@@ -10,22 +10,20 @@ public class Repository : IRepository
 
     public Repository(DataContext context) => _context = context;
 
-    public async Task<DetailsModel?> GetStudentByEmailAsync(string email)
+    public async Task<DetailsModel?> GetUserByUsernameAsync(string username)
         => await _context
-            .Students
+            .Users
             .AsNoTracking()
-            .Where(x => x.Email.Address == email.ToLower())
+            .Where(x => x.Username.Address == username.ToLower())
             .Select(x => new DetailsModel
             {
                 Id = x.Id,
-                Email = x.Email.Address,
-                Document = x.Document!.Number,
-                Phone = x.Phone!.Number,
-                Birthdate = x.BirthDate,
-                FirstName = x.Name.FirstName,
-                LastName = x.Name.LastName,
-                Title = x.Title,
-                Bio = x.Bio,
+                Email = x.Username.Address,
+                Documents = x.Person.Documents,
+                Phone = x.Person.Phone!.Number,
+                Birthdate = x.Person.BirthDate,
+                FirstName = x.Person.Name.FirstName,
+                LastName = x.Person.Name.LastName,
                 CreatedAt = x.Tracker.CreatedAt
             })
             .FirstOrDefaultAsync();

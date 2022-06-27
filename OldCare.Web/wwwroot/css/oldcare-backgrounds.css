@@ -6,6 +6,13 @@
     height: 600px;
 }
 
+.login-background {
+    background-image: url("/media/images/backgrounds/waves.png");
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 100vw;
+}
+
 .bg-cian {
     background-color: var(--public-default);
 }

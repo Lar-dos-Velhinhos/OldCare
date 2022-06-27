@@ -50,29 +50,29 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
 
         #region 03. Recuperar aluno por email
 
-        Student? student;
+        User? user;
 
         try
         {
-            student = await _repository.GetStudentByEmailAsync(request.OldEmail);
+            user = await _repository.GetUserByUsernameAsync(request.OldEmail);
         }
         catch
         {
-            return new BaseResponse<ResponseData>("Conta não encontrada", "Student", 404);
+            return new BaseResponse<ResponseData>("Conta não encontrada", "e96718e4", 404);
         }
 
         #endregion
 
         #region 04. Verifica se o aluno existe
 
-        if (student is null)
-            return new BaseResponse<ResponseData>("Conta não encontrada", "Student", 404);
+        if (user is null)
+            return new BaseResponse<ResponseData>("Conta não encontrada", "d2836988", 404);
 
         #endregion
         
         try
         {
-            student.Authenticate(request.Password);
+            user?.Authenticate(request.Password);
         }
         catch
         {
@@ -91,7 +91,7 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
 
         try
         {
-            student.ChangeEmail(request.NewEmail);
+            user?.ChangeUsername(request.NewEmail);
         }
         catch (Exception ex)
         {
@@ -104,7 +104,7 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
 
         try
         {
-            await _repository.SaveAsync(student);
+            await _repository.SaveAsync(user);
         }
         catch
         {
@@ -117,7 +117,7 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
 
         try
         {
-            await _service.SendAccountVerificationEmailAsync(student);
+            await _service.SendAccountVerificationEmailAsync(user);
         }
         catch (Exception ex)
         {

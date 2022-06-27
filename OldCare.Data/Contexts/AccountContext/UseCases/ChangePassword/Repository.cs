@@ -10,16 +10,16 @@ public class Repository : IRepository
 
     public Repository(DataContext context) => _context = context;
 
-    public async Task<Student?> GetStudentByEmailAsync(string email)
+    public async Task<User?> GetStudentByUsernameAsync(string username)
         => await _context
-            .Students
-            .Include(x => x.User)
-            .Where(x => x.Email.Address == email.ToLower())
+            .Users
+            .Include(x => x.Person)
+            .Where(x => x.Username.Address == username.ToLower())
             .FirstOrDefaultAsync();
 
-    public async Task SaveAsync(Student student)
+    public async Task SaveAsync(User user)
     {
-        _context.Students.Update(student);
+        _context.Users.Update(user);
         await _context.SaveChangesAsync();
     }
 }

@@ -1,8 +1,6 @@
-using OldCare.Contexts.AccountContext.Entities;
 using OldCare.Contexts.AccountContext.UseCases.Authenticate.Contracts;
 using OldCare.Contexts.SharedContext.UseCases;
 using MediatR;
-using SecureIdentity.Password;
 
 namespace OldCare.Contexts.AccountContext.UseCases.Authenticate;
 
@@ -10,20 +8,17 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
 {
     private readonly IRepository _repository;
 
-    public Handler(IRepository repository)
-    {
-        _repository = repository;
-    }
+    public Handler(IRepository repository) => _repository = repository;
 
     public async Task<BaseResponse<ResponseData>> Handle(Request request, CancellationToken cancellationToken)
     {
-        var student = await _repository.GetByEmailAsync(request.Email);
-        if (student is null)
+        var user = await _repository.GetByUserNameAsync(request.Email);
+        if (user is null)
             return new BaseResponse<ResponseData>("Usuário ou senha inválidos");
 
         try
         {
-            student.Authenticate(request.Password);
+            user.Authenticate(request.Password);
         }
         catch (Exception ex)
         {
@@ -32,7 +27,7 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
 
         try
         {
-            await _repository.UpdateAsync(student);
+            await _repository.UpdateAsync(user);
         }
         catch
         {
@@ -42,7 +37,7 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
         var roles = Array.Empty<string>();
         try
         {
-            roles = await _repository.GetRolesAsync(student.User.Id);
+            roles = await _repository.GetRolesAsync(user.Id);
         }
         catch
         {
@@ -50,9 +45,9 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
         }
 
         return new BaseResponse<ResponseData>(new ResponseData(
-            student.Id.ToString(),
-            student.Name,
-            student.Email,
+            user.Id.ToString(),
+            user.Person.Name,
+            user.Username,
             roles ?? Array.Empty<string>())
         );
     }

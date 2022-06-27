@@ -29,40 +29,40 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
 
     public async Task<BaseResponse<ResponseData>> Handle(Request request, CancellationToken cancellationToken)
     {
-        #region 01. Verificar novas senhas digitadas
+        #region 01. Check the password entered
 
         if (!request.NewPassword.Equals(request.NewPasswordConfirmation))
             return new BaseResponse<ResponseData>("As novas senhas não conferem.");
 
         #endregion
 
-        #region 02. Recuperar aluno por email
+        #region 02. Get user by username
 
-        Student? student;
+        User? user;
 
         try
         {
-            student = await _repository.GetStudentByEmailAsync(request.Email);
+            user = await _repository.GetStudentByUsernameAsync(request.Email);
         }
         catch
         {
-            return new BaseResponse<ResponseData>("Conta não encontrada", "Student", 404);
+            return new BaseResponse<ResponseData>("Conta não encontrada", "75df5883", 404);
         }
 
         #endregion
 
-        #region 03. Verifica se o aluno existe
+        #region 03. Check if user exists
 
-        if (student is null)
+        if (user is null)
             return new BaseResponse<ResponseData>("Conta não encontrada", "Student", 404);
 
         #endregion
 
-        #region 04. Verificar se a senha digitada corresponde a senha salva
+        #region 04. Check that the password entered is the same as the saved password
 
         try
         {
-            student.Authenticate(request.OldPassword);
+            user.Authenticate(request.OldPassword);
         }
         catch
         {
@@ -71,11 +71,11 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
 
         #endregion
 
-        #region 05. Trocar a senha
+        #region 05. Change password
 
         try
         {
-            student.ChangePassword(request.NewPassword);
+            user.ChangePassword(request.NewPassword);
         }
         catch
         {
@@ -84,11 +84,11 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
 
         #endregion
 
-        #region 06. Persiste dados
+        #region 06. Persist data
 
         try
         {
-            await _repository.SaveAsync(student);
+            await _repository.SaveAsync(user);
         }
         catch
         {
@@ -97,7 +97,7 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
 
         #endregion
 
-        #region 08. Retorna mensagem de sucesso
+        #region 07. Retorna mensagem de sucesso
 
         return new BaseResponse<ResponseData>(new ResponseData("Senha alterada com sucesso."));
 
