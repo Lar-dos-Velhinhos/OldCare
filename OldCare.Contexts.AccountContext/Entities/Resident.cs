@@ -5,6 +5,8 @@ namespace OldCare.Contexts.AccountContext.Entities;
 
 public class Resident : Entity
 {
+    #region Properties
+
     public Person Person { get; set; }
     public Bedroom Bedroom { get; set; }
     public DateTime AdmissionDate { get; set; }
@@ -19,5 +21,11 @@ public class Resident : Entity
     public EEducationLevel EducationLevel { get; set; }
     public long SUS { get; set; }
     public long VoterRegCardNumber { get; set; }
+
+    #endregion
+    
+    #region Methods
+
+    #endregion
 }
 

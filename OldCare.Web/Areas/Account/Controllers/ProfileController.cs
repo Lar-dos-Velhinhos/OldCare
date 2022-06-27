@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using OldCare.Contexts.AccountContext.Entities;
+using HomeRequest = OldCare.Contexts.AccountContext.UseCases.ListResidents.Request;
 
 namespace OldCare.Web.Areas.Account.Controllers;
 
@@ -172,7 +174,7 @@ public class ProfileController : Controller
     #endregion
 
     #region Home
-    
+
     [Authorize]
     [HttpGet("minha-conta")]
     public async Task<IActionResult> Home() => View();
@@ -266,6 +268,14 @@ public class ProfileController : Controller
             ? Redirect("~/entrar")
             : Redirect(returnUrl);
     }
+
+    #endregion
+
+    #region Register Resident
+
+    [Authorize]
+    [HttpGet("residentes/registrar")]
+    public IActionResult RegisterResident() => View();
 
     #endregion
 
@@ -368,6 +378,29 @@ public class ProfileController : Controller
             ModelState.AddModelError("Error", ex.Message);
             return View(request);
         }
+    }
+
+    #endregion
+
+    #region Residents Home
+
+    [Authorize]
+    [HttpGet("residentes")]
+    public async Task<IActionResult> Residents([FromServices] DataContext context)
+    {
+        var request = new HomeRequest();
+        request.Residents = await context
+            .Residents
+            .Include(x => x.Person)
+            .AsNoTracking()
+            .ToListAsync();
+
+        foreach (var resident in request.Residents)
+        {
+            resident.Person.Age = resident.Person.GetAge();
+        }
+
+        return View(request);
     }
 
     #endregion

@@ -1,4 +1,5 @@
-﻿using OldCare.Contexts.SharedContext.Entities;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using OldCare.Contexts.SharedContext.Entities;
 using OldCare.Contexts.SharedContext.UseCases.Contracts;
 using OldCare.Contexts.SharedContext.ValueObjects;
 
@@ -90,6 +91,8 @@ public class Person : Entity, IAggregateRoot
     public Phone? Phone { get; private set; }
     public string? Photo { get; private set; }
     public Tracker Tracker { get; }
+    [NotMapped]
+    public int Age { get; set; }
 
     #endregion
 
@@ -130,6 +133,15 @@ public class Person : Entity, IAggregateRoot
     {
         Phone?.GenerateVerificationCode();
         Tracker.Update("Código de verificação de telefone recriado");
+    }
+    
+    public int GetAge()
+    {
+        int age = DateTime.UtcNow.Year - BirthDate.Value.Year;
+        if (DateTime.UtcNow.DayOfYear < BirthDate.Value.DayOfYear)
+            age = age - 1;
+
+        return age;
     }
 
     public void VerifyPhone(string code)
