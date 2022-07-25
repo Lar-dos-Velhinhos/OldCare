@@ -7,6 +7,8 @@
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
+OldCare.Web/appsettings.json
+OldCare.Web/appsettings.development.json
 
 # Mono auto generated files
 mono_crash.*
@@ -63,6 +65,7 @@ StyleCopReport.xml
 
 # Click-Once directory
 publish/
+OldCare.Web/Migrations/
 
 # Publish Web Output
 *.[Pp]ublish.xml

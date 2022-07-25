@@ -1,6 +1,7 @@
 using OldCare.Contexts.AccountContext.UseCases.Authenticate.Contracts;
 using OldCare.Contexts.SharedContext.UseCases;
 using MediatR;
+using SecureIdentity.Password;
 
 namespace OldCare.Contexts.AccountContext.UseCases.Authenticate;
 
@@ -12,10 +13,10 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
 
     public async Task<BaseResponse<ResponseData>> Handle(Request request, CancellationToken cancellationToken)
     {
-        var user = await _repository.GetByUserNameAsync(request.Email);
+       var user = await _repository.GetByUserNameAsync(request.Email);
         if (user is null)
             return new BaseResponse<ResponseData>("Usuário ou senha inválidos");
-
+        
         try
         {
             user.Authenticate(request.Password);
