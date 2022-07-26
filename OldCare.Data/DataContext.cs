@@ -1,6 +1,7 @@
 ﻿using OldCare.Contexts.AccountContext.Entities;
 using OldCare.Data.Contexts.AccountContext.Mappings;
 using Microsoft.EntityFrameworkCore;
+using OldCare.Contexts.PersonContext.Entities;
 
 namespace OldCare.Data;
 
@@ -18,8 +19,13 @@ public class DataContext : DbContext
     public DbSet<User> Users { get; set; } = null!;
     public DbSet<Role> Roles { get; set; } = null!;
     public DbSet<UserRole> UserRoles { get; set; } = null!;
-    public DbSet<Person> People { get; set; } = null!;
     public DbSet<Resident> Residents { get; set; } = null!;
+
+    #endregion
+
+    #region Person
+
+    public DbSet<Person> People { get; set; } = null!;
 
     #endregion
 
@@ -32,8 +38,13 @@ public class DataContext : DbContext
         builder.ApplyConfiguration(new UserMap());
         builder.ApplyConfiguration(new RoleMap());
         builder.ApplyConfiguration(new UserRoleMap());
-        builder.ApplyConfiguration(new PersonMap());
         builder.ApplyConfiguration(new ResidentMap());
+
+        #endregion
+
+        #region Person
+
+        builder.ApplyConfiguration(new PersonMap());
 
         #endregion
     }

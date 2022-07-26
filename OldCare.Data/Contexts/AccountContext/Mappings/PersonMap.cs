@@ -1,6 +1,6 @@
-﻿using OldCare.Contexts.AccountContext.Entities;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using OldCare.Contexts.PersonContext.Entities;
 
 namespace OldCare.Data.Contexts.AccountContext.Mappings;
 

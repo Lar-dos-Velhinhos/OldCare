@@ -19,6 +19,7 @@
 
     <ItemGroup>
         <ProjectReference Include="..\OldCare.Contexts.AccountContext\OldCare.Contexts.AccountContext.csproj" />
+        <ProjectReference Include="..\OldCare.Contexts.PersonContext\OldCare.Contexts.PersonContext.csproj" />
         <ProjectReference Include="..\OldCare.Data\OldCare.Data.csproj" />
     </ItemGroup>
 
@@ -32,6 +33,10 @@
       <_ContentIncludedByDefault Remove="wwwroot\assets\css\style-rtl.css.map" />
       <_ContentIncludedByDefault Remove="wwwroot\assets\css\style.css" />
       <_ContentIncludedByDefault Remove="wwwroot\assets\css\style.css.map" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Areas\Person\Views\Shared\Partials" />
     </ItemGroup>
 
 </Project>

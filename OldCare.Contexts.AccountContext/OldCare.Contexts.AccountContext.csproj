@@ -8,6 +8,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\OldCare.Contexts.PersonContext\OldCare.Contexts.PersonContext.csproj" />
         <ProjectReference Include="..\OldCare.Services.Google\OldCare.Services.Google.csproj" />
         <ProjectReference Include="..\OldCare.Contexts.SharedContext\OldCare.Contexts.SharedContext.csproj" />
     </ItemGroup>

@@ -1,4 +1,5 @@
 ﻿using OldCare.Contexts.AccountContext.Entities;
+using OldCare.Contexts.PersonContext.Entities;
 using OldCare.Contexts.SharedContext.Repositories.Contracts;
 
 namespace OldCare.Contexts.AccountContext.UseCases.ChangePassword.Contracts;

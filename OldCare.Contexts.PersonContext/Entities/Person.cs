@@ -3,13 +3,13 @@ using OldCare.Contexts.SharedContext.Entities;
 using OldCare.Contexts.SharedContext.UseCases.Contracts;
 using OldCare.Contexts.SharedContext.ValueObjects;
 
-namespace OldCare.Contexts.AccountContext.Entities;
+namespace OldCare.Contexts.PersonContext.Entities;
 
 public class Person : Entity, IAggregateRoot
 {
     #region Constructors
     
-    protected Person()
+    public Person()
     {
     }
 
