@@ -5,10 +5,12 @@ namespace OldCare.Contexts.SharedContext.ValueObjects;
 
 public class Document : ValueObject
 {
+    #region Ctors
+
     protected Document()
     {
     }
-
+    
     public Document(
         string? number,
         EDocumentType type = EDocumentType.Cpf)
@@ -17,12 +19,16 @@ public class Document : ValueObject
         Type = type;
     }
 
+    #endregion
+
+    #region Properties
+    
     public string Number { get; private set; } = string.Empty;
     public EDocumentType Type { get; }
+    
+    #endregion
 
-    public static implicit operator string(Document document) => document?.Number ?? string.Empty;
-
-    public static implicit operator Document(string? number) => new(number);
+    #region Methods
 
     public bool IsCpf()
     {
@@ -63,4 +69,14 @@ public class Document : ValueObject
         digito = digito + resto.ToString();
         return Number.EndsWith(digito);
     }
+
+    #endregion
+
+    #region Overloads
+
+    public static implicit operator string(Document document) => document?.Number ?? string.Empty;
+
+    public static implicit operator Document(string? number) => new(number);
+
+    #endregion
 }

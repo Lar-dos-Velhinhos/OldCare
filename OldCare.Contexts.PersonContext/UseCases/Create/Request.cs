@@ -2,6 +2,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using OldCare.Contexts.SharedContext.UseCases;
 using MediatR;
+using OldCare.Contexts.SharedContext.ValueObjects;
 
 namespace OldCare.Contexts.PersonContext.UseCases.Create;
 
@@ -17,7 +18,7 @@ public class Request : IRequest<BaseResponse<ResponseData>>
     public string Country { get; set; } = string.Empty;
     public string Code { get; set; } = string.Empty;
     public string Notes { get; set; } = string.Empty;
-
+    public List<Document?> Documents { get; set; } = new();
     public DateTime BirthDate { get; set; }
     public string Citizenship { get; set; } = string.Empty;
     public bool Gender { get; set; }

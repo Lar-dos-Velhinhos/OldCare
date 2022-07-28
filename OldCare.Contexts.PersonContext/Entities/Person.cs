@@ -98,13 +98,7 @@ public class Person : Entity, IAggregateRoot
 
     #region Methods
 
-    public void ChangePhone(Phone phone)
-    {
-        Phone = phone;
-        Tracker.Update("Número de telefone modificado.");
-    }
-
-    public void ChangeDocuments(List<Document> documents)
+    public void ChangeDocuments(List<Document?> documents)
     {
         try
         {
@@ -115,19 +109,32 @@ public class Person : Entity, IAggregateRoot
             throw new InvalidDataException("Não foi possível salvar os documentos.");
         }
     }
-
+    
     public void ChangeInformation(
-        string firstName,
-        string lastName,
         DateTime? birthDate,
+        string citizenship,
+        bool gender,
         string obs)
     {
-        Name = new Name(firstName, lastName);
         BirthDate = birthDate;
+        Citizenship = citizenship;
+        Gender = gender;
         Obs = obs;
 
         Tracker.Update("Informações atualizadas");
     }
+    
+    public void ChangeName(string firstName, string lastName)
+        => Name = new Name(firstName, lastName);
+
+    public void ChangePhone(Phone phone)
+    {
+        Phone = phone;
+        Tracker.Update("Número de telefone modificado.");
+    }
+
+    public void ChangePhoto(string path)
+        => Photo = path;
 
     public void GeneratePhoneVerificationCode()
     {
