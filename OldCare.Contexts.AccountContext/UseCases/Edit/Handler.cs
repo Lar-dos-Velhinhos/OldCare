@@ -66,11 +66,12 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
 
         try
         {
-            user.Person.ChangeInformation(
-                request.FirstName,
-                request.LastName,
-                request.BirthDate,
-                "");
+            // user.Person.ChangeInformation(
+            //     request.BirthDate,
+            //     request.FirstName,
+            //     request.LastName,
+            //     ,
+            //     "");
         }
         catch
         {

@@ -1,0 +1,121 @@
+﻿@using OldCare.Contexts.SharedContext.Enums
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model OldCare.Contexts.PersonContext.UseCases.Create.Request
+
+@{
+
+}
+
+<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a asp-area="Account" asp-controller="Profile" asp-action="Home" style="text-decoration: none;">OldCare</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">Pessoas</li>
+    </ol>
+</nav>
+
+<div class="bg-light container-fluid p-5" style="border-radius: 8px; height: 85vh;">
+    <h2>
+        <b>ADICIONAR PESSOA</b>
+    </h2>
+    <p>Dados de endereço da pessoa a ser adicionada.</p>
+
+    <div class="row">
+        <div class="col-2">
+            <img src="~/media/images/general/person-circle.svg" width="96" class="rounded mx-auto d-block" alt="...">
+        </div>
+        <div class="col-8">
+            <div class="mb-3 row">
+                <div class="col-6">
+                    <div class="mb-3 row">
+                        <label asp-for="FirstName" class="col-sm-3 col-form-label">Nome</label>
+                        <div class="col-sm-9">
+                            <input asp-for="FirstName" type="text" class="form-control">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-6">
+                    <div class="mb-3 row">
+                        <label asp-for="LastName" class="col-sm-3 col-form-label">Sobrenome</label>
+                        <div class="col-sm-9">
+                            <input asp-for="LastName" type="text" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <div class="col-6">
+                    <div class="mb-3 row">
+                        <label asp-for="BirthDate" class="col-sm-3 col-form-label">Nascimento</label>
+                        <div class="col-sm-9">
+                            <input asp-for="BirthDate" type="datetime-local" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="mb-3 row">
+                        <label asp-for="Gender" class="col-sm-3 col-form-label">Sexo</label>
+                        <div class="col-sm-9">
+                            <select asp-for="Gender" class="form-control">
+                                <option selected>Selecione</option>
+                                <option value="0">Feminino</option>
+                                <option value="1">Masculino</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <div class="col-6">
+                    <div class="mb-3 row">
+                        <label asp-for="Nationality" class="col-sm-3 col-form-label">Nacionalidade</label>
+                        <div class="col-sm-9">
+                            <input asp-for="Nationality" type="text" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="mb-3 row">
+                        <label asp-for="Citizenship" class="col-sm-3 col-form-label">Naturalidade</label>
+                        <div class="col-sm-9">
+                            <input asp-for="Citizenship" type="text" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+
+            <div class="mb-3 row">
+                <div class="col-6">
+                    <div class="mb-3 row">
+                        <label asp-for="Gender" class="col-sm-3 col-form-label">Documento</label>
+                        <div class="col-sm-9">
+                            <select asp-for="Gender" asp-items="Html.GetEnumSelectList<EDocumentType>()" class="form-control">
+                                <option selected>Selecione</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="mb-3 row">
+                        <label asp-for="Citizenship" class="col-sm-3 col-form-label">Número</label>
+                        <div class="col-sm-9">
+                            <input asp-for="Citizenship" type="text" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="w-100 text-end">
+                <button class="btn oc-btn-primary" type="submit">+ Novo Documento</button>
+                <button class="btn oc-btn-primary" type="submit">Continuar</button>
+            </div>
+        </div>
+        <div class="col-2" asp-validation-summary="All"></div>
+    </div>
+</div>

@@ -1,5 +1,3 @@
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
 using OldCare.Contexts.SharedContext.UseCases;
 using MediatR;
 using OldCare.Contexts.SharedContext.ValueObjects;
@@ -20,6 +18,7 @@ public class Request : IRequest<BaseResponse<ResponseData>>
     public string Notes { get; set; } = string.Empty;
     public List<Document?> Documents { get; set; } = new();
     public DateTime BirthDate { get; set; }
+    public string Nationality { get; set; } = string.Empty;
     public string Citizenship { get; set; } = string.Empty;
     public bool Gender { get; set; }
     public string FirstName { get; set; } = null!;

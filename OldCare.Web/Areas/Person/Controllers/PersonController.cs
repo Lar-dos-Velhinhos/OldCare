@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace OldCare.Web.Areas.Person.Controllers;
 
@@ -14,8 +15,18 @@ public class PersonController : Controller
     #endregion
 
     #region Methods
+    
+    [Authorize]
+    [HttpGet("pessoas/adicionar")]
+    public IActionResult Create() => View();
+    
+    [Authorize]
+    [HttpGet("pessoas/adicionar/endereco")]
+    public IActionResult AddressStepFromCreate() => View();
 
-    public IActionResult Index() => Index();
+    [Authorize]
+    [HttpGet("pessoas")]
+    public IActionResult Index() => View();
 
     #endregion
 }
