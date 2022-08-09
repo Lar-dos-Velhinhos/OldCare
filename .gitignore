@@ -141,6 +141,10 @@ UpgradeLog*.htm
 .ntvs_analysis.dat
 node_modules/
 
+# Other files and folders
+.settings/
+.vs/
+
 # JetBrains Rider
 .idea/
 *.sln.iml

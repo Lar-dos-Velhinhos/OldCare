@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<partial name="Partials/_HeaderLayoutPartial"/>
+<body class="oc-text-default font-poppins-regular oc-default-private-bg">
+<header>
+    <div class="container-fluid">
+        <div class="row ">
+            <div class="oc-deep-ocean-blue-bg px-sm-2 px-0" style="width: 15vw;">
+                <div class="d-flex flex-column align-items-center align-items-sm-center px-3 text-white min-vh-100">
+                    <div class="w-100 text-center p-1 mt-3">
+                        <a asp-area="Backoffice" asp-action="Index" asp-controller="Home">
+                            <img class="img-fluid" src="~/lib/media/site/images/clean-logo.png" width="94"/>
+                        </a>
+                    </div>
+                    <div style="padding-top: 60% !important;">
+                        <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start oc-side-menu" id="menu">
+                            <li class="oc-active-view-label">
+                                <ul class="">
+                                    <li>
+                                        <div class="mt-2">
+                                            <img class="img-fluid" src="~/lib/media/site/images/icons/secretary-dark.svg" width="28" data-mdb-toggle="tooltip" title="Secretaria"/>
+                                            <span class="oc-text-dark oc fw-bold mx-1">
+                                                Secretaria
+                                            </span>
+                                        </div>
+                                    </li>
+                                    <li class="ml-5">
+                                    </li>
+                                    <li class="mx-5">
+                                        <a asp-area="Backoffice" asp-action="Index" asp-controller="Resident" class="oc-side-menu-link">
+                                            <img class="img-fluid" src="~/lib/media/site/images/icons/resident.png" width="28" data-mdb-toggle="tooltip" title="Secretaria"/>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a class="oc-side-menu-link">
+                                            <img class="img-fluid" src="~/lib/media/site/images/icons/clipboard.png" width="28" data-mdb-toggle="tooltip" title="Secretaria"/>
+                                        </a>
+                                    </li>
+                                    <li class="mx-5">
+                                        <a class="oc-side-menu-link">
+                                            <img class="img-fluid" src="~/lib/media/site/images/icons/gear.png" width="28" data-mdb-toggle="tooltip" title="Secretaria"/>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#" class="nav-link px-0 align-middle px-0 my-3 oc-side-menu-link">
+                                    <img class="img-fluid hope-green-text" src="~/lib/media/site/images/icons/nurse.svg" width="48" data-mdb-toggle="tooltip" title="Enfermaria"/>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="nav-link px-0 align-middle px-0 my-3 oc-side-menu-link">
+                                    <img class="img-fluid hope-green-text" src="~/lib/media/site/images/icons/treasurer.svg" width="48" data-mdb-toggle="tooltip" title="Tesouraria"/>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="nav-link px-0 align-middle px-0 my-3 oc-side-menu-link">
+                                    <img class="img-fluid hope-green-text" src="~/lib/media/site/images/icons/socialwork.svg" width="48" data-mdb-toggle="tooltip" title="Assistência social"/>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            @* TODO: Transform styles in css classes *@
+            <div class="col py-3" style="background-color: rgba(255, 255, 255, 0.6);">
+                <div class="row">
+                    <div class="col-10">
+                        <spam style="font-size: 14pt;">
+                            <b>Lar dos Velhinhos - Guaratinguetá</b>
+                        </spam>
+                    </div>
+
+                    <hr style="position: absolute; width: 75%; margin-top: 2.1%; margin-left: 0.7%;"/>
+
+                    <div class="col-2" style="margin-left: -1%;">
+                        <div class="row">
+                            <div class="col-10 oc-top-left-name" style="margin-right: -8%;">
+                                <h1 style="margin-top: 8%; margin-bottom: -2%;">Gizele Bedaque</h1>
+                                <h2>Secretária</h2>
+                            </div>
+                            <div class="col-2">
+                                <img src="/lib/media/site/images/icons/person-vector.png" width="44"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="container oc-view-default">
+                    <main role="main" class="pb-3" style="overflow: hidden;">
+                        @RenderBody()
+                    </main>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<partial name="Partials/_ScriptsPartial"/>
+<partial name="_ValidationScriptsPartial"></partial>
+@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

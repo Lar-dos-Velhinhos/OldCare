@@ -1,0 +1,159 @@
+﻿@model CreateEndPersonViewModel
+
+@{
+    ViewData["Title"] = "Cadastrar residente";
+}
+
+<section xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+    <div id="header" class="row oc-view-header-default">
+        <div class="col-10">
+            <h1 class="oc-view-title-default">
+                <strong>Cadastrar Pessoa</strong>
+            </h1>
+            <h2 class="oc-view-subtitle-default oc-text-light-gray">Preencha os dados de endereço para finalizar.</h2>
+        </div>
+    </div>
+
+    <div class="oc-steps font-weight-bold" style="width: 200px;">
+        <ul class="navbar" type="none">
+            <li class="mx-1">
+                <a>1</a>
+            </li>
+            <li class="mx-4">
+                <a class="numberCircle">2</a>
+            </li>
+            <li class="mx-1">
+                <a>3</a>
+            </li>
+            <li class="mx-4">
+                <a>4</a>
+            </li>
+        </ul>
+    </div>
+
+    <form asp-action="CreateEnd" class="row mt-5">
+
+        <div hidden>
+            <input asp-for="Id" type="text"/>
+            <input asp-for="Name" type="text"/>
+            <input asp-for="BirthDate" type="text"/>
+            <input asp-for="Citizenship" type="text"/>
+            <input asp-for="Gender" type="text"/>
+            <input asp-for="RG" type="text"/>
+            <input asp-for="CPF" type="text"/>
+        </div>
+
+        <div class="col-9">
+            <div class="row">
+                <div class="col-12">
+                    <div class="row mb-4">
+                        <div class="col-8">
+                            <div class="row">
+                                <label asp-for="Address" class="col-3"></label>
+                                <input asp-for="Address" class="col-9 oc-form-control" type="text"/>
+                                <span asp-validation-for="Address" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-4">
+                            <div class="row">
+                                <span class="col-4"></span>
+                                <label asp-for="AddressNumber" class="col-4"></label>
+                                <input asp-for="AddressNumber" class="col-4 oc-form-control" type="text"/>
+                                <span asp-validation-for="AddressNumber" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="row mb-4">
+                        <div class="col-6">
+                            <div class="row">
+                                <label asp-for="District" class="col-4"></label>
+                                <input asp-for="District" class="col-8 oc-form-control" type="text"/>
+                                <span asp-validation-for="District" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-6">
+                            <div class="row">
+                                <span class="col-1"></span>
+                                <label asp-for="City" class="col-3"></label>
+                                <input asp-for="City" class="col-8 oc-form-control" type="text"/>
+                                <span asp-validation-for="City" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="row mb-4">
+                        <div class="col-6">
+                            <div class="row">
+                                <label asp-for="UF" class="col-4"></label>
+                                <select asp-for="UF" class="col-4 oc-form-control">
+                                    <option selected>Selecione</option>
+                                    <option value="AC">Acre</option>
+                                    <option value="AL">Alagoas</option>
+                                    <option value="AP">Amapá</option>
+                                    <option value="AM">Amazonas</option>
+                                    <option value="BA">Bahia</option>
+                                    <option value="CE">Ceará</option>
+                                    <option value="DF">Distrito Federal</option>
+                                    <option value="ES">Espírito Santo</option>
+                                    <option value="GO">Goiás</option>
+                                    <option value="MA">Maranhão</option>
+                                    <option value="MT">Mato Grosso</option>
+                                    <option value="MS">Mato Grosso do Sul</option>
+                                    <option value="MG">Minas Gerais</option>
+                                    <option value="PA">Pará</option>
+                                    <option value="PB">Paraíba</option>
+                                    <option value="PR">Paraná</option>
+                                    <option value="PE">Pernambuco</option>
+                                    <option value="PI">Piauí</option>
+                                    <option value="RJ">Rio de Janeiro</option>
+                                    <option value="RN">Rio Grande do Norte</option>
+                                    <option value="RS">Rio Grande do Sul</option>
+                                    <option value="RO">Rondônia</option>
+                                    <option value="RR">Roraima</option>
+                                    <option value="SC">Santa Catarina</option>
+                                    <option value="SP">São Paulo</option>
+                                    <option value="SE">Sergipe</option>
+                                    <option value="TO">Tocantins</option>
+                                </select>
+                                <span asp-validation-for="UF" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-6">
+                            <div class="row">
+                                <span class="col-1"></span>
+                                <label asp-for="CEP" class="col-3"></label>
+                                <input asp-for="CEP" class="col-8 oc-form-control" type="text"/>
+                                <span asp-validation-for="CEP" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="row mb-5">
+                        <div class="col-12">
+                            <div class="row">
+                                <label asp-for="Note" class="col-2">Observação:</label>
+                                <textarea asp-for="Note" class="col-10 oc-form-control"></textarea>
+                                <span asp-validation-for="Note" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col px-5 align-self-end text-end">
+                <a asp-area="Backoffice" asp-action="CreateStart" asp-controller="Person" class=" color-default oc-dark-btn oc-text-decoration-none">Voltar</a>
+                <button class=" color-default oc-dark-btn oc-text-decoration-none">Avançar</button>
+            </div>
+        </div>
+    </form>
+
+</section>
