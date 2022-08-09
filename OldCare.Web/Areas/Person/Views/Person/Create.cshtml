@@ -6,14 +6,41 @@
 
 }
 
-<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-            <a asp-area="Account" asp-controller="Profile" asp-action="Home" style="text-decoration: none;">OldCare</a>
-        </li>
-        <li class="breadcrumb-item active" aria-current="page">Pessoas</li>
-    </ol>
-</nav>
+<div class="oc-row">
+    <div class="col-12">
+        <div class="col-12 d-flex">
+            <div class="col-9">
+                <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a asp-area="Account" asp-controller="Profile" asp-action="Home" style="text-decoration: none;">OldCare</a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">Pessoas</li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="col-3 d-flex">
+                <div class="progresses">
+                    <div class="steps bg-cian">
+                        <span>
+                            <span class="font-weight-bold">1</span>
+                        </span>
+                    </div>
+                    <span class="line"></span>
+                    <div class="steps">
+                        <span>
+                            <span class="font-weight-bold">2</span>
+                        </span>
+                    </div>
+                    <span class="line"></span>
+                    <div class="steps">
+                        <span class="font-weight-bold">3</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="bg-light container-fluid p-5" style="border-radius: 8px; height: 85vh;">
     <h2>
@@ -103,20 +130,23 @@
                 </div>
                 <div class="col-6">
                     <div class="mb-3 row">
-                        <label asp-for="Citizenship" class="col-sm-3 col-form-label">Número</label>
+                        <label asp-for="AddressNumber" class="col-sm-3 col-form-label">Número</label>
                         <div class="col-sm-6">
-                            <input asp-for="Citizenship" type="text" class="form-control">
+                            <input asp-for="AddressNumber" type="text" class="form-control">
                         </div>
                         <div class="col-sm-3">
-                            <button class="btn oc-btn-primary" type="submit">+ Novo</button>
+                            <button class="btn oc-btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Adicionar novo documento">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-plus-fill" viewBox="0 0 16 16">
+                                    <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0zM9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1zM8.5 7v1.5H10a.5.5 0 0 1 0 1H8.5V11a.5.5 0 0 1-1 0V9.5H6a.5.5 0 0 1 0-1h1.5V7a.5.5 0 0 1 1 0z"/>
+                                </svg>
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="w-100 text-end">
-                
-                <button class="btn oc-btn-primary" type="submit">Continuar</button>
+                <a asp-area="Person" asp-controller="Person" asp-action="AddressStepFromCreate" type="button" class="btn oc-btn-primary">Continuar</a>
             </div>
         </div>
         <div class="col-2" asp-validation-summary="All"></div>

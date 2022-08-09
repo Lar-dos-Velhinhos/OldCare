@@ -27,13 +27,13 @@
                         </span>
                     </div>
                     <span class="line"></span>
-                    <div class="steps bg-cian">
+                    <div class="steps">
                         <span>
-                            <span class="font-weight-bold">2</span>
+                            <i class="fa fa-check"></i>
                         </span>
                     </div>
                     <span class="line"></span>
-                    <div class="steps">
+                    <div class="steps bg-cian">
                         <span class="font-weight-bold">3</span>
                     </div>
                 </div>
@@ -46,60 +46,25 @@
     <h2>
         <b>ADICIONAR PESSOA</b>
     </h2>
-    <p>Dados de endereço da pessoa a ser adicionada.</p>
+    <p>Filiação e contato da pessoa a ser adicionada.</p>
 
     <div class="row">
         <div class="col-10">
             <div class="mb-3 row">
-                <label asp-for="ZipCode" class="col-sm-2 col-form-label">CEP</label>
-                <div class="col-sm-2">
-                    <input asp-for="ZipCode" type="text" class="form-control">
-                </div>
-            </div>
-
-            <div class="mb-3 row">
-                <div class="col-8">
-                    <div class="mb-3 row">
-                        <label asp-for="Street" class="col-sm-3 col-form-label">Logradouro</label>
-                        <div class="col-sm-9">
-                            <input asp-for="Street" type="text" class="form-control">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-4">
-                    <div class="mb-3 row text-end">
-                        <label asp-for="AddressNumber" class="col-sm-4 col-form-label">N°</label>
-                        <div class="col-sm-8">
-                            <input asp-for="AddressNumber" type="text" class="form-control">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="mb-3 row">
                 <div class="col-6">
                     <div class="mb-3 row">
-                        <label asp-for="Complement" class="col-sm-4 col-form-label">Complemento</label>
+                        <label asp-for="Complement" class="col-sm-4 col-form-label text-end">Telefone</label>
                         <div class="col-sm-8">
                             <input asp-for="Complement" type="text" class="form-control">
                         </div>
                     </div>
                 </div>
-                <div class="col-6">
-                    <div class="mb-3 row">
-                        <label asp-for="District" class="col-sm-2 col-form-label">Bairro</label>
-                        <div class="col-sm-10">
-                            <input asp-for="District" type="text" class="form-control">
-                        </div>
-                    </div>
-                </div>
             </div>
 
             <div class="mb-3 row">
                 <div class="col-6">
                     <div class="mb-3 row">
-                        <label asp-for="City" class="col-sm-4 col-form-label">Cidade</label>
+                        <label asp-for="City" class="col-sm-4 col-form-label text-end">Mãe</label>
                         <div class="col-sm-8">
                             <input asp-for="City" type="text" class="form-control">
                         </div>
@@ -107,11 +72,9 @@
                 </div>
                 <div class="col-6">
                     <div class="mb-3 row">
-                        <label asp-for="State" class="col-sm-2 col-form-label">UF</label>
-                        <div class="col-sm-10">
-                            <select asp-for="State" asp-items="Html.GetEnumSelectList<EBrazilianStates>()" class="form-control">
-                                <selected>Selecione</selected>
-                            </select>
+                        <label asp-for="City" class="col-sm-4 col-form-label text-end">Pai</label>
+                        <div class="col-sm-8">
+                            <input asp-for="City" type="text" class="form-control">
                         </div>
                     </div>
                 </div>
@@ -120,7 +83,7 @@
             <div class="mb-3 row">
                 <div class="col-12">
                     <div class="mb-3 row">
-                        <label asp-for="Notes" class="col-sm-2 col-form-label text-end">Observações</label>
+                        <label asp-for="Notes" class="col-sm-2 col-form-label text-end">Observações:</label>
                         <div class="col-sm-10">
                             <textarea asp-for="Notes" class="form-control" style="resize: none;"></textarea>
                         </div>
@@ -129,8 +92,8 @@
             </div>
 
             <div class="w-100 text-end">
-                <a asp-area="Person" asp-controller="Person" asp-action="Create" type="button" class="btn oc-btn-primary">Voltar</a>
-                <a asp-area="Person" asp-controller="Person" asp-action="FinalStepFromCreate" type="button" class="btn oc-btn-primary">Continuar</a>
+                <a asp-area="Person" asp-controller="Person" asp-action="AddressStepFromCreate" type="button" class="btn oc-btn-primary">Voltar</a>
+                <button class="btn oc-btn-primary" type="submit">Finalizar</button>
             </div>
         </div>
         <div class="col-2" asp-validation-summary="All"></div>

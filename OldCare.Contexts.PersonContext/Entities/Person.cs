@@ -90,6 +90,8 @@ public class Person : Entity, IAggregateRoot
     public string? Obs { get; private set; }
     public Phone? Phone { get; private set; }
     public string? Photo { get; private set; }
+    public string FatherName { get; private set; } = string.Empty;
+    public string MotherName { get; private set; } = string.Empty;
     public Tracker Tracker { get; }
     [NotMapped]
     public int Age { get; set; }
