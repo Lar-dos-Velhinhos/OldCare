@@ -23,6 +23,10 @@ public class PersonController : Controller
     [Authorize]
     [HttpGet("pessoas/adicionar/endereco")]
     public IActionResult AddressStepFromCreate() => View();
+    
+    [Authorize]
+    [HttpGet("pessoas/adicionar/filiacao-e-contato")]
+    public IActionResult FinalStepFromCreate() => View();
 
     [Authorize]
     [HttpGet("pessoas")]
