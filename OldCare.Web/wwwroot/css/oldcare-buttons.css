@@ -1,0 +1,27 @@
+﻿.oc-btn-clean {
+    border: 0px;
+    padding: 5px 25px;
+}
+
+.oc-btn-default-gradient {
+    background: linear-gradient(135deg, #A1FF8B 0%, #3F93FF 96.83%);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.oc-btn-default-gradient:hover {
+    background: linear-gradient(135deg, #3F93FF 0%, #A1FF8B 96.83%);
+}
+
+.oc-btn-primary {
+    color: #fff;
+    background-color: #193278;
+    border-color: #5e616e;
+}
+
+.oc-btn-primary:hover {
+    color: #fff;
+    background-color: #19a857;
+    border-color: #19a857;
+}

@@ -1,0 +1,138 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>@ViewData["Title"] - OldCare</title>
+
+    <meta name="description" content="@ViewData["Description"]">
+    <meta name="keywords" content="@ViewData["Keywords"]">
+    <meta name="author" content="OldCare">
+
+    <!--Twitter Share-->
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:site" content="@ViewData["Url"]"/>
+    <meta name="twitter:creator" content="@@Oldcare"/>
+    <meta name="twitter:title" content="@ViewData["Title"]"/>
+    <meta name="twitter:description" content="@ViewData["Description"]"/>
+    <meta name="twitter:image" content="@ViewData["Image"]"/>
+
+    <!--Facebook/LinkedIn Share-->
+    <meta property="og:url" content="@ViewData["Url"]"/>
+    <meta property="og:title" content="@ViewData["Title"] - OldCare"/>
+    <meta property="og:description" content='@ViewData["Description"]'/>
+    <meta property="og:image" content='@ViewData["Image"]'/>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sidebars/">
+
+
+    <!-- Bootstrap core CSS -->
+    <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @@media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+    <link href="/lib/sidebars/sidebars.css" rel="stylesheet">
+</head>
+<body>
+
+<main>
+    <div class="row w-100">
+        <div class="col-lg-2">
+            <div class="d-flex flex-column justify-content-center align-items-center p-3 deep-blue-background" style="width: 280px; height: 100vh;">
+                <a href="/" class="d-flex link-dark text-decoration-none">
+                    <img src="/media/images/logos/oldcare-logotype.png" width="128"/>
+                </a>
+                <hr>
+                <div class="hope-green-background px-5 py-2 d-flex font-poppins justify-content-center align-items-center" style="border-radius: 8px;">
+                    <svg width="32" height="32" viewBox="0 0 64 64" class="deep-blue-text" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M26.6666 53.3333V37.3333H37.3333V53.3333H50.6666V32H58.6666L31.9999 8L5.33325 32H13.3333V53.3333H26.6666Z" fill="#193278"/>
+                        <use xlink:href="#home"/>
+                    </svg> <b>Secretaria</b>
+                </div>
+                <hr>
+                <ul class="nav nav-pills flex-column mb-auto">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" aria-current="page">
+                            <svg width="48" height="48" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M26.6666 53.3333V37.3333H37.3333V53.3333H50.6666V32H58.6666L31.9999 8L5.33325 32H13.3333V53.3333H26.6666Z" fill="#37F092"/>
+                                <use xlink:href="#home"/>
+                            </svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link link-dark">
+                            <svg width="48" height="48" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M12.5 7.5H47.5C50.25 7.5 52.5 9.75 52.5 12.5V47.5C52.5 50.25 50.25 52.5 47.5 52.5H12.5C9.75 52.5 7.5 50.25 7.5 47.5L7.525 12.5C7.525 9.75 9.75 7.5 12.5 7.5ZM35 35H45V25H35V15H25V25H15V35H25V45H35V35Z" fill="#37F092" fill-opacity="0.3"/>
+                            </svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link link-dark">
+                            <svg width="48" height="48" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M5 30C5 16.2 16.2 5 30 5C43.8 5 55 16.2 55 30C55 43.8 43.8 55 30 55C16.2 55 5 43.8 5 30ZM33.525 50V45.225C37.875 44.4 41.3 41.9 41.325 37.325C41.325 31.025 35.925 28.85 30.875 27.55C25.825 26.25 24.2 24.875 24.2 22.775C24.2 20.375 26.45 18.675 30.2 18.675C34.15 18.675 35.625 20.575 35.75 23.35H40.65C40.5 19.525 38.175 16 33.525 14.875V10H26.85V14.825C22.55 15.75 19.075 18.55 19.075 22.85C19.075 27.975 23.325 30.525 29.525 32.025C35.1 33.35 36.2 35.3 36.2 37.375C36.2 38.9 35.1 41.35 30.2 41.35C25.625 41.35 23.825 39.3 23.575 36.675H18.675C18.95 41.525 22.575 44.275 26.85 45.175V50H33.525Z" fill="#37F092" fill-opacity="0.3"/>
+                            </svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link link-dark">
+                            <svg width="48" height="48" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M38.725 24.075C38.275 17.1 35.45 10.3 30.15 5C24.8 10.35 21.85 17.15 21.275 24.075C24.475 25.775 27.425 27.975 30 30.65C32.575 28 35.525 25.8 38.725 24.075ZM22.3334 30.6018C22.3814 30.6342 22.4286 30.6669 22.475 30.7C22.435 30.6714 22.3943 30.6435 22.3531 30.616C22.3466 30.6113 22.34 30.6066 22.3334 30.6018ZM22.3334 30.6018C17.4423 27.0765 11.4651 25 5 25C5 38.3 13.4 49.55 25.075 53.725C26.65 54.3 28.3 54.725 30 55C31.7 54.7 33.325 54.275 34.925 53.725C46.6 49.55 55 38.3 55 25C44.55 25 35.375 30.425 30 38.625C27.9548 35.5049 25.3595 32.7866 22.3531 30.616C22.2245 30.5303 22.0906 30.4492 21.9549 30.3669C21.7537 30.2449 21.5483 30.1204 21.35 29.975C21.5074 30.0799 21.6691 30.1804 21.8297 30.2802C22.0012 30.3867 22.1713 30.4924 22.3334 30.6018Z" fill="#37F092" fill-opacity="0.3"/>
+                            </svg>
+                        </a>
+                    </li>
+                </ul>
+
+                <hr/>
+
+                <div class="dropdown">
+                    <a asp-action="Logout" asp-area="Account" asp-controller="Profile" class="d-flex align-items-center text-white text-decoration-none">
+                        <strong>Sair</strong>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-10 mt-3">
+            <div class="row">
+                <div class="col-12">
+                    <div class="col-12 d-flex">
+                        <div class="col-9">
+                            <b>Lar dos Velhinhos - Guaratinguetá</b>
+                        </div>
+                        <div class="col-3 d-flex">
+                            <p class="w-100 text-end">@User.Identity.Name</p>
+                        </div>
+                    </div>
+                    <div class="col-12 d-flex" style="margin-top: -20px;">
+                        <div class="col-11">
+                            <hr>
+                        </div>
+                        <div class="col-1 d-flex">
+                            <a asp-action="Logout" style="text-decoration: none; color: black;" class="w-100 text-end">Sair</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+</main>
+
+<partial name="Partials/_StylesPartial"/>
+<partial name="Partials/_FontsPartial"/>
+</body>
+</html>

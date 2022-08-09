@@ -1,0 +1,134 @@
+﻿@using OldCare.Contexts.SharedContext.Enums
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Registrar";
+}
+
+<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a asp-action="Home" style="text-decoration: none;">OldCare</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a asp-action="Residents" style="text-decoration: none;">Residentes</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">Registrar</li>
+    </ol>
+</nav>
+
+<div class="bg-light container-fluid p-5" style="border-radius: 8px; height: 85vh;">
+    <div class="row w-100">
+        <div class="col-12">
+            <h2>
+                <b>Residentes</b>
+            </h2>
+            <p class="text-muted">
+                <small>Ferramenta de registro de residente a partir de pessoa pré-cadastrada</small>
+            </p>
+        </div>
+        <div class="col-12 mt-3">
+            <form method="post">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 col-sm-12 form-group mt-2 mb-2">
+                        <label for="exampleFormControlSelect1">Selecione a pessoa</label>
+                        <select class="form-control">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-2 col-md-6 col-sm-12 form-group mt-2 mb-2">
+                        <label for="exampleFormControlSelect1">Selecione o quarto</label>
+                        <select class="form-control">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 col-sm-12 form-group mt-2 mb-2">
+                        <label for="exampleFormControlInput1">Data de admissão</label>
+                        <input type="datetime-local" class="form-control">
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12 form-group mt-2 mb-2">
+                        <label for="exampleFormControlInput1">Data de partida</label>
+                        <input type="datetime-local" class="form-control">
+                    </div>
+
+                    <div class="col-lg-6 col-md-6 col-sm-12 form-group mt-2 mb-2">
+                        <label for="exampleFormControlInput1">Pai</label>
+                        <input type="text" class="form-control" placeholder="Nome completo">
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 form-group mt-2 mb-2">
+                        <label for="exampleFormControlInput1">Mãe</label>
+                        <input type="text" class="form-control" placeholder="Nome completo">
+                    </div>
+
+                    <div class="col-lg-6 col-md-6 col-sm-12 form-group mt-2 mb-2">
+                        <label for="exampleFormControlInput1">Plano de saúde</label>
+                        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12 form-group mt-2 mb-2">
+                        <label for="exampleFormControlSelect1">Estado civil</label>
+                        <select class="form-control">
+                            <option value="@EMaritalStatus.Single">Solteiro(a)</option>
+                            <option value="@EMaritalStatus.Widow">Viúvo(a)</option>
+                            <option value="@EMaritalStatus.Married">Casado(a)</option>
+                            <option value="@EMaritalStatus.Divorced">Divorciado(a)</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12 form-group mt-2 mb-2">
+                        <label for="exampleFormControlSelect1">Mobilidade</label>
+                        <select class="form-control">
+                            <option value="@EMobility.SelfLocomotion">Independente</option>
+                            <option value="@EMobility.Abed">Cama</option>
+                            <option value="@EMobility.Walker">Andador</option>
+                            <option value="@EMobility.WalkingStick">Bengala</option>
+                            <option value="@EMobility.WeelChair">Cadeira de rodas</option>
+                        </select>
+                    </div>
+                    
+                    <div class="col-lg-3 col-md-6 col-sm-12 form-group mt-2 mb-2">
+                        <label>Escolaridade</label>
+                        <select class="form-control">
+                            <option value="@EEducationLevel.Unlettered">Não alfabetizado(a)</option>
+                            <option value="@EEducationLevel.CompletePrimaryEducation">Fundamental completo</option>
+                            <option value="@EEducationLevel.UnCompletePrimaryEducation">Fundamental incompleto</option>
+                            <option value="@EEducationLevel.CompleteHighSchool">Médio completo</option>
+                            <option value="@EEducationLevel.UnCompleteHighSchool">Médio incompleto</option>>
+                            <option value="@EEducationLevel.UnderGraduate">Graduação</option>
+                            <option value="@EEducationLevel.Graduate">Pós graduação</option>
+                            <option value="@EEducationLevel.Master">Mestrado</option>
+                            <option value="@EEducationLevel.PHD">Doutorado</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12 form-group mt-2 mb-2">
+                        <label>Profissão</label>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12 form-group mt-2 mb-2">
+                        <label>SUS</label>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12 form-group mt-2 mb-2">
+                        <label>Título de eleitor(a)</label>
+                        <input type="text" class="form-control">
+                    </div>
+
+                    <div class="form-group mt-2 mb-2">
+                        <label for="exampleFormControlTextarea1">Observações</label>
+                        <textarea class="form-control" rows="3" style="resize: none;"></textarea>
+                    </div>
+                    
+                    <div class="form-group mt-2 mb-2 text-end">
+                        <button type="button" class="btn oc-btn-primary">Salvar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

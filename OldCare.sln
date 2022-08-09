@@ -1,0 +1,62 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30114.105
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OldCare.Contexts.SharedContext", "OldCare.Contexts.SharedContext\OldCare.Contexts.SharedContext.csproj", "{8C224C1A-A3C4-4E5C-97A4-E2AAC608FB2B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OldCare.Services.Google", "OldCare.Services.Google\OldCare.Services.Google.csproj", "{355C3631-8B11-419E-8761-71420855C957}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OldCare.Contexts.AccountContext", "OldCare.Contexts.AccountContext\OldCare.Contexts.AccountContext.csproj", "{00CD8891-CFBF-4256-AFBE-EE78414408D1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OldCare.Web", "OldCare.Web\OldCare.Web.csproj", "{01B412E3-AD1B-4090-9427-4BD11C4EB084}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Contexts", "Contexts", "{2B83984A-69F7-4DA2-95A7-542AF7FD77D8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{A64B2FBC-F436-4072-83E6-71EAF8415BCF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OldCare.Data", "OldCare.Data\OldCare.Data.csproj", "{69403981-1951-4FC8-BB06-BF140231EF62}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OldCare.Contexts.PersonContext", "OldCare.Contexts.PersonContext\OldCare.Contexts.PersonContext.csproj", "{30702DEA-A419-42D4-9C81-EDFF53BC8643}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8C224C1A-A3C4-4E5C-97A4-E2AAC608FB2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C224C1A-A3C4-4E5C-97A4-E2AAC608FB2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C224C1A-A3C4-4E5C-97A4-E2AAC608FB2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C224C1A-A3C4-4E5C-97A4-E2AAC608FB2B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{355C3631-8B11-419E-8761-71420855C957}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{355C3631-8B11-419E-8761-71420855C957}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{355C3631-8B11-419E-8761-71420855C957}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{355C3631-8B11-419E-8761-71420855C957}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00CD8891-CFBF-4256-AFBE-EE78414408D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00CD8891-CFBF-4256-AFBE-EE78414408D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00CD8891-CFBF-4256-AFBE-EE78414408D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00CD8891-CFBF-4256-AFBE-EE78414408D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01B412E3-AD1B-4090-9427-4BD11C4EB084}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01B412E3-AD1B-4090-9427-4BD11C4EB084}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01B412E3-AD1B-4090-9427-4BD11C4EB084}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01B412E3-AD1B-4090-9427-4BD11C4EB084}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69403981-1951-4FC8-BB06-BF140231EF62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69403981-1951-4FC8-BB06-BF140231EF62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69403981-1951-4FC8-BB06-BF140231EF62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69403981-1951-4FC8-BB06-BF140231EF62}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30702DEA-A419-42D4-9C81-EDFF53BC8643}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30702DEA-A419-42D4-9C81-EDFF53BC8643}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30702DEA-A419-42D4-9C81-EDFF53BC8643}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30702DEA-A419-42D4-9C81-EDFF53BC8643}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{00CD8891-CFBF-4256-AFBE-EE78414408D1} = {2B83984A-69F7-4DA2-95A7-542AF7FD77D8}
+		{8C224C1A-A3C4-4E5C-97A4-E2AAC608FB2B} = {2B83984A-69F7-4DA2-95A7-542AF7FD77D8}
+		{355C3631-8B11-419E-8761-71420855C957} = {A64B2FBC-F436-4072-83E6-71EAF8415BCF}
+		{30702DEA-A419-42D4-9C81-EDFF53BC8643} = {2B83984A-69F7-4DA2-95A7-542AF7FD77D8}
+	EndGlobalSection
+EndGlobal

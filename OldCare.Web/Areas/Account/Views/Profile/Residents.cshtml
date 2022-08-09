@@ -1,0 +1,68 @@
+﻿@model OldCare.Contexts.AccountContext.UseCases.ListResidents.Request
+
+@{
+    ViewData["Title"] = "Principal";
+}
+
+<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a asp-action="Home" style="text-decoration: none;">OldCare</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">Residentes</li>
+    </ol>
+</nav>
+
+<div class="bg-light container-fluid p-5" style="border-radius: 8px; height: 85vh;">
+    <div class="row w-100">
+        <div class="col-8">
+            <h2>
+                <b>Residentes</b>
+            </h2>
+            <p class="text-muted">
+                <small>Ferramenta de gerenciamento geral dos internos</small>
+            </p>
+        </div>
+        <div class="col-4 text-end">
+            <a href="" class="mr-3" style="text-decoration: none; color: black;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M22 11V13H9V7H18C20.21 7 22 8.79 22 11ZM2 14V16H8V18H16V16H22V14H2ZM7.1 7.86C8.28 9.02 8.3 10.91 7.14 12.1C5.98 13.28 4.09 13.3 2.9 12.14C1.72 10.98 1.7 9.09 2.86 7.9C4.02 6.72 5.91 6.7 7.1 7.86Z" fill="#0E1D47"/>
+                </svg>
+                <b>Mapa dos quartos</b>
+            </a>
+            &nbsp; &nbsp; &nbsp;
+            <a asp-action="RegisterResident" class="text-end" style="text-decoration: none; color: black;" data-bs-toggle="tooltip" data-bs-placement="top" title="Cadastrar residente">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
+                </svg>
+            </a>
+        </div>
+    </div>
+
+    <div class="container mt-2">
+        <div class="row">
+            @foreach (var resident in Model.Residents!)
+            {
+                <div class="d-flex col-3 pt-3" style="border-left: 5px solid #37F092; box-shadow: #5e616e 2px 2px 2px 2px; border-radius: 8px;">
+                    <div class="col-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                        </svg>
+                    </div>
+                    <div class="col-6">
+                        <h5>@resident.Person.Name</h5>
+                        <p>@(DateTime.UtcNow.Year - @resident.Person.BirthDate.Value.Year) @(resident.Person.BirthDate.Value.Year > 1 ? "anos" : "ano")</p>
+                    </div>
+                    <div class="col-3 align-itens-">
+                        <a style="text-decoration: none; color: black;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-chevron-right mt-2" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

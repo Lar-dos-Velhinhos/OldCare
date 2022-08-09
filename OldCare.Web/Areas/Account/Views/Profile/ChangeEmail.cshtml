@@ -1,0 +1,84 @@
+﻿@model OldCare.Contexts.AccountContext.UseCases.ChangeEmail.Request
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "";
+    ViewData["Description"] = "";
+    ViewData["Keywords"] = "";
+    ViewData["URL"] = "";
+    ViewData["Image"] = "";
+}
+
+<section class="pt-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-9">
+                <div class="card bg-transparent border rounded-3">
+                    <div class="card-header bg-transparent border-bottom">
+                        <h3 class="card-header-title mb-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-envelope-fill me-2" viewBox="0 0 16 16">
+                                <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z"/>
+                            </svg>
+                            Configurações de e-mail
+                        </h3>
+                    </div>
+
+                    <div class="card-body">
+                        <form asp-action="ChangeEmail" class="row g-4" method="post">
+                            <div class="col-md-6 col-sm-12">
+                                <div class="col-md-12">
+                                    <label class="form-label">
+                                        E-mail atual
+                                    </label>
+                                    <div class="input-group">
+                                        <input asp-for="OldEmail" class="form-control" value="@User?.Identity?.Name" readonly/>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12 mt-3">
+                                    <label class="form-label">
+                                        Novo endereço de e-mail
+                                    </label>
+                                    <div class="input-group">
+                                        <input asp-for="NewEmail" class="form-control" type="email" value="" placeholder="Email">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12 mt-3">
+                                    <label class="form-label" asp-for="Password"></label>
+                                    <div class="input-group">
+                                        <input asp-for="Password" class="form-control" type="password" placeholder="Senha">
+                                    </div>
+                                </div>
+
+                                <div asp-validation-summary="All" class="mt-2 text-danger"></div>
+
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="alert alert-warning" role="alert">
+                                            <small>
+                                                <strong>IMPORTANTE</strong><br>
+                                                Ao clicar em "Alterar e-mail" sua sessão será encerrada e será necessário confirmar o e-mail antes de acessar novamente sua conta.
+                                            </small>
+                                        </div>
+                                    </div>
+
+                                    <div class="input-group justify-content-end">
+                                        <button type="submit" class="btn btn-primary" style="margin-top: 29px;">Alterar e-mail</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+@section Scripts {
+    <partial name="Partials/_ValidationScriptsPartial"/>
+}

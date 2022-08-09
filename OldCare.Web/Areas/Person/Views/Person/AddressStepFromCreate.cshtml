@@ -1,0 +1,100 @@
+﻿@using OldCare.Contexts.SharedContext.Enums
+@using Twilio.Rest.Conversations.V1.Service.User
+@model OldCare.Contexts.PersonContext.UseCases.Create.Request
+
+@{
+
+}
+
+<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a asp-area="Account" asp-controller="Profile" asp-action="Home" style="text-decoration: none;">OldCare</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">Pessoas</li>
+    </ol>
+</nav>
+
+<div class="bg-light container-fluid p-5" style="border-radius: 8px; height: 85vh;">
+    <h2>
+        <b>ADICIONAR PESSOA</b>
+    </h2>
+    <p>Dados de endereço da pessoa a ser adicionada.</p>
+
+    <div class="row">
+        <div class="col-10">
+            <div class="mb-3 row">
+                <label asp-for="ZipCode" class="col-sm-2 col-form-label">CEP</label>
+                <div class="col-sm-2">
+                    <input asp-for="ZipCode" type="text" class="form-control">
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <div class="col-8">
+                    <div class="mb-3 row">
+                        <label asp-for="Street" class="col-sm-3 col-form-label">Logradouro</label>
+                        <div class="col-sm-9">
+                            <input asp-for="Street" type="text" class="form-control">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-4">
+                    <div class="mb-3 row text-end">
+                        <label asp-for="AddressNumber" class="col-sm-4 col-form-label">N°</label>
+                        <div class="col-sm-8">
+                            <input asp-for="AddressNumber" type="text" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <div class="col-6">
+                    <div class="mb-3 row">
+                        <label asp-for="Complement" class="col-sm-4 col-form-label">Complemento</label>
+                        <div class="col-sm-8">
+                            <input asp-for="Complement" type="text" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="mb-3 row">
+                        <label asp-for="District" class="col-sm-2 col-form-label">Bairro</label>
+                        <div class="col-sm-10">
+                            <input asp-for="District" type="text" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <div class="col-6">
+                    <div class="mb-3 row">
+                        <label asp-for="City" class="col-sm-4 col-form-label">Cidade</label>
+                        <div class="col-sm-8">
+                            <input asp-for="City" type="text" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="mb-3 row">
+                        <label asp-for="State" class="col-sm-2 col-form-label">UF</label>
+                        <div class="col-sm-10">
+                            <select asp-for="State" asp-items="Html.GetEnumSelectList<EBrazilianStates>()" class="form-control">
+                                <selected>Selecione</selected>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="w-100 text-end">
+                <button class="btn oc-btn-primary" type="submit">Voltar</button>
+                <button class="btn oc-btn-primary" type="submit">Continuar</button>
+            </div>
+        </div>
+        <div class="col-2" asp-validation-summary="All"></div>
+    </div>
+</div>
