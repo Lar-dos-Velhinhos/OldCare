@@ -1,196 +1,65 @@
 ﻿@{
     Layout = null;
-    ViewData["Title"] = "Entrada";
+    ViewData["Title"] = "Lar dos velhinhos";
+    ViewData["Description"] = "Instituição de permanencia para idosos";
+    ViewData["Keywords"] = "casa, repouso, convivencia, social";
+    ViewData["URL"] = "https://oldcare.azurewebsites.net";
+    ViewData["Image"] = "/media/images/banners/index_banner.png";
 }
 
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.1/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>@ViewData["Title"] - OldCare</title>
+
+    <meta name="description" content="@ViewData["Description"]">
+    <meta name="keywords" content="@ViewData["Keywords"]">
+    <meta name="author" content="OldCare">
+
+    <!--Twitter Share-->
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:site" content="@ViewData["Url"]"/>
+    <meta name="twitter:creator" content="@@Oldcare"/>
+    <meta name="twitter:title" content="@ViewData["Title"]"/>
+    <meta name="twitter:description" content="@ViewData["Description"]"/>
+    <meta name="twitter:image" content="@ViewData["Image"]"/>
+
+    <!--Facebook/LinkedIn Share-->
+    <meta property="og:url" content="@ViewData["Url"]"/>
+    <meta property="og:title" content="@ViewData["Title"] - OldCare"/>
+    <meta property="og:description" content='@ViewData["Description"]'/>
+    <meta property="og:image" content='@ViewData["Image"]'/>
+
+    <link rel="icon" type="image/x-icon" href="/media/images/icons/oldcare_logo.ico"/>
+    <link rel="shortcut icon" type="image/x-icon" href="/media/images/icons/oldcare_logo.ico"/>
+
+    <partial name="Partials/_FontsPartial"/>
+    <partial name="Partials/_StylesPartial"/>
 </head>
-
-<body class="oc-text-default font-poppins-regular">
-    <section id="header" class="oc-default-bg">
-        <div class="container">
-            <!-- Cards above nav -->
-            <div class="row pt-4 pb-4">
-                <!-- First column -->
-                <div class="col-4 d-flex align-items-center">
-                    <div style="max-width: 540px;">
-                        <div class="row g-0">
-                            <div class="col-md-4 d-flex align-items-center">
-                                <img src="~/lib/media/site/images/clean-logo.png" class="img-fluid rounded-start" alt="telefone">
-                            </div>
-                            <div class="col-md-3 d-flex align-items-center">
-                                <div class="card-body">
-                                    <p class="card-text lh-1" style="font-size: 16px;">
-                                        <small>
-                                            <strong>
-                                                LAR DOS
-                                            </strong>
-                                        </small>
-                                        <small>
-                                            <strong>
-                                                VELHINHOS
-                                            </strong>
-                                        </small>
-                                        <br />
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Second column -->
-                <div class="col-3">
-                    <div style="max-width: 540px;">
-                        <div class="row g-0">
-                            <div class="col-md-2 d-flex align-items-center">
-                                <img src="~/lib/media/site/images/icons/phone.png" class="img-fluid rounded-start" alt="telefone">
-                            </div>
-                            <div class="col-md-10 d-flex align-items-center">
-                                <div class="card-body">
-                                    <p class="card-text font-poppins-light lh-2" style="font-size: 14px;">
-                                        <small>
-                                            <strong>
-                                                (12) 3125-1564
-                                            </strong>
-                                        </small>
-                                        <br />
-                                        <small>
-                                            <strong>
-                                                mail@mail.com
-                                            </strong>
-                                        </small>
-                                        <br />
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Thirt column -->
-                <div class="col-3">
-                    <div style="max-width: 540px;">
-                        <div class="row g-0 d-flex align-items-center">
-                            <div class="col-md-2 d-flex align-items-center">
-                                <img src="~/lib/media/site/images/icons/localizationdot.png" class="img-fluid rounded-start" alt="local-mapa-ponto">
-                            </div>
-                            <div class="col-md-10 d-flex align-items-center">
-                                <div class="card-body">
-                                    <p class="card-text font-poppins-light lh-2" style="font-size: 14px;">
-                                        <small>
-                                            <strong>
-                                                R. Diogo Alvares, N° 6 - Nova Guará
-                                            </strong>
-                                        </small>
-                                        <br />
-                                        <small>
-                                            <strong>
-                                                12516-630, Guaratinguetá/SP
-                                            </strong>
-                                        </small>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Fourth column -->
-                <div class="col-2 d-flex align-items-center">
-                    <div class="d-grid gap-2 col-12 mx-auto">
-                        <a asp-area="Backoffice" asp-action="Index" asp-controller="Auth" class="oc-btn oc-btn-gradient">OldCare</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Navigation menu -->
-            <nav class="oc-ocean-blue-bg" style="border-radius: 8px;">
-                <div class="oc-default-menu">
-                    <a asp-controller="Home" asp-action="Index" class="oc-default-menu-item" style="border-radius: 8px 0px 0px 8px;">HOME</a>
-                    <a asp-controller="Home" asp-action="Index" class="oc-default-menu-item">QUEM SOMOS</a>
-                    <a asp-controller="Home" asp-action="Index" class="oc-default-menu-item">EQUIPE</a>
-                    <a asp-controller="Home" asp-action="Index" class="oc-default-menu-item">GALERIA</a>
-                    <a asp-controller="Home" asp-action="Index" class="oc-default-menu-item">PARCEIROS</a>
-                    <a asp-controller="Home" asp-action="Index" class="oc-default-menu-item">CONSULTA PÚBLICA</a>
-                    <a asp-controller="Home" asp-action="Index" class="oc-default-menu-item" style="border-radius: 0px 8px 8px 0px;">CONTATO</a>
-                    @*                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
-                        <ul class="navbar-nav">
-                        <li class="nav-item dropdown">
-                        <a class="navbar-brand nav-link dropdown-toggle color-default" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Dropdown
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                        </li>
-                        </ul>
-                        </div>*@
-                </div>
-            </nav>
-
-            <!-- Carrousel -->
-            <div id="carouselExampleDark" class="carousel slide" data-bs-ride="carousel">
-                <div class="caroussel-controll-items">
-                    <a aria-current="true" aria-label="Slide 1" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="caroussel-control-items-visual"></a>
-                    <a aria-label="Slide 2" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" class="caroussel-control-items-visual"></a>
-                    <a aria-label="Slide 3" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" class="caroussel-control-items-visual"></a>
-                </div>
-                <div class="carousel-inner">
-                    <div class="carousel-item active oldcare-carousell-item" data-bs-interval="3000">
-                        <div class="d-none d-md-block col-6 oldcare-carousel-caption">
-                            <h1>
-                                Cuidando<br> com carinho
-                            </h1>
-                            <p>
-                                Envelhecer é inevitável<br /> ficar velho é opcional.
-                            </p>
-                        </div>
-                        <a class="oc-btn oc-default-button" href=#>Saiba mais <i class="bi bi-arrow-right"></i></a>
-                    </div>
-                    <div class="carousel-item oldcare-carousell-item" data-bs-interval="3000">
-                        <div class="d-none d-md-block col-6 oldcare-carousel-caption">
-                            <h1>
-                                Solidariedade
-                            </h1>
-                            <p>
-                                Cuidar de nossos idosos<br /> é preservar a nossa história.
-                            </p>
-                        </div>
-                        <a class="btn btn-primary stretched-link" href=#>Saiba mais <i class="bi bi-arrow-right"></i></a>
-                    </div>
-                    <div class="carousel-item oldcare-carousell-item" data-bs-interval="3000">
-                        <div class="d-none d-md-block col-6 oldcare-carousel-caption">
-                            <h1>
-                                Respeito
-                            </h1>
-                            <p>
-                                Respeitar as pessoas idosas<br /> é tratar o próprio futuro com respeito.
-                            </p>
-                        </div>
-                        <a class="btn btn-primary stretched-link" href=#>Saiba mais <i class="bi bi-arrow-right"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
+<body class="font-poppins">
+<main>
+    <section id="header" class="bg-oldcare">
+        <partial name="Partials/PublicHome/_HeaderPartialPartial"/>
+        <partial name="Partials/PublicHome/_HorizontalTopMenuPartial"/>
+        <partial name="Partials/PublicHome/_PublicSliderPartial"/>
     </section>
-
-    <section id="content" class="container">
+    
+    <section id="body">
+        <partial name="Partials/PublicHome/_TextCardsPartial"/>
+        <partial name="Partials/PublicHome/_LocalDetailsPartial"/>
+        <partial name="Partials/PublicHome/_SecondaryBannerPartial"/>
+        <partial name="Partials/PublicHome/_GalleryPartial"/>
     </section>
+</main>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+<footer>
+    <partial name="Partials/PublicHome/_FooterPartial"/>
+</footer>
+
+<div class="back-top">
+    <i class="bi bi-arrow-up-short position-absolute top-50 start-50 translate-middle"></i>
+</div>
 </body>
 </html>
