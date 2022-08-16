@@ -1,7 +1,6 @@
 using System.Text.Json.Serialization;
-using OldCare.Contexts.SharedContext;
 using MediatR;
-using Microsoft.AspNetCore.Mvc;
+using OldCare.Contexts.SharedContext;
 
 namespace OldCare.Web.Extensions;
 
@@ -28,8 +27,8 @@ public static class AppExtension
             OldCare.Contexts.SharedContext.Services.Log.Service>();
 
         builder.Services.AddTransient<
-            OldCare.Services.Google.ReCaptcha.Contracts.IService,
-            OldCare.Services.Google.ReCaptcha.Service>();
+            Services.Google.ReCaptcha.Contracts.IService,
+            Services.Google.ReCaptcha.Service>();
 
         builder.Services
             .Configure<ApiBehaviorOptions>(x => { x.SuppressModelStateInvalidFilter = true; })

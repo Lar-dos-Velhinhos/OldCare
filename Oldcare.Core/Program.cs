@@ -1,3 +1,6 @@
+using OldCare.Core.Data;
+using OldCare.Core.Entities;
+
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<AppDbContext>();
 builder.Services.AddEndpointsApiExplorer();

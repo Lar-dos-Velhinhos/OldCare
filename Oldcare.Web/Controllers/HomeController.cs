@@ -1,4 +1,4 @@
-﻿namespace Oldcare.Web.Controllers;
+﻿namespace OldCare.Web.Controllers;
 
 [Route("/")]
 public class HomeController : Controller

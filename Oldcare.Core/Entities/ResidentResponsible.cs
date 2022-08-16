@@ -1,5 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
+namespace OldCare.Core.Entities;
+
 [Table("ResidentResponsible")]
 public class ResidentResponsible : Entity
 {
@@ -10,4 +12,3 @@ public class ResidentResponsible : Entity
     public bool Primary { get; set; }
     public DateTime StartDate { get; set; }
 }
-

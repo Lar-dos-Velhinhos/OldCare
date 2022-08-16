@@ -8,7 +8,7 @@
     }
   },
   "profiles": {
-    "Oldcare.Web": {
+    "OldCare.Web": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,

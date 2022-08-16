@@ -1,4 +1,6 @@
-﻿namespace Oldcare.Core.Data;
+﻿using OldCare.Core.Entities;
+
+namespace OldCare.Core.Data;
 
 public class AppDbContext : DbContext
 {

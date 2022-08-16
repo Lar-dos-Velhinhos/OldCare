@@ -1,6 +1,7 @@
 ﻿using OldCare.Contexts.AccountContext.Entities;
 using OldCare.Data.Contexts.AccountContext.Mappings;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 using OldCare.Contexts.PersonContext.Entities;
 
 namespace OldCare.Data;
@@ -33,6 +34,7 @@ public class DataContext : DbContext
     {
         #region Account
 
+        builder.HasDefaultSchema("backoffice");
         builder.ApplyConfiguration(new BlackListMap());
         builder.ApplyConfiguration(new BedroomMap());
         builder.ApplyConfiguration(new UserMap());

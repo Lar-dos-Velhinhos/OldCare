@@ -1,5 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
+namespace OldCare.Core.Entities;
+
 [Table("Person")]
 public class Person : Entity
 {
@@ -17,4 +19,3 @@ public class Person : Entity
     public long? RG { get; set; }
     public string? UF { get; set; }
 }
-

@@ -1,4 +1,4 @@
-﻿namespace Oldcare.Core.Enums;
+﻿namespace OldCare.Core.Enums;
 
 public enum EKinship
 {

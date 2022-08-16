@@ -19,7 +19,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OldCare.Data", "OldCare.Dat
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OldCare.Contexts.PersonContext", "OldCare.Contexts.PersonContext\OldCare.Contexts.PersonContext.csproj", "{30702DEA-A419-42D4-9C81-EDFF53BC8643}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Oldcare.Core", "Oldcare.Core\Oldcare.Core.csproj", "{64EA0A37-D460-42C8-B657-8185B3D6EDDD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OldCare.Core", "Oldcare.Core\OldCare.Core.csproj", "{64EA0A37-D460-42C8-B657-8185B3D6EDDD}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OldCare.API", "OldCare.API\OldCare.API.csproj", "{421D7F51-D206-40F0-901F-6BC121E8E9E6}"
 EndProject
