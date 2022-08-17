@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+using OldCare.Core.Entities;
 
 [Table("Prescription")]
 public class Prescription : Entity

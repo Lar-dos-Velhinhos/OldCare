@@ -1,4 +1,4 @@
-namespace Oldcare.Web.Models;
+namespace OldCare.Web.Models;
 
 public class ErrorViewModel
 {

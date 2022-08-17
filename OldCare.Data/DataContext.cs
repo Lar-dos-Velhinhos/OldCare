@@ -33,6 +33,7 @@ public class DataContext : DbContext
     {
         #region Account
 
+        builder.HasDefaultSchema("backoffice");
         builder.ApplyConfiguration(new BlackListMap());
         builder.ApplyConfiguration(new BedroomMap());
         builder.ApplyConfiguration(new UserMap());

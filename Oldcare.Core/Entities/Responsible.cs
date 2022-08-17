@@ -1,4 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+using OldCare.Core.Entities;
+using OldCare.Core.Enums;
 
 [Table("Responsible")]
 public class Responsible : Entity

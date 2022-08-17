@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+using OldCare.Core.Entities;
 
 [Table("Product")]
 public class Product : Entity
