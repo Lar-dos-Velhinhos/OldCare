@@ -1,6 +1,5 @@
 using OldCare.Contexts.SharedContext.ValueObjects;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
-using OldCare.Contexts.SharedContext.ValueObjects;
 
 namespace OldCare.Web.Extensions;
 

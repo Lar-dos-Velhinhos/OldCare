@@ -1,16 +1,17 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
+using OldCare.Web.Extensions;
 
 namespace OldCare.Web.Areas.Person.Controllers;
 
 [Area("Person")]
 public class PersonController : Controller
 {
+    private readonly IMediator _mediator;
+
     #region Ctors
 
-    public PersonController()
-    {
-    }
+    public PersonController(IMediator mediator) => _mediator = mediator;
 
     #endregion
 
@@ -21,6 +22,25 @@ public class PersonController : Controller
     [Authorize]
     [HttpGet("pessoas/adicionar")]
     public IActionResult Create() => View();
+
+    [Authorize]
+    [HttpPost("pessoas/adicionar")]
+    public async Task<IActionResult> Create(Contexts.PersonContext.UseCases.Create.Request request)
+    {
+        try
+        {
+            var result = await _mediator.Send(request);
+            if(result.IsSuccess) return RedirectToAction(nameof(AddressStepFromCreate));
+
+            ModelState.AddResultErrors(result.Errors);
+            return View(request);
+        }
+        catch(Exception ex)
+        {
+            ModelState.AddModelError("Error", ex.Message);
+            return View(request);
+        }
+    }
     
     [Authorize]
     [HttpGet("pessoas/adicionar/endereco")]
