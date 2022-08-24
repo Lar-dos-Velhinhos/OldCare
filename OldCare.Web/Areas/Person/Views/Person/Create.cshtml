@@ -48,7 +48,7 @@
     </h2>
     <p>Dados de endereço da pessoa a ser adicionada.</p>
 
-    <div class="row">
+    <form asp-area="Person" asp-action="Create" asp-controller="Person" method="post" class="row">
         <div class="col-2">
             <img src="~/media/images/general/person-circle.svg" width="96" class="rounded mx-auto d-block" alt="...">
         </div>
@@ -146,9 +146,9 @@
             </div>
 
             <div class="w-100 text-end">
-                <a asp-area="Person" asp-controller="Person" asp-action="AddressStepFromCreate" type="button" class="btn oc-btn-primary">Continuar</a>
+                <button type="submit" class="btn oc-btn-primary">Continuar</button>
             </div>
         </div>
         <div class="col-2" asp-validation-summary="All"></div>
-    </div>
+    </form>
 </div>

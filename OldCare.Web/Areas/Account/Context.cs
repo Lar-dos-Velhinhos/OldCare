@@ -80,5 +80,9 @@ public static class Context
         services
             .AddTransient<Contexts.AccountContext.UseCases.Authenticate.Contracts.IRepository,
                 Data.Contexts.AccountContext.UseCases.Authenticate.Repository>();
+
+        services
+            .AddTransient<Contexts.PersonContext.UseCases.Create.Contracts.IRepository,
+                Data.Contexts.PersonContext.UseCases.Create.Repository>();
     }
 }

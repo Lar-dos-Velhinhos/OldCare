@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using OldCare.Web.Extensions;
+using CreateRequest = OldCare.Contexts.PersonContext.UseCases.Create.Request;
 
 namespace OldCare.Web.Areas.Person.Controllers;
 
@@ -25,27 +26,34 @@ public class PersonController : Controller
 
     [Authorize]
     [HttpPost("pessoas/adicionar")]
-    public async Task<IActionResult> Create(Contexts.PersonContext.UseCases.Create.Request request)
+    public async Task<IActionResult> Create(CreateRequest request)
     {
         try
         {
             var result = await _mediator.Send(request);
-            if(result.IsSuccess) return RedirectToAction(nameof(AddressStepFromCreate));
+
+            if(result.IsSuccess) 
+                return RedirectToAction(nameof(AddressStepFromCreate), "Person", request);
 
             ModelState.AddResultErrors(result.Errors);
-            return View(request);
+
+            return View(result);
         }
         catch(Exception ex)
         {
             ModelState.AddModelError("Error", ex.Message);
+
             return View(request);
         }
     }
-    
+
     [Authorize]
     [HttpGet("pessoas/adicionar/endereco")]
-    public IActionResult AddressStepFromCreate() => View();
-    
+    public IActionResult AddressStepFromCreate(CreateRequest request)
+    {
+         return View(request);
+    }
+
     [Authorize]
     [HttpGet("pessoas/adicionar/filiacao-e-contato")]
     public IActionResult FinalStepFromCreate() => View();
