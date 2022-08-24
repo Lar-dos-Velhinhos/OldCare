@@ -37,7 +37,7 @@ public class PersonController : Controller
 
             ModelState.AddResultErrors(result.Errors);
 
-            return View(result);
+            return View(request);
         }
         catch(Exception ex)
         {

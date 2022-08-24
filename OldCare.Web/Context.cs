@@ -1,11 +1,11 @@
+using Microsoft.EntityFrameworkCore;
 using OldCare.Contexts.AccountContext.UseCases.Create;
 using OldCare.Contexts.AccountContext.UseCases.Create.Contracts;
 using OldCare.Contexts.SharedContext;
 using OldCare.Data;
 using OldCare.Data.Contexts.AccountContext.UseCases.Create;
-using Microsoft.EntityFrameworkCore;
 
-namespace OldCare.Web.Areas.Account;
+namespace OldCare.Web;
 
 public static class Context
 {
@@ -25,7 +25,9 @@ public static class Context
         services.AddTransient<IRepository, Repository>();
         services.AddTransient<IService, Service>();
 
-        services
+        #region PersonContext
+
+                services
             .AddTransient<Contexts.AccountContext.UseCases.VerifyEmail.Contracts.IRepository,
                 Data.Contexts.AccountContext.UseCases.VerifyEmail.Repository>();
         services
@@ -81,8 +83,14 @@ public static class Context
             .AddTransient<Contexts.AccountContext.UseCases.Authenticate.Contracts.IRepository,
                 Data.Contexts.AccountContext.UseCases.Authenticate.Repository>();
 
+        #endregion
+
+        #region PersonContext
+
         services
             .AddTransient<Contexts.PersonContext.UseCases.Create.Contracts.IRepository,
                 Data.Contexts.PersonContext.UseCases.Create.Repository>();
+
+        #endregion
     }
 }

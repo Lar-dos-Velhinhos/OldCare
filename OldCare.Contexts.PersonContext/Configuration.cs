@@ -1,4 +1,4 @@
-﻿namespace PersonContext;
+﻿namespace OldCare.Contexts.PersonContext;
 
 public class Configuration
 {

@@ -1,4 +1,3 @@
-using System.Globalization;
 using OldCare.Contexts.SharedContext.UseCases;
 using MediatR;
 using OldCare.Contexts.PersonContext.Entities;
@@ -11,8 +10,6 @@ namespace OldCare.Contexts.PersonContext.UseCases.Create;
 public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
 {
     #region Private Properties
-
-    private readonly LogService _logService;
     private readonly IRepository _repository;
 
     #endregion
@@ -20,10 +17,7 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
     #region Constructors
 
     public Handler(LogService logService, IRepository repository)
-    {
-        _logService = logService;
-        _repository = repository;
-    }
+        => _repository = repository;
 
     #endregion
 
@@ -39,7 +33,7 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
 
         var result = await _repository.CheckAccountExistsAsync(request.FirstName, request.LastName, request.BirthDate);
         
-        if (!result)
+        if (result)
             return new BaseResponse<ResponseData>("Pessoa já cadastrada.", "e52d25dc");
         
         #endregion
