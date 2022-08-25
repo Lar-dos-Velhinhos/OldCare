@@ -101,6 +101,9 @@ public class Person : Entity, IAggregateRoot
 
     #region Methods
 
+    public void AddDocuments(List<Document> documents)
+        => Documents = documents;
+
     public void ChangeDocuments(List<Document?> documents)
     {
         try
@@ -127,7 +130,7 @@ public class Person : Entity, IAggregateRoot
         Obs = obs;
 
         Tracker.Update("Informações atualizadas");
-    }
+    }    
     
     public void ChangeName(string firstName, string lastName)
         => Name = new Name(firstName, lastName);

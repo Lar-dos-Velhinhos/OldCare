@@ -69,42 +69,16 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
 
         #endregion
 
-        #region 03. Attach address
-
-        Address address = new Address(
-            request.ZipCode,
-            request.Street,
-            request.AddressNumber,
-            request.District,
-            request.City,
-            request.State,
-            request.Country,
-            request.Complement,
-            request.Code,
-            request.Notes);
-
-        #endregion
-
-        #region 04. Attach documents
+        #region 05. Attach documents
 
         try
         {
-            person.ChangeDocuments(request.Documents);
+            person.AddDocuments(request.Documents);
         }
         catch (Exception ex)
         {
-            return new BaseResponse<ResponseData>(ex.Message, "7d2f89cb");
+            return new BaseResponse<ResponseData>("Não foi possível salvar os documentos.", "7d2f89cb");
         }
-
-        #endregion
-
-       
-
-       
-
-        #region 07. Attach person phone number
-
-        person.ChangePhone(request.FullNumber);
 
         #endregion
 
@@ -121,7 +95,7 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
 
         //#endregion
 
-        #region 09. Persist data
+        #region 06. Persist data
 
         try
         {
@@ -134,7 +108,7 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
 
         #endregion
 
-        #region 10. Return success response
+        #region 07. Return success response
 
         return new BaseResponse<ResponseData>(new ResponseData("Bem vindo(a) ao OldCare!"), 201);
 
