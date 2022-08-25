@@ -65,7 +65,6 @@ StyleCopReport.xml
 
 # Click-Once directory
 publish/
-OldCare.Web/Migrations/
 
 # Publish Web Output
 *.[Pp]ublish.xml

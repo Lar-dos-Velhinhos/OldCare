@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using OldCare.Contexts.PersonContext.Entities;
 
-namespace OldCare.Data.Contexts.AccountContext.Mappings;
+namespace OldCare.Data.Contexts.PersonContext.Mappings;
 
 public class PersonMap : IEntityTypeConfiguration<Person>
 {
@@ -72,6 +72,10 @@ public class PersonMap : IEntityTypeConfiguration<Person>
             .Property(x => x.LastName)
             .IsRequired()
             .HasMaxLength(60)
+            .HasColumnType("NVARCHAR");
+
+        builder.Property(x => x.Nationality)
+            .HasMaxLength(160)
             .HasColumnType("NVARCHAR");
 
         builder.OwnsOne(x => x.Phone)

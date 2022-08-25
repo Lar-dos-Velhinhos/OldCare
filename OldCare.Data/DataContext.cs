@@ -2,6 +2,7 @@
 using OldCare.Data.Contexts.AccountContext.Mappings;
 using Microsoft.EntityFrameworkCore;
 using OldCare.Contexts.PersonContext.Entities;
+using OldCare.Data.Contexts.PersonContext.Mappings;
 
 namespace OldCare.Data;
 

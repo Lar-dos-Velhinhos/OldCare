@@ -35,7 +35,38 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
         
         if (result)
             return new BaseResponse<ResponseData>("Pessoa já cadastrada.", "e52d25dc");
-        
+
+        #endregion
+
+        #region 03. Attach person name
+
+        try
+        {
+            person.ChangeName(request.FirstName, request.LastName);
+        }
+        catch (Exception ex)
+        {
+            return new BaseResponse<ResponseData>("Não foi possível salvar o nome.", "1fa4222b");
+        }
+
+        #endregion
+
+        #region 04. Attach personal data
+
+        try
+        {
+            person.ChangeInformation(
+                request.BirthDate,
+                request.Citizenship,
+                request.Gender,
+                request.Nationality,
+                request.Obs);
+        }
+        catch
+        {
+            return new BaseResponse<ResponseData>("Não foi possível salvar as informações pessoais.", "d91cdebc");
+        }
+
         #endregion
 
         #region 03. Attach address
@@ -67,35 +98,9 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
 
         #endregion
 
-        #region 05. Attach personal data
+       
 
-        try
-        {
-            person.ChangeInformation(
-                request.BirthDate,
-                request.Citizenship,
-                request.Gender,
-                request.Obs);
-        }
-        catch
-        {
-            return new BaseResponse<ResponseData>("Não foi possível salvar as informações pessoais.", "d91cdebc");
-        }
-        
-        #endregion
-
-        #region 06. Attach person name
-
-        try
-        {
-            person.ChangeName(request.FirstName, request.LastName);
-        }
-        catch (Exception ex)
-        {
-            return new BaseResponse<ResponseData>("Não foi possível salvar o nome.", "1fa4222b");
-        }
-
-        #endregion
+       
 
         #region 07. Attach person phone number
 
@@ -103,18 +108,18 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
 
         #endregion
 
-        #region 08. Attach person profile photo
+        //#region 08. Attach person profile photo
 
-        try
-        {
-            person.ChangePhoto(request.Photo);
-        }
-        catch (Exception ex)
-        {
-            return new BaseResponse<ResponseData>(ex.Message, "3234a0b3");
-        }
+        //try
+        //{
+        //    person.ChangePhoto(request.Photo);
+        //}
+        //catch (Exception ex)
+        //{
+        //    return new BaseResponse<ResponseData>(ex.Message, "3234a0b3");
+        //}
 
-        #endregion
+        //#endregion
 
         #region 09. Persist data
 

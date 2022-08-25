@@ -87,6 +87,7 @@ public class Person : Entity, IAggregateRoot
     public List<Document>? Documents { get; private set; }
     public bool Gender { get; private set; }
     public Name Name { get; private set; }
+    public string Nationality { get; set; }
     public string? Obs { get; private set; }
     public Phone? Phone { get; private set; }
     public string? Photo { get; private set; }
@@ -116,11 +117,13 @@ public class Person : Entity, IAggregateRoot
         DateTime? birthDate,
         string citizenship,
         bool gender,
+        string nationality,
         string obs)
     {
         BirthDate = birthDate;
         Citizenship = citizenship;
         Gender = gender;
+        Nationality = nationality;
         Obs = obs;
 
         Tracker.Update("Informações atualizadas");
