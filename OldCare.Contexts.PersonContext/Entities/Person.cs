@@ -132,6 +132,7 @@ public class Person : Entity, IAggregateRoot
         Tracker.Update("Informações atualizadas");
     }    
     
+    public void ChangeAddress(Address address) => Address = address;    
     public void ChangeName(string firstName, string lastName)
         => Name = new Name(firstName, lastName);
 

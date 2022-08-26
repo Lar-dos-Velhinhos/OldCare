@@ -4,6 +4,10 @@ using OldCare.Contexts.PersonContext.Entities;
 using OldCare.Contexts.PersonContext.UseCases.Create.Contracts;
 using OldCare.Contexts.SharedContext.ValueObjects;
 using LogService = OldCare.Contexts.SharedContext.Services.Log.Contracts.IService;
+using EllipticCurve.Utils;
+using System.Diagnostics.Metrics;
+using System.IO;
+using System.Reflection.Emit;
 
 namespace OldCare.Contexts.PersonContext.UseCases.Create;
 
@@ -78,6 +82,38 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
         catch (Exception ex)
         {
             return new BaseResponse<ResponseData>("Não foi possível salvar os documentos.", "7d2f89cb");
+        }
+
+        #endregion
+
+        #region 06.  Check if address is empty
+
+        if(string.IsNullOrEmpty(request.Street) && string.IsNullOrEmpty(request.District))
+            return new BaseResponse<ResponseData>(new ResponseData("", request), 201);
+
+        #endregion
+
+        #region 07. Attach address
+
+        try
+        {
+            Address address = new(
+                request.ZipCode,
+                request.Street,
+                request.AddressNumber,
+                request.District,
+                request.City,
+                request.State,
+                request.Country,
+                request.Complement,
+                request.Code,
+                request.Notes);
+
+            person.ChangeAddress(address);
+        }
+        catch
+        {
+            return new BaseResponse<ResponseData>("Não foi possível salvar o endereço.", "f00467f2");
         }
 
         #endregion

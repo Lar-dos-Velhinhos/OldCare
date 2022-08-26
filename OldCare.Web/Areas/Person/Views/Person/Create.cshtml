@@ -86,10 +86,8 @@
                     <div class="mb-3 row">
                         <label asp-for="Gender" class="col-sm-3 col-form-label">Sexo</label>
                         <div class="col-sm-9">
-                            <select asp-for="Gender" class="form-control">
-                                <option selected>Selecione</option>
-                                <option value="0">Feminino</option>
-                                <option value="1">Masculino</option>
+                            <select asp-items="Html.GetEnumSelectList<EGender>()" asp-for="Gender" class="form-control">
+                                                               
                             </select>
                         </div>
                     </div>

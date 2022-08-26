@@ -9,14 +9,14 @@ public class ResponseData : IResponseData
     #region Ctors
     public ResponseData(string message) => Message = message;
 
-    public ResponseData(string message, Person person)
+    public ResponseData(string message, Request request)
     {
         Message = message;
-        Person = person;
+        Request = request;
     }
 
     #endregion
 
     public string Message { get; }
-    public Person Person { get; }       
+    public Request  Request { get; }       
 }

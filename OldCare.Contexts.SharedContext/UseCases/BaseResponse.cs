@@ -39,26 +39,7 @@ public class BaseResponse<TData> : IResponse
         _errors = new List<Error>();
         _errors.Add(new Error(exception.Message));
         StatusCode = statusCode;
-    }
-
-    public BaseResponse(Contexts.PersonContext.Entities.Person person)
-    {
-        this.person = person;
-    }
-
-    public BaseResponse(Contexts.PersonContext.Entities.Person person1)
-    {
-        this.person1 = person1;
-    }
-
-    public BaseResponse(Contexts.PersonContext.Entities.Person person2)
-    {
-        Person = person2;
-    }
-
-    public BaseResponse(Contexts.PersonContext.Entities.Person person2)
-    {
-    }
+    }   
 
     #endregion
 
@@ -71,9 +52,7 @@ public class BaseResponse<TData> : IResponse
 
     [JsonIgnore] public int StatusCode { get; }
 
-    [JsonIgnore] public bool IsSuccess => StatusCode <= 399;
-
-    public Contexts.PersonContext.Entities.Person Person { get; }
+    [JsonIgnore] public bool IsSuccess => StatusCode <= 399;   
 
     #endregion
 }
