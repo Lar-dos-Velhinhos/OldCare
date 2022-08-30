@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
+using OldCare.Contexts.SharedContext.Enums;
 
 #nullable disable
 
@@ -61,7 +62,7 @@ namespace OldCare.Web.Migrations
                     Address_Notes = table.Column<string>(type: "NVARCHAR(160)", maxLength: 160, nullable: true),
                     BirthDate = table.Column<DateTime>(type: "DATETIME2", nullable: true),
                     Citizenship = table.Column<string>(type: "NVARCHAR(160)", maxLength: 160, nullable: true),
-                    Gender = table.Column<bool>(type: "BIT", nullable: false),
+                    Gender = table.Column<EGender>(type: "INT", nullable: false),
                     Name_FirstName = table.Column<string>(type: "NVARCHAR(60)", maxLength: 60, nullable: false),
                     Name_LastName = table.Column<string>(type: "NVARCHAR(60)", maxLength: 60, nullable: false),
                     Nationality = table.Column<string>(type: "NVARCHAR(160)", maxLength: 160, nullable: false),

@@ -111,7 +111,7 @@ public class PersonMap : IEntityTypeConfiguration<Person>
 
         builder.Property(x => x.Gender)
             .IsRequired()
-            .HasColumnType("BIT");
+            .HasColumnType("INT");
 
         builder.Property(x => x.Obs)
             .HasMaxLength(255)

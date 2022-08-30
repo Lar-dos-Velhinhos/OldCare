@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using OldCare.Contexts.SharedContext.Entities;
+using OldCare.Contexts.SharedContext.Enums;
 using OldCare.Contexts.SharedContext.UseCases.Contracts;
 using OldCare.Contexts.SharedContext.ValueObjects;
 
@@ -8,22 +9,19 @@ namespace OldCare.Contexts.PersonContext.Entities;
 public class Person : Entity, IAggregateRoot
 {
     #region Constructors
-    
-    public Person()
-    {
-    }
 
+    public Person() => Tracker = new Tracker("Criação do cadastro da pessoa");
+    
     public Person(
         Address address,
         DateTime? birthDate,
         string? citizenship,
         List<Document>? documents,
-        bool gender,
+        EGender gender,
         Name name,
         string? obs,
         Phone? phone,
-        string? photo,
-        Tracker tracker)
+        string? photo)
     {
         Address = address ?? throw new ArgumentNullException(nameof(address));
         BirthDate = birthDate;
@@ -34,7 +32,7 @@ public class Person : Entity, IAggregateRoot
         Obs = obs;
         Phone = phone;
         Photo = photo;
-        Tracker = tracker ?? throw new ArgumentNullException(nameof(tracker));
+        Tracker = new Tracker("Criação do cadastro da pessoa");
     }
     
     // public Person(
@@ -85,7 +83,7 @@ public class Person : Entity, IAggregateRoot
     public DateTime? BirthDate { get; private set; }
     public string? Citizenship { get; private set; }
     public List<Document>? Documents { get; private set; }
-    public bool Gender { get; private set; }
+    public EGender Gender { get; private set; }
     public Name Name { get; private set; }
     public string Nationality { get; set; }
     public string? Obs { get; private set; }
@@ -93,7 +91,7 @@ public class Person : Entity, IAggregateRoot
     public string? Photo { get; private set; }
     public string FatherName { get; private set; } = string.Empty;
     public string MotherName { get; private set; } = string.Empty;
-    public Tracker Tracker { get; }
+    public Tracker Tracker { get; } = null!;
     [NotMapped]
     public int Age { get; set; }
 
@@ -119,7 +117,7 @@ public class Person : Entity, IAggregateRoot
     public void ChangeInformation(
         DateTime? birthDate,
         string citizenship,
-        bool gender,
+        EGender gender,
         string nationality,
         string obs)
     {
