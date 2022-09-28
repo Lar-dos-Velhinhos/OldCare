@@ -49,9 +49,33 @@ public class PersonController : Controller
 
     [Authorize]
     [HttpGet("pessoas/adicionar/endereco")]
-    public IActionResult AddressStepFromCreate(CreateRequest request)
+    public IActionResult AddressStepFromCreate(CreateRequest request, string returnUrl = "")
     {
-         return View(request);
+        return View(request);
+    }
+
+    [Authorize]
+    [HttpPost("pessoas/adicionar/endereco")]
+    public async Task<IActionResult> AddressStepFromCreate(CreateRequest request)
+    {
+        try
+        {
+            var result = await _mediator.Send(request);
+
+            if (result.IsSuccess)
+                return RedirectToAction(nameof(FinalStepFromCreate), "Person", request);
+            
+            ModelState.AddResultErrors(result.Errors);
+
+            return View(request);
+        }
+        catch (Exception ex)
+        {
+            ModelState.AddModelError("Error", ex.Message);
+            
+            return View(request);
+        }
+         
     }
 
     [Authorize]

@@ -109,8 +109,8 @@
                     <div class="mb-3 row">
                         <label asp-for="State" class="col-sm-2 col-form-label">UF</label>
                         <div class="col-sm-10">
-                            <select asp-for="State" asp-items="Html.GetEnumSelectList<EBrazilianStates>()" class="form-control">
-                                <selected>Selecione</selected>
+                            <select asp-items="Html.GetEnumSelectList<EBrazilianStates>()" asp-for="State" class="form-control">
+                                
                             </select>
                         </div>
                     </div>
@@ -130,7 +130,7 @@
 
             <div class="w-100 text-end">
                 <a asp-area="Person" asp-controller="Person" asp-action="Create" type="button" class="btn oc-btn-primary">Voltar</a>
-                <a asp-area="Person" asp-controller="Person" asp-action="FinalStepFromCreate" type="button" class="btn oc-btn-primary">Continuar</a>
+                <button type="submit" class="btn oc-btn-primary">Continuar</button>
             </div>
         </div>
         <div class="col-2" asp-validation-summary="All"></div>
