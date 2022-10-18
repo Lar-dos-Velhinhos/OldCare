@@ -18,46 +18,47 @@ public class PersonController : Controller
 
     #region Methods
     
-    
-    // TODO: Add create request
     [Authorize]
     [HttpGet("pessoas/adicionar")]
-    public IActionResult Create() => View();
+    public IActionResult GetNewPerson(CreateRequest request)
+    {
+        return View(request);
+    }
 
     [Authorize]
     [HttpPost("pessoas/adicionar")]
-    public async Task<IActionResult> Create(CreateRequest request)
+    public async Task<IActionResult> PostNewPerson(CreateRequest request)
     {
         try
         {
             var result = await _mediator.Send(request);
 
             if(result.IsSuccess) 
-                return RedirectToAction(nameof(AddressStepFromCreate), "Person", request);
+                return RedirectToAction(nameof(GetAddressStepFromCreate), "Person", request);
 
             ModelState.AddResultErrors(result.Errors);
 
-            return View(request);
+            return RedirectToAction(nameof(GetNewPerson), request);
         }
         catch(Exception ex)
         {
             ModelState.AddModelError("Error", ex.Message);
 
-            return View(request);
+            return RedirectToAction(nameof(GetNewPerson), request);
         }
     }
 
     [Authorize]
     [HttpGet("pessoas/adicionar/endereco")]
-    public IActionResult AddressStepFromCreate(CreateRequest request, string returnUrl = "")
-    {
-        return View(request);
-    }
+    public IActionResult GetAddressStepFromCreate(CreateRequest request) => View(request);
 
     [Authorize]
     [HttpPost("pessoas/adicionar/endereco")]
-    public async Task<IActionResult> AddressStepFromCreate(CreateRequest request)
+    public async Task<IActionResult> PostAddressStepFromCreate(CreateRequest request, string submitButton)
     {
+        if(submitButton == "return")
+            return RedirectToAction(nameof(GetNewPerson), "Person", request);
+        
         try
         {
             var result = await _mediator.Send(request);
@@ -67,13 +68,13 @@ public class PersonController : Controller
             
             ModelState.AddResultErrors(result.Errors);
 
-            return View(request);
+            return RedirectToAction(nameof(GetAddressStepFromCreate), request);
         }
         catch (Exception ex)
         {
             ModelState.AddModelError("Error", ex.Message);
             
-            return View(request);
+            return RedirectToAction(nameof(GetAddressStepFromCreate), request);
         }
          
     }

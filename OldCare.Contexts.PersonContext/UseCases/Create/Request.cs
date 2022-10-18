@@ -34,4 +34,6 @@ public class Request : IRequest<BaseResponse<ResponseData>>
     public string Photo { get; set; } = string.Empty;
     public string FatherName { get; set; } = string.Empty;
     public string MotherName { get; set; } = string.Empty;
+
+    public string returnUrl { get; set; } = string.Empty;
 }
