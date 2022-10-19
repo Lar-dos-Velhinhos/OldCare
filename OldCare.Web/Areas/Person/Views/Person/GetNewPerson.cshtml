@@ -116,22 +116,22 @@
             <hr>
 
             <div class="mb-3 row">
+                @* <div class="col-6"> *@
+                @*     <div class="mb-3 row"> *@
+                @*         <label asp-for="Gender" class="col-sm-3 col-form-label">Documento</label> *@
+                @*         <div class="col-sm-9"> *@
+                @*             <select asp-for="Gender" asp-items="Html.GetEnumSelectList<EGender>()" class="form-control"> *@
+                @*                 <option selected>Selecione</option> *@
+                @*             </select> *@
+                @*         </div> *@
+                @*     </div> *@
+                @* </div> *@
                 <div class="col-6">
                     <div class="mb-3 row">
-                        <label asp-for="Gender" class="col-sm-3 col-form-label">Documento</label>
-                        <div class="col-sm-9">
-                            <select asp-for="Gender" asp-items="Html.GetEnumSelectList<EDocumentType>()" class="form-control">
-                                <option selected>Selecione</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6">
-                    <div class="mb-3 row">
-                        <label asp-for="AddressNumber" class="col-sm-3 col-form-label">Número</label>
-                        <div class="col-sm-6">
-                            <input asp-for="AddressNumber" type="text" class="form-control">
-                        </div>
+                        @* <label asp-for="AddressNumber" class="col-sm-3 col-form-label">Número</label> *@
+                        @* <div class="col-sm-6"> *@
+                        @*     <input asp-for="AddressNumber" type="text" class="form-control"> *@
+                        @* </div> *@
                         <div class="col-sm-3">
                             <button class="btn oc-btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Adicionar novo documento">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-plus-fill" viewBox="0 0 16 16">
