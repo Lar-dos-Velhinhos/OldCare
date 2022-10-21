@@ -21,8 +21,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OldCare.Contexts.PersonCont
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OldCare.API", "OldCare.API\OldCare.API.csproj", "{2C8F92F3-EB24-4AB2-885A-CF639AFB259F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OldCare.Core", "OldCare.Core\OldCare.Core.csproj", "{CBC5FDA4-68CB-49D7-818D-045F0C3A45AF}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -60,10 +58,6 @@ Global
 		{2C8F92F3-EB24-4AB2-885A-CF639AFB259F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2C8F92F3-EB24-4AB2-885A-CF639AFB259F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2C8F92F3-EB24-4AB2-885A-CF639AFB259F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CBC5FDA4-68CB-49D7-818D-045F0C3A45AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CBC5FDA4-68CB-49D7-818D-045F0C3A45AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CBC5FDA4-68CB-49D7-818D-045F0C3A45AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CBC5FDA4-68CB-49D7-818D-045F0C3A45AF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{00CD8891-CFBF-4256-AFBE-EE78414408D1} = {2B83984A-69F7-4DA2-95A7-542AF7FD77D8}

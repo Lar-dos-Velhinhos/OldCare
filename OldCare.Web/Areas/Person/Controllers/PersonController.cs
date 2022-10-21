@@ -17,16 +17,20 @@ public class PersonController : Controller
     #endregion
 
     #region Methods
-    
+
     [Authorize]
     [HttpGet("pessoas/adicionar")]
     public IActionResult GetNewPerson(CreateRequest request)
     {
+        foreach (var key in ModelState.Keys)
+            ModelState.ClearValidationState(key);
+
         return View(request);
     }
 
     [Authorize]
     [HttpPost("pessoas/adicionar")]
+    [ValidateAntiForgeryToken]
     public async Task<IActionResult> PostNewPerson(CreateRequest request)
     {
         try
@@ -35,7 +39,7 @@ public class PersonController : Controller
 
             if(result.IsSuccess) 
                 return RedirectToAction(nameof(GetAddressStepFromCreate), "Person", request);
-
+            
             ModelState.AddResultErrors(result.Errors);
 
             return RedirectToAction(nameof(GetNewPerson), request);
@@ -54,6 +58,7 @@ public class PersonController : Controller
 
     [Authorize]
     [HttpPost("pessoas/adicionar/endereco")]
+    [ValidateAntiForgeryToken]
     public async Task<IActionResult> PostAddressStepFromCreate(CreateRequest request, string submitButton)
     {
         if(submitButton == "return")
@@ -73,7 +78,6 @@ public class PersonController : Controller
         catch (Exception ex)
         {
             ModelState.AddModelError("Error", ex.Message);
-            
             return RedirectToAction(nameof(GetAddressStepFromCreate), request);
         }
          

@@ -77,7 +77,7 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
 
         try
         {
-            person.AddDocuments(request.Documents);
+            // person.AddDocuments(request.Documents);
         }
         catch (Exception ex)
         {

@@ -112,6 +112,20 @@
                     </div>
                 </div>
             </div>
+            
+            <!-- Hidden form fields -->
+    
+            <input asp-for="ZipCode" type="text" class="form-control" hidden readonly>
+            <input asp-for="Street" type="text" class="form-control" hidden readonly>
+            <input asp-for="AddressNumber" type="text" class="form-control" hidden readonly>
+            <input asp-for="Complement" type="text" class="form-control" hidden  readonly>
+            <input asp-for="District" type="text" class="form-control" hidden readonly>
+            <input asp-for="City" type="text" class="form-control" hidden readonly>
+            <select asp-for="State" asp-items="Html.GetEnumSelectList<EBrazilianStates>()" class="form-control" readonly hidden>
+            </select>
+            <input asp-for="Notes" type="text" class="form-control" hidden  readonly>
+    
+            <!-- End of hidden form fields -->
 
             <hr>
 
