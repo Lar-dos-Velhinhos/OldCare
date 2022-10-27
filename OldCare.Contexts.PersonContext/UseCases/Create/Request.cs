@@ -23,7 +23,7 @@ public class Request : IRequest<BaseResponse<ResponseData>>
     #endregion
 
     public List<Document?> Documents { get; set; } = new();
-    public DateTime BirthDate { get; set; }
+    public DateTime BirthDate { get; set; } = DateTime.UtcNow;
     public string Nationality { get; set; } = string.Empty;
     public string Citizenship { get; set; } = string.Empty;
     public EGender Gender { get; set; }

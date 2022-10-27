@@ -48,7 +48,26 @@
     </h2>
     <p>Dados de endereço da pessoa a ser adicionada.</p>
 
-    <form asp-area="Person" asp-action="GetNewPerson" asp-controller="Person" method="post" class="row">
+    <form asp-action="" method="post" class="row">
+        
+        <!-- Hidden form fields -->
+            
+        <input asp-for="ZipCode" type="text" class="form-control" hidden readonly>
+        <input asp-for="Street" type="text" class="form-control" hidden readonly>
+        <input asp-for="AddressNumber" type="text" class="form-control" hidden readonly>
+        <input asp-for="Complement" type="text" class="form-control" hidden  readonly>
+        <input asp-for="District" type="text" class="form-control" hidden readonly>
+        <input asp-for="City" type="text" class="form-control" hidden readonly>
+        <select asp-for="State" asp-items="Html.GetEnumSelectList<EBrazilianStates>()" class="form-control" readonly hidden>
+        </select>
+        <input asp-for="Notes" type="text" class="form-control" hidden  readonly>
+        
+        <input asp-for="FullNumber" type="text" class="form-control" hidden readonly>
+        <input asp-for="MotherName" type="text" class="form-control" hidden readonly>
+        <input asp-for="FatherName" type="text" class="form-control" hidden readonly>
+        <input asp-for="Obs" type="text" class="form-control" hidden  readonly>    
+        <!-- End of hidden form fields -->
+        
         <div class="col-2">
             <img src="~/media/images/general/person-circle.svg" width="96" class="rounded mx-auto d-block" alt="...">
         </div>
@@ -78,7 +97,7 @@
                     <div class="mb-3 row">
                         <label asp-for="BirthDate" class="col-sm-3 col-form-label">Nascimento</label>
                         <div class="col-sm-9">
-                            <input asp-for="BirthDate" type="datetime-local" class="form-control">
+                            <input asp-for="BirthDate" type="date" class="form-control">
                         </div>
                     </div>
                 </div>
@@ -87,7 +106,7 @@
                         <label asp-for="Gender" class="col-sm-3 col-form-label">Sexo</label>
                         <div class="col-sm-9">
                             <select asp-items="Html.GetEnumSelectList<EGender>()" asp-for="Gender" class="form-control">
-                                                               
+
                             </select>
                         </div>
                     </div>
@@ -112,20 +131,6 @@
                     </div>
                 </div>
             </div>
-            
-            <!-- Hidden form fields -->
-    
-            <input asp-for="ZipCode" type="text" class="form-control" hidden readonly>
-            <input asp-for="Street" type="text" class="form-control" hidden readonly>
-            <input asp-for="AddressNumber" type="text" class="form-control" hidden readonly>
-            <input asp-for="Complement" type="text" class="form-control" hidden  readonly>
-            <input asp-for="District" type="text" class="form-control" hidden readonly>
-            <input asp-for="City" type="text" class="form-control" hidden readonly>
-            <select asp-for="State" asp-items="Html.GetEnumSelectList<EBrazilianStates>()" class="form-control" readonly hidden>
-            </select>
-            <input asp-for="Notes" type="text" class="form-control" hidden  readonly>
-    
-            <!-- End of hidden form fields -->
 
             <hr>
 
@@ -158,7 +163,7 @@
             </div>
 
             <div class="w-100 text-end">
-                <button type="submit" class="btn oc-btn-primary">Continuar</button>
+                <button asp-area="Person" asp-action="GetNewPerson" asp-controller="Person" type="submit" class="btn oc-btn-primary">Continuar</button>
             </div>
         </div>
         <div class="col-2" asp-validation-summary="All"></div>

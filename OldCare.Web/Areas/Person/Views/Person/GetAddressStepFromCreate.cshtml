@@ -53,11 +53,16 @@
 
         <input asp-for="FirstName" type="text" class="form-control" hidden readonly>
         <input asp-for="LastName" type="text" class="form-control" hidden readonly>
-        <input asp-for="BirthDate" type="datetime-local" class="form-control" hidden readonly>
+        <input asp-for="BirthDate"  type="datetime" class="form-control" hidden readonly>
         <input asp-for="Nationality" type="text" class="form-control" hidden readonly>
         <input asp-for="Citizenship" type="text" class="form-control" hidden readonly>
         <select asp-for="Gender" asp-items="Html.GetEnumSelectList<EGender>()" class="form-control" hidden readonly>
         </select>
+        
+        <input asp-for="FullNumber" type="text" class="form-control" hidden readonly>
+        <input asp-for="MotherName" type="text" class="form-control" hidden readonly>
+        <input asp-for="FatherName" type="text" class="form-control" hidden readonly>
+        <input asp-for="Obs" type="text" class="form-control" hidden  readonly>
 
         <!-- End of hidden form fields -->
 
@@ -142,7 +147,7 @@
 
             <div class="w-100 text-end">
                 <input asp-area="Person" asp-controller="Person" asp-action="GetNewPerson" class="btn oc-btn-primary" type="submit" formmethod="get" name="submitButton" value="Voltar"/>
-                <input asp-area="Person" asp-controller="Person" asp-action="FinalStepFromCreate" class="btn oc-btn-primary" type="submit" name="submitButton" value="Continuar"/>
+                <input asp-area="Person" asp-controller="Person" asp-action="GetFinalStepFromCreate" class="btn oc-btn-primary" type="submit" name="submitButton" value="Continuar"/>
             </div>
         </div>
         <div class="col-2" asp-validation-summary="All"></div>

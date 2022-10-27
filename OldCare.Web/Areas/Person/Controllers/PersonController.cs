@@ -17,6 +17,10 @@ public class PersonController : Controller
     #endregion
 
     #region Methods
+    
+    [Authorize]
+    [HttpGet("pessoas")]
+    public IActionResult Index() => View();
 
     [Authorize]
     [HttpGet("pessoas/adicionar")]
@@ -54,7 +58,10 @@ public class PersonController : Controller
 
     [Authorize]
     [HttpGet("pessoas/adicionar/endereco")]
-    public IActionResult GetAddressStepFromCreate(CreateRequest request) => View(request);
+    public IActionResult GetAddressStepFromCreate(CreateRequest request)
+    {
+        return View(request);
+    }
 
     [Authorize]
     [HttpPost("pessoas/adicionar/endereco")]
@@ -69,7 +76,7 @@ public class PersonController : Controller
             var result = await _mediator.Send(request);
 
             if (result.IsSuccess)
-                return RedirectToAction(nameof(FinalStepFromCreate), "Person", request);
+                return RedirectToAction(nameof(GetFinalStepFromCreate), "Person", request);
             
             ModelState.AddResultErrors(result.Errors);
 
@@ -85,11 +92,30 @@ public class PersonController : Controller
 
     [Authorize]
     [HttpGet("pessoas/adicionar/filiacao-e-contato")]
-    public IActionResult FinalStepFromCreate() => View();
+    public IActionResult GetFinalStepFromCreate(CreateRequest request) => View("FinalStepFromCreate", request);
 
     [Authorize]
-    [HttpGet("pessoas")]
-    public IActionResult Index() => View();
+    [HttpPost("pessoas")]
+    public async Task<IActionResult> PostFinalStepFromCreate(CreateRequest request)
+    {
+        try
+        {
+            var result = await _mediator.Send(request);
+
+            if(result.IsSuccess) 
+                return RedirectToAction(nameof(Index), "Person");
+            
+            ModelState.AddResultErrors(result.Errors);
+
+            return RedirectToAction(nameof(GetFinalStepFromCreate), request);
+        }
+        catch(Exception ex)
+        {
+            ModelState.AddModelError("Error", ex.Message);
+
+            return RedirectToAction(nameof(GetFinalStepFromCreate), request);
+        }
+    }
 
     #endregion
 }
