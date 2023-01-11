@@ -3,27 +3,25 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OldCare.Data;
 
 #nullable disable
 
-namespace OldCare.Web.Migrations
+namespace OldCare.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220825000854_Initial")]
-    partial class Initial
+    partial class DataContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasDefaultSchema("backoffice")
-                .HasAnnotation("ProductVersion", "6.0.6")
+                .HasAnnotation("ProductVersion", "7.0.1")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
             modelBuilder.Entity("OldCare.Contexts.AccountContext.Entities.Bedroom", b =>
                 {
@@ -77,12 +75,12 @@ namespace OldCare.Web.Migrations
                     b.Property<string>("Father")
                         .IsRequired()
                         .HasMaxLength(160)
-                        .HasColumnType("NVARCHAR(160)");
+                        .HasColumnType("NVARCHAR");
 
                     b.Property<string>("HealthInsurance")
                         .IsRequired()
                         .HasMaxLength(160)
-                        .HasColumnType("NVARCHAR(160)");
+                        .HasColumnType("NVARCHAR");
 
                     b.Property<byte>("MaritalStatus")
                         .HasColumnType("TINYINT");
@@ -93,12 +91,12 @@ namespace OldCare.Web.Migrations
                     b.Property<string>("Mother")
                         .IsRequired()
                         .HasMaxLength(160)
-                        .HasColumnType("NVARCHAR(160)");
+                        .HasColumnType("NVARCHAR");
 
                     b.Property<string>("Note")
                         .IsRequired()
                         .HasMaxLength(255)
-                        .HasColumnType("NVARCHAR(255)");
+                        .HasColumnType("NVARCHAR");
 
                     b.Property<Guid>("PersonId")
                         .HasColumnType("uniqueidentifier");
@@ -106,7 +104,7 @@ namespace OldCare.Web.Migrations
                     b.Property<string>("Profession")
                         .IsRequired()
                         .HasMaxLength(160)
-                        .HasColumnType("NVARCHAR(160)");
+                        .HasColumnType("NVARCHAR");
 
                     b.Property<int>("SUS")
                         .HasColumnType("INT");
@@ -132,7 +130,7 @@ namespace OldCare.Web.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(40)
-                        .HasColumnType("VARCHAR(40)")
+                        .HasColumnType("VARCHAR")
                         .HasColumnName("Name");
 
                     b.HasKey("Id");
@@ -201,14 +199,18 @@ namespace OldCare.Web.Migrations
 
                     b.Property<string>("Citizenship")
                         .HasMaxLength(160)
-                        .HasColumnType("NVARCHAR(160)");
+                        .HasColumnType("NVARCHAR");
 
                     b.Property<string>("FatherName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("Gender")
-                        .HasColumnType("BIT");
+                    b.Property<int>("Gender")
+                        .HasColumnType("INT");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit")
+                        .HasColumnName("IsDeleted");
 
                     b.Property<string>("MotherName")
                         .IsRequired()
@@ -217,11 +219,11 @@ namespace OldCare.Web.Migrations
                     b.Property<string>("Nationality")
                         .IsRequired()
                         .HasMaxLength(160)
-                        .HasColumnType("NVARCHAR(160)");
+                        .HasColumnType("NVARCHAR");
 
                     b.Property<string>("Obs")
                         .HasMaxLength(255)
-                        .HasColumnType("NVARCHAR(255)");
+                        .HasColumnType("NVARCHAR");
 
                     b.Property<string>("Photo")
                         .HasColumnType("NVARCHAR");
@@ -241,7 +243,7 @@ namespace OldCare.Web.Migrations
                             b1.Property<string>("Address")
                                 .IsRequired()
                                 .HasMaxLength(120)
-                                .HasColumnType("VARCHAR(120)")
+                                .HasColumnType("VARCHAR")
                                 .HasColumnName("Email");
 
                             b1.HasKey("BlackListId");
@@ -323,7 +325,7 @@ namespace OldCare.Web.Migrations
                             b1.Property<string>("Notes")
                                 .IsRequired()
                                 .HasMaxLength(1024)
-                                .HasColumnType("NVARCHAR(1024)");
+                                .HasColumnType("NVARCHAR");
 
                             b1.Property<DateTime>("UpdatedAt")
                                 .HasColumnType("SMALLDATETIME");
@@ -344,7 +346,7 @@ namespace OldCare.Web.Migrations
                             b1.Property<string>("Address")
                                 .IsRequired()
                                 .HasMaxLength(120)
-                                .HasColumnType("VARCHAR(120)")
+                                .HasColumnType("VARCHAR")
                                 .HasColumnName("Email");
 
                             b1.HasKey("UserId");
@@ -362,7 +364,7 @@ namespace OldCare.Web.Migrations
                                     b2.Property<string>("Code")
                                         .IsRequired()
                                         .HasMaxLength(8)
-                                        .HasColumnType("CHAR(8)")
+                                        .HasColumnType("CHAR")
                                         .HasColumnName("EmailVerificationCode");
 
                                     b2.Property<DateTime>("CodeExpireDate")
@@ -396,7 +398,7 @@ namespace OldCare.Web.Migrations
                             b1.Property<string>("Hash")
                                 .IsRequired()
                                 .HasMaxLength(120)
-                                .HasColumnType("VARCHAR(120)");
+                                .HasColumnType("VARCHAR");
 
                             b1.HasKey("UserId");
 
@@ -450,7 +452,7 @@ namespace OldCare.Web.Migrations
                             b1.Property<string>("Notes")
                                 .IsRequired()
                                 .HasMaxLength(160)
-                                .HasColumnType("NVARCHAR(160)");
+                                .HasColumnType("NVARCHAR");
 
                             b1.Property<DateTime>("UpdatedAt")
                                 .HasColumnType("SMALLDATETIME");
@@ -471,49 +473,49 @@ namespace OldCare.Web.Migrations
                             b1.Property<string>("City")
                                 .IsRequired()
                                 .HasMaxLength(160)
-                                .HasColumnType("NVARCHAR(160)");
+                                .HasColumnType("NVARCHAR");
 
                             b1.Property<string>("Code")
                                 .HasMaxLength(160)
-                                .HasColumnType("NVARCHAR(160)");
+                                .HasColumnType("NVARCHAR");
 
                             b1.Property<string>("Complement")
                                 .HasMaxLength(160)
-                                .HasColumnType("NVARCHAR(160)");
+                                .HasColumnType("NVARCHAR");
 
                             b1.Property<string>("Country")
                                 .IsRequired()
                                 .HasMaxLength(160)
-                                .HasColumnType("NVARCHAR(160)");
+                                .HasColumnType("NVARCHAR");
 
                             b1.Property<string>("District")
                                 .IsRequired()
                                 .HasMaxLength(160)
-                                .HasColumnType("NVARCHAR(160)");
+                                .HasColumnType("NVARCHAR");
 
                             b1.Property<string>("Notes")
                                 .HasMaxLength(160)
-                                .HasColumnType("NVARCHAR(160)");
+                                .HasColumnType("NVARCHAR");
 
                             b1.Property<string>("Number")
                                 .IsRequired()
                                 .HasMaxLength(20)
-                                .HasColumnType("NVARCHAR(20)");
+                                .HasColumnType("NVARCHAR");
 
                             b1.Property<string>("State")
                                 .IsRequired()
                                 .HasMaxLength(2)
-                                .HasColumnType("NVARCHAR(2)");
+                                .HasColumnType("NVARCHAR");
 
                             b1.Property<string>("Street")
                                 .IsRequired()
                                 .HasMaxLength(160)
-                                .HasColumnType("NVARCHAR(160)");
+                                .HasColumnType("NVARCHAR");
 
                             b1.Property<string>("ZipCode")
                                 .IsRequired()
                                 .HasMaxLength(20)
-                                .HasColumnType("NVARCHAR(20)");
+                                .HasColumnType("NVARCHAR");
 
                             b1.HasKey("PersonId");
 
@@ -532,7 +534,7 @@ namespace OldCare.Web.Migrations
                                 .ValueGeneratedOnAdd()
                                 .HasColumnType("int");
 
-                            SqlServerPropertyBuilderExtensions.UseIdentityColumn(b1.Property<int>("Id"), 1L, 1);
+                            SqlServerPropertyBuilderExtensions.UseIdentityColumn(b1.Property<int>("Id"));
 
                             b1.Property<string>("Number")
                                 .IsRequired()
@@ -554,12 +556,12 @@ namespace OldCare.Web.Migrations
                             b1.Property<string>("FirstName")
                                 .IsRequired()
                                 .HasMaxLength(60)
-                                .HasColumnType("NVARCHAR(60)");
+                                .HasColumnType("NVARCHAR");
 
                             b1.Property<string>("LastName")
                                 .IsRequired()
                                 .HasMaxLength(60)
-                                .HasColumnType("NVARCHAR(60)");
+                                .HasColumnType("NVARCHAR");
 
                             b1.HasKey("PersonId");
 
@@ -577,7 +579,7 @@ namespace OldCare.Web.Migrations
                             b1.Property<string>("FullNumber")
                                 .IsRequired()
                                 .HasMaxLength(16)
-                                .HasColumnType("VARCHAR(16)");
+                                .HasColumnType("VARCHAR");
 
                             b1.HasKey("PersonId");
 
@@ -594,7 +596,7 @@ namespace OldCare.Web.Migrations
                                     b2.Property<string>("Code")
                                         .IsRequired()
                                         .HasMaxLength(6)
-                                        .HasColumnType("CHAR(6)");
+                                        .HasColumnType("CHAR");
 
                                     b2.Property<DateTime>("CodeExpireDate")
                                         .HasColumnType("DATETIME2");

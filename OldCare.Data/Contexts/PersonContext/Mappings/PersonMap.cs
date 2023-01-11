@@ -113,6 +113,9 @@ public class PersonMap : IEntityTypeConfiguration<Person>
             .IsRequired()
             .HasColumnType("INT");
 
+        builder.Property(x => x.IsDeleted)
+            .HasColumnName("IsDeleted");
+
         builder.Property(x => x.Obs)
             .HasMaxLength(255)
             .HasColumnType("NVARCHAR");

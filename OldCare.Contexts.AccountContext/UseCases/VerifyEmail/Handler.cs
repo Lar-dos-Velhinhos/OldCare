@@ -2,6 +2,7 @@
 using OldCare.Contexts.AccountContext.UseCases.VerifyEmail.Contracts;
 using OldCare.Contexts.SharedContext.UseCases;
 using MediatR;
+using OldCare.Contexts.SharedContext.Enums;
 using IRepository = OldCare.Contexts.AccountContext.UseCases.VerifyEmail.Contracts.IRepository;
 using ReCaptchaService = OldCare.Services.Google.ReCaptcha.Contracts.IService;
 
@@ -126,7 +127,7 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
         }
         catch (Exception ex)
         {
-            await _logService.LogAsync(ex.Message);
+            await _logService.LogAsync(ELogType.LocalException, ex.Message);
             return new BaseResponse<ResponseData>("Não foi possível verificar sua conta.");
         }
 
@@ -140,7 +141,7 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
         }
         catch (Exception ex)
         {
-            await _logService.LogAsync(ex.Message);
+            await _logService.LogAsync(ELogType.LocalException, ex.Message);
         }
 
         #endregion

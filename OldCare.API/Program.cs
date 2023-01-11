@@ -1,5 +1,3 @@
-using System.Globalization;
-using Microsoft.AspNetCore.Localization;
 using OldCare.API;
 using OldCare.API.Extensions;
 
@@ -7,7 +5,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(options =>
+{
+    options.CustomSchemaIds(type => type.ToString());
+});
 
 builder.AddBaseConfiguration();
 builder.AddBaseServices();
@@ -17,6 +18,7 @@ Context.ConfigureServices(builder.Services);
 
 var app = builder.Build();
 
+// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -24,15 +26,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-var supportedCultures = new[] { new CultureInfo("pt-BR") };
-app.UseRequestLocalization(new RequestLocalizationOptions
-{
-    DefaultRequestCulture = new RequestCulture("pt-BR", "pt-BR"),
-    SupportedCultures = supportedCultures,
-    SupportedUICultures = supportedCultures
-});
 
-app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

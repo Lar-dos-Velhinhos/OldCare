@@ -6,12 +6,31 @@ using OldCare.Contexts.SharedContext.ValueObjects;
 
 namespace OldCare.Contexts.PersonContext.Entities;
 
+/// <summary>
+/// A entity to aggregate Person data
+/// </summary>
 public class Person : Entity, IAggregateRoot
 {
     #region Constructors
 
+    /// <summary>
+    /// Create a new instance of Person with default configuration
+    /// </summary>
     public Person() => Tracker = new Tracker("Criação do cadastro da pessoa");
     
+    /// <summary>
+    /// Create a new instance of Person with personalized configuration
+    /// </summary>
+    /// <param name="address">Person detailed address (value object)</param>
+    /// <param name="birthDate">Person birthdate</param>
+    /// <param name="citizenship">Person citizenship</param>
+    /// <param name="documents">Wait an list of Person Documents</param>
+    /// <param name="gender">Person Gender</param>
+    /// <param name="name">Person Name (value object)</param>
+    /// <param name="obs">Person observations</param>
+    /// <param name="phone">Person full phone number (value object)</param>
+    /// <param name="photo">Person photo url slug</param>
+    /// <exception cref="ArgumentNullException"></exception>
     public Person(
         Address address,
         DateTime? birthDate,
@@ -34,56 +53,17 @@ public class Person : Entity, IAggregateRoot
         Photo = photo;
         Tracker = new Tracker("Criação do cadastro da pessoa");
     }
-    
-    // public Person(
-    //     Address address,
-    //     int zipCode,
-    //     string street,
-    //     string number,
-    //     string district,
-    //     string city,
-    //     string state,
-    //     string country,
-    //     string complement,
-    //     string code,
-    //     string notes,
-    //     string firstName,
-    //     string lastName,
-    //     string fullNumber,
-    //     string isVerified,
-    //     string code,
-    //     DateTime? codeExpireDate,
-    //     string citizenship,
-    //     List<Document>? documents,
-    //     bool gender,
-    //     string obs,
-    //     DateTime birthDate,
-    //     DateTime createdAt,
-    //     DateTime updatedAt,
-    //     string notes,
-    //     string photo)
-    // {
-    //     Address = address ?? throw new ArgumentNullException(nameof(address));
-    //     BirthDate = birthDate;
-    //     Citizenship = citizenship;
-    //     Documents = documents;
-    //     Gender = gender;
-    //     Name = name ?? throw new ArgumentNullException(nameof(name));
-    //     Obs = obs;
-    //     Phone = phone;
-    //     Photo = photo;
-    //     Tracker = tracker ?? throw new ArgumentNullException(nameof(tracker));
-    // }
 
     #endregion
 
-    #region Properties
+    #region Public Properties
 
     public Address Address { get; private set; }
     public DateTime? BirthDate { get; private set; }
     public string? Citizenship { get; private set; }
     public List<Document>? Documents { get; private set; }
     public EGender Gender { get; private set; }
+    public bool IsDeleted { get; private set; }
     public Name Name { get; private set; }
     public string Nationality { get; set; }
     public string? Obs { get; private set; }

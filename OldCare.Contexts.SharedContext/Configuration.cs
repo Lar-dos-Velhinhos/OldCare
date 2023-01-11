@@ -137,6 +137,7 @@ public static class Configuration
         public class DiscordConfigurationWebhooks
         {
             public string LogsUrl { get; set; } = string.Empty;
+            public string ExceptionsUrl { get; set; } = string.Empty;
         }
     }
 }

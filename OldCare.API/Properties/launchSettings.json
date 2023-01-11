@@ -4,17 +4,27 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:24519",
-      "sslPort": 44336
+      "applicationUrl": "http://localhost:49089",
+      "sslPort": 44335
     }
   },
   "profiles": {
-    "OldCare.API": {
+    "http": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
       "launchUrl": "swagger",
-      "applicationUrl": "https://localhost:7109;http://localhost:5109",
+      "applicationUrl": "http://localhost:5152",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    "https": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "applicationUrl": "https://localhost:7048;http://localhost:5152",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

@@ -1,9 +1,9 @@
+﻿using Microsoft.EntityFrameworkCore;
 using OldCare.Contexts.AccountContext.UseCases.Create;
 using OldCare.Contexts.AccountContext.UseCases.Create.Contracts;
 using OldCare.Contexts.SharedContext;
 using OldCare.Data;
 using OldCare.Data.Contexts.AccountContext.UseCases.Create;
-using Microsoft.EntityFrameworkCore;
 
 namespace OldCare.API;
 
@@ -16,7 +16,7 @@ public static class Context
             {
                 x.UseSqlServer(
                     Configuration.Database.ConnectionString,
-                    options => { options.MigrationsAssembly("OldCare.Web"); });
+                    options => { options.MigrationsAssembly("OldCare.API"); });
             });
     }
 
@@ -24,6 +24,8 @@ public static class Context
     {
         services.AddTransient<IRepository, Repository>();
         services.AddTransient<IService, Service>();
+
+        #region AccountContext
 
         services
             .AddTransient<Contexts.AccountContext.UseCases.VerifyEmail.Contracts.IRepository,
@@ -68,6 +70,10 @@ public static class Context
         services
             .AddTransient<Contexts.AccountContext.UseCases.Edit.Contracts.IRepository,
                 Data.Contexts.AccountContext.UseCases.Edit.Repository>();
+        
+        services
+            .AddTransient<Contexts.AccountContext.UseCases.ListResidents.Contracts.IRepository,
+                Data.Contexts.AccountContext.UseCases.ListResidents.Repository>();
 
         services
             .AddTransient<Contexts.AccountContext.UseCases.Details.Contracts.IRepository,
@@ -76,5 +82,19 @@ public static class Context
         services
             .AddTransient<Contexts.AccountContext.UseCases.Authenticate.Contracts.IRepository,
                 Data.Contexts.AccountContext.UseCases.Authenticate.Repository>();
+
+        #endregion
+
+        #region PersonContext
+
+        services
+            .AddTransient<Contexts.PersonContext.UseCases.Create.Contracts.IRepository,
+                Data.Contexts.PersonContext.UseCases.Create.Repository>();
+
+        services
+            .AddTransient<Contexts.PersonContext.UseCases.Get.Contracts.IRepository,
+                Data.Contexts.PersonContext.UseCases.Get.Repository>();
+
+        #endregion
     }
 }

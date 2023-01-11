@@ -2,26 +2,30 @@ using OldCare.Contexts.SharedContext.UseCases;
 using MediatR;
 using OldCare.Contexts.PersonContext.Entities;
 using OldCare.Contexts.PersonContext.UseCases.Create.Contracts;
+using OldCare.Contexts.SharedContext.Enums;
 using OldCare.Contexts.SharedContext.ValueObjects;
 using LogService = OldCare.Contexts.SharedContext.Services.Log.Contracts.IService;
-using EllipticCurve.Utils;
-using System.Diagnostics.Metrics;
-using System.IO;
-using System.Reflection.Emit;
 
 namespace OldCare.Contexts.PersonContext.UseCases.Create;
 
 public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
 {
     #region Private Properties
+
+    private readonly LogService _logService;
     private readonly IRepository _repository;
 
     #endregion
 
     #region Constructors
 
-    public Handler(LogService logService, IRepository repository)
-        => _repository = repository;
+    public Handler(
+        LogService logService,
+        IRepository repository)
+    {
+        _logService = logService;
+        _repository = repository;
+    }
 
     #endregion
 
@@ -36,9 +40,12 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
         #region 02. Check if person already exists
 
         var result = await _repository.CheckAccountExistsAsync(request.FirstName, request.LastName, request.BirthDate);
-        
+
         if (result)
+        {
+            await _logService.LogAsync(ELogType.LocalException, $"👥 {request.FirstName} {request.LastName} - Pessoa já cadastrada", "E52D25DC", null);
             return new BaseResponse<ResponseData>("Pessoa já cadastrada.", "e52d25dc");
+        }
 
         #endregion
 
@@ -50,6 +57,7 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
         }
         catch (Exception ex)
         {
+            await _logService.LogAsync(ELogType.LocalException, $"❌ {request.FirstName} {request.FirstName} Não foi possível salvar o nome.", "1fa4222b");
             return new BaseResponse<ResponseData>("Não foi possível salvar o nome.", "1fa4222b");
         }
 
@@ -146,7 +154,7 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
 
         #region 07. Return success response
 
-        return new BaseResponse<ResponseData>(new ResponseData("Bem vindo(a) ao OldCare!"), 201);
+        return new BaseResponse<ResponseData>(new ResponseData($"{person.Name} - Cadastro efetuado com sucesso!"), 201);
 
         #endregion
     }

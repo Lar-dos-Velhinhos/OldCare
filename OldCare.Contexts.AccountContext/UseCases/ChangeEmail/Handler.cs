@@ -2,6 +2,7 @@
 using OldCare.Contexts.AccountContext.UseCases.ChangeEmail.Contracts;
 using OldCare.Contexts.SharedContext.UseCases;
 using MediatR;
+using OldCare.Contexts.SharedContext.Enums;
 using IService = OldCare.Contexts.SharedContext.Services.Log.Contracts.IService;
 using ReCaptchaService = OldCare.Services.Google.ReCaptcha.Contracts.IService;
 
@@ -121,7 +122,7 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
         }
         catch (Exception ex)
         {
-            await _logService.LogAsync(ex.Message);
+            await _logService.LogAsync(ELogType.LocalException, ex.Message);
         }
 
         #endregion

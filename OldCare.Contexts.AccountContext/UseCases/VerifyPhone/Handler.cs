@@ -2,6 +2,7 @@
 using OldCare.Contexts.SharedContext.Services.Log.Contracts;
 using OldCare.Contexts.SharedContext.UseCases;
 using MediatR;
+using OldCare.Contexts.SharedContext.Enums;
 using IRepository = OldCare.Contexts.AccountContext.UseCases.VerifyPhone.Contracts.IRepository;
 
 namespace OldCare.Contexts.AccountContext.UseCases.VerifyPhone;
@@ -75,7 +76,7 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
         }
         catch (Exception ex)
         {
-            await _logService.LogAsync(ex.Message);
+            await _logService.LogAsync(ELogType.LocalException, ex.Message);
             return new BaseResponse<ResponseData>("Não foi possível verificar seu telefone.");
         }
 

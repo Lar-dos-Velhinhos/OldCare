@@ -14,6 +14,10 @@ public static class AppExtension
         builder.Configuration.GetSection("Database").Bind(Configuration.Database);
         builder.Configuration.GetSection("SendGrid").Bind(Configuration.SendGrid);
         builder.Configuration.GetSection("Azure").Bind(Configuration.Azure);
+        builder.Configuration.GetSection("Google").Bind(Configuration.Google);
+        builder.Configuration.GetSection("ActiveCampaign").Bind(Configuration.ActiveCampaign);
+        builder.Configuration.GetSection("Facebook").Bind(Configuration.Facebook);
+        builder.Configuration.GetSection("OneSignal").Bind(Configuration.OneSignal);
         builder.Configuration.GetSection("Discord").Bind(Configuration.Discord);
     }
 
@@ -23,6 +27,10 @@ public static class AppExtension
             OldCare.Contexts.SharedContext.Services.Log.Contracts.IService,
             OldCare.Contexts.SharedContext.Services.Log.Service>();
 
+        builder.Services.AddTransient<
+            OldCare.Services.Google.ReCaptcha.Contracts.IService,
+            OldCare.Services.Google.ReCaptcha.Service>();
+
         builder.Services
             .Configure<ApiBehaviorOptions>(x => { x.SuppressModelStateInvalidFilter = true; })
             .Configure<JsonOptions>(x =>
@@ -31,9 +39,12 @@ public static class AppExtension
                 x.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault;
             });
 
-        // TODO: Verificar incompatibilidade MeadiatR e formular solução
-        // builder.Services.AddMediatR(
-        //     typeof(Contexts.AccountContext.Configuration),
-        //     typeof(Program));
+        builder.Services.AddMediatR(
+            typeof(Contexts.AccountContext.Configuration),
+            typeof(Program));
+        
+        builder.Services.AddMediatR(
+            typeof(Contexts.PersonContext.Configuration),
+            typeof(Program));
     }
 }

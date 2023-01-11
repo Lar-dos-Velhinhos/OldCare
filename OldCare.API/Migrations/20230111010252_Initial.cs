@@ -1,13 +1,14 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
-using OldCare.Contexts.SharedContext.Enums;
 
 #nullable disable
 
-namespace OldCare.Web.Migrations
+namespace OldCare.API.Migrations
 {
+    /// <inheritdoc />
     public partial class Initial : Migration
     {
+        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.EnsureSchema(
@@ -50,33 +51,34 @@ namespace OldCare.Web.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Address_ZipCode = table.Column<string>(type: "NVARCHAR(20)", maxLength: 20, nullable: false),
-                    Address_Street = table.Column<string>(type: "NVARCHAR(160)", maxLength: 160, nullable: false),
-                    Address_Number = table.Column<string>(type: "NVARCHAR(20)", maxLength: 20, nullable: false),
-                    Address_Complement = table.Column<string>(type: "NVARCHAR(160)", maxLength: 160, nullable: true),
-                    Address_District = table.Column<string>(type: "NVARCHAR(160)", maxLength: 160, nullable: false),
-                    Address_City = table.Column<string>(type: "NVARCHAR(160)", maxLength: 160, nullable: false),
-                    Address_State = table.Column<string>(type: "NVARCHAR(2)", maxLength: 2, nullable: false),
-                    Address_Country = table.Column<string>(type: "NVARCHAR(160)", maxLength: 160, nullable: false),
-                    Address_Code = table.Column<string>(type: "NVARCHAR(160)", maxLength: 160, nullable: true),
-                    Address_Notes = table.Column<string>(type: "NVARCHAR(160)", maxLength: 160, nullable: true),
+                    AddressZipCode = table.Column<string>(name: "Address_ZipCode", type: "NVARCHAR(20)", maxLength: 20, nullable: false),
+                    AddressStreet = table.Column<string>(name: "Address_Street", type: "NVARCHAR(160)", maxLength: 160, nullable: false),
+                    AddressNumber = table.Column<string>(name: "Address_Number", type: "NVARCHAR(20)", maxLength: 20, nullable: false),
+                    AddressComplement = table.Column<string>(name: "Address_Complement", type: "NVARCHAR(160)", maxLength: 160, nullable: true),
+                    AddressDistrict = table.Column<string>(name: "Address_District", type: "NVARCHAR(160)", maxLength: 160, nullable: false),
+                    AddressCity = table.Column<string>(name: "Address_City", type: "NVARCHAR(160)", maxLength: 160, nullable: false),
+                    AddressState = table.Column<string>(name: "Address_State", type: "NVARCHAR(2)", maxLength: 2, nullable: false),
+                    AddressCountry = table.Column<string>(name: "Address_Country", type: "NVARCHAR(160)", maxLength: 160, nullable: false),
+                    AddressCode = table.Column<string>(name: "Address_Code", type: "NVARCHAR(160)", maxLength: 160, nullable: true),
+                    AddressNotes = table.Column<string>(name: "Address_Notes", type: "NVARCHAR(160)", maxLength: 160, nullable: true),
                     BirthDate = table.Column<DateTime>(type: "DATETIME2", nullable: true),
                     Citizenship = table.Column<string>(type: "NVARCHAR(160)", maxLength: 160, nullable: true),
-                    Gender = table.Column<EGender>(type: "INT", nullable: false),
-                    Name_FirstName = table.Column<string>(type: "NVARCHAR(60)", maxLength: 60, nullable: false),
-                    Name_LastName = table.Column<string>(type: "NVARCHAR(60)", maxLength: 60, nullable: false),
+                    Gender = table.Column<int>(type: "INT", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    NameFirstName = table.Column<string>(name: "Name_FirstName", type: "NVARCHAR(60)", maxLength: 60, nullable: false),
+                    NameLastName = table.Column<string>(name: "Name_LastName", type: "NVARCHAR(60)", maxLength: 60, nullable: false),
                     Nationality = table.Column<string>(type: "NVARCHAR(160)", maxLength: 160, nullable: false),
                     Obs = table.Column<string>(type: "NVARCHAR(255)", maxLength: 255, nullable: true),
-                    Phone_FullNumber = table.Column<string>(type: "VARCHAR(16)", maxLength: 16, nullable: true),
-                    Phone_Verification_IsVerified = table.Column<bool>(type: "BIT", nullable: true),
-                    Phone_Verification_Code = table.Column<string>(type: "CHAR(6)", maxLength: 6, nullable: true),
-                    Phone_Verification_CodeExpireDate = table.Column<DateTime>(type: "DATETIME2", nullable: true),
+                    PhoneFullNumber = table.Column<string>(name: "Phone_FullNumber", type: "VARCHAR(16)", maxLength: 16, nullable: true),
+                    PhoneVerificationIsVerified = table.Column<bool>(name: "Phone_Verification_IsVerified", type: "BIT", nullable: true),
+                    PhoneVerificationCode = table.Column<string>(name: "Phone_Verification_Code", type: "CHAR(6)", maxLength: 6, nullable: true),
+                    PhoneVerificationCodeExpireDate = table.Column<DateTime>(name: "Phone_Verification_CodeExpireDate", type: "DATETIME2", nullable: true),
                     Photo = table.Column<string>(type: "NVARCHAR", nullable: true),
                     FatherName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     MotherName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Tracker_CreatedAt = table.Column<DateTime>(type: "SMALLDATETIME", nullable: false),
-                    Tracker_UpdatedAt = table.Column<DateTime>(type: "SMALLDATETIME", nullable: false),
-                    Tracker_Notes = table.Column<string>(type: "NVARCHAR(160)", maxLength: 160, nullable: false)
+                    TrackerCreatedAt = table.Column<DateTime>(name: "Tracker_CreatedAt", type: "SMALLDATETIME", nullable: false),
+                    TrackerUpdatedAt = table.Column<DateTime>(name: "Tracker_UpdatedAt", type: "SMALLDATETIME", nullable: false),
+                    TrackerNotes = table.Column<string>(name: "Tracker_Notes", type: "NVARCHAR(160)", maxLength: 160, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -168,11 +170,11 @@ namespace OldCare.Web.Migrations
                     EmailVerified = table.Column<bool>(type: "BIT", nullable: false),
                     EmailVerificationCode = table.Column<string>(type: "CHAR(8)", maxLength: 8, nullable: false),
                     EmailVerificationCodeExpireDate = table.Column<DateTime>(type: "DATETIME2", nullable: false),
-                    Password_Hash = table.Column<string>(type: "VARCHAR(120)", maxLength: 120, nullable: false),
-                    Password_Expired = table.Column<bool>(type: "BIT", nullable: false),
-                    Tracker_CreatedAt = table.Column<DateTime>(type: "SMALLDATETIME", nullable: false),
-                    Tracker_UpdatedAt = table.Column<DateTime>(type: "SMALLDATETIME", nullable: false),
-                    Tracker_Notes = table.Column<string>(type: "NVARCHAR(1024)", maxLength: 1024, nullable: false),
+                    PasswordHash = table.Column<string>(name: "Password_Hash", type: "VARCHAR(120)", maxLength: 120, nullable: false),
+                    PasswordExpired = table.Column<bool>(name: "Password_Expired", type: "BIT", nullable: false),
+                    TrackerCreatedAt = table.Column<DateTime>(name: "Tracker_CreatedAt", type: "SMALLDATETIME", nullable: false),
+                    TrackerUpdatedAt = table.Column<DateTime>(name: "Tracker_UpdatedAt", type: "SMALLDATETIME", nullable: false),
+                    TrackerNotes = table.Column<string>(name: "Tracker_Notes", type: "NVARCHAR(1024)", maxLength: 1024, nullable: false),
                     PersonId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Active = table.Column<bool>(type: "BIT", nullable: false)
                 },
@@ -249,6 +251,7 @@ namespace OldCare.Web.Migrations
                 column: "UserId");
         }
 
+        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(

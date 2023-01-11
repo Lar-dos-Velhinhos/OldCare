@@ -17,7 +17,7 @@
         <PackageReference Include="Flunt" Version="2.0.5" />
         <PackageReference Include="Flunt.Extensions.Br" Version="1.0.1" />
         <PackageReference Include="MediatR" Version="10.0.1" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.6" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.1" />
         <PackageReference Include="Twilio" Version="5.75.1" />
     </ItemGroup>
   
