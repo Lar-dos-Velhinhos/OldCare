@@ -63,7 +63,7 @@ public class Person : Entity, IAggregateRoot
     public string? Citizenship { get; private set; }
     public List<Document>? Documents { get; private set; }
     public EGender Gender { get; private set; }
-    public bool IsDeleted { get; private set; }
+    public bool IsDeleted { get; set; }
     public Name Name { get; private set; }
     public string Nationality { get; set; }
     public string? Obs { get; private set; }
@@ -122,6 +122,12 @@ public class Person : Entity, IAggregateRoot
 
     public void ChangePhoto(string path)
         => Photo = path;
+
+    public void Delete()
+    {
+        IsDeleted = true;
+        Tracker.Update("Pessoa deletada.");
+    }
 
     public void GeneratePhoneVerificationCode()
     {

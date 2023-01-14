@@ -32,7 +32,11 @@ public class Repository : IRepository
     }
 
     public async Task<List<Person>> GetAll(int skip, int take)
-        => await _context.People.Skip(skip).Take(take).ToListAsync();
+        => await _context.People
+            .Skip(skip)
+            .Take(take)
+            .Where(p => p.IsDeleted == false)
+            .ToListAsync();
 
     #endregion
 }

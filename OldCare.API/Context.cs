@@ -94,6 +94,10 @@ public static class Context
         services
             .AddTransient<Contexts.PersonContext.UseCases.Get.Contracts.IRepository,
                 Data.Contexts.PersonContext.UseCases.Get.Repository>();
+        
+        services
+            .AddTransient<Contexts.PersonContext.UseCases.Delete.Contracts.IRepository,
+                Data.Contexts.PersonContext.UseCases.Delete.Repository>();
 
         #endregion
     }

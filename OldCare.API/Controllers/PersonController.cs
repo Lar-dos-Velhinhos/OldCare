@@ -1,11 +1,10 @@
-﻿using System.Net;
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using OldCare.Contexts.SharedContext.Enums;
 using OldCare.Contexts.SharedContext.UseCases;
 using UCCreate = OldCare.Contexts.PersonContext.UseCases.Create;
 using UCGet = OldCare.Contexts.PersonContext.UseCases.Get;
+using UCDelete = OldCare.Contexts.PersonContext.UseCases.Delete;
 
 namespace OldCare.API.Controllers;
 
@@ -61,8 +60,16 @@ public class PersonController : ControllerBase
 
     [AllowAnonymous]
     [HttpDelete("delete/{id}")]
-    public async Task<IActionResult> DeleteAsync(Guid id)
+    public async Task<BaseResponse<UCDelete.ResponseData>> DeleteAsync(Guid id)
     {
-        return (IActionResult)Results.Ok("");
+        try
+        {
+            var result = await _mediator.Send(new UCDelete.Request(){Id = id});
+            return result;
+        }
+        catch (Exception e)
+        {
+            return new BaseResponse<UCDelete.ResponseData>(e.Message, "BF270861", 400);
+        }
     }
 }

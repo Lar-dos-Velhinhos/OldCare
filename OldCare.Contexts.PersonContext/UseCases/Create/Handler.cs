@@ -31,7 +31,7 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
 
     public async Task<BaseResponse<ResponseData>> Handle(Request request, CancellationToken cancellationToken)
     {
-        #region 01. Create aggregate root
+        #region 01. Create Aggregate Root
 
         Person person = new();
 
