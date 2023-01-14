@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using OldCare.Contexts.PersonContext.Entities;
 
-namespace OldCare.Data.Contexts.AccountContext.Mappings;
+namespace OldCare.Data.Contexts.PersonContext.Mappings;
 
 public class PersonMap : IEntityTypeConfiguration<Person>
 {
@@ -74,6 +74,10 @@ public class PersonMap : IEntityTypeConfiguration<Person>
             .HasMaxLength(60)
             .HasColumnType("NVARCHAR");
 
+        builder.Property(x => x.Nationality)
+            .HasMaxLength(160)
+            .HasColumnType("NVARCHAR");
+
         builder.OwnsOne(x => x.Phone)
             .Property(x => x.FullNumber)
             .IsRequired()
@@ -107,7 +111,10 @@ public class PersonMap : IEntityTypeConfiguration<Person>
 
         builder.Property(x => x.Gender)
             .IsRequired()
-            .HasColumnType("BIT");
+            .HasColumnType("INT");
+
+        builder.Property(x => x.IsDeleted)
+            .HasColumnName("IsDeleted");
 
         builder.Property(x => x.Obs)
             .HasMaxLength(255)

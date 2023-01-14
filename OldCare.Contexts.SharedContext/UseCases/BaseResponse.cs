@@ -18,7 +18,7 @@ public class BaseResponse<TData> : IResponse
     {
         Data = data;
         StatusCode = statusCode;
-    }
+    }    
 
     public BaseResponse(string error, string key = "", int statusCode = 400)
     {
@@ -39,7 +39,7 @@ public class BaseResponse<TData> : IResponse
         _errors = new List<Error>();
         _errors.Add(new Error(exception.Message));
         StatusCode = statusCode;
-    }
+    }   
 
     #endregion
 
@@ -52,7 +52,7 @@ public class BaseResponse<TData> : IResponse
 
     [JsonIgnore] public int StatusCode { get; }
 
-    [JsonIgnore] public bool IsSuccess => StatusCode <= 399;
+    [JsonIgnore] public bool IsSuccess => StatusCode <= 399;   
 
     #endregion
 }

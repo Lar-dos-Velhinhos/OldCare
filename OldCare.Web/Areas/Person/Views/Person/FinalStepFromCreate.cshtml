@@ -48,12 +48,34 @@
     </h2>
     <p>Filiação e contato da pessoa a ser adicionada.</p>
 
-    <div class="row">
+    <form class="row" asp-action="" method="post">
+        
+        <!-- Hidden form fields -->
+                
+        <input asp-for="FirstName" type="text" class="form-control" hidden readonly>
+        <input asp-for="LastName" type="text" class="form-control" hidden readonly>
+        <input asp-for="BirthDate" type="datetime-local" class="form-control" hidden readonly>
+        <input asp-for="Nationality" type="text" class="form-control" hidden readonly>
+        <input asp-for="Citizenship" type="text" class="form-control" hidden readonly>
+        <select asp-for="Gender" asp-items="Html.GetEnumSelectList<EGender>()" class="form-control" hidden readonly>
+        </select>
+
+        <input asp-for="ZipCode" type="text" class="form-control" hidden readonly>
+        <input asp-for="Street" type="text" class="form-control" hidden readonly>
+        <input asp-for="AddressNumber" type="text" class="form-control" hidden readonly>
+        <input asp-for="Complement" type="text" class="form-control" hidden  readonly>
+        <input asp-for="District" type="text" class="form-control" hidden readonly>
+        <input asp-for="City" type="text" class="form-control" hidden readonly>
+        <select asp-for="State" asp-items="Html.GetEnumSelectList<EBrazilianStates>()" class="form-control" readonly hidden>
+        </select>
+        <input asp-for="Notes" type="text" class="form-control" hidden  readonly>
+
+        <!-- End of hidden form fields -->
         <div class="col-10">
             <div class="mb-3 row">
                 <div class="col-6">
                     <div class="mb-3 row">
-                        <label asp-for="Complement" class="col-sm-4 col-form-label text-end">Telefone</label>
+                        <label asp-for="FullNumber" class="col-sm-4 col-form-label text-end">Telefone</label>
                         <div class="col-sm-8">
                             <input asp-for="Complement" type="text" class="form-control">
                         </div>
@@ -64,17 +86,17 @@
             <div class="mb-3 row">
                 <div class="col-6">
                     <div class="mb-3 row">
-                        <label asp-for="City" class="col-sm-4 col-form-label text-end">Mãe</label>
+                        <label asp-for="MotherName" class="col-sm-4 col-form-label text-end">Mãe</label>
                         <div class="col-sm-8">
-                            <input asp-for="City" type="text" class="form-control">
+                            <input asp-for="MotherName" type="text" class="form-control">
                         </div>
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="mb-3 row">
-                        <label asp-for="City" class="col-sm-4 col-form-label text-end">Pai</label>
+                        <label asp-for="FatherName" class="col-sm-4 col-form-label text-end">Pai</label>
                         <div class="col-sm-8">
-                            <input asp-for="City" type="text" class="form-control">
+                            <input asp-for="FatherName" type="text" class="form-control">
                         </div>
                     </div>
                 </div>
@@ -83,19 +105,19 @@
             <div class="mb-3 row">
                 <div class="col-12">
                     <div class="mb-3 row">
-                        <label asp-for="Notes" class="col-sm-2 col-form-label text-end">Observações:</label>
+                        <label asp-for="Obs" class="col-sm-2 col-form-label text-end">Observações:</label>
                         <div class="col-sm-10">
-                            <textarea asp-for="Notes" class="form-control" style="resize: none;"></textarea>
+                            <textarea asp-for="Obs" class="form-control" style="resize: none;"></textarea>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="w-100 text-end">
-                <a asp-area="Person" asp-controller="Person" asp-action="AddressStepFromCreate" type="button" class="btn oc-btn-primary">Voltar</a>
+                <a asp-area="Person" asp-controller="Person" asp-action="GetAddressStepFromCreate" type="button" class="btn oc-btn-primary">Voltar</a>
                 <button class="btn oc-btn-primary" type="submit">Finalizar</button>
             </div>
         </div>
         <div class="col-2" asp-validation-summary="All"></div>
-    </div>
+    </form>
 </div>

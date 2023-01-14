@@ -5,6 +5,7 @@ using OldCare.Contexts.SharedContext.Services.Log.Contracts;
 using OldCare.Contexts.SharedContext.UseCases;
 using OldCare.Contexts.SharedContext.ValueObjects;
 using MediatR;
+using OldCare.Contexts.SharedContext.Enums;
 
 namespace OldCare.Contexts.AccountContext.UseCases.Edit;
 
@@ -102,7 +103,7 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
         }
         catch
         {
-            await _logService.LogAsync(
+            await _logService.LogAsync(ELogType.LocalException, 
                 "⚠ Não foi possível realizar as alterações de informação do aluno ({request.Email}).");
             return new BaseResponse<ResponseData>("Não foi possível salvar as alterações!", "ddb9f50d");
         }

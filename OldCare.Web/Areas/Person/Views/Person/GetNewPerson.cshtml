@@ -48,7 +48,26 @@
     </h2>
     <p>Dados de endereço da pessoa a ser adicionada.</p>
 
-    <div class="row">
+    <form asp-action="" method="post" class="row">
+        
+        <!-- Hidden form fields -->
+            
+        <input asp-for="ZipCode" type="text" class="form-control" hidden readonly>
+        <input asp-for="Street" type="text" class="form-control" hidden readonly>
+        <input asp-for="AddressNumber" type="text" class="form-control" hidden readonly>
+        <input asp-for="Complement" type="text" class="form-control" hidden  readonly>
+        <input asp-for="District" type="text" class="form-control" hidden readonly>
+        <input asp-for="City" type="text" class="form-control" hidden readonly>
+        <select asp-for="State" asp-items="Html.GetEnumSelectList<EBrazilianStates>()" class="form-control" readonly hidden>
+        </select>
+        <input asp-for="Notes" type="text" class="form-control" hidden  readonly>
+        
+        <input asp-for="FullNumber" type="text" class="form-control" hidden readonly>
+        <input asp-for="MotherName" type="text" class="form-control" hidden readonly>
+        <input asp-for="FatherName" type="text" class="form-control" hidden readonly>
+        <input asp-for="Obs" type="text" class="form-control" hidden  readonly>    
+        <!-- End of hidden form fields -->
+        
         <div class="col-2">
             <img src="~/media/images/general/person-circle.svg" width="96" class="rounded mx-auto d-block" alt="...">
         </div>
@@ -78,7 +97,7 @@
                     <div class="mb-3 row">
                         <label asp-for="BirthDate" class="col-sm-3 col-form-label">Nascimento</label>
                         <div class="col-sm-9">
-                            <input asp-for="BirthDate" type="datetime-local" class="form-control">
+                            <input asp-for="BirthDate" type="date" class="form-control">
                         </div>
                     </div>
                 </div>
@@ -86,10 +105,8 @@
                     <div class="mb-3 row">
                         <label asp-for="Gender" class="col-sm-3 col-form-label">Sexo</label>
                         <div class="col-sm-9">
-                            <select asp-for="Gender" class="form-control">
-                                <option selected>Selecione</option>
-                                <option value="0">Feminino</option>
-                                <option value="1">Masculino</option>
+                            <select asp-items="Html.GetEnumSelectList<EGender>()" asp-for="Gender" class="form-control">
+
                             </select>
                         </div>
                     </div>
@@ -118,22 +135,22 @@
             <hr>
 
             <div class="mb-3 row">
+                @* <div class="col-6"> *@
+                @*     <div class="mb-3 row"> *@
+                @*         <label asp-for="Gender" class="col-sm-3 col-form-label">Documento</label> *@
+                @*         <div class="col-sm-9"> *@
+                @*             <select asp-for="Gender" asp-items="Html.GetEnumSelectList<EGender>()" class="form-control"> *@
+                @*                 <option selected>Selecione</option> *@
+                @*             </select> *@
+                @*         </div> *@
+                @*     </div> *@
+                @* </div> *@
                 <div class="col-6">
                     <div class="mb-3 row">
-                        <label asp-for="Gender" class="col-sm-3 col-form-label">Documento</label>
-                        <div class="col-sm-9">
-                            <select asp-for="Gender" asp-items="Html.GetEnumSelectList<EDocumentType>()" class="form-control">
-                                <option selected>Selecione</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6">
-                    <div class="mb-3 row">
-                        <label asp-for="AddressNumber" class="col-sm-3 col-form-label">Número</label>
-                        <div class="col-sm-6">
-                            <input asp-for="AddressNumber" type="text" class="form-control">
-                        </div>
+                        @* <label asp-for="AddressNumber" class="col-sm-3 col-form-label">Número</label> *@
+                        @* <div class="col-sm-6"> *@
+                        @*     <input asp-for="AddressNumber" type="text" class="form-control"> *@
+                        @* </div> *@
                         <div class="col-sm-3">
                             <button class="btn oc-btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Adicionar novo documento">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-plus-fill" viewBox="0 0 16 16">
@@ -146,9 +163,9 @@
             </div>
 
             <div class="w-100 text-end">
-                <a asp-area="Person" asp-controller="Person" asp-action="AddressStepFromCreate" type="button" class="btn oc-btn-primary">Continuar</a>
+                <button asp-area="Person" asp-action="GetNewPerson" asp-controller="Person" type="submit" class="btn oc-btn-primary">Continuar</button>
             </div>
         </div>
         <div class="col-2" asp-validation-summary="All"></div>
-    </div>
+    </form>
 </div>
