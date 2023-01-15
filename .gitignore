@@ -156,3 +156,15 @@ node_modules/
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+/OldCare.Web/Program.cs
+/OldCare.Web/OldCare.Web.csproj
+/OldCare.Web/appsettings.json
+/OldCare.Web/Views/Home/Index.cshtml
+/OldCare.Web/OldCare.Web.csproj
+/OldCare.Web/Views/Home/Index.cshtml
+/OldCare.Web/appsettings.json
+/OldCare.Web/OldCare.Web.csproj
+/OldCare.Web/Program.cs
+/.gitignore
+/OldCare.Web/OldCare.Web.csproj
+/OldCare.Web/Views/Home/Index.cshtml
