@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
-using OldCare.Core.Entities;
-using OldCare.Core.Enums;
+using Oldcare.Core.Enums;
+
+namespace Oldcare.Core.Entities;
 
 [Table("PrescriptionItem")]
 public class PrescriptionItem : Entity
@@ -13,4 +14,3 @@ public class PrescriptionItem : Entity
     public string Note { get; set; }
     public string Presentation { get; set; }
 }
-

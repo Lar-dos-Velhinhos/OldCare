@@ -1,4 +1,4 @@
-﻿namespace OldCare.Core.Entities;
+﻿namespace Oldcare.Core.Entities;
 
 public abstract class Entity
 {

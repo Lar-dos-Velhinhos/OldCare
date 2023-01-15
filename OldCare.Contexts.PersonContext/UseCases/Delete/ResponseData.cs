@@ -1,7 +1,6 @@
-﻿using OldCare.Contexts.PersonContext.UseCases.Create;
-using OldCare.Contexts.SharedContext.UseCases.Contracts;
+﻿using OldCare.Contexts.SharedContext.UseCases.Contracts;
 
-namespace OldCare.Contexts.PersonContext.UseCases.Delete;
+namespace OldCare.Contexts.AccountContext.UseCases.Delete;
 
 public class ResponseData : IResponseData
 {

@@ -1,10 +1,8 @@
-﻿using OldCare.Contexts.AccountContext.Entities;
-using OldCare.Contexts.SharedContext.Entities;
+﻿namespace OldCare.Contexts.AccountContext.Entities;
 
-public class Prescription : Entity
+public class Prescription : SharedContext.Entities.Entity
 {
     public Resident Resident { get; set; }
     public string PrescriptionAuthor { get; set; }
     public DateTime PrescriptionDate { get; set; }
 }
-

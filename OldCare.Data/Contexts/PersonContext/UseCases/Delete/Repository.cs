@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using OldCare.Contexts.PersonContext.Entities;
-using OldCare.Contexts.PersonContext.UseCases.Delete.Contracts;
+using OldCare.Contexts.AccountContext.Entities;
+using OldCare.Contexts.AccountContext.UseCases.Delete.Contracts;
 
 namespace OldCare.Data.Contexts.PersonContext.UseCases.Delete;
 

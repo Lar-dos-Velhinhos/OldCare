@@ -1,11 +1,11 @@
 ﻿using MediatR;
-using OldCare.Contexts.PersonContext.Entities;
-using OldCare.Contexts.PersonContext.UseCases.Delete.Contracts;
+using OldCare.Contexts.AccountContext.Entities;
+using OldCare.Contexts.AccountContext.UseCases.Delete.Contracts;
 using OldCare.Contexts.SharedContext.Enums;
 using OldCare.Contexts.SharedContext.UseCases;
 using LogService = OldCare.Contexts.SharedContext.Services.Log.Contracts.IService;
 
-namespace OldCare.Contexts.PersonContext.UseCases.Delete;
+namespace OldCare.Contexts.AccountContext.UseCases.Delete;
 
 public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
 {

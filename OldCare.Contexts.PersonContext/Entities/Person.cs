@@ -4,7 +4,7 @@ using OldCare.Contexts.SharedContext.Enums;
 using OldCare.Contexts.SharedContext.UseCases.Contracts;
 using OldCare.Contexts.SharedContext.ValueObjects;
 
-namespace OldCare.Contexts.PersonContext.Entities;
+namespace OldCare.Contexts.AccountContext.Entities;
 
 /// <summary>
 /// A entity to aggregate Person data

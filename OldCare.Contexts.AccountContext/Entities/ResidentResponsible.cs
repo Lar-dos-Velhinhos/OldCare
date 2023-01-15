@@ -1,7 +1,6 @@
-﻿using OldCare.Contexts.AccountContext.Entities;
-using OldCare.Contexts.SharedContext.Entities;
+﻿namespace OldCare.Contexts.AccountContext.Entities;
 
-public class ResidentResponsible : Entity
+public class ResidentResponsible : SharedContext.Entities.Entity
 {
     public Resident Resident { get; set; }
     public Responsible Responsible { get; set; }
@@ -10,4 +9,3 @@ public class ResidentResponsible : Entity
     public bool Primary { get; set; }
     public DateTime StartDate { get; set; }
 }
-

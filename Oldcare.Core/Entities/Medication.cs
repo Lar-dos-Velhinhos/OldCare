@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
-using OldCare.Core.Entities;
+
+namespace Oldcare.Core.Entities;
 
 [Table("Medication")]
 public class Medication : Entity
@@ -9,4 +10,3 @@ public class Medication : Entity
     public DateTime MedicationDate { get; set; }
     public string Note { get; set; }
 }
-

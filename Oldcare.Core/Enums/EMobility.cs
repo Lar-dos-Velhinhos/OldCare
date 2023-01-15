@@ -1,4 +1,4 @@
-﻿namespace OldCare.Core.Enums;
+﻿namespace Oldcare.Core.Enums;
 
 public enum EMobility
 {

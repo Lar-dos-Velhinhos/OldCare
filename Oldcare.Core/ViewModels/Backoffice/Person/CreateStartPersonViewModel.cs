@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace OldCare.Core.ViewModels.Backoffice.Person;
+namespace Oldcare.Core.ViewModels.Backoffice.Person;
 
 public class CreateStartPersonViewModel
 {
