@@ -1,11 +1,11 @@
-using MediatR;
-using OldCare.Contexts.AccountContext.Entities;
-using OldCare.Contexts.AccountContext.UseCases.Get.Contracts;
-using OldCare.Contexts.SharedContext.Enums;
 using OldCare.Contexts.SharedContext.UseCases;
+using MediatR;
+using OldCare.Contexts.PersonContext.Entities;
+using OldCare.Contexts.PersonContext.UseCases.Get.Contracts;
+using OldCare.Contexts.SharedContext.Enums;
 using LogService = OldCare.Contexts.SharedContext.Services.Log.Contracts.IService;
 
-namespace OldCare.Contexts.AccountContext.UseCases.Get;
+namespace OldCare.Contexts.PersonContext.UseCases.Get;
 
 public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
 {

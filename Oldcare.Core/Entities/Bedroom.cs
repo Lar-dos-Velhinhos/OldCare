@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
-
-namespace Oldcare.Core.Entities;
+using OldCare.Core.Entities;
 
 [Table("Bedroom")]
 public class Bedroom : Entity
@@ -9,3 +8,4 @@ public class Bedroom : Entity
     public bool Gender { get; set; }
     public int Number { get; set; }
 }
+

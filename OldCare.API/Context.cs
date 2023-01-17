@@ -4,7 +4,6 @@ using OldCare.Contexts.AccountContext.UseCases.Create.Contracts;
 using OldCare.Contexts.SharedContext;
 using OldCare.Data;
 using OldCare.Data.Contexts.AccountContext.UseCases.Create;
-using IRepository = OldCare.Contexts.AccountContext.UseCases.Get.Contracts.IRepository;
 
 namespace OldCare.API;
 
@@ -93,11 +92,11 @@ public static class Context
                 Data.Contexts.PersonContext.UseCases.Create.Repository>();
 
         services
-            .AddTransient<IRepository,
+            .AddTransient<Contexts.PersonContext.UseCases.Get.Contracts.IRepository,
                 Data.Contexts.PersonContext.UseCases.Get.Repository>();
         
         services
-            .AddTransient<Contexts.AccountContext.UseCases.Delete.Contracts.IRepository,
+            .AddTransient<Contexts.PersonContext.UseCases.Delete.Contracts.IRepository,
                 Data.Contexts.PersonContext.UseCases.Delete.Repository>();
 
         #endregion

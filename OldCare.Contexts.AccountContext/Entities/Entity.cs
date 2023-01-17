@@ -1,4 +1,4 @@
-﻿namespace OldCare.Contexts.AccountContext.Entities;
+﻿namespace OldCare.Core.Entities;
 
 public abstract class Entity
 {

@@ -1,6 +1,6 @@
-﻿using OldCare.Contexts.AccountContext.Entities;
+﻿using OldCare.Contexts.PersonContext.Entities;
 
-namespace OldCare.Contexts.AccountContext.UseCases.Delete.Contracts;
+namespace OldCare.Contexts.PersonContext.UseCases.Delete.Contracts;
 
 public interface IRepository
 {

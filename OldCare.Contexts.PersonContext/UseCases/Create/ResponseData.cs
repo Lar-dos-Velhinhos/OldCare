@@ -1,3 +1,5 @@
+using OldCare.Contexts.PersonContext.Entities;
+
 using OldCare.Contexts.SharedContext.UseCases.Contracts;
 
 namespace OldCare.Contexts.PersonContext.UseCases.Create;

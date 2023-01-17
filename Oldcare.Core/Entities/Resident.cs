@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
-using Oldcare.Core.Enums;
+using OldCare.Core.Entities;
+using OldCare.Core.Enums;
 
-namespace Oldcare.Core.Entities;
 
 [Table("Resident")]
 public class Resident : Entity
@@ -21,3 +21,4 @@ public class Resident : Entity
     public long SUS { get; set; }
     public long VoterRegCardNumber { get; set; }
 }
+

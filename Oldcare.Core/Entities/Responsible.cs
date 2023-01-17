@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
-using Oldcare.Core.Enums;
-
-namespace Oldcare.Core.Entities;
+using OldCare.Core.Entities;
+using OldCare.Core.Enums;
 
 [Table("Responsible")]
 public class Responsible : Entity
@@ -11,3 +10,4 @@ public class Responsible : Entity
     public EKinship Kinship { get; set; }
     public long PhoneNumber { get; set; }
 }
+

@@ -1,7 +1,7 @@
-using MediatR;
 using OldCare.Contexts.SharedContext.UseCases;
+using MediatR;
 
-namespace OldCare.Contexts.AccountContext.UseCases.Get;
+namespace OldCare.Contexts.PersonContext.UseCases.Get;
 
 public class Request : IRequest<BaseResponse<ResponseData>>
 {

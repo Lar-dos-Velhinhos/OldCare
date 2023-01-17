@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
-using Oldcare.Core.Enums;
-
-namespace Oldcare.Core.Entities;
+using OldCare.Core.Entities;
+using OldCare.Core.Enums;
 
 [Table("Occurrence")]
 public class Occurrence : Entity
@@ -11,3 +10,4 @@ public class Occurrence : Entity
     public DateTime OccurrenceDate { get; set; }
     public EOccurrenceType OccurrenceType { get; set; }
 }
+

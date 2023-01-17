@@ -1,8 +1,8 @@
-﻿using OldCare.Contexts.SharedContext.Enums;
+﻿using OldCare.Contexts.AccountContext.Entities;
+using OldCare.Contexts.SharedContext.Entities;
+using OldCare.Contexts.SharedContext.Enums;
 
-namespace OldCare.Contexts.AccountContext.Entities;
-
-public class PrescriptionItem : SharedContext.Entities.Entity
+public class PrescriptionItem : Entity
 {
     public Prescription Prescription { get; set; }
     public Product Product { get; set; }
@@ -12,3 +12,4 @@ public class PrescriptionItem : SharedContext.Entities.Entity
     public string Note { get; set; }
     public string Presentation { get; set; }
 }
+

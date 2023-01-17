@@ -1,4 +1,5 @@
-﻿using OldCare.Contexts.AccountContext.Entities;
+﻿using OldCare.Contexts.PersonContext.Entities;
+using OldCare.Contexts.SharedContext.ValueObjects;
 
 namespace OldCare.Contexts.PersonContext.UseCases.Create.Contracts;
 
