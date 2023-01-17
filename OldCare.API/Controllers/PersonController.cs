@@ -37,6 +37,26 @@ public class PersonController : ControllerBase
             return new BaseResponse<UCCreate.ResponseData>(e.Message, "85398A03");
         }
     }
+    
+    /// <summary>
+    /// Soft delete person
+    /// </summary>
+    /// <param name="id">Person global unique identifier</param>
+    /// <returns></returns>
+    [AllowAnonymous]
+    [HttpDelete("delete/{id}")]
+    public async Task<BaseResponse<UCDelete.ResponseData>> DeleteAsync(Guid id)
+    {
+        try
+        {
+            var result = await _mediator.Send(new UCDelete.Request(){Id = id});
+            return result;
+        }
+        catch (Exception e)
+        {
+            return new BaseResponse<UCDelete.ResponseData>(e.Message, "BF270861", 400);
+        }
+    }
 
     /// <summary>
     /// Get all existing and not deleted people
@@ -57,19 +77,12 @@ public class PersonController : ControllerBase
             return new BaseResponse<UCGet.ResponseData>(e.Message, "CDC03992", 400);
         }
     }
-
+    
+    /// <summary>
+    /// Modify active person address
+    /// </summary>
+    /// <returns></returns>
     [AllowAnonymous]
-    [HttpDelete("delete/{id}")]
-    public async Task<BaseResponse<UCDelete.ResponseData>> DeleteAsync(Guid id)
-    {
-        try
-        {
-            var result = await _mediator.Send(new UCDelete.Request(){Id = id});
-            return result;
-        }
-        catch (Exception e)
-        {
-            return new BaseResponse<UCDelete.ResponseData>(e.Message, "BF270861", 400);
-        }
-    }
+    [HttpPut("modify-address")]
+    public IActionResult ModifyAddress() => Ok();
 }
