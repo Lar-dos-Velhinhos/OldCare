@@ -57,7 +57,11 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
         }
         catch (Exception ex)
         {
-            await _logService.LogAsync(ELogType.LocalException, $"❌ {request.FirstName} {request.FirstName} Não foi possível salvar o nome.", "1fa4222b");
+            await _logService.LogAsync(
+                ELogType.LocalException,
+                $"❌ {request.FirstName} {request.FirstName} Não foi possível salvar o nome.",
+                "1fa4222b");
+            
             return new BaseResponse<ResponseData>("Não foi possível salvar o nome.", "1fa4222b");
         }
 
@@ -106,18 +110,18 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
         try
         {
             Address address = new(
-                request.ZipCode,
-                request.Street,
-                request.AddressNumber,
-                request.District,
                 request.City,
+                request.District,
+                request.AddressNumber,
                 request.State,
-                request.Country,
-                request.Complement,
+                request.Street,
+                request.ZipCode,
                 request.Code,
+                request.Complement,
+                request.Country,
                 request.Notes);
 
-            person.ChangeAddress(address);
+            person.ModifyAddress(address);
         }
         catch
         {

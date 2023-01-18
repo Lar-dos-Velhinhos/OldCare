@@ -5,6 +5,7 @@ using OldCare.Contexts.SharedContext.UseCases;
 using UCCreate = OldCare.Contexts.PersonContext.UseCases.Create;
 using UCGet = OldCare.Contexts.PersonContext.UseCases.Get;
 using UCDelete = OldCare.Contexts.PersonContext.UseCases.Delete;
+using UCModify = OldCare.Contexts.PersonContext.UseCases.Modify;
 
 namespace OldCare.API.Controllers;
 
@@ -77,12 +78,23 @@ public class PersonController : ControllerBase
             return new BaseResponse<UCGet.ResponseData>(e.Message, "CDC03992", 400);
         }
     }
-    
+
     /// <summary>
     /// Modify active person address
     /// </summary>
     /// <returns></returns>
     [AllowAnonymous]
     [HttpPut("modify-address")]
-    public IActionResult ModifyAddress() => Ok();
+    public async Task<BaseResponse<UCModify.ResponseData>> ModifyAddress(Guid id)
+    {
+        try
+        {
+            var result = await _mediator.Send(new UCModify.Request() { PersonId = id });
+            return result;
+        }
+        catch(Exception e)
+        {
+            return new BaseResponse<UCModify.ResponseData>(e.Message, "43D089E3", 400);
+        }
+    }
 }
