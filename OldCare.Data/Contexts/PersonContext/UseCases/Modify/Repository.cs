@@ -20,8 +20,8 @@ public class Repository : IRepository
 
     #region Public Methods
 
-    public async Task<bool> CheckAccountExistsByIdAsync(Guid id)
-        => await _context.People.AnyAsync(x => x.Id == id && x.IsDeleted != true);
+    public async Task<Person> GetByIdAsync(Guid id)
+        => await _context.People.FirstOrDefaultAsync(x => x.Id == id && x.IsDeleted != true);
 
     public async Task UpdateAsync(Person person)
     {

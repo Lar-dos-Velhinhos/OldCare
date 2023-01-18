@@ -8,7 +8,7 @@ public class Request : IRequest<BaseResponse<ResponseData>>
     #region Public properties
     
     public Guid PersonId { get; set; }
-    public string AddressNumber { get; set; } = string.Empty;
+    public string Number { get; set; } = string.Empty;
     public string City { get; set; } = string.Empty;
     public string Code { get; set; } = string.Empty;
     public string Complement { get; set; } = string.Empty;

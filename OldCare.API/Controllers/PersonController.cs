@@ -85,11 +85,11 @@ public class PersonController : ControllerBase
     /// <returns></returns>
     [AllowAnonymous]
     [HttpPut("modify-address")]
-    public async Task<BaseResponse<UCModify.ResponseData>> ModifyAddress(Guid id)
+    public async Task<BaseResponse<UCModify.ResponseData>> ModifyAddress(UCModify.Request  request)
     {
         try
         {
-            var result = await _mediator.Send(new UCModify.Request() { PersonId = id });
+            var result = await _mediator.Send(request);
             return result;
         }
         catch(Exception e)

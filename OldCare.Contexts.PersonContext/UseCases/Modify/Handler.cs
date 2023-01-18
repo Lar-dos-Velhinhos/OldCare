@@ -41,11 +41,11 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
 
         #endregion
 
-        #region 02. Check if person already exists
+        #region 02. Populate Aggregate Root
 
-        var result = await _repository.CheckAccountExistsByIdAsync(request.PersonId);
+        person = await _repository.GetByIdAsync(request.PersonId);
 
-        if (!result)
+        if (person == null)
         {
             await _logService.LogAsync(
                 ELogType.LocalUserActivity,
@@ -64,7 +64,7 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
         var address = new Address(
             request.City,
             request.District,
-            request.AddressNumber,
+            request.Number,
             request.State,
             request.Street,
             request.ZipCode,

@@ -5,11 +5,11 @@ namespace OldCare.Contexts.PersonContext.UseCases.Modify.Contracts;
 public interface IRepository
 {
     /// <summary>
-    /// Return a bool value if exists any account based in parameters passed.
+    /// Fetch person data based in global unique identifier.
     /// </summary>
     /// <param name="id">Account's global unique identifier</param>
-    /// <returns></returns>
-    Task<bool> CheckAccountExistsByIdAsync(Guid id);
+    /// <returns>Return a Entity Person filled or null</returns>
+    Task<Person> GetByIdAsync(Guid id);
 
     /// <summary>
     /// Update person data
