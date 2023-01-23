@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using OldCare.Contexts.PersonContext.Entities;
-using OldCare.Contexts.PersonContext.UseCases.Delete.Contracts;
+using OldCare.Contexts.PersonContext.UseCases.Modify.Contracts;
 
-namespace OldCare.Data.Contexts.PersonContext.UseCases.Delete;
+namespace OldCare.Data.Contexts.PersonContext.UseCases.Modify;
 
 public class Repository : IRepository
 {
@@ -18,13 +18,10 @@ public class Repository : IRepository
 
     #endregion
 
-    #region Methods
-
-    public async Task<bool> CheckAccountExistsByIdAsync(Guid id)
-        => await _context.People.AnyAsync(x => x.Id == id && x.IsDeleted != true);
+    #region Public Methods
 
     public async Task<Person> GetByIdAsync(Guid id)
-        => await _context.People.FirstOrDefaultAsync(p => p.Id == id);
+        => await _context.People.FirstOrDefaultAsync(x => x.Id == id && x.IsDeleted != true);
 
     public async Task UpdateAsync(Person person)
     {
