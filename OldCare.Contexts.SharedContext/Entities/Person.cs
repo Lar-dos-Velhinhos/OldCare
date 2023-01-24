@@ -1,10 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
-using OldCare.Contexts.SharedContext.Entities;
 using OldCare.Contexts.SharedContext.Enums;
 using OldCare.Contexts.SharedContext.UseCases.Contracts;
 using OldCare.Contexts.SharedContext.ValueObjects;
 
-namespace OldCare.Contexts.PersonContext.Entities;
+namespace OldCare.Contexts.SharedContext.Entities;
 
 /// <summary>
 /// A entity to aggregate Person data
@@ -58,17 +57,17 @@ public class Person : Entity, IAggregateRoot
 
     #region Public Properties
 
-    public Address Address { get; private set; }
+    public Address Address { get; private set; } = null!;
     public DateTime? BirthDate { get; private set; }
-    public string? Citizenship { get; private set; }
+    public string? Citizenship { get; private set; } = string.Empty;
     public List<Document>? Documents { get; private set; }
     public EGender Gender { get; private set; }
     public bool IsDeleted { get; set; }
     public Name Name { get; private set; }
-    public string Nationality { get; set; }
-    public string? Obs { get; private set; }
+    public string Nationality { get; set; } = string.Empty;
+    public string? Obs { get; private set; } = string.Empty;
     public Phone? Phone { get; private set; }
-    public string? Photo { get; private set; }
+    public string? Photo { get; private set; } = string.Empty;
     public string FatherName { get; private set; } = string.Empty;
     public string MotherName { get; private set; } = string.Empty;
     public Tracker Tracker { get; } = null!;

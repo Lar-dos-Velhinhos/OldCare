@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using OldCare.Contexts.PersonContext.Entities;
+using OldCare.Contexts.SharedContext.Entities;
 using OldCare.Contexts.PersonContext.UseCases.Get.Contracts;
 using OldCare.Contexts.SharedContext.ValueObjects;
 

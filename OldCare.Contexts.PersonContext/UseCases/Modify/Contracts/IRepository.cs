@@ -1,4 +1,4 @@
-﻿using OldCare.Contexts.PersonContext.Entities;
+﻿using OldCare.Contexts.SharedContext.Entities;
 
 namespace OldCare.Contexts.PersonContext.UseCases.Modify.Contracts;
 

@@ -1,6 +1,6 @@
 using OldCare.Contexts.SharedContext.UseCases;
 using MediatR;
-using OldCare.Contexts.PersonContext.Entities;
+using OldCare.Contexts.SharedContext.Entities;
 using OldCare.Contexts.PersonContext.UseCases.Get.Contracts;
 using OldCare.Contexts.SharedContext.Enums;
 using LogService = OldCare.Contexts.SharedContext.Services.Log.Contracts.IService;

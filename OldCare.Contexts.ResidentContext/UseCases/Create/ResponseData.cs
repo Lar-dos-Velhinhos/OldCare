@@ -1,10 +1,11 @@
-using OldCare.Contexts.SharedContext.UseCases.Contracts;
+﻿using OldCare.Contexts.SharedContext.UseCases.Contracts;
 
-namespace OldCare.Contexts.PersonContext.UseCases.Create;
+namespace OldCare.Contexts.ResidentContext.UseCases.Create;
 
 public class ResponseData : IResponseData
 {
     #region Constructors
+
     public ResponseData(string message) => Message = message;
 
     public ResponseData(string message, Request request)
@@ -12,13 +13,14 @@ public class ResponseData : IResponseData
         Message = message;
         Request = request;
     }
-
+    
     #endregion
 
     #region Public Properties
 
     public string Message { get; }
-    public Request  Request { get; } 
+    
+    public Request Request { get; }
 
-    #endregion      
+    #endregion
 }

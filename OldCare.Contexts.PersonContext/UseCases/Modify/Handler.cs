@@ -1,7 +1,6 @@
-﻿using System.Security.Authentication;
-using System.Text.Json;
+﻿using System.Text.Json;
 using MediatR;
-using OldCare.Contexts.PersonContext.Entities;
+using OldCare.Contexts.SharedContext.Entities;
 using OldCare.Contexts.SharedContext.UseCases;
 using OldCare.Contexts.PersonContext.UseCases.Modify.Contracts;
 using OldCare.Contexts.SharedContext.Enums;

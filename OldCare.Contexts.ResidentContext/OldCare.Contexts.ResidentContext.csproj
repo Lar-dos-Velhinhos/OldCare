@@ -10,4 +10,8 @@
       <ProjectReference Include="..\OldCare.Contexts.SharedContext\OldCare.Contexts.SharedContext.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="MediatR" Version="10.0.1" />
+    </ItemGroup>
+
 </Project>
