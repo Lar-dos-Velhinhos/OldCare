@@ -1,4 +1,6 @@
 ﻿using OldCare.Contexts.ResidentContext.Entities;
+using OldCare.Contexts.SharedContext.Entities;
+
 namespace OldCare.Contexts.ResidentContext.UseCases.Create.Contracts;
 
 public interface IRepository
@@ -10,7 +12,7 @@ public interface IRepository
     /// <param name="lastName"></param>
     /// <param name="birthDate"></param>
     /// <returns></returns>
-    Task<bool> CheckResidentExistsAsync(string firstName, string lastName, DateTime birthDate);
+    Task<bool> CheckResidentExistsAsync(Guid id);
 
     /// <summary>
     /// Asynchronous Create a new resident.

@@ -1,7 +1,7 @@
 ﻿using OldCare.Contexts.SharedContext.Entities;
 using OldCare.Contexts.SharedContext.Enums;
 
-namespace OldCare.Contexts.AccountContext.Entities;
+namespace OldCare.Contexts.ResidentContext.Entities;
 
 public class Responsible : Entity
 {

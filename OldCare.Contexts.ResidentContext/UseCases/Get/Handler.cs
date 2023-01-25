@@ -1,9 +1,9 @@
 ﻿using MediatR;
-using OldCare.Contexts.AccountContext.Entities;
-using OldCare.Contexts.AccountContext.UseCases.ListResidents.Contracts;
+using OldCare.Contexts.ResidentContext.Entities;
+using OldCare.Contexts.ResidentContext.UseCases.Get.Contracts;
 using OldCare.Contexts.SharedContext.UseCases;
 
-namespace OldCare.Contexts.AccountContext.UseCases.ListResidents;
+namespace OldCare.Contexts.ResidentContext.UseCases.Get;
 
 public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
 {

@@ -9,17 +9,19 @@ namespace OldCare.Contexts.ResidentContext.UseCases.Create;
 
 public class Request : IRequest<BaseResponse<ResponseData>>
 {
-    public Person Per { get; set; } = new();
+    public Person Person { get; set; } = new();
 
     public DateTime AdmissionDate { get; set; } = DateTime.UtcNow;
 
     public Bedroom Bedroom { get; set; } = new();
 
-    public EEducationLevel Ed { get; set; }
+    public EEducationLevel EducationLevel { get; set; }
 
     public DateTime DepartureDate { get; set; } = DateTime.UtcNow;
 
     public string HealthInsurance { get; set; } = string.Empty;
+
+    public bool IsDeleted { get; set; }
 
     public EMaritalStatus MaritalStatus { get; set; }
 

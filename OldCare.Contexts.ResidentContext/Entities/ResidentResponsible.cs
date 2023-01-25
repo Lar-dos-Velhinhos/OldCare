@@ -1,5 +1,6 @@
-﻿using OldCare.Contexts.AccountContext.Entities;
-using OldCare.Contexts.SharedContext.Entities;
+﻿using OldCare.Contexts.SharedContext.Entities;
+
+namespace OldCare.Contexts.ResidentContext.Entities;
 
 public class ResidentResponsible : Entity
 {

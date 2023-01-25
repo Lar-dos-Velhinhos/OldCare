@@ -80,7 +80,9 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
         }
         catch
         {
-            return new BaseResponse<ResponseData>("Não foi possível salvar as informações pessoais.", "d91cdebc");
+            return new BaseResponse<ResponseData>(
+                "Não foi possível salvar as informações pessoais.",
+                "d91cdebc");
         }
 
         #endregion

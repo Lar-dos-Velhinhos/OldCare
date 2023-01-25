@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\OldCare.Contexts.PersonContext\OldCare.Contexts.PersonContext.csproj" />
     <ProjectReference Include="..\OldCare.Data\OldCare.Data.csproj" />
   </ItemGroup>
 

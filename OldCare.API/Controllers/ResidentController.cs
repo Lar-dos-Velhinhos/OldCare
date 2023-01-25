@@ -1,8 +1,8 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using OldCare.Contexts.PersonContext.UseCases.Modify;
-using Request = OldCare.Contexts.PersonContext.UseCases.Get.Request;
+using UCCreate = OldCare.Contexts.ResidentContext.UseCases.Create;
+using OldCare.Contexts.SharedContext.UseCases;
 
 namespace OldCare.API.Controllers;
 
@@ -23,7 +23,7 @@ public class ResidentController
     /// <returns></returns>
     [AllowAnonymous]
     [HttpPost("new-resident")]
-    public async Task<BaseResponse<ResponseData>> CreateAsync(Request request)
+    public async Task<BaseResponse<UCCreate.ResponseData>> CreateAsync(UCCreate.Request request)
     {
         try
         {
@@ -32,7 +32,7 @@ public class ResidentController
         }
         catch (Exception e)
         {
-            return new BaseResponse<ResponseData>(e.Message, "C9F78602");
+            return new BaseResponse<UCCreate.ResponseData>(e.Message, "C9F78602");
         }
 
        

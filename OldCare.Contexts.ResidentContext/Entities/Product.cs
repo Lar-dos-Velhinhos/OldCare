@@ -1,6 +1,6 @@
 ﻿using OldCare.Contexts.SharedContext.Entities;
 
-namespace OldCare.Contexts.AccountContext.Entities;
+namespace OldCare.Contexts.ResidentContext.Entities;
 
 public class Product : Entity
 {

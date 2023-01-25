@@ -1,7 +1,7 @@
-﻿using OldCare.Contexts.AccountContext.Entities;
+﻿using OldCare.Contexts.ResidentContext.Entities;
 using OldCare.Contexts.SharedContext.UseCases.Contracts;
 
-namespace OldCare.Contexts.AccountContext.UseCases.ListResidents;
+namespace OldCare.Contexts.ResidentContext.UseCases.Get;
 
 public class ResponseData : IResponseData
 {

@@ -72,8 +72,8 @@ public static class Context
                 Data.Contexts.AccountContext.UseCases.Edit.Repository>();
         
         services
-            .AddTransient<Contexts.AccountContext.UseCases.ListResidents.Contracts.IRepository,
-                Data.Contexts.AccountContext.UseCases.ListResidents.Repository>();
+            .AddTransient<Contexts.ResidentContext.UseCases.Get.Contracts.IRepository,
+                Data.Contexts.ResidentContext.UseCases.Get.Repository>();
 
         services
             .AddTransient<Contexts.AccountContext.UseCases.Details.Contracts.IRepository,
@@ -102,6 +102,14 @@ public static class Context
         services
             .AddTransient<Contexts.PersonContext.UseCases.Modify.Contracts.IRepository,
                 Data.Contexts.PersonContext.UseCases.Modify.Repository>();
+
+        #endregion
+
+        #region ResidentContext
+
+        services
+            .AddTransient<Contexts.ResidentContext.UseCases.Create.Contracts.IRepository,
+                Data.Contexts.ResidentContext.UseCases.Create.Repository>();
 
         #endregion
     }

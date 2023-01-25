@@ -1,6 +1,7 @@
-﻿using OldCare.Contexts.AccountContext.Entities;
-using OldCare.Contexts.SharedContext.Entities;
+﻿using OldCare.Contexts.SharedContext.Entities;
 using OldCare.Contexts.SharedContext.Enums;
+
+namespace OldCare.Contexts.ResidentContext.Entities;
 
 public class PrescriptionItem : Entity
 {
