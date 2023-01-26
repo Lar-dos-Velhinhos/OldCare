@@ -12,7 +12,7 @@ public interface IRepository
     /// <param name="lastName"></param>
     /// <param name="birthDate"></param>
     /// <returns></returns>
-    Task<bool> CheckResidentExistsAsync(Guid id);
+    Task<Person> GetPersonByIdAsync(Guid id);
 
     /// <summary>
     /// Asynchronous Create a new resident.
@@ -20,4 +20,11 @@ public interface IRepository
     /// <param name="resident"></param>
     /// <returns></returns>
     Task CreateAsync(Resident resident);
+
+    /// <summary>
+    /// Verify if person exists in Residents using person id
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    Task<bool> CheckResidentExistsByPersonIdAsync(Guid id);
 }

@@ -57,7 +57,7 @@ public class Resident : Entity, IAggregateRoot
     #endregion
     #region Properties
 
-    public Person Person { get; private set; } = null!;
+    public Person Person { get; init; } = null!;
     public DateTime AdmissionDate { get; private set; }
     public Bedroom Bedroom { get; private set; } = null!;
     public EEducationLevel EducationLevel { get; private set; }
@@ -76,8 +76,6 @@ public class Resident : Entity, IAggregateRoot
     #endregion
 
     #region Methods
-
-    public void ModifyPerson(Person person) => Person = person;
 
     public void ModifyBedroom(Bedroom bedroom) => Bedroom = bedroom;
     
@@ -110,6 +108,7 @@ public class Resident : Entity, IAggregateRoot
         bool isDeleted,
         EMaritalStatus maritalStatus,
         EMobility mobility,
+        string note,
         string profession,
         long sus,
         long voterRegCardNumber)
@@ -121,6 +120,7 @@ public class Resident : Entity, IAggregateRoot
         IsDeleted = isDeleted;
         MaritalStatus = maritalStatus;
         Mobility = mobility;
+        Note = note;
         Profession = profession;
         SUS = sus;
         VoterRegCardNumber = voterRegCardNumber;

@@ -37,23 +37,28 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
 
         #endregion
 
-        #region 02. Check if resident already exists
+        #region 02. Check if resident exists
 
-        var result = await _repository.CheckResidentExistsAsync(request.Person.Id);
+        var result = await _repository.CheckResidentExistsByPersonIdAsync(request.PersonId);
 
         if (result)
         {
             await _logService.LogAsync(
                 ELogType.LocalException,
-                $"{request.Person.Name.FirstName} {request.Person.Name.LastName} - Residente já cadastrado",
-                "9A6370AA", null);
-            return new BaseResponse<ResponseData>("Residente já cadastrado", "9A6370AA");
+                "👤 Residente já cadastrado",
+                "AF59DD56", null);
+            
+            return new BaseResponse<ResponseData>("Residente já cadastrado", "AF59DD56");    
         }
 
         #endregion
 
-        #region 03 Attach resident personal data
+        #region 03. Populate Aggregate Root
 
+        var person = await _repository.GetPersonByIdAsync(request.PersonId);
+
+        resident.Person = person; // Verify init properties
+        
         try
         {
             resident.ChangeInformation(
@@ -64,11 +69,10 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
                 request.IsDeleted,
                 request.MaritalStatus,
                 request.Mobility,
+                request.Note,
                 request.Profession,
                 request.SUS,
                 request.VoterRegCardNumber);
-
-
         }
         catch
         {
@@ -78,10 +82,8 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
         }
 
         #endregion
-        
-        
 
-        #region 04. Persist Data
+        #region 03. Persist Data
 
         try
         {
@@ -95,7 +97,7 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
 
         #endregion
 
-        #region 05.Return success response
+        #region 04.Return success response
 
         return new BaseResponse<ResponseData>(
             new ResponseData(
