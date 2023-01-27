@@ -13,9 +13,19 @@ public class Resident : Entity, IAggregateRoot
     #region Constructors
 
     /// <summary>
-    /// Create uma instance de Resident with default configuration
+    /// Create a new instance of Resident with default configuration
     /// </summary>
     public Resident() => Tracker = new Tracker("Criação do cadastro do residente");
+    
+    /// <summary>
+    /// Create a new instance of Resident with default configuration
+    /// </summary>
+    /// <param name="person">Entity required to initialize</param>
+    public Resident(Person person)
+    {
+        Person = person;
+        Tracker = new Tracker("Criação do cadastro do residente");
+    }
 
     /// <summary>
     /// Create a new instance of Resident with personalized configuration

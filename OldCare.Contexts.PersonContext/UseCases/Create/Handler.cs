@@ -1,5 +1,5 @@
-using OldCare.Contexts.SharedContext.UseCases;
 using MediatR;
+using OldCare.Contexts.SharedContext.UseCases;
 using OldCare.Contexts.SharedContext.Entities;
 using OldCare.Contexts.PersonContext.UseCases.Create.Contracts;
 using OldCare.Contexts.SharedContext.Enums;

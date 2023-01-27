@@ -18,4 +18,5 @@ public class Request : IRequest<BaseResponse<ResponseData>>
     public string Profession { get; set; }
     public long SUS { get; set; }
     public long VoterRegCardNumber { get; set; }
+    public string returnUrl { get; set; } = string.Empty;
 }

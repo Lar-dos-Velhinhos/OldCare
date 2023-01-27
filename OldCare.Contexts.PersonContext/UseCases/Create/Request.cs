@@ -32,6 +32,5 @@ public class Request : IRequest<BaseResponse<ResponseData>>
     public string Obs { get; set; } = string.Empty;
     public string FullNumber { get; set; } = string.Empty;
     public string Photo { get; set; } = string.Empty;
-
     public string returnUrl { get; set; } = string.Empty;
 }

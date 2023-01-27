@@ -4,6 +4,7 @@ using OldCare.Contexts.ResidentContext.UseCases.Create.Contracts;
 using OldCare.Contexts.SharedContext.Enums;
 using OldCare.Contexts.SharedContext.UseCases;
 using LogService = OldCare.Contexts.SharedContext.Services.Log.Contracts.IService;
+
 namespace OldCare.Contexts.ResidentContext.UseCases.Create;
 
 public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
@@ -28,8 +29,7 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
     #endregion
     #region Methods
 
-    public async Task<BaseResponse<ResponseData>> Handle(Request request,
-        CancellationToken cancellationToken)
+    public async Task<BaseResponse<ResponseData>> Handle(Request request, CancellationToken cancellationToken)
     {
         #region 01. Create Aggregate Root
 
@@ -57,7 +57,7 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
 
         var person = await _repository.GetPersonByIdAsync(request.PersonId);
 
-        resident.Person = person; // Verify init properties
+        resident = new(person);
         
         try
         {
