@@ -5,6 +5,7 @@ namespace OldCare.Contexts.PersonContext.UseCases.Create;
 public class ResponseData : IResponseData
 {
     #region Constructors
+    
     public ResponseData(string message) => Message = message;
 
     public ResponseData(string message, Request request)

@@ -1,13 +1,13 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using OldCare.Contexts.ResidentContext.UseCases.Create;
 using OldCare.Contexts.SharedContext.UseCases;
+using UCCreate = OldCare.Contexts.ResidentContext.UseCases.Create;
 
 namespace OldCare.API.Controllers;
 
 [ApiController]
-[Route("api/vi/Controller")]
+[Route("api/v1/[controller]")]
 public class ResidentController : ControllerBase
 {
     private readonly IMediator _mediator;
@@ -23,7 +23,7 @@ public class ResidentController : ControllerBase
     /// <returns></returns>
     [AllowAnonymous]
     [HttpPost("new-resident")]
-    public async Task<BaseResponse<ResponseData>> CreateAsync(Request request)
+    public async Task<BaseResponse<UCCreate.ResponseData>> CreateAsync(UCCreate.Request request)
     {
         try
         {
@@ -32,7 +32,7 @@ public class ResidentController : ControllerBase
         }
         catch (Exception e)
         {
-            return new BaseResponse<ResponseData>(e.Message, "C9F78602");
+            return new BaseResponse<UCCreate.ResponseData>(e.Message, "C9F78602");
         }
     }
 }

@@ -37,7 +37,7 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
 
         #endregion
 
-        #region 02. Check if resident exists
+        #region 02. Check if resident already exists
 
         var result = await _repository.CheckResidentExistsByPersonIdAsync(request.PersonId);
 
