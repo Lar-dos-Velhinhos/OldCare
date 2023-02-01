@@ -46,5 +46,9 @@ public static class AppExtension
         builder.Services.AddMediatR(
             typeof(Contexts.PersonContext.Configuration),
             typeof(Program));
+        
+        builder.Services.AddMediatR(
+            typeof(Contexts.ResidentContext.Configuration),
+            typeof(Program));
     }
 }

@@ -1,9 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using OldCare.Contexts.ResidentContext.Entities;
-using Twilio.Rest.Voice.V1.DialingPermissions;
 
-namespace OldCare.Data.Contexts.ResidentContext.Mapping;
+namespace OldCare.Data.Contexts.ResidentContext.Mappings;
 
 public class ResidentMap : IEntityTypeConfiguration<Resident>
 {

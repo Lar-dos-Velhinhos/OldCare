@@ -24,5 +24,5 @@ public interface IRepository
     /// </summary>
     /// <param name="name">string typed name to generate a query</param>
     /// <returns></returns>
-    Task<List<Person>> GetAll(int skip, int take);
+    Task<List<Person?>> GetAll(int skip, int take);
 }

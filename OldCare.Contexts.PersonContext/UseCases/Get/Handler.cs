@@ -32,7 +32,7 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
     {
         #region Create Aggregate Root
 
-        var persons = new List<Person>();
+        var persons = new List<Person?>();
         
         #endregion
 

@@ -1,9 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using OldCare.Contexts.ResidentContext.Entities;
 
-namespace OldCare.Data.Contexts.ResidentContext.Mapping;
+namespace OldCare.Data.Contexts.ResidentContext.Mappings;
 
 public class BedroomMap : IEntityTypeConfiguration<Bedroom>
 {

@@ -20,10 +20,10 @@ public class Repository : IRepository
 
     #region Public Methods
 
-    public async Task<Person> GetByIdAsync(Guid id)
+    public async Task<Person?> GetByIdAsync(Guid id)
         => await _context.People.FirstOrDefaultAsync(x => x.Id == id && x.IsDeleted != true);
 
-    public async Task UpdateAsync(Person person)
+    public async Task UpdateAsync(Person? person)
     {
         _context.People.Update(person);
         await _context.SaveChangesAsync();

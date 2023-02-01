@@ -16,12 +16,12 @@ public interface IRepository
     /// </summary>
     /// <param name="id">A guid type property</param>
     /// <returns></returns>
-    Task<Person> GetByIdAsync(Guid id);
+    Task<Person?> GetByIdAsync(Guid id);
 
     /// <summary>
     /// Update person data
     /// </summary>
     /// <param name="person"></param>
     /// <returns></returns>
-    Task UpdateAsync(Person person);
+    Task UpdateAsync(Person? person);
 }

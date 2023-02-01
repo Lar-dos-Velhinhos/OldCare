@@ -36,7 +36,7 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
     {
         #region 01. Create Aggregate Root
 
-        Person person = new();
+        Person? person = new();
 
         #endregion
 

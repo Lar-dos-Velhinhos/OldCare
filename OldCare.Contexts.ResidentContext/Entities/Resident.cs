@@ -15,15 +15,20 @@ public class Resident : Entity, IAggregateRoot
     /// <summary>
     /// Create a new instance of Resident with default configuration
     /// </summary>
-    public Resident() => Tracker = new Tracker("Criação do cadastro do residente");
-    
+    public Resident()
+    {
+        Occurrences = new();
+        Tracker = new Tracker("Criação do cadastro do residente");
+    }
+
     /// <summary>
     /// Create a new instance of Resident with default configuration
     /// </summary>
     /// <param name="person">Entity required to initialize</param>
-    public Resident(Person person)
+    public Resident(Person? person)
     {
         Person = person;
+        Occurrences = new();
         Tracker = new Tracker("Criação do cadastro do residente");
     }
 
@@ -40,7 +45,7 @@ public class Resident : Entity, IAggregateRoot
     /// <param name="occurrences">Wait an list of Resident occurrences</param>
     /// <param name="sus">Resident SUS card number</param>
     /// <param name="voterRegCardNumber">Resident voter registrtion number</param>
-    public Resident(Person person,
+    public Resident(Person? person,
         DateTime admissionDate,
         Bedroom bedroom,
         EEducationLevel educationLevel,
@@ -65,11 +70,12 @@ public class Resident : Entity, IAggregateRoot
     }
 
     #endregion
+    
     #region Properties
 
-    public Person Person { get; init; } = null!;
+    public Person? Person { get; init; } = null!;
     public DateTime AdmissionDate { get; private set; }
-    public Bedroom Bedroom { get; private set; } = null!;
+    public Bedroom? Bedroom { get; private set; }
     public EEducationLevel EducationLevel { get; private set; }
     public DateTime? DepartureDate { get; private set; }
     public string HealthInsurance { get; private set; } = string.Empty;

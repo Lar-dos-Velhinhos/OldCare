@@ -12,7 +12,7 @@ public interface IRepository
     /// <param name="lastName"></param>
     /// <param name="birthDate"></param>
     /// <returns></returns>
-    Task<Person> GetPersonByIdAsync(Guid id);
+    Task<Person?> GetPersonByIdAsync(Guid id);
 
     /// <summary>
     /// Asynchronous Create a new resident.

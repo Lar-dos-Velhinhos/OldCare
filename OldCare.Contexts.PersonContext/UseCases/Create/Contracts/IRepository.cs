@@ -18,5 +18,5 @@ public interface IRepository
     /// </summary>
     /// <param name="person">Required a person instance</param>
     /// <returns></returns>
-    Task CreateAsync(Person person);
+    Task CreateAsync(Person? person);
 }

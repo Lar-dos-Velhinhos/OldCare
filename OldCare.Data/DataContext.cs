@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using OldCare.Contexts.SharedContext.Entities;
 using OldCare.Data.Contexts.PersonContext.Mappings;
 using OldCare.Contexts.ResidentContext.Entities;
-using OldCare.Data.Contexts.ResidentContext.Mapping;
+using OldCare.Data.Contexts.ResidentContext.Mappings;
 
 namespace OldCare.Data;
 
@@ -26,7 +26,7 @@ public class DataContext : DbContext
 
     #region Person
 
-    public DbSet<Person> People { get; set; } = null!;
+    public DbSet<Person?> People { get; set; } = null!;
 
     #endregion
 
