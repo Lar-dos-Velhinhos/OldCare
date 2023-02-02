@@ -6,5 +6,6 @@ namespace OldCare.Contexts.ResidentContext.UseCases.Get;
 
 public class Request : IRequest<BaseResponse<ResponseData>>
 {
-    public List<Resident> Residents { get; set; }
+    public int Skip { get; set; }
+    public int Take { get; set; }
 }

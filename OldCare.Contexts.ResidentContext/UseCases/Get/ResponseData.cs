@@ -7,12 +7,12 @@ public class ResponseData : IResponseData
 {
     public ResponseData(string message) => Message = message;
 
-    public ResponseData(string message, List<Resident> residents)
+    public ResponseData(string message, List<Resident?> residents)
     {
         Message = message;
         Residents = residents;
     }
 
     public string? Message { get; }
-    public List<Resident> Residents { get; private set; }
+    public List<Resident> Residents { get; } = new();
 }

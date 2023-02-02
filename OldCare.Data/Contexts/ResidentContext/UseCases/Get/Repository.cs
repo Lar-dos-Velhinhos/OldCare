@@ -10,8 +10,10 @@ public class Repository : IRepository
 
     public Repository(DataContext context) => _context = context;
 
-    public Task<List<Resident>> GetAllResidentsOrderedByName()
+    public Task<List<Resident?>> GetAllResidentsOrderedByName(int skip, int take)
         => _context.Residents
+            .Skip(skip)
+            .Take(take)
             .AsNoTracking()
             .OrderBy(x => x.Person.Name)
             .ToListAsync();
