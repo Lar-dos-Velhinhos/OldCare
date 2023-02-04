@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OldCare.Data;
 
@@ -11,9 +12,11 @@ using OldCare.Data;
 namespace OldCare.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20230203235955_AddedTrackerToOccurrence")]
+    partial class AddedTrackerToOccurrence
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -138,7 +141,7 @@ namespace OldCare.API.Migrations
                     b.Property<DateTime>("OccurrenceDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("SMALLDATETIME")
-                        .HasDefaultValue(new DateTime(2023, 2, 4, 0, 15, 20, 558, DateTimeKind.Utc).AddTicks(1163));
+                        .HasDefaultValue(new DateTime(2023, 2, 3, 23, 59, 55, 254, DateTimeKind.Utc).AddTicks(1176));
 
                     b.Property<int>("OccurrenceType")
                         .ValueGeneratedOnAdd()

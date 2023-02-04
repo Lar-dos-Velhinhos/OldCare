@@ -34,6 +34,7 @@ public class DataContext : DbContext
 
     public DbSet<Resident> Residents { get; set; }
     public DbSet<Bedroom> Bedrooms { get; set; }
+    public DbSet<Occurrence> Occurrences { get; set; }
 
     #endregion
 
@@ -61,6 +62,15 @@ public class DataContext : DbContext
 
         builder.ApplyConfiguration(new ResidentMap());
         builder.ApplyConfiguration(new BedroomMap());
+        builder.ApplyConfiguration(new OccurrenceMap());
+
+        builder.Entity<Resident>()
+            .HasOne(r => r.Bedroom)
+            .WithMany(r => r.Residents);
+
+        builder.Entity<Resident>()
+            .HasMany(r => r.Occurrences)
+            .WithOne(r => r.Resident);
 
         #endregion
     }

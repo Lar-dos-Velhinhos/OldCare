@@ -10,11 +10,15 @@ public class Repository : IRepository
 
     public Repository(DataContext context) => _context = context;
 
-    public Task<List<Resident?>> GetAllResidentsOrderedByName(int skip, int take)
-        => _context.Residents
+    public async Task<List<Resident?>> GetAllResidentsOrderedByName(int skip, int take)
+        => await _context.Residents
+            .AsNoTracking()
             .Skip(skip)
             .Take(take)
-            .AsNoTracking()
-            .OrderBy(x => x.Person.Name)
+            .Include(r => r.Person.IsDeleted == false)
+            .Include(r => r.Bedroom != null)
+            .Include(r => r.Occurrences
+                .Where(o => o.IsDeleted == false))
+            .Where(r => r.IsDeleted == false)
             .ToListAsync();
 }

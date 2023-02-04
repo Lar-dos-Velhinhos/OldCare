@@ -5,6 +5,9 @@ namespace OldCare.Contexts.ResidentContext.UseCases.Get;
 
 public class ResponseData : IResponseData
 {
+
+    #region Public Constructors
+
     public ResponseData(string message) => Message = message;
 
     public ResponseData(string message, List<Resident?> residents)
@@ -13,6 +16,12 @@ public class ResponseData : IResponseData
         Residents = residents;
     }
 
+    #endregion
+
+    #region Public Properties
+
     public string? Message { get; }
-    public List<Resident> Residents { get; } = new();
+    public List<Resident?> Residents { get; private set;}
+
+    #endregion
 }

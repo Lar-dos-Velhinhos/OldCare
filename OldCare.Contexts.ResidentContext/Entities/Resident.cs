@@ -25,7 +25,7 @@ public class Resident : Entity, IAggregateRoot
     /// Create a new instance of Resident with default configuration
     /// </summary>
     /// <param name="person">Entity required to initialize</param>
-    public Resident(Person? person)
+    public Resident(Person person)
     {
         Person = person;
         Occurrences = new();
@@ -45,7 +45,7 @@ public class Resident : Entity, IAggregateRoot
     /// <param name="occurrences">Wait an list of Resident occurrences</param>
     /// <param name="sus">Resident SUS card number</param>
     /// <param name="voterRegCardNumber">Resident voter registrtion number</param>
-    public Resident(Person? person,
+    public Resident(Person person,
         DateTime admissionDate,
         Bedroom bedroom,
         EEducationLevel educationLevel,
@@ -73,7 +73,7 @@ public class Resident : Entity, IAggregateRoot
     
     #region Properties
 
-    public Person? Person { get; init; } = null!;
+    public Person Person { get; init; } = null!;
     public DateTime AdmissionDate { get; private set; }
     public Bedroom? Bedroom { get; private set; }
     public EEducationLevel EducationLevel { get; private set; }
@@ -95,7 +95,7 @@ public class Resident : Entity, IAggregateRoot
 
     public void ModifyBedroom(Bedroom bedroom) => Bedroom = bedroom;
     
-    public void AddOccurrences(List<Occurrence> occurrences)
+    public void AddOccurrences(List<Occurrence?> occurrences)
         => Occurrences = occurrences;
 
     public void ChangeOccurrences(List<Occurrence?> occurrences)

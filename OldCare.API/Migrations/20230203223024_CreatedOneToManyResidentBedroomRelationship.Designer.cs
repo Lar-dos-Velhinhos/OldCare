@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OldCare.Data;
 
@@ -11,9 +12,11 @@ using OldCare.Data;
 namespace OldCare.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20230203223024_CreatedOneToManyResidentBedroomRelationship")]
+    partial class CreatedOneToManyResidentBedroomRelationship
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -121,40 +124,6 @@ namespace OldCare.API.Migrations
                     b.ToTable("Bedroom", "backoffice");
                 });
 
-            modelBuilder.Entity("OldCare.Contexts.ResidentContext.Entities.Occurrence", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("NVARCHAR");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("BIT");
-
-                    b.Property<DateTime>("OccurrenceDate")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("SMALLDATETIME")
-                        .HasDefaultValue(new DateTime(2023, 2, 4, 0, 15, 20, 558, DateTimeKind.Utc).AddTicks(1163));
-
-                    b.Property<int>("OccurrenceType")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INT")
-                        .HasDefaultValue(1);
-
-                    b.Property<Guid>("ResidentId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ResidentId");
-
-                    b.ToTable("Occurrence", "backoffice");
-                });
-
             modelBuilder.Entity("OldCare.Contexts.ResidentContext.Entities.Resident", b =>
                 {
                     b.Property<Guid>("Id")
@@ -193,7 +162,7 @@ namespace OldCare.API.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("NVARCHAR");
 
-                    b.Property<Guid>("PersonId")
+                    b.Property<Guid?>("PersonId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Profession")
@@ -309,36 +278,6 @@ namespace OldCare.API.Migrations
 
                     b.Navigation("Email")
                         .IsRequired();
-
-                    b.Navigation("Tracker")
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("OldCare.Contexts.AccountContext.Entities.Role", b =>
-                {
-                    b.OwnsOne("OldCare.Contexts.SharedContext.ValueObjects.Tracker", "Tracker", b1 =>
-                        {
-                            b1.Property<Guid>("RoleId")
-                                .HasColumnType("uniqueidentifier");
-
-                            b1.Property<DateTime>("CreatedAt")
-                                .HasColumnType("SMALLDATETIME");
-
-                            b1.Property<string>("Notes")
-                                .IsRequired()
-                                .HasMaxLength(160)
-                                .HasColumnType("NVARCHAR");
-
-                            b1.Property<DateTime>("UpdatedAt")
-                                .HasColumnType("SMALLDATETIME");
-
-                            b1.HasKey("RoleId");
-
-                            b1.ToTable("Role", "backoffice");
-
-                            b1.WithOwner()
-                                .HasForeignKey("RoleId");
-                        });
 
                     b.Navigation("Tracker")
                         .IsRequired();
@@ -472,104 +411,9 @@ namespace OldCare.API.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.OwnsOne("OldCare.Contexts.SharedContext.ValueObjects.Tracker", "Tracker", b1 =>
-                        {
-                            b1.Property<Guid>("UserRoleId")
-                                .HasColumnType("uniqueidentifier");
-
-                            b1.Property<DateTime>("CreatedAt")
-                                .HasColumnType("SMALLDATETIME");
-
-                            b1.Property<string>("Notes")
-                                .IsRequired()
-                                .HasMaxLength(160)
-                                .HasColumnType("NVARCHAR");
-
-                            b1.Property<DateTime>("UpdatedAt")
-                                .HasColumnType("SMALLDATETIME");
-
-                            b1.HasKey("UserRoleId");
-
-                            b1.ToTable("UserRole", "backoffice");
-
-                            b1.WithOwner()
-                                .HasForeignKey("UserRoleId");
-                        });
-
                     b.Navigation("Role");
 
-                    b.Navigation("Tracker")
-                        .IsRequired();
-
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("OldCare.Contexts.ResidentContext.Entities.Bedroom", b =>
-                {
-                    b.OwnsOne("OldCare.Contexts.SharedContext.ValueObjects.Tracker", "Tracker", b1 =>
-                        {
-                            b1.Property<Guid>("BedroomId")
-                                .HasColumnType("uniqueidentifier");
-
-                            b1.Property<DateTime>("CreatedAt")
-                                .HasColumnType("SMALLDATETIME");
-
-                            b1.Property<string>("Notes")
-                                .IsRequired()
-                                .HasMaxLength(160)
-                                .HasColumnType("NVARCHAR");
-
-                            b1.Property<DateTime>("UpdatedAt")
-                                .HasColumnType("SMALLDATETIME");
-
-                            b1.HasKey("BedroomId");
-
-                            b1.ToTable("Bedroom", "backoffice");
-
-                            b1.WithOwner()
-                                .HasForeignKey("BedroomId");
-                        });
-
-                    b.Navigation("Tracker")
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("OldCare.Contexts.ResidentContext.Entities.Occurrence", b =>
-                {
-                    b.HasOne("OldCare.Contexts.ResidentContext.Entities.Resident", "Resident")
-                        .WithMany("Occurrences")
-                        .HasForeignKey("ResidentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.OwnsOne("OldCare.Contexts.SharedContext.ValueObjects.Tracker", "Tracker", b1 =>
-                        {
-                            b1.Property<Guid>("OccurrenceId")
-                                .HasColumnType("uniqueidentifier");
-
-                            b1.Property<DateTime>("CreatedAt")
-                                .HasColumnType("SMALLDATETIME");
-
-                            b1.Property<string>("Notes")
-                                .IsRequired()
-                                .HasMaxLength(160)
-                                .HasColumnType("NVARCHAR");
-
-                            b1.Property<DateTime>("UpdatedAt")
-                                .HasColumnType("SMALLDATETIME");
-
-                            b1.HasKey("OccurrenceId");
-
-                            b1.ToTable("Occurrence", "backoffice");
-
-                            b1.WithOwner()
-                                .HasForeignKey("OccurrenceId");
-                        });
-
-                    b.Navigation("Resident");
-
-                    b.Navigation("Tracker")
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("OldCare.Contexts.ResidentContext.Entities.Resident", b =>
@@ -580,9 +424,7 @@ namespace OldCare.API.Migrations
 
                     b.HasOne("OldCare.Contexts.SharedContext.Entities.Person", "Person")
                         .WithMany()
-                        .HasForeignKey("PersonId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PersonId");
 
                     b.OwnsOne("OldCare.Contexts.SharedContext.ValueObjects.Tracker", "Tracker", b1 =>
                         {
@@ -608,7 +450,38 @@ namespace OldCare.API.Migrations
                                 .HasForeignKey("ResidentId");
                         });
 
+                    b.OwnsMany("OldCare.Contexts.SharedContext.ValueObjects.Occurrence", "Occurrences", b1 =>
+                        {
+                            b1.Property<Guid>("ResidentId")
+                                .HasColumnType("uniqueidentifier");
+
+                            b1.Property<int>("Id")
+                                .ValueGeneratedOnAdd()
+                                .HasColumnType("int");
+
+                            SqlServerPropertyBuilderExtensions.UseIdentityColumn(b1.Property<int>("Id"));
+
+                            b1.Property<string>("Description")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<DateTime>("OccurrenceDate")
+                                .HasColumnType("datetime2");
+
+                            b1.Property<int>("OccurrenceType")
+                                .HasColumnType("int");
+
+                            b1.HasKey("ResidentId", "Id");
+
+                            b1.ToTable("Occurrence", "backoffice");
+
+                            b1.WithOwner()
+                                .HasForeignKey("ResidentId");
+                        });
+
                     b.Navigation("Bedroom");
+
+                    b.Navigation("Occurrences");
 
                     b.Navigation("Person");
 
@@ -810,11 +683,6 @@ namespace OldCare.API.Migrations
             modelBuilder.Entity("OldCare.Contexts.ResidentContext.Entities.Bedroom", b =>
                 {
                     b.Navigation("Residents");
-                });
-
-            modelBuilder.Entity("OldCare.Contexts.ResidentContext.Entities.Resident", b =>
-                {
-                    b.Navigation("Occurrences");
                 });
 #pragma warning restore 612, 618
         }

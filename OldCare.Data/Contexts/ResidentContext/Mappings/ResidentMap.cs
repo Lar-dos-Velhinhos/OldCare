@@ -8,17 +8,26 @@ public class ResidentMap : IEntityTypeConfiguration<Resident>
 {
     public void Configure(EntityTypeBuilder<Resident> builder)
     {
-        builder.ToTable("Resident");
+        #region Identifiers
 
+        builder.ToTable("Resident");
         builder.HasKey(x => x.Id);
 
+        #endregion
+        
+        #region Relationships
+        
         builder.HasOne(x => x.Person);
+        builder.HasOne(x => x.Bedroom);
+        builder.HasMany(r => r.Occurrences);
 
+        #endregion
+
+        #region Properties
+        
         builder.Property(x => x.AdmissionDate)
             .IsRequired()
             .HasColumnType("DATETIME");
-
-        builder.HasOne(x => x.Bedroom);
 
         builder.Property(x => x.EducationLevel)
             .IsRequired()
@@ -50,8 +59,6 @@ public class ResidentMap : IEntityTypeConfiguration<Resident>
             .HasMaxLength(255)
             .HasColumnType("NVARCHAR");
 
-        builder.OwnsMany(x => x.Occurrences);
-
         builder.Property(x => x.Profession)
             .IsRequired(false)
             .HasMaxLength(160)
@@ -77,5 +84,7 @@ public class ResidentMap : IEntityTypeConfiguration<Resident>
             .Property(x => x.Notes)
             .HasMaxLength(160)
             .HasColumnType("NVARCHAR");
+        
+        #endregion
     }
 }

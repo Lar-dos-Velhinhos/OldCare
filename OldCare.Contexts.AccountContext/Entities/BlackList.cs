@@ -7,6 +7,7 @@ public class BlackList : Entity
 {
     protected BlackList()
     {
+        Tracker = new Tracker("Criação do registro.");
     }
 
     public BlackList(string email)
@@ -16,5 +17,4 @@ public class BlackList : Entity
     }
 
     public Email Email { get; } = null!;
-    public Tracker Tracker { get; } = null!;
 }
