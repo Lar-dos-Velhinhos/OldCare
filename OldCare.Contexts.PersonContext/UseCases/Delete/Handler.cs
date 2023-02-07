@@ -44,7 +44,7 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
 
         if (!result)
         {
-            await _logService.LogAsync(ELogType.LocalException, $"❌ - Nenhuma pessoa com este identificador foi encontrada.", "E52D25DC", request.Id.ToString());
+            await _logService.LogAsync(ELogType.Error, $"❌ - Nenhuma pessoa com este identificador foi encontrada.", "E52D25DC", request.Id.ToString());
             return new BaseResponse<ResponseData>("Nenhuma pessoa com este identificador foi encontrada..", "ACCE2B08");
         }
         
@@ -70,7 +70,7 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
         }
         catch (Exception ex)
         {
-            await _logService.LogAsync(ELogType.LocalException, $"❌ {request.Id} - Não foi possível marcar a pessoa como deletada.", "D01A2CC4", ex.Message);
+            await _logService.LogAsync(ELogType.Error, $"❌ {request.Id} - Não foi possível marcar a pessoa como deletada.", "D01A2CC4", ex.Message);
             return new BaseResponse<ResponseData>("Não foi possível salvar as informações.", "D01A2CC4");
         }
 

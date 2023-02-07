@@ -22,7 +22,7 @@ public class Repository : IRepository
     #region Public Methods
 
     public async Task<bool> CheckResidentExistsByPersonIdAsync(Guid id)
-        => await _context.Residents.AnyAsync(x => x.Id == id && x.IsDeleted != true);
+        => await _context.Residents.AnyAsync(x => x.Person.Id == id && x.IsDeleted != true);
 
     public async Task<Person?> GetPersonByIdAsync(Guid id)
     => await _context.People.FirstOrDefaultAsync(

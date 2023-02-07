@@ -18,8 +18,8 @@ public class ResidentMap : IEntityTypeConfiguration<Resident>
         #region Relationships
         
         builder.HasOne(x => x.Person);
-        builder.HasOne(x => x.Bedroom);
-        builder.HasMany(r => r.Occurrences);
+        // builder.HasOne(x => x.Bedroom);
+        // builder.HasMany(r => r.Occurrences);
 
         #endregion
 

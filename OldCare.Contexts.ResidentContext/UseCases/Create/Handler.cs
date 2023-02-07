@@ -46,7 +46,7 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
         if (result)
         {
             await _logService.LogAsync(
-                ELogType.LocalException,
+                ELogType.Error,
                 "👤 Residente já cadastrado",
                 "AF59DD56", null);
             

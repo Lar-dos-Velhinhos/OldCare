@@ -12,8 +12,8 @@ using OldCare.Data;
 namespace OldCare.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230204001521_FixedNullOccurrenceReferenceErrorInResidentMap")]
-    partial class FixedNullOccurrenceReferenceErrorInResidentMap
+    [Migration("20230206223938_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -141,7 +141,7 @@ namespace OldCare.API.Migrations
                     b.Property<DateTime>("OccurrenceDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("SMALLDATETIME")
-                        .HasDefaultValue(new DateTime(2023, 2, 4, 0, 15, 20, 558, DateTimeKind.Utc).AddTicks(1163));
+                        .HasDefaultValue(new DateTime(2023, 2, 6, 22, 39, 37, 896, DateTimeKind.Utc).AddTicks(2864));
 
                     b.Property<int>("OccurrenceType")
                         .ValueGeneratedOnAdd()

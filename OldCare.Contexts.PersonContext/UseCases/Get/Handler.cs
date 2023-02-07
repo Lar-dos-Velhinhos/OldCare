@@ -44,16 +44,15 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
         }
         catch (Exception ex)
         {
-            await _logService.LogAsync(ELogType.LocalException, "❌ Ocorreu um erro ao carregar os registros.", "400168D3", ex.Message);
+            await _logService.LogAsync(ELogType.Error, "❌ Ocorreu um erro ao carregar os registros.", "400168D3", ex.Message);
             return new BaseResponse<ResponseData>("Ocorreu um erro ao carregar os registros.", "400168D3");
         }
 
         #endregion
         
-        
         #region Return Success Message
 
-        await _logService.LogAsync(ELogType.LocalApplicationEvent, "📃 Registros obtidos com sucesso", "Pessoas", null);
+        await _logService.LogAsync(ELogType.ApplicationEvent, "📃 Registros obtidos com sucesso", "Pessoas", null);
         return new BaseResponse<ResponseData>(new ResponseData($"Registros obtidos com sucesso.", persons), 201);
 
         #endregion

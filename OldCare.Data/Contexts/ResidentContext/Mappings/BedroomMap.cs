@@ -17,7 +17,7 @@ public class BedroomMap : IEntityTypeConfiguration<Bedroom>
         
         #region Relationships
         
-        builder.HasMany(x => x.Residents);
+        // builder.HasMany(x => x.Residents);
         
         #endregion
 

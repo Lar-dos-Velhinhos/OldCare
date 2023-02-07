@@ -43,7 +43,7 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
 
         if (result)
         {
-            await _logService.LogAsync(ELogType.LocalException, $"👥 {request.FirstName} {request.LastName} - Pessoa já cadastrada", "E52D25DC", null);
+            await _logService.LogAsync(ELogType.Error, $"👥 {request.FirstName} {request.LastName} - Pessoa já cadastrada", "E52D25DC");
             return new BaseResponse<ResponseData>("Pessoa já cadastrada.", "e52d25dc");
         }
 
@@ -58,7 +58,7 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
         catch (Exception ex)
         {
             await _logService.LogAsync(
-                ELogType.LocalException,
+                ELogType.Error,
                 $"❌ {request.FirstName} {request.FirstName} Não foi possível salvar o nome.",
                 "1fa4222b");
             

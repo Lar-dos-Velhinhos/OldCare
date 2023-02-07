@@ -46,7 +46,7 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
         }
         catch (Exception ex)
         {
-            await _logService.LogAsync(ELogType.LocalException, "❌ Ocorreu um erro ao carregar os registros dos residentes.",
+            await _logService.LogAsync(ELogType.Error, "❌ Ocorreu um erro ao carregar os registros dos residentes.",
                 "73D9DF0B", ex.Message);
             return new BaseResponse<ResponseData>("Ocorreu um erro ao carregar os registros dos residentes.", "73D9DF0B");
         }
@@ -55,7 +55,7 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
 
         #region 03. Retornar mensagem de sucesso
 
-        await _logService.LogAsync(ELogType.LocalUserActivity, $"✔️ Foram carregados {residents.Count} registros de residentes.",
+        await _logService.LogAsync(ELogType.UserActivity, $"✔️ Foram carregados {residents.Count} registros de residentes.",
             "68C4F652");
         return new BaseResponse<ResponseData>(new ResponseData($"Foram carregados {residents.Count} registros de residentes.", residents));
 

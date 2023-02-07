@@ -47,7 +47,7 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
         if (person == null)
         {
             await _logService.LogAsync(
-                ELogType.LocalUserActivity,
+                ELogType.UserActivity,
                 "👤 Pessoa não localizada.",
                 "2F9A7E0C");
             
@@ -85,7 +85,7 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
         #region 05. Return success response
 
         await _logService.LogAsync(
-            ELogType.LocalUserActivity,
+            ELogType.UserActivity,
             "👤 Endereço atualizado com sucesso.",
             person.Name,
             JsonSerializer.Serialize(person));

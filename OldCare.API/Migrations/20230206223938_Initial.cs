@@ -20,9 +20,12 @@ namespace OldCare.API.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Capacity = table.Column<byte>(type: "TINYINT", nullable: false),
+                    Capacity = table.Column<int>(type: "INT", nullable: false),
                     Gender = table.Column<bool>(type: "BIT", nullable: false),
-                    Number = table.Column<int>(type: "INT", nullable: false)
+                    Number = table.Column<int>(type: "INT", nullable: false),
+                    TrackerCreatedAt = table.Column<DateTime>(name: "Tracker_CreatedAt", type: "SMALLDATETIME", nullable: false),
+                    TrackerUpdatedAt = table.Column<DateTime>(name: "Tracker_UpdatedAt", type: "SMALLDATETIME", nullable: false),
+                    TrackerNotes = table.Column<string>(name: "Tracker_Notes", type: "NVARCHAR(160)", maxLength: 160, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -51,15 +54,15 @@ namespace OldCare.API.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    AddressZipCode = table.Column<string>(name: "Address_ZipCode", type: "NVARCHAR(20)", maxLength: 20, nullable: false),
-                    AddressStreet = table.Column<string>(name: "Address_Street", type: "NVARCHAR(160)", maxLength: 160, nullable: false),
-                    AddressNumber = table.Column<string>(name: "Address_Number", type: "NVARCHAR(20)", maxLength: 20, nullable: false),
-                    AddressComplement = table.Column<string>(name: "Address_Complement", type: "NVARCHAR(160)", maxLength: 160, nullable: true),
-                    AddressDistrict = table.Column<string>(name: "Address_District", type: "NVARCHAR(160)", maxLength: 160, nullable: false),
                     AddressCity = table.Column<string>(name: "Address_City", type: "NVARCHAR(160)", maxLength: 160, nullable: false),
+                    AddressDistrict = table.Column<string>(name: "Address_District", type: "NVARCHAR(160)", maxLength: 160, nullable: false),
+                    AddressNumber = table.Column<string>(name: "Address_Number", type: "NVARCHAR(20)", maxLength: 20, nullable: false),
                     AddressState = table.Column<string>(name: "Address_State", type: "NVARCHAR(2)", maxLength: 2, nullable: false),
-                    AddressCountry = table.Column<string>(name: "Address_Country", type: "NVARCHAR(160)", maxLength: 160, nullable: false),
+                    AddressStreet = table.Column<string>(name: "Address_Street", type: "NVARCHAR(160)", maxLength: 160, nullable: false),
+                    AddressZipCode = table.Column<string>(name: "Address_ZipCode", type: "NVARCHAR(20)", maxLength: 20, nullable: false),
                     AddressCode = table.Column<string>(name: "Address_Code", type: "NVARCHAR(160)", maxLength: 160, nullable: true),
+                    AddressComplement = table.Column<string>(name: "Address_Complement", type: "NVARCHAR(160)", maxLength: 160, nullable: true),
+                    AddressCountry = table.Column<string>(name: "Address_Country", type: "NVARCHAR(160)", maxLength: 160, nullable: false),
                     AddressNotes = table.Column<string>(name: "Address_Notes", type: "NVARCHAR(160)", maxLength: 160, nullable: true),
                     BirthDate = table.Column<DateTime>(type: "DATETIME2", nullable: true),
                     Citizenship = table.Column<string>(type: "NVARCHAR(160)", maxLength: 160, nullable: true),
@@ -91,7 +94,10 @@ namespace OldCare.API.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "VARCHAR(40)", maxLength: 40, nullable: false)
+                    Name = table.Column<string>(type: "VARCHAR(40)", maxLength: 40, nullable: false),
+                    TrackerCreatedAt = table.Column<DateTime>(name: "Tracker_CreatedAt", type: "SMALLDATETIME", nullable: false),
+                    TrackerUpdatedAt = table.Column<DateTime>(name: "Tracker_UpdatedAt", type: "SMALLDATETIME", nullable: false),
+                    TrackerNotes = table.Column<string>(name: "Tracker_Notes", type: "NVARCHAR(160)", maxLength: 160, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -127,19 +133,21 @@ namespace OldCare.API.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     PersonId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    BedroomId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    AdmissionDate = table.Column<DateTime>(type: "DATETIME2", nullable: false),
-                    DepartureDate = table.Column<DateTime>(type: "DATETIME2", nullable: true),
-                    Father = table.Column<string>(type: "NVARCHAR(160)", maxLength: 160, nullable: false),
-                    HealthInsurance = table.Column<string>(type: "NVARCHAR(160)", maxLength: 160, nullable: false),
-                    MaritalStatus = table.Column<byte>(type: "TINYINT", nullable: false),
-                    Mobility = table.Column<byte>(type: "TINYINT", nullable: false),
-                    Mother = table.Column<string>(type: "NVARCHAR(160)", maxLength: 160, nullable: false),
-                    Note = table.Column<string>(type: "NVARCHAR(255)", maxLength: 255, nullable: false),
-                    Profession = table.Column<string>(type: "NVARCHAR(160)", maxLength: 160, nullable: false),
-                    EducationLevel = table.Column<byte>(type: "TINYINT", nullable: false),
-                    SUS = table.Column<int>(type: "INT", nullable: false),
-                    VoterRegCardNumber = table.Column<int>(type: "INT", nullable: false)
+                    AdmissionDate = table.Column<DateTime>(type: "DATETIME", nullable: false),
+                    BedroomId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    EducationLevel = table.Column<int>(type: "INT", nullable: false),
+                    DepartureDate = table.Column<DateTime>(type: "DATETIME", nullable: true),
+                    HealthInsurance = table.Column<string>(type: "NVARCHAR(160)", maxLength: 160, nullable: false, defaultValue: "SUS"),
+                    IsDeleted = table.Column<bool>(type: "BIT", nullable: false),
+                    MaritalStatus = table.Column<int>(type: "INT", nullable: false),
+                    Mobility = table.Column<int>(type: "INT", nullable: false),
+                    Note = table.Column<string>(type: "NVARCHAR(255)", maxLength: 255, nullable: true),
+                    Profession = table.Column<string>(type: "NVARCHAR(160)", maxLength: 160, nullable: true),
+                    SUS = table.Column<long>(type: "BIGINT", nullable: false),
+                    VoterRegCardNumber = table.Column<long>(type: "BIGINT", nullable: false),
+                    TrackerCreatedAt = table.Column<DateTime>(name: "Tracker_CreatedAt", type: "SMALLDATETIME", nullable: false),
+                    TrackerUpdatedAt = table.Column<DateTime>(name: "Tracker_UpdatedAt", type: "SMALLDATETIME", nullable: false),
+                    TrackerNotes = table.Column<string>(name: "Tracker_Notes", type: "NVARCHAR(160)", maxLength: 160, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -149,8 +157,7 @@ namespace OldCare.API.Migrations
                         column: x => x.BedroomId,
                         principalSchema: "backoffice",
                         principalTable: "Bedroom",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Resident_Person_PersonId",
                         column: x => x.PersonId,
@@ -172,11 +179,11 @@ namespace OldCare.API.Migrations
                     EmailVerificationCodeExpireDate = table.Column<DateTime>(type: "DATETIME2", nullable: false),
                     PasswordHash = table.Column<string>(name: "Password_Hash", type: "VARCHAR(120)", maxLength: 120, nullable: false),
                     PasswordExpired = table.Column<bool>(name: "Password_Expired", type: "BIT", nullable: false),
+                    PersonId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Active = table.Column<bool>(type: "BIT", nullable: false),
                     TrackerCreatedAt = table.Column<DateTime>(name: "Tracker_CreatedAt", type: "SMALLDATETIME", nullable: false),
                     TrackerUpdatedAt = table.Column<DateTime>(name: "Tracker_UpdatedAt", type: "SMALLDATETIME", nullable: false),
-                    TrackerNotes = table.Column<string>(name: "Tracker_Notes", type: "NVARCHAR(1024)", maxLength: 1024, nullable: false),
-                    PersonId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Active = table.Column<bool>(type: "BIT", nullable: false)
+                    TrackerNotes = table.Column<string>(name: "Tracker_Notes", type: "NVARCHAR(1024)", maxLength: 1024, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -191,6 +198,33 @@ namespace OldCare.API.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Occurrence",
+                schema: "backoffice",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Description = table.Column<string>(type: "NVARCHAR(500)", maxLength: 500, nullable: false),
+                    IsDeleted = table.Column<bool>(type: "BIT", nullable: false),
+                    OccurrenceDate = table.Column<DateTime>(type: "SMALLDATETIME", nullable: false, defaultValue: new DateTime(2023, 2, 6, 22, 39, 37, 896, DateTimeKind.Utc).AddTicks(2864)),
+                    OccurrenceType = table.Column<int>(type: "INT", nullable: false, defaultValue: 1),
+                    ResidentId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    TrackerCreatedAt = table.Column<DateTime>(name: "Tracker_CreatedAt", type: "SMALLDATETIME", nullable: false),
+                    TrackerUpdatedAt = table.Column<DateTime>(name: "Tracker_UpdatedAt", type: "SMALLDATETIME", nullable: false),
+                    TrackerNotes = table.Column<string>(name: "Tracker_Notes", type: "NVARCHAR(160)", maxLength: 160, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Occurrence", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Occurrence_Resident_ResidentId",
+                        column: x => x.ResidentId,
+                        principalSchema: "backoffice",
+                        principalTable: "Resident",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "UserRole",
                 schema: "backoffice",
                 columns: table => new
@@ -199,7 +233,10 @@ namespace OldCare.API.Migrations
                     RoleId = table.Column<Guid>(type: "UNIQUEIDENTIFIER", nullable: false),
                     UserId = table.Column<Guid>(type: "UNIQUEIDENTIFIER", nullable: false),
                     StartDate = table.Column<DateTime>(type: "SMALLDATETIME", nullable: true),
-                    EndDate = table.Column<DateTime>(type: "SMALLDATETIME", nullable: true)
+                    EndDate = table.Column<DateTime>(type: "SMALLDATETIME", nullable: true),
+                    TrackerCreatedAt = table.Column<DateTime>(name: "Tracker_CreatedAt", type: "SMALLDATETIME", nullable: false),
+                    TrackerUpdatedAt = table.Column<DateTime>(name: "Tracker_UpdatedAt", type: "SMALLDATETIME", nullable: false),
+                    TrackerNotes = table.Column<string>(name: "Tracker_Notes", type: "NVARCHAR(160)", maxLength: 160, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -219,6 +256,12 @@ namespace OldCare.API.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Occurrence_ResidentId",
+                schema: "backoffice",
+                table: "Occurrence",
+                column: "ResidentId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Resident_BedroomId",
@@ -263,7 +306,7 @@ namespace OldCare.API.Migrations
                 schema: "backoffice");
 
             migrationBuilder.DropTable(
-                name: "Resident",
+                name: "Occurrence",
                 schema: "backoffice");
 
             migrationBuilder.DropTable(
@@ -271,7 +314,7 @@ namespace OldCare.API.Migrations
                 schema: "backoffice");
 
             migrationBuilder.DropTable(
-                name: "Bedroom",
+                name: "Resident",
                 schema: "backoffice");
 
             migrationBuilder.DropTable(
@@ -280,6 +323,10 @@ namespace OldCare.API.Migrations
 
             migrationBuilder.DropTable(
                 name: "User",
+                schema: "backoffice");
+
+            migrationBuilder.DropTable(
+                name: "Bedroom",
                 schema: "backoffice");
 
             migrationBuilder.DropTable(

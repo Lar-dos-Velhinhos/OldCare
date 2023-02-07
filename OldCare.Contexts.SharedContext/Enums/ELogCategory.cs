@@ -5,7 +5,8 @@
 /// </summary>
 public enum ELogType
 {
-    LocalException = 0,
-    LocalApplicationEvent = 1,
-    LocalUserActivity = 2
+    ApplicationEvent = 0,
+    Error = 1,
+    UserActivity = 2,
+    Warning = 3
 }

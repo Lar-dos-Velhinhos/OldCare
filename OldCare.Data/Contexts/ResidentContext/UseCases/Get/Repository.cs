@@ -15,10 +15,10 @@ public class Repository : IRepository
             .AsNoTracking()
             .Skip(skip)
             .Take(take)
-            .Include(r => r.Person.IsDeleted == false)
-            .Include(r => r.Bedroom != null)
+            .Include(r => r.Person)
+            .Include(r => r.Bedroom)
             .Include(r => r.Occurrences
                 .Where(o => o.IsDeleted == false))
-            .Where(r => r.IsDeleted == false)
+            .Where(r => r.IsDeleted == false && r.Person.IsDeleted == false)
             .ToListAsync();
 }
