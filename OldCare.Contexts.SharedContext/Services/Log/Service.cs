@@ -27,9 +27,9 @@ public class Service : IService
         string key,
         string data)
     {
-        if (string.IsNullOrEmpty(key))
+        if (key == "")
             key = "Não Associado";
-        
+
         if (!string.IsNullOrEmpty(data))
             data = $"\n\n**Detalhes**\n{data}";
         

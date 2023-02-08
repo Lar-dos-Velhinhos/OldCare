@@ -19,7 +19,7 @@ public interface IRepository
     Task<Person?> GetByIdAsync(Guid id);
 
     /// <summary>
-    /// Update person data
+    /// Update person data asynchronous
     /// </summary>
     /// <param name="person"></param>
     /// <returns></returns>

@@ -111,6 +111,14 @@ public static class Context
             .AddTransient<Contexts.ResidentContext.UseCases.Create.Contracts.IRepository,
                 Data.Contexts.ResidentContext.UseCases.Create.Repository>();
 
+        services
+            .AddTransient<Contexts.ResidentContext.UseCases.Delete.Contracts.IRepository,
+                Data.Contexts.ResidentContext.UseCases.Delete.Repository>();
+        
+        services
+            .AddTransient<Contexts.ResidentContext.UseCases.Get.Contracts.IRepository,
+                Data.Contexts.ResidentContext.UseCases.Get.Repository>();
+
         #endregion
     }
 }

@@ -21,17 +21,18 @@ public class Repository : IRepository
 
     #region Public Methods
 
-    public async Task<bool> CheckResidentExistsByPersonIdAsync(Guid id)
-        => await _context.Residents.AnyAsync(x => x.Person.Id == id && x.IsDeleted != true);
+    public async Task<bool> CheckResidentExistsByPersonIdAsync(Guid personId)
+        => await _context.Residents.AnyAsync(x => x.Person.Id == personId && x.IsDeleted != true);
 
-    public async Task<Person?> GetPersonByIdAsync(Guid id)
-    => await _context.People.FirstOrDefaultAsync(
-        x => x.Id == id && x.IsDeleted == false);
     public async Task CreateAsync(Resident resident)
     {
         await _context.Residents.AddAsync(resident);
         await _context.SaveChangesAsync();
     }
+    
+    public async Task<Person?> GetPersonByIdAsync(Guid personId)
+    => await _context.People.FirstOrDefaultAsync(
+        x => x.Id == personId && x.IsDeleted == false);
 
     #endregion
 }
