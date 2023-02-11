@@ -2,7 +2,9 @@
 using OldCare.Contexts.ResidentContext.Entities;
 using OldCare.Contexts.ResidentContext.UseCases.Get.Contracts;
 using OldCare.Contexts.SharedContext.Enums;
+using OldCare.Contexts.SharedContext.Extensions;
 using OldCare.Contexts.SharedContext.UseCases;
+using OldCare.Contexts.SharedContext.ValueObjects.Exceptions;
 using LogService = OldCare.Contexts.SharedContext.Services.Log.Contracts.IService;
 
 namespace OldCare.Contexts.ResidentContext.UseCases.Get;
@@ -42,7 +44,18 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
 
         try
         {
-            residents = await _repository.GetAllResidentsOrderedByName(request.Skip, request.Take);
+            if (request.OnlyActives)
+                residents = await _repository.GetActiveResidentsOrderedByName(request.Skip, request.Take);
+            else
+                residents = await _repository.GetResidentsOrderedByName(request.Skip, request.Take);
+            
+            ListException.ThrowIfEmpty(residents);
+        }
+        catch (ListException e)
+        {
+            await _logService.LogAsync(ELogType.Error, $"❌ {e.Message}",
+                "7C296A3E");
+            return new BaseResponse<ResponseData>(e.Message, "7C296A3E");
         }
         catch (Exception ex)
         {
@@ -55,9 +68,12 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
 
         #region 03. Retornar mensagem de sucesso
 
-        await _logService.LogAsync(ELogType.UserActivity, $"✔️ Foram carregados {residents.Count} registros de residentes.",
+        await _logService.LogAsync(ELogType.UserActivity, $"✔️ Foi carregado {residents.Count} registro de residente."
+                .ToMany(residents.Count, $"✔️ Foram carregados {residents.Count} registros de residentes."),
             "68C4F652");
-        return new BaseResponse<ResponseData>(new ResponseData($"Foram carregados {residents.Count} registros de residentes.", residents));
+        return new BaseResponse<ResponseData>(
+            new ResponseData($"Foi carregado {residents.Count} registro de residente."
+                .ToMany(residents.Count, $"Foram carregados {residents.Count} registros de residentes."), residents));
 
         #endregion
     }

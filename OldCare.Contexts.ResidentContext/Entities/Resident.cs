@@ -119,7 +119,6 @@ public class Resident : Entity, IAggregateRoot
     public void ChangeInformation(
         DateTime admissionDate,
         EEducationLevel educationLevel,
-        DateTime? departureDate,
         string healthInsurance,
         bool isDeleted,
         EMaritalStatus maritalStatus,
@@ -131,7 +130,6 @@ public class Resident : Entity, IAggregateRoot
     {
         AdmissionDate = admissionDate;
         EducationLevel = educationLevel;
-        DepartureDate = departureDate;
         HealthInsurance = healthInsurance;
         IsDeleted = isDeleted;
         MaritalStatus = maritalStatus;

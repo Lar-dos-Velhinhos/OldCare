@@ -10,15 +10,32 @@ public class Repository : IRepository
 
     public Repository(DataContext context) => _context = context;
 
-    public async Task<List<Resident?>> GetAllResidentsOrderedByName(int skip, int take)
+    public async Task<List<Resident?>> GetResidentsOrderedByName(int skip, int take)
         => await _context.Residents
             .AsNoTracking()
             .Skip(skip)
             .Take(take)
-            .Include(r => r.Person)
-            .Include(r => r.Bedroom)
-            .Include(r => r.Occurrences
+            .Include(resident => resident.Person)
+            .Include(resident => resident.Bedroom)
+            .Include(resident => resident.Occurrences
                 .Where(o => o.IsDeleted == false))
             .Where(r => r.IsDeleted == false && r.Person.IsDeleted == false)
             .ToListAsync();
+
+    public async Task<List<Resident?>> GetActiveResidentsOrderedByName(int skip, int take)
+        => (await _context.Residents
+            .AsNoTracking()
+            .Skip(skip)
+            .Take(take)
+            .Include(resident => resident.Person)
+            .Include(resident => resident.Bedroom)
+            .Include(resident => resident.Occurrences
+                .Where(occurrence =>
+                    occurrence != null &&
+                    occurrence.IsDeleted == false))
+            .Where(resident =>
+                resident.IsDeleted == false &&
+                resident.Person.IsDeleted == false &&
+                resident.DepartureDate == null)
+            .ToListAsync())!;
 }

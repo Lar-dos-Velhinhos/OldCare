@@ -66,7 +66,6 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
             resident.ChangeInformation(
                 request.AdmissionDate,
                 request.EducationLevel,
-                request.DepartureDate,
                 request.HealthInsurance,
                 request.IsDeleted,
                 request.MaritalStatus,
@@ -85,7 +84,7 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
 
         #endregion
 
-        #region 03. Persist Data
+        #region 04. Persist Data
 
         try
         {
@@ -99,7 +98,7 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
 
         #endregion
 
-        #region 04.Return success response
+        #region 05.Return success response
 
         return new BaseResponse<ResponseData>(
             new ResponseData(
