@@ -68,8 +68,8 @@ public class Person : Entity, IAggregateRoot
     public string? Obs { get; private set; } = string.Empty;
     public Phone? Phone { get; private set; }
     public string? Photo { get; private set; } = string.Empty;
-    public string FatherName { get; private set; } = string.Empty;
-    public string MotherName { get; private set; } = string.Empty;
+    public string? FatherName { get; private set; } = string.Empty;
+    public string? MotherName { get; private set; } = string.Empty;
     public Tracker Tracker { get; } = null!;
     [NotMapped]
     public int Age { get; set; }
@@ -98,7 +98,7 @@ public class Person : Entity, IAggregateRoot
         string citizenship,
         EGender gender,
         string nationality,
-        string obs)
+        string? obs)
     {
         BirthDate = birthDate;
         Citizenship = citizenship;
@@ -141,6 +141,12 @@ public class Person : Entity, IAggregateRoot
             age = age - 1;
 
         return age;
+    }
+
+    public void ChangeParents(string? fatherName, string? motherName)
+    {
+        FatherName = fatherName; 
+        MotherName = motherName;
     }
 
     public void VerifyPhone(string code)

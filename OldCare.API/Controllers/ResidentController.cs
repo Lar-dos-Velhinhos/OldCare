@@ -7,6 +7,7 @@ using OldCare.Contexts.SharedContext.UseCases;
 using UCCreate = OldCare.Contexts.ResidentContext.UseCases.Create;
 using UCDelete = OldCare.Contexts.ResidentContext.UseCases.Delete;
 using UCGet = OldCare.Contexts.ResidentContext.UseCases.Get;
+using UCModify = OldCare.Contexts.ResidentContext.UseCases.Modify;
 
 namespace OldCare.API.Controllers;
 
@@ -88,6 +89,27 @@ public class ResidentController : ControllerBase
         catch (Exception e)
         {
             return new BaseResponse<UCGet.ResponseData>(e.Message, "D26168A2");
+        }
+    }
+
+    /// <summary>
+    /// Update active resident data
+    /// </summary>
+    /// <param name="request"></param>
+    /// <returns></returns>
+    [AllowAnonymous]
+    [HttpPut("modify/{id}")]
+    public async Task<BaseResponse<UCModify.ResponseData>> Modify(UCModify.Request request)
+    {
+        try
+        {
+            var result = await _mediator.Send(request);
+            return result;
+        }
+        catch (Exception e)
+        {
+
+            return new BaseResponse<UCModify.ResponseData>(e.Message, "EDF18767", 400);
         }
     }
 

@@ -18,7 +18,7 @@ public class Repository : IRepository
             .Include(resident => resident.Person)
             .Include(resident => resident.Bedroom)
             .Include(resident => resident.Occurrences
-                .Where(o => o.IsDeleted == false))
+                .Where(occurrence => occurrence.IsDeleted == false))
             .Where(r => r.IsDeleted == false && r.Person.IsDeleted == false)
             .ToListAsync();
 
