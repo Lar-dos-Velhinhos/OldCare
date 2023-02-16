@@ -1,7 +1,6 @@
 ﻿using MediatR;
 using OldCare.Contexts.ResidentContext.Entities;
 using OldCare.Contexts.ResidentContext.UseCases.Modify.Contracts;
-using OldCare.Contexts.SharedContext.Entities;
 using OldCare.Contexts.SharedContext.Enums;
 using OldCare.Contexts.SharedContext.UseCases;
 using OldCare.Contexts.SharedContext.ValueObjects;
