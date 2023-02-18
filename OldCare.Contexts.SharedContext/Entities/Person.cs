@@ -96,13 +96,17 @@ public class Person : Entity, IAggregateRoot
     public void ChangeInformation(
         DateTime? birthDate,
         string citizenship,
+        string? fatherName,
         EGender gender,
+        string? motherName,
         string nationality,
         string? obs)
     {
         BirthDate = birthDate;
         Citizenship = citizenship;
+        FatherName= fatherName;
         Gender = gender;
+        MotherName= motherName;
         Nationality = nationality;
         Obs = obs;
 

@@ -26,9 +26,11 @@ public class Request : IRequest<BaseResponse<ResponseData>>
     public DateTime BirthDate { get; set; } = DateTime.UtcNow;
     public string Nationality { get; set; } = string.Empty;
     public string Citizenship { get; set; } = string.Empty;
+    public string? FatherName { get; set; }
     public EGender Gender { get; set; }
     public string FirstName { get; set; } = null!;
     public string LastName { get; set; } = null!;
+    public string? MotherName { get; set; }
     public string Obs { get; set; } = string.Empty;
     public string FullNumber { get; set; } = string.Empty;
     public string Photo { get; set; } = string.Empty;

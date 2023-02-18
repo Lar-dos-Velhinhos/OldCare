@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using OldCare.Contexts.ResidentContext.Entities;
 using OldCare.Contexts.ResidentContext.UseCases.Modify.Contracts;
+using OldCare.Contexts.SharedContext.Entities;
 using OldCare.Contexts.SharedContext.Enums;
 using OldCare.Contexts.SharedContext.UseCases;
 using OldCare.Contexts.SharedContext.ValueObjects;
@@ -40,7 +41,7 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
 
         try
         {
-            resident = await _repository.GetByIdAsync(request.ResidentId);
+            resident = await _repository.GetResidentByIdAsync(request.ResidentId);
 
             if(resident == null)
             {
@@ -54,11 +55,31 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
                     "51E26937");
             }
         }
-        catch (Exception ex)
+        catch (Exception exception)
         {
             await _logService.LogAsync(ELogType.Error, "❌ Ocorreu um erro ao carregar os dados do residente.",
-                "C9E34062", ex.Message);
+                "C9E34062", exception.Message);
             return new BaseResponse<ResponseData>("Ocorreu um erro ao carregar os dados do residente.", "C9E34062", 500);
+        }
+        Person? person = new();
+        try
+        {
+            person = await _repository.GetPersonById(request.PersonId);
+
+            if (person == null)
+            {
+                await _logService.LogAsync(
+                ELogType.UserActivity,
+                "Pessoa não localizada.",
+                "D7DAD1DD");
+                return new BaseResponse<ResponseData>("Residente não localizado.", "D7DAD1DD");
+            }
+        }
+        catch (Exception exception)
+        {
+            await _logService.LogAsync(ELogType.Error, "❌ Ocorreu um erro ao carregar os dados da pessoa.",
+                "{77702ADF", exception.Message);
+            return new BaseResponse<ResponseData>("Ocorreu um erro ao carregar os dados da pessoa.", "77702ADF", 500);
         }
 
         #endregion
@@ -79,7 +100,7 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
                request.AddressCountry,
                request.AddressNotes);
 
-            resident.Person.ModifyAddress(address);
+            person.ModifyAddress(address);
         }
         catch (Exception exception)
         {
@@ -95,16 +116,14 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
 
         #region 04 Attach Person Data
 
-        resident.Person.ChangeInformation(
+        person.ChangeInformation(
             request.BirthDate,
             request.Citizenship,
+            request.FatherName,
             request.Gender,
+            request.MotherName,
             request.Nationality,
             request.Obs);
-
-        resident.Person.ChangeParents(
-            request.FatherName,
-            request.MotherName);
 
         #endregion
 
@@ -113,16 +132,16 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
         try
         {
             resident.ChangeInformation(
-                request.AdmissionDate,
-                request.EducationLevel,
-                request.HealthInsurance,
-                request.IsDeleted,
-                request.MaritalStatus,
-                request.Mobility,
-                request.Note,
-                request.Profession,
-                request.SUS,
-                request.VoterRegCardNumber);
+            request.AdmissionDate,
+            request.EducationLevel,
+            request.HealthInsurance,
+            request.IsDeleted,
+            request.MaritalStatus,
+            request.Mobility,
+            request.Note,
+            request.Profession,
+            request.SUS,
+            request.VoterRegCardNumber);
 
         }
         catch (Exception)
@@ -136,10 +155,13 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
 
         #region 06. Attach Bedroom
 
+        resident.ModifyBedroom(request.Bedroom);
 
         #endregion
 
         #region 07. Attach Occurrence
+
+        resident.ChangeOccurrences(request.Occurrences);
 
         #endregion
 

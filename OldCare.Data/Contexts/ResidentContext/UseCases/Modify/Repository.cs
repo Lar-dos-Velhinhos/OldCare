@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using OldCare.Contexts.ResidentContext.Entities;
 using OldCare.Contexts.ResidentContext.UseCases.Modify.Contracts;
+using OldCare.Contexts.SharedContext.Entities;
 
 namespace OldCare.Data.Contexts.ResidentContext.UseCases.Modify;
 
@@ -21,7 +22,12 @@ public class Repository : IRepository
 
     #region Public Methods
 
-    public async Task<Resident?> GetByIdAsync(Guid id)
+    public async Task<Person?> GetPersonByIdAsync(Guid id)
+        => await _context.People.FirstOrDefaultAsync(person => 
+            person.Id == id &&
+            person.IsDeleted != true);    
+
+    public async Task<Resident?> GetResidentByIdAsync(Guid id)
         => await _context.Residents
         .Include(resident => resident.Person)
         .Include(resident => resident.Bedroom)
@@ -30,8 +36,8 @@ public class Repository : IRepository
         .FirstOrDefaultAsync(resident =>
             resident.Id == id &&
             resident.IsDeleted != true &&
-            resident.Person.IsDeleted != true);
-
+            resident.Person.IsDeleted != true); 
+   
     public async Task UpdateAsync(Resident resident)
     {
         _context.Update(resident);

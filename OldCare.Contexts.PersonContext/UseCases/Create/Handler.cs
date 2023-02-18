@@ -74,7 +74,9 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
             person.ChangeInformation(
                 request.BirthDate,
                 request.Citizenship,
+                request.FatherName,
                 request.Gender,
+                request.MotherName,
                 request.Nationality,
                 request.Obs);
         }
