@@ -34,7 +34,7 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
 
         try
         {
-            resident = await _repository.GetDetailsByIdAsync(resident.Id);
+            resident = await _repository.GetDetailsByIdAsync(request.ResidentId);
 
             if(resident == null)
             {
@@ -67,7 +67,7 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
             "7E75FD32");
 
         return new BaseResponse<ResponseData>(
-            "Dados do residente carreados com sucesso",
+            "Dados do residente carregados com sucesso",
             "7E75FD32", 200);
 
         #endregion

@@ -27,21 +27,7 @@ public static class Configuration
         public string InMemoryDatabaseName { get; set; } = string.Empty;
     }
 
-    public class PayPalConfiguration
-    {
-        public string ApiKey { get; set; } = string.Empty;
-        public string ApiUrl { get; set; } = string.Empty;
-        public string ClientId { get; set; } = string.Empty;
-        public string ClientSecret { get; set; } = string.Empty;
-        public string AuthorizationAccessToken => $"{ClientId}:{ClientSecret}".ToBase64();
-    }
-
-    public class PagarMeConfiguration
-    {
-        public string ApiKey { get; set; } = string.Empty;
-        public string ApiUrl { get; set; } = string.Empty;
-    }
-
+    
     public class SendGridConfiguration
     {
         public string ApiKey { get; set; } = string.Empty;

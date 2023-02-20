@@ -58,7 +58,7 @@ public class ResidentController : ControllerBase
     /// <param name="request"></param>
     /// <returns>If success return successfull message, if dont return request data.</returns>
     [AllowAnonymous]
-    [HttpDelete]
+    [HttpDelete("delete/{id}")]
     public async Task<BaseResponse<UCDelete.ResponseData>> Delete(UCDelete.Request request)
     {
         try
@@ -99,12 +99,12 @@ public class ResidentController : ControllerBase
     /// <param name="request">Used to specify register that will be returned</param>
     /// <returns>A resident</returns>
     [AllowAnonymous]
-    [HttpGet("getdetails/{id}")]
-    public async Task<BaseResponse<UCGetDetails.ResponseData>> GetDetailsAsync(UCGetDetails.Request request)
+    [HttpGet("get-details/{id}")]
+    public async Task<BaseResponse<UCGetDetails.ResponseData>> GetDetailsAsync(Guid id)
     {
         try
         {
-            var result = await _mediator.Send(request);
+            var result = await _mediator.Send(new UCGetDetails.Request(id));
             return result;
         }
         catch (Exception exception)

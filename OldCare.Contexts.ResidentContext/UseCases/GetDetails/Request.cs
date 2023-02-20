@@ -5,5 +5,7 @@ namespace OldCare.Contexts.ResidentContext.UseCases.GetDetails;
 
 public class Request : IRequest<BaseResponse<ResponseData>>
 {
-    public Guid ResidentId { get; private set; }
+	public Request(Guid residentId) => ResidentId = residentId;
+
+    public Guid ResidentId { get; set; }
 }
