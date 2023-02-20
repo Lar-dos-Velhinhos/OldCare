@@ -123,6 +123,10 @@ public static class Context
             .AddTransient<Contexts.ResidentContext.UseCases.Modify.Contracts.IRepository,
                 Data.Contexts.ResidentContext.UseCases.Modify.Repository>();
 
+        services
+            .AddTransient<Contexts.ResidentContext.UseCases.GetDetails.Contracts.IRepository,
+                Data.Contexts.ResidentContext.UseCases.GetDetails.Repository>();
+
         #endregion
     }
 }

@@ -64,7 +64,7 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
         Person? person = new();
         try
         {
-            person = await _repository.GetPersonById(request.PersonId);
+            person = await _repository.GetPersonByIdAsync(request.PersonId);
 
             if (person == null)
             {
@@ -78,7 +78,7 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
         catch (Exception exception)
         {
             await _logService.LogAsync(ELogType.Error, "❌ Ocorreu um erro ao carregar os dados da pessoa.",
-                "{77702ADF", exception.Message);
+                "77702ADF", exception.Message);
             return new BaseResponse<ResponseData>("Ocorreu um erro ao carregar os dados da pessoa.", "77702ADF", 500);
         }
 

@@ -7,6 +7,7 @@ using OldCare.Contexts.SharedContext.UseCases;
 using UCCreate = OldCare.Contexts.ResidentContext.UseCases.Create;
 using UCDelete = OldCare.Contexts.ResidentContext.UseCases.Delete;
 using UCGet = OldCare.Contexts.ResidentContext.UseCases.Get;
+using UCGetDetails = OldCare.Contexts.ResidentContext.UseCases.GetDetails;
 using UCModify = OldCare.Contexts.ResidentContext.UseCases.Modify;
 
 namespace OldCare.API.Controllers;
@@ -19,14 +20,14 @@ public class ResidentController : ControllerBase
 
     private readonly LogService _logService;
     private readonly IMediator _mediator;
-    
+
     #endregion
-    
+
     #region Public Constructors
-    
+
     public ResidentController(LogService logService, IMediator mediator)
         => (_logService, _mediator) = (logService, mediator);
-    
+
     #endregion
 
     #region Public Methods
@@ -93,6 +94,27 @@ public class ResidentController : ControllerBase
     }
 
     /// <summary>
+    /// Fetch a existing resident and not deleted with all details
+    /// </summary>
+    /// <param name="request">Used to specify register that will be returned</param>
+    /// <returns>A resident</returns>
+    [AllowAnonymous]
+    [HttpGet("getdetails/{id}")]
+    public async Task<BaseResponse<UCGetDetails.ResponseData>> GetDetailsAsync(UCGetDetails.Request request)
+    {
+        try
+        {
+            var result = await _mediator.Send(request);
+            return result;
+        }
+        catch (Exception exception)
+        {
+
+            return new BaseResponse<UCGetDetails.ResponseData>(exception.Message, "D6A0CB78", 400);
+        }
+    }
+
+    /// <summary>
     /// Update active resident data
     /// </summary>
     /// <param name="request"></param>
@@ -106,10 +128,10 @@ public class ResidentController : ControllerBase
             var result = await _mediator.Send(request);
             return result;
         }
-        catch (Exception e)
+        catch (Exception exception)
         {
 
-            return new BaseResponse<UCModify.ResponseData>(e.Message, "EDF18767", 400);
+            return new BaseResponse<UCModify.ResponseData>(exception.Message, "EDF18767", 400);
         }
     }
 

@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using OldCare.Contexts.ResidentContext.Entities;
-using OldCare.Contexts.ResidentContext.UseCases.Details.Contracts;
+using OldCare.Contexts.ResidentContext.UseCases.GetDetails.Contracts;
 
-namespace OldCare.Data.Contexts.ResidentContext.UseCases.Details;
+namespace OldCare.Data.Contexts.ResidentContext.UseCases.GetDetails;
 
 public class Repository : IRepository
 { 
@@ -19,8 +19,8 @@ public class Repository : IRepository
 
     #endregion
 
-
     #region Public Methods
+
     public async Task<Resident?> GetDetailsByIdAsync(Guid id)
     => await _context.Residents
             .Include(resident => resident.Person)
@@ -33,5 +33,4 @@ public class Repository : IRepository
                 resident.Person.IsDeleted != true);
 
     #endregion
-
 }

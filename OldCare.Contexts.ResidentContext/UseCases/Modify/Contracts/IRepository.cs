@@ -10,7 +10,7 @@ public interface IRepository
     /// </summary>
     /// <param name="id">Person's global unique identifier</param>
     /// <returns></returns>
-    Task<Person?> GetPersonById(Guid id);
+    Task<Person?> GetPersonByIdAsync(Guid id);
     /// <summary>
     /// Fetch resident data based in global unique identifier.
     /// </summary>
