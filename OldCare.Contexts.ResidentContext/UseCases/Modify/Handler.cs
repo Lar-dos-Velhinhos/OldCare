@@ -61,27 +61,7 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
                 "C9E34062", exception.Message);
             return new BaseResponse<ResponseData>("Ocorreu um erro ao carregar os dados do residente.", "C9E34062", 500);
         }
-        Person? person = new();
-        try
-        {
-            person = await _repository.GetPersonByIdAsync(request.PersonId);
-
-            if (person == null)
-            {
-                await _logService.LogAsync(
-                ELogType.UserActivity,
-                "Pessoa não localizada.",
-                "D7DAD1DD");
-                return new BaseResponse<ResponseData>("Residente não localizado.", "D7DAD1DD");
-            }
-        }
-        catch (Exception exception)
-        {
-            await _logService.LogAsync(ELogType.Error, "❌ Ocorreu um erro ao carregar os dados da pessoa.",
-                "77702ADF", exception.Message);
-            return new BaseResponse<ResponseData>("Ocorreu um erro ao carregar os dados da pessoa.", "77702ADF", 500);
-        }
-
+        
         #endregion
 
         #region 03 Attach Address
@@ -100,7 +80,7 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
                request.AddressCountry,
                request.AddressNotes);
 
-            person.ModifyAddress(address);
+            resident.Person.ModifyAddress(address);
         }
         catch (Exception exception)
         {
@@ -116,7 +96,7 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
 
         #region 04 Attach Person Data
 
-        person.ChangeInformation(
+        resident.Person.ChangeInformation(
             request.BirthDate,
             request.Citizenship,
             request.FatherName,
@@ -154,14 +134,27 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
         #endregion
 
         #region 06. Attach Bedroom
+        Bedroom bedroom = new();
 
-        resident.ModifyBedroom(request.Bedroom);
+        bedroom.ChangeBedroom(
+            request.BedroomCapacity,
+            request.BedroomGender,
+            request.BedroomNumber);
+
+        resident.ModifyBedroom(bedroom);
 
         #endregion
 
-        #region 07. Attach Occurrence
+        #region 07. Attach Occurrences
 
-        resident.ChangeOccurrences(request.Occurrences);
+        foreach(var ocurrence in resident.Occurrences)
+        {
+            ocurrence.ChangeOccurrence(
+                request.OccurrenceDescription,
+                request.OccurrenceIsDeleted,
+                request.OccurrenceDate,
+                request.OccurrenceType);
+        }
 
         #endregion
 

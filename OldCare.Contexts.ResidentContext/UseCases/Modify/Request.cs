@@ -8,9 +8,14 @@ namespace OldCare.Contexts.ResidentContext.UseCases.Modify;
 
 public class Request : IRequest<BaseResponse<ResponseData>>
 {
-    #region Public Properties
+	#region Public Constructors
 
-    public Guid PersonId { get; set; }
+	public Request(Guid residentId) => ResidentId = residentId;
+
+	#endregion
+
+
+	#region Public Properties	
 
 
 	#region Region Address
@@ -25,11 +30,12 @@ public class Request : IRequest<BaseResponse<ResponseData>>
 	public string AddressStreet { get; set; } = string.Empty;
 	public string AddressZipCode { get; set; } = string.Empty;
 
-	#endregion
+    #endregion
 
-	#region Region Personal Data
+    #region Region Personal Data
 
-	public DateTime BirthDate { get; set; }
+    public Guid PersonId { get; set; }
+    public DateTime BirthDate { get; set; }
 	public string Citizenship { get; set; } = null!;
 	public string? FatherName { get; set; }
 	public EGender Gender { get; set; }
@@ -37,10 +43,28 @@ public class Request : IRequest<BaseResponse<ResponseData>>
 	public string Nationality { get; set; } = "BR";
 	public string? Obs { get; set; }
 
+    #endregion
+
+    #region Bedroom Data
+
+    public Guid BedroomId { get; set; }
+	public int BedroomCapacity { get; set; }
+	public bool BedroomGender { get; set; }
+	public int BedroomNumber { get; set; }
+
 	#endregion
 
-	public Guid ResidentId { get; set; }
-	public Bedroom Bedroom { get; set; } = null!;
+	#region Occurrence Data
+
+	public string OccurrenceDescription { get; set; } = string.Empty;
+	public bool OccurrenceIsDeleted { get; set; }
+	public DateTime OccurrenceDate { get; set; }
+	public EOccurrenceType OccurrenceType { get; set; }
+
+
+	#endregion
+
+	public Guid ResidentId { get; set; }	
 	public DateTime AdmissionDate { get; set; } = DateTime.UtcNow;
 	public EEducationLevel EducationLevel { get; set; }
 	public string HealthInsurance { get; set; } = string.Empty;

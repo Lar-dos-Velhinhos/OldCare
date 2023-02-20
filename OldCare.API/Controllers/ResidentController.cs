@@ -121,17 +121,17 @@ public class ResidentController : ControllerBase
     /// <returns></returns>
     [AllowAnonymous]
     [HttpPut("modify/{id}")]
-    public async Task<BaseResponse<UCModify.ResponseData>> Modify(UCModify.Request request)
+    public async Task<BaseResponse<UCModify.ResponseData>> Modify(Guid id)
     {
         try
         {
-            var result = await _mediator.Send(request);
+            var result = await _mediator.Send(new UCModify.Request(id));
             return result;
         }
         catch (Exception exception)
         {
-
-            return new BaseResponse<UCModify.ResponseData>(exception.Message, "EDF18767", 400);
+            await _logService.LogAsync(ELogType.Error, "❌ Não foi possível editar os dados do residente.", "EDF18767", exception.Message);
+            return new BaseResponse<UCModify.ResponseData>("Não foi possível editar os dados do residente", "EDF18767", 400);
         }
     }
 

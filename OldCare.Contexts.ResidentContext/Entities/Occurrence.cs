@@ -12,6 +12,19 @@ public class Occurrence : Entity
         Tracker = new("Criação da ocorrência.");
     }
 
+    public Occurrence(string description,
+        bool isDeleted,
+        DateTime occurrenceDate,
+        EOccurrenceType occurrenceType,
+        Resident resident)
+    {
+        Description = description;  
+        IsDeleted = isDeleted;
+        OccurrenceDate = occurrenceDate;
+        OccurrenceType = occurrenceType;
+        Resident = resident;
+    }
+
     #endregion
     
     #region Public Properties
@@ -22,6 +35,19 @@ public class Occurrence : Entity
     public EOccurrenceType OccurrenceType { get; set; } = EOccurrenceType.General;
     public Resident Resident { get; set; } = null!;
 
+    #endregion
+
+    #region Public Methods
+
+    public void ChangeOccurrence(string description,
+        bool isDeleted, DateTime occurrenceDate,
+        EOccurrenceType occurrenceType)
+    {
+        Description = description;
+        IsDeleted = isDeleted;
+        OccurrenceDate = occurrenceDate;
+        OccurrenceType = occurrenceType;
+    }
     #endregion
 
     #region Overloads
