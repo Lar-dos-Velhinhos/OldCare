@@ -7,7 +7,7 @@ using OldCare.Contexts.SharedContext.UseCases;
 using UCCreate = OldCare.Contexts.ResidentContext.UseCases.Create;
 using UCDelete = OldCare.Contexts.ResidentContext.UseCases.Delete;
 using UCGet = OldCare.Contexts.ResidentContext.UseCases.Get;
-using UCGetDetails = OldCare.Contexts.ResidentContext.UseCases.GetDetails;
+using UCGetDetails = OldCare.Contexts.ResidentContext.UseCases.Details;
 using UCModify = OldCare.Contexts.ResidentContext.UseCases.Modify;
 
 namespace OldCare.API.Controllers;
@@ -58,18 +58,18 @@ public class ResidentController : ControllerBase
     /// <param name="request"></param>
     /// <returns>If success return successfull message, if dont return request data.</returns>
     [AllowAnonymous]
-    [HttpDelete("delete/{id}")]
-    public async Task<BaseResponse<UCDelete.ResponseData>> Delete(UCDelete.Request request)
+    [HttpDelete("delete/{residentId}")]
+    public async Task<BaseResponse<UCDelete.ResponseData>> Delete(Guid residentId)
     {
         try
         {
-            var result = await _mediator.Send(request);
+            var result = await _mediator.Send(new UCDelete.Request(residentId));
             return result;
         }
         catch (Exception ex)
         {
-            await _logService.LogAsync(ELogType.Error, $"❌ {request.ResidentId} - Não foi possível marcar o residente como deletado.", "0A9D357F", ex.Message);
-            return new BaseResponse<UCDelete.ResponseData>($"{request.ResidentId} - Não foi possível marcar o residente como deletado.", "0A9D357F");
+            await _logService.LogAsync(ELogType.Error, $"❌ Não foi possível remover o residente.", "0A9D357F", ex.Message);
+            return new BaseResponse<UCDelete.ResponseData>("Não foi possível remover o residente.", "0A9D357F");
         }
     }
 

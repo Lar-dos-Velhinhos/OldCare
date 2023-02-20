@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using OldCare.Contexts.ResidentContext.Entities;
-using OldCare.Contexts.ResidentContext.UseCases.GetDetails.Contracts;
+using OldCare.Contexts.ResidentContext.UseCases.Details.Contracts;
 
-namespace OldCare.Data.Contexts.ResidentContext.UseCases.GetDetails;
+namespace OldCare.Data.Contexts.ResidentContext.UseCases.Details;
 
 public class Repository : IRepository
 { 

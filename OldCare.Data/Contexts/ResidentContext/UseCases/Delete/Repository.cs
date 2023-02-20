@@ -22,12 +22,14 @@ public class Repository : IRepository
 
     public async Task<bool> CheckResidentExistsByIdAsync(Guid residentId)
         => await _context.Residents
-            .AnyAsync(resident => resident.Id
-                == residentId && resident.IsDeleted == false);
+            .Where(resident => resident.Id == residentId && resident.IsDeleted != true)
+            .AnyAsync()
+        ;
 
     public async Task<Resident?> GetResidentByIdAsync(Guid residentId)
         => await _context.Residents
-            .FirstOrDefaultAsync(resident => resident.Id == residentId && resident.IsDeleted == false);
+            .Where(resident => resident.Id == residentId && resident.IsDeleted != true)
+            .FirstOrDefaultAsync();
 
     public async Task UpdateAsync(Resident resident)
     {

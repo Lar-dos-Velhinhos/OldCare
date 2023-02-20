@@ -1,6 +1,6 @@
 ﻿using OldCare.Contexts.ResidentContext.Entities;
 
-namespace OldCare.Contexts.ResidentContext.UseCases.GetDetails.Contracts;
+namespace OldCare.Contexts.ResidentContext.UseCases.Details.Contracts;
 
 public interface IRepository
 {

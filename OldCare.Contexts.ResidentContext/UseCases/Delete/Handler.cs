@@ -79,7 +79,7 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
 
         #region 06. Return success response
 
-        await _logService.LogAsync(ELogType.UserActivity, $"🗑️ **{resident.Person.Name}** - Residente removido com sucesso.");
+        await _logService.LogAsync(ELogType.UserActivity, $"🗑️ **{resident.Id}** - Residente removido com sucesso.");
         return new BaseResponse<ResponseData>(new ResponseData("Residente removido com sucesso."), 201);
 
         #endregion

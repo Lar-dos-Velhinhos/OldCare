@@ -124,8 +124,8 @@ public static class Context
                 Data.Contexts.ResidentContext.UseCases.Modify.Repository>();
 
         services
-            .AddTransient<Contexts.ResidentContext.UseCases.GetDetails.Contracts.IRepository,
-                Data.Contexts.ResidentContext.UseCases.GetDetails.Repository>();
+            .AddTransient<Contexts.ResidentContext.UseCases.Details.Contracts.IRepository,
+                Data.Contexts.ResidentContext.UseCases.Details.Repository>();
 
         #endregion
     }

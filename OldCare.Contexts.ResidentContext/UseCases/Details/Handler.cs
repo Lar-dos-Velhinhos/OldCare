@@ -1,12 +1,12 @@
 ﻿using MediatR;
 using OldCare.Contexts.ResidentContext.Entities;
-using OldCare.Contexts.ResidentContext.UseCases.GetDetails.Contracts;
+using OldCare.Contexts.ResidentContext.UseCases.Details.Contracts;
 using OldCare.Contexts.SharedContext.Enums;
 using OldCare.Contexts.SharedContext.UseCases;
 using LogService = OldCare.Contexts.SharedContext.Services.Log.Contracts.IService;
 
 
-namespace OldCare.Contexts.ResidentContext.UseCases.GetDetails;
+namespace OldCare.Contexts.ResidentContext.UseCases.Details;
 
 public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
 {
@@ -67,8 +67,7 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
             "7E75FD32");
 
         return new BaseResponse<ResponseData>(
-            "Dados do residente carregados com sucesso",
-            "7E75FD32", 200);
+            new ResponseData("Dados do residente carregados com sucesso", resident), 200);
 
         #endregion
     }
