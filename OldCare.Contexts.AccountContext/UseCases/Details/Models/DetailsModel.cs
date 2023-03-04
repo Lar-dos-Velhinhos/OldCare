@@ -1,4 +1,4 @@
-﻿using OldCare.Contexts.SharedContext.ValueObjects;
+﻿using OldCare.Contexts.SharedContext.Entities;
 
 namespace OldCare.Contexts.AccountContext.UseCases.Details.Models;
 

@@ -386,19 +386,20 @@ public class ProfileController : Controller
     [HttpGet("residentes")]
     public async Task<IActionResult> Residents([FromServices] DataContext context)
     {
-        var request = new HomeRequest();
-        request.Residents = await context
-            .Residents
-            .Include(x => x.Person)
-            .AsNoTracking()
-            .ToListAsync();
+        //var request = new HomeRequest();
+        //request.Residents = await context
+        //    .Residents
+        //    .Include(x => x.Person)
+        //    .AsNoTracking()
+        //    .ToListAsync();
 
-        foreach (var resident in request.Residents)
-        {
-            resident.Person.Age = resident.Person.GetAge();
-        }
+        //foreach (var resident in request.Residents)
+        //{
+        //    resident.Person.Age = resident.Person.GetAge();
+        //}
 
-        return View(request);
+        //return View(request);
+        return View(context);
     }
 
     #endregion

@@ -69,12 +69,8 @@ public static class Context
 
         services
             .AddTransient<Contexts.AccountContext.UseCases.Edit.Contracts.IRepository,
-                Data.Contexts.AccountContext.UseCases.Edit.Repository>();
+                Data.Contexts.AccountContext.UseCases.Edit.Repository>();        
         
-        services
-            .AddTransient<Contexts.AccountContext.UseCases.ListResidents.Contracts.IRepository,
-                Data.Contexts.AccountContext.UseCases.ListResidents.Repository>();
-
         services
             .AddTransient<Contexts.AccountContext.UseCases.Details.Contracts.IRepository,
                 Data.Contexts.AccountContext.UseCases.Details.Repository>();

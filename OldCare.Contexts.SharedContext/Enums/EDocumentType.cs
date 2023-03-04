@@ -9,9 +9,9 @@ public enum EDocumentType
     [Display(Name = "CPF")]
     Cpf = 2,
     [Display(Name = "RG")]
-    RG = 2,
+    RG = 3,
     [Display(Name = "Passaporte")]
-    Passport = 1,
+    Passport = 4,
     [Display(Name = "PIS/NIT")]
-    PISNIT = 1,
+    PISNIT = 5,
 }

@@ -1,10 +1,11 @@
-﻿using OldCare.Contexts.AccountContext.Entities;
+﻿using Microsoft.EntityFrameworkCore;
 using OldCare.Data.Contexts.AccountContext.Mappings;
-using Microsoft.EntityFrameworkCore;
-using OldCare.Contexts.SharedContext.Entities;
 using OldCare.Data.Contexts.PersonContext.Mappings;
-using OldCare.Contexts.ResidentContext.Entities;
 using OldCare.Data.Contexts.ResidentContext.Mappings;
+using OldCare.Contexts.SharedContext.Entities;
+using OldCare.Contexts.ResidentContext.Entities;
+using OldCare.Contexts.SharedContext.Entities;
+using OldCare.Contexts.AccountContext.Entities;
 
 namespace OldCare.Data;
 
@@ -26,7 +27,8 @@ public class DataContext : DbContext
 
     #region Person
 
-    public DbSet<Person?> People { get; set; } = null!;
+    public DbSet<Person> People { get; set; } = null!;
+    public DbSet<Document> Documents { get; set; }
 
     #endregion
 
@@ -55,6 +57,10 @@ public class DataContext : DbContext
         #region Person
 
         builder.ApplyConfiguration(new PersonMap());
+        builder.ApplyConfiguration(new DocumentMap());
+
+        builder.Entity<Document>()
+            .HasKey(x => x.Id);
 
         #endregion
 

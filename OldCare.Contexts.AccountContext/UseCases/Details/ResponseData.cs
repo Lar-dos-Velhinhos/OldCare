@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using OldCare.Contexts.AccountContext.UseCases.Details.Models;
 using OldCare.Contexts.SharedContext.UseCases.Contracts;
-using OldCare.Contexts.SharedContext.ValueObjects;
+using OldCare.Contexts.SharedContext.Entities;
 
 namespace OldCare.Contexts.AccountContext.UseCases.Details;
 

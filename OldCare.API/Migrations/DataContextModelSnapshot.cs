@@ -138,7 +138,7 @@ namespace OldCare.API.Migrations
                     b.Property<DateTime>("OccurrenceDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("SMALLDATETIME")
-                        .HasDefaultValue(new DateTime(2023, 2, 19, 22, 49, 24, 590, DateTimeKind.Utc).AddTicks(2062));
+                        .HasDefaultValue(new DateTime(2023, 3, 4, 20, 33, 41, 428, DateTimeKind.Utc).AddTicks(2541));
 
                     b.Property<int>("OccurrenceType")
                         .ValueGeneratedOnAdd()
@@ -213,6 +213,35 @@ namespace OldCare.API.Migrations
                     b.HasIndex("PersonId");
 
                     b.ToTable("Resident", "backoffice");
+                });
+
+            modelBuilder.Entity("OldCare.Contexts.SharedContext.Entities.Document", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("DocumentNumber")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("NVARCHAR");
+
+                    b.Property<int>("DocumentType")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INT")
+                        .HasDefaultValue(3);
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("BIT");
+
+                    b.Property<Guid>("PersonId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PersonId");
+
+                    b.ToTable("Document", "backoffice");
                 });
 
             modelBuilder.Entity("OldCare.Contexts.SharedContext.Entities.Person", b =>
@@ -614,6 +643,44 @@ namespace OldCare.API.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("OldCare.Contexts.SharedContext.Entities.Document", b =>
+                {
+                    b.HasOne("OldCare.Contexts.SharedContext.Entities.Person", "Person")
+                        .WithMany("Documents")
+                        .HasForeignKey("PersonId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.OwnsOne("OldCare.Contexts.SharedContext.ValueObjects.Tracker", "Tracker", b1 =>
+                        {
+                            b1.Property<Guid>("DocumentId")
+                                .HasColumnType("uniqueidentifier");
+
+                            b1.Property<DateTime>("CreatedAt")
+                                .HasColumnType("SMALLDATETIME");
+
+                            b1.Property<string>("Notes")
+                                .IsRequired()
+                                .HasMaxLength(160)
+                                .HasColumnType("NVARCHAR");
+
+                            b1.Property<DateTime>("UpdatedAt")
+                                .HasColumnType("SMALLDATETIME");
+
+                            b1.HasKey("DocumentId");
+
+                            b1.ToTable("Document", "backoffice");
+
+                            b1.WithOwner()
+                                .HasForeignKey("DocumentId");
+                        });
+
+                    b.Navigation("Person");
+
+                    b.Navigation("Tracker")
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("OldCare.Contexts.SharedContext.Entities.Person", b =>
                 {
                     b.OwnsOne("OldCare.Contexts.SharedContext.ValueObjects.Tracker", "Tracker", b1 =>
@@ -700,29 +767,6 @@ namespace OldCare.API.Migrations
                                 .HasForeignKey("PersonId");
                         });
 
-                    b.OwnsMany("OldCare.Contexts.SharedContext.ValueObjects.Document", "Documents", b1 =>
-                        {
-                            b1.Property<Guid>("PersonId")
-                                .HasColumnType("uniqueidentifier");
-
-                            b1.Property<int>("Id")
-                                .ValueGeneratedOnAdd()
-                                .HasColumnType("int");
-
-                            SqlServerPropertyBuilderExtensions.UseIdentityColumn(b1.Property<int>("Id"));
-
-                            b1.Property<string>("Number")
-                                .IsRequired()
-                                .HasColumnType("nvarchar(max)");
-
-                            b1.HasKey("PersonId", "Id");
-
-                            b1.ToTable("Document", "backoffice");
-
-                            b1.WithOwner()
-                                .HasForeignKey("PersonId");
-                        });
-
                     b.OwnsOne("OldCare.Contexts.SharedContext.ValueObjects.Name", "Name", b1 =>
                         {
                             b1.Property<Guid>("PersonId")
@@ -794,8 +838,6 @@ namespace OldCare.API.Migrations
                     b.Navigation("Address")
                         .IsRequired();
 
-                    b.Navigation("Documents");
-
                     b.Navigation("Name")
                         .IsRequired();
 
@@ -813,6 +855,11 @@ namespace OldCare.API.Migrations
             modelBuilder.Entity("OldCare.Contexts.ResidentContext.Entities.Resident", b =>
                 {
                     b.Navigation("Occurrences");
+                });
+
+            modelBuilder.Entity("OldCare.Contexts.SharedContext.Entities.Person", b =>
+                {
+                    b.Navigation("Documents");
                 });
 #pragma warning restore 612, 618
         }

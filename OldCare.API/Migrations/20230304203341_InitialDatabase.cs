@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace OldCare.API.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class InitialDatabase : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -77,8 +77,8 @@ namespace OldCare.API.Migrations
                     PhoneVerificationCode = table.Column<string>(name: "Phone_Verification_Code", type: "CHAR(6)", maxLength: 6, nullable: true),
                     PhoneVerificationCodeExpireDate = table.Column<DateTime>(name: "Phone_Verification_CodeExpireDate", type: "DATETIME2", nullable: true),
                     Photo = table.Column<string>(type: "NVARCHAR", nullable: true),
-                    FatherName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    MotherName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FatherName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    MotherName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     TrackerCreatedAt = table.Column<DateTime>(name: "Tracker_CreatedAt", type: "SMALLDATETIME", nullable: false),
                     TrackerUpdatedAt = table.Column<DateTime>(name: "Tracker_UpdatedAt", type: "SMALLDATETIME", nullable: false),
                     TrackerNotes = table.Column<string>(name: "Tracker_Notes", type: "NVARCHAR(160)", maxLength: 160, nullable: false)
@@ -109,14 +109,18 @@ namespace OldCare.API.Migrations
                 schema: "backoffice",
                 columns: table => new
                 {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    DocumentNumber = table.Column<string>(type: "NVARCHAR(100)", maxLength: 100, nullable: false),
+                    DocumentType = table.Column<int>(type: "INT", nullable: false, defaultValue: 3),
+                    IsDeleted = table.Column<bool>(type: "BIT", nullable: false),
                     PersonId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Number = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    TrackerCreatedAt = table.Column<DateTime>(name: "Tracker_CreatedAt", type: "SMALLDATETIME", nullable: false),
+                    TrackerUpdatedAt = table.Column<DateTime>(name: "Tracker_UpdatedAt", type: "SMALLDATETIME", nullable: false),
+                    TrackerNotes = table.Column<string>(name: "Tracker_Notes", type: "NVARCHAR(160)", maxLength: 160, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Document", x => new { x.PersonId, x.Id });
+                    table.PrimaryKey("PK_Document", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Document_Person_PersonId",
                         column: x => x.PersonId,
@@ -205,7 +209,7 @@ namespace OldCare.API.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Description = table.Column<string>(type: "NVARCHAR(500)", maxLength: 500, nullable: false),
                     IsDeleted = table.Column<bool>(type: "BIT", nullable: false),
-                    OccurrenceDate = table.Column<DateTime>(type: "SMALLDATETIME", nullable: false, defaultValue: new DateTime(2023, 2, 6, 22, 39, 37, 896, DateTimeKind.Utc).AddTicks(2864)),
+                    OccurrenceDate = table.Column<DateTime>(type: "SMALLDATETIME", nullable: false, defaultValue: new DateTime(2023, 3, 4, 20, 33, 41, 428, DateTimeKind.Utc).AddTicks(2541)),
                     OccurrenceType = table.Column<int>(type: "INT", nullable: false, defaultValue: 1),
                     ResidentId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     TrackerCreatedAt = table.Column<DateTime>(name: "Tracker_CreatedAt", type: "SMALLDATETIME", nullable: false),
@@ -256,6 +260,12 @@ namespace OldCare.API.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Document_PersonId",
+                schema: "backoffice",
+                table: "Document",
+                column: "PersonId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Occurrence_ResidentId",

@@ -107,8 +107,6 @@ public class PersonMap : IEntityTypeConfiguration<Person>
             .HasMaxLength(160)
             .HasColumnType("NVARCHAR");
 
-        builder.OwnsMany(x => x.Documents);
-
         builder.Property(x => x.Gender)
             .IsRequired()
             .HasColumnType("INT");

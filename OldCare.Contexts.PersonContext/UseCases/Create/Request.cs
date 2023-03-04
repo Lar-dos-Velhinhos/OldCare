@@ -1,6 +1,6 @@
 using MediatR;
 using OldCare.Contexts.SharedContext.UseCases;
-using OldCare.Contexts.SharedContext.ValueObjects;
+using OldCare.Contexts.SharedContext.Entities;
 using OldCare.Contexts.SharedContext.Enums;
 
 namespace OldCare.Contexts.PersonContext.UseCases.Create;
