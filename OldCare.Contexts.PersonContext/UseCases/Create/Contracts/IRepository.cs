@@ -1,5 +1,4 @@
-﻿using OldCare.Contexts.PersonContext.Entities;
-using OldCare.Contexts.SharedContext.ValueObjects;
+﻿using OldCare.Contexts.SharedContext.Entities;
 
 namespace OldCare.Contexts.PersonContext.UseCases.Create.Contracts;
 
@@ -15,9 +14,9 @@ public interface IRepository
     Task<bool> CheckAccountExistsAsync(string firstName, string lastName, DateTime birthDate);
     
     /// <summary>
-    /// Asynchronous Create a new person
+    /// Asynchronous Create a new person.
     /// </summary>
     /// <param name="person">Required a person instance</param>
     /// <returns></returns>
-    Task CreateAsync(Person person);
+    Task CreateAsync(Person? person);
 }

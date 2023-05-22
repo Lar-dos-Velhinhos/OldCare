@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -34,4 +35,7 @@ public static class StringExtension
 
         return result.ToString();
     }
+
+    public static string ToMany(this string text, int amount, string plural)
+        => (amount > 1) ? plural : text;
 }

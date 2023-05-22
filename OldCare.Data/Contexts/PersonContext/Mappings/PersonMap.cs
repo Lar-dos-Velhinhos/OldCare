@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using OldCare.Contexts.PersonContext.Entities;
+using OldCare.Contexts.SharedContext.Entities;
 
 namespace OldCare.Data.Contexts.PersonContext.Mappings;
 
@@ -106,8 +106,6 @@ public class PersonMap : IEntityTypeConfiguration<Person>
         builder.Property(x => x.Citizenship)
             .HasMaxLength(160)
             .HasColumnType("NVARCHAR");
-
-        builder.OwnsMany(x => x.Documents);
 
         builder.Property(x => x.Gender)
             .IsRequired()

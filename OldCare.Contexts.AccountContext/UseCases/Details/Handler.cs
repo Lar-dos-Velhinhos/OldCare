@@ -39,7 +39,7 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
         }
         catch (Exception ex)
         {
-            await _logService.LogAsync(ELogType.LocalException, $"{request.Email} | Ocorreu um erro ao recuperar as informações da conta.");
+            await _logService.LogAsync(ELogType.Error, $"{request.Email} | Ocorreu um erro ao recuperar as informações da conta.");
             return new BaseResponse<ResponseData>(ex);
         }
 
@@ -49,7 +49,7 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
 
         if (user is null)
         {
-            await _logService.LogAsync(ELogType.LocalException, $"{request.Email} | Conta não encontrada.");
+            await _logService.LogAsync(ELogType.Error, $"{request.Email} | Conta não encontrada.");
             return new BaseResponse<ResponseData>("Conta não encontrada", "765da45a", 404);
         }
 

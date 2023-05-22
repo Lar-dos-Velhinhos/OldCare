@@ -75,7 +75,7 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
         var accountIsBlackListed = await _repository.CheckAccountIsBlackListedAsync(request.Email);
         if (accountIsBlackListed)
         {
-            await _logService.LogAsync(ELogType.LocalException, $"🔒️{request.Email} - Tentativa de login com conta bloqueada.");
+            await _logService.LogAsync(ELogType.Error, $"🔒️{request.Email} - Tentativa de login com conta bloqueada.");
             return new BaseResponse<ResponseData>("Esta conta está bloqueada", "Email");
         }
 
@@ -97,7 +97,7 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
         }
         catch (Exception ex)
         {
-            await _logService.LogAsync(ELogType.LocalException, ex.Message);
+            await _logService.LogAsync(ELogType.Error, ex.Message);
             return new BaseResponse<ResponseData>("⚠️ Não foi possível realizar seu cadastro!", "94BF0DA3");
         }
 
@@ -111,7 +111,7 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
         }
         catch (Exception ex)
         {
-            await _logService.LogAsync(ELogType.LocalException, ex.Message);
+            await _logService.LogAsync(ELogType.Error, ex.Message);
         }
 
         #endregion

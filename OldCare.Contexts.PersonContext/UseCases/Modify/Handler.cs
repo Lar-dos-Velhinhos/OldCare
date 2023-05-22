@@ -1,7 +1,6 @@
-﻿using System.Security.Authentication;
-using System.Text.Json;
+﻿using System.Text.Json;
 using MediatR;
-using OldCare.Contexts.PersonContext.Entities;
+using OldCare.Contexts.SharedContext.Entities;
 using OldCare.Contexts.SharedContext.UseCases;
 using OldCare.Contexts.PersonContext.UseCases.Modify.Contracts;
 using OldCare.Contexts.SharedContext.Enums;
@@ -37,7 +36,7 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
     {
         #region 01. Create Aggregate Root
 
-        Person person = new();
+        Person? person = new();
 
         #endregion
 
@@ -48,7 +47,7 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
         if (person == null)
         {
             await _logService.LogAsync(
-                ELogType.LocalUserActivity,
+                ELogType.UserActivity,
                 "👤 Pessoa não localizada.",
                 "2F9A7E0C");
             
@@ -86,7 +85,7 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
         #region 05. Return success response
 
         await _logService.LogAsync(
-            ELogType.LocalUserActivity,
+            ELogType.UserActivity,
             "👤 Endereço atualizado com sucesso.",
             person.Name,
             JsonSerializer.Serialize(person));

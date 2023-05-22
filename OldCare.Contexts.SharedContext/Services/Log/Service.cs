@@ -27,9 +27,9 @@ public class Service : IService
         string key,
         string data)
     {
-        if (string.IsNullOrEmpty(key))
+        if (key == "")
             key = "Não Associado";
-        
+
         if (!string.IsNullOrEmpty(data))
             data = $"\n\n**Detalhes**\n{data}";
         
@@ -58,9 +58,21 @@ public class Service : IService
     {
         switch (logType)
         {
-            case ELogType.LocalException:
-                var exceptionClient = new RestClient(Configuration.Discord.Webhooks.ExceptionsUrl);
-                await exceptionClient.PostAsync(request);
+            case ELogType.ApplicationEvent:
+                var applicationEventLog = new RestClient(Configuration.Discord.Webhooks.ApplicationEventsLog);
+                await applicationEventLog.PostAsync(request);
+                break;
+            case ELogType.Error:
+                var errorLog = new RestClient(Configuration.Discord.Webhooks.ErrorsLog);
+                await errorLog.PostAsync(request);
+                break;
+            case ELogType.UserActivity:
+                var userActivityLog = new RestClient(Configuration.Discord.Webhooks.ApplicationEventsLog);
+                await userActivityLog.PostAsync(request);
+                break;
+            case ELogType.Warning:
+                var warningLog = new RestClient(Configuration.Discord.Webhooks.ApplicationEventsLog);
+                await warningLog.PostAsync(request);
                 break;
         }
     }

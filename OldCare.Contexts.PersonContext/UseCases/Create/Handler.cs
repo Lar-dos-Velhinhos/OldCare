@@ -1,6 +1,6 @@
-using OldCare.Contexts.SharedContext.UseCases;
 using MediatR;
-using OldCare.Contexts.PersonContext.Entities;
+using OldCare.Contexts.SharedContext.UseCases;
+using OldCare.Contexts.SharedContext.Entities;
 using OldCare.Contexts.PersonContext.UseCases.Create.Contracts;
 using OldCare.Contexts.SharedContext.Enums;
 using OldCare.Contexts.SharedContext.ValueObjects;
@@ -33,7 +33,7 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
     {
         #region 01. Create Aggregate Root
 
-        Person person = new();
+        Person? person = new();
 
         #endregion
 
@@ -43,7 +43,7 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
 
         if (result)
         {
-            await _logService.LogAsync(ELogType.LocalException, $"👥 {request.FirstName} {request.LastName} - Pessoa já cadastrada", "E52D25DC", null);
+            await _logService.LogAsync(ELogType.Error, $"👥 {request.FirstName} {request.LastName} - Pessoa já cadastrada", "E52D25DC");
             return new BaseResponse<ResponseData>("Pessoa já cadastrada.", "e52d25dc");
         }
 
@@ -58,7 +58,7 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
         catch (Exception ex)
         {
             await _logService.LogAsync(
-                ELogType.LocalException,
+                ELogType.Error,
                 $"❌ {request.FirstName} {request.FirstName} Não foi possível salvar o nome.",
                 "1fa4222b");
             
@@ -74,13 +74,17 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
             person.ChangeInformation(
                 request.BirthDate,
                 request.Citizenship,
+                request.FatherName,
                 request.Gender,
+                request.MotherName,
                 request.Nationality,
                 request.Obs);
         }
         catch
         {
-            return new BaseResponse<ResponseData>("Não foi possível salvar as informações pessoais.", "d91cdebc");
+            return new BaseResponse<ResponseData>(
+                "Não foi possível salvar as informações pessoais.",
+                "d91cdebc");
         }
 
         #endregion

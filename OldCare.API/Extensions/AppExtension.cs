@@ -14,7 +14,6 @@ public static class AppExtension
         builder.Configuration.GetSection("SendGrid").Bind(Configuration.SendGrid);
         builder.Configuration.GetSection("Azure").Bind(Configuration.Azure);
         builder.Configuration.GetSection("Google").Bind(Configuration.Google);
-        builder.Configuration.GetSection("ActiveCampaign").Bind(Configuration.ActiveCampaign);
         builder.Configuration.GetSection("Facebook").Bind(Configuration.Facebook);
         builder.Configuration.GetSection("OneSignal").Bind(Configuration.OneSignal);
         builder.Configuration.GetSection("Discord").Bind(Configuration.Discord);
@@ -37,11 +36,14 @@ public static class AppExtension
                 x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
                 x.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault;
             });
-
+        
         builder.Services.AddMediatR(cfg =>
             cfg.RegisterServicesFromAssembly(typeof(Contexts.AccountContext.Configuration).Assembly));
 
         builder.Services.AddMediatR(cfg =>
             cfg.RegisterServicesFromAssembly(typeof(Contexts.PersonContext.Configuration).Assembly));
+            
+        builder.Services.AddMediatR(cfg =>
+                cfg.RegisterServicesFromAssembly(typeof(Contexts.ResidentContext.Configuration).Assembly));
     }
 }

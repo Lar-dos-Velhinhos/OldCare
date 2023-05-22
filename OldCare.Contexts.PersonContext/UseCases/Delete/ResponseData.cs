@@ -21,7 +21,7 @@ public class ResponseData : IResponseData
     #region Public Properties
 
     public string Message { get; }
-    public Request  Request { get; }    
+    public Request Request { get; }
 
     #endregion
 }

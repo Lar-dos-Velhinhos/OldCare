@@ -1,6 +1,6 @@
-using OldCare.Contexts.SharedContext.UseCases;
 using MediatR;
-using OldCare.Contexts.SharedContext.ValueObjects;
+using OldCare.Contexts.SharedContext.UseCases;
+using OldCare.Contexts.SharedContext.Entities;
 using OldCare.Contexts.SharedContext.Enums;
 
 namespace OldCare.Contexts.PersonContext.UseCases.Create;
@@ -26,14 +26,13 @@ public class Request : IRequest<BaseResponse<ResponseData>>
     public DateTime BirthDate { get; set; } = DateTime.UtcNow;
     public string Nationality { get; set; } = string.Empty;
     public string Citizenship { get; set; } = string.Empty;
+    public string? FatherName { get; set; }
     public EGender Gender { get; set; }
     public string FirstName { get; set; } = null!;
     public string LastName { get; set; } = null!;
+    public string? MotherName { get; set; }
     public string Obs { get; set; } = string.Empty;
     public string FullNumber { get; set; } = string.Empty;
     public string Photo { get; set; } = string.Empty;
-    public string FatherName { get; set; } = string.Empty;
-    public string MotherName { get; set; } = string.Empty;
-
     public string returnUrl { get; set; } = string.Empty;
 }

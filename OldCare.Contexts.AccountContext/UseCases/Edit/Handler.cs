@@ -103,7 +103,7 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
         }
         catch
         {
-            await _logService.LogAsync(ELogType.LocalException, 
+            await _logService.LogAsync(ELogType.Error, 
                 "⚠ Não foi possível realizar as alterações de informação do aluno ({request.Email}).");
             return new BaseResponse<ResponseData>("Não foi possível salvar as alterações!", "ddb9f50d");
         }

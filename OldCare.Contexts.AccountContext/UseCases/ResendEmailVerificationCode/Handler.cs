@@ -103,7 +103,7 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
         }
         catch (Exception ex)
         {
-            await _logService.LogAsync(ELogType.LocalException, ex.Message);
+            await _logService.LogAsync(ELogType.Error, ex.Message);
             return new BaseResponse<ResponseData>("Não foi possível verificar sua conta.");
         }
 
@@ -117,7 +117,7 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
         }
         catch (Exception ex)
         {
-            await _logService.LogAsync(ELogType.LocalException, ex.Message);
+            await _logService.LogAsync(ELogType.Error, ex.Message);
             return new BaseResponse<ResponseData>("Não foi possível enviar o código de verificação");
         }
 

@@ -1,4 +1,4 @@
-﻿using OldCare.Contexts.PersonContext.Entities;
+﻿using OldCare.Contexts.SharedContext.Entities;
 using OldCare.Contexts.PersonContext.UseCases.Create.Contracts;
 using Microsoft.EntityFrameworkCore;
 using OldCare.Contexts.SharedContext.ValueObjects;
@@ -26,23 +26,23 @@ public class Repository : IRepository
             x.BirthDate != null && x.Name.FirstName == firstName && x.Name.LastName == lastName &&
             x.BirthDate.Value.Date == birthDate.Date);
 
-    public async Task CreateAsync(Person person)
+    public async Task CreateAsync(Person? person)
     {
         await _context.People.AddAsync(person);
         await _context.SaveChangesAsync();
     }
 
-    public async Task Delete(Person person) => _context.People.Remove(person);
+    public async Task Delete(Person? person) => _context.People.Remove(person);
 
     public async Task<Person> GetByIdAsync(Guid id)
         => await _context.People.FirstOrDefaultAsync(p => p.Id == id);
 
-    public async Task<List<Person>> GetByNameAsync(Name name)
+    public async Task<List<Person?>> GetByNameAsync(Name name)
         => await _context.People
             .Where(p =>p.Name.ToString().Contains(name))
             .ToListAsync();
 
-    public async Task UpdateAsync(Person person) => _context.People.Update(person);
+    public async Task UpdateAsync(Person? person) => _context.People.Update(person);
 
     #endregion
 }

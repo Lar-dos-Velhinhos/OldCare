@@ -4,7 +4,8 @@ namespace OldCare.Contexts.PersonContext.UseCases.Create;
 
 public class ResponseData : IResponseData
 {
-    #region Ctors
+    #region Constructors
+    
     public ResponseData(string message) => Message = message;
 
     public ResponseData(string message, Request request)
@@ -15,6 +16,10 @@ public class ResponseData : IResponseData
 
     #endregion
 
+    #region Public Properties
+
     public string Message { get; }
-    public Request  Request { get; }       
+    public Request  Request { get; } 
+
+    #endregion      
 }

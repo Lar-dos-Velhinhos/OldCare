@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using OldCare.Contexts.PersonContext.Entities;
+using OldCare.Contexts.SharedContext.Entities;
 using OldCare.Contexts.PersonContext.UseCases.Get.Contracts;
 using OldCare.Contexts.SharedContext.ValueObjects;
 
@@ -31,7 +31,7 @@ public class Repository : IRepository
         throw new NotImplementedException();
     }
 
-    public async Task<List<Person>> GetAll(int skip, int take)
+    public async Task<List<Person?>> GetAll(int skip, int take)
         => await _context.People
             .Skip(skip)
             .Take(take)

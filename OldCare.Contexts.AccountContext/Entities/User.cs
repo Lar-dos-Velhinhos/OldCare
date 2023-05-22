@@ -1,4 +1,3 @@
-using OldCare.Contexts.PersonContext.Entities;
 using OldCare.Contexts.SharedContext.Entities;
 using OldCare.Contexts.SharedContext.Extensions;
 using OldCare.Contexts.SharedContext.UseCases.Contracts;
@@ -30,7 +29,6 @@ public class User : Entity, IAggregateRoot
 
     public Email Username { get; private set; } = null!;
     public Password Password { get; private set; } = null!;
-    public Tracker Tracker { get; } = null!;
     public Person Person { get; private set; }
     public bool Active { get; private set; }
 

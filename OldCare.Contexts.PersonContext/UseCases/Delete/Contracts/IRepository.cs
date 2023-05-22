@@ -1,4 +1,4 @@
-﻿using OldCare.Contexts.PersonContext.Entities;
+﻿using OldCare.Contexts.SharedContext.Entities;
 
 namespace OldCare.Contexts.PersonContext.UseCases.Delete.Contracts;
 
@@ -16,12 +16,12 @@ public interface IRepository
     /// </summary>
     /// <param name="id">A guid type property</param>
     /// <returns></returns>
-    Task<Person> GetByIdAsync(Guid id);
+    Task<Person?> GetByIdAsync(Guid id);
 
     /// <summary>
-    /// Update person data
+    /// Update person data asynchronous
     /// </summary>
     /// <param name="person"></param>
     /// <returns></returns>
-    Task UpdateAsync(Person person);
+    Task UpdateAsync(Person? person);
 }

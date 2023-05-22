@@ -1,6 +1,6 @@
 using OldCare.Contexts.SharedContext.UseCases;
 using MediatR;
-using OldCare.Contexts.PersonContext.Entities;
+using OldCare.Contexts.SharedContext.Entities;
 using OldCare.Contexts.PersonContext.UseCases.Get.Contracts;
 using OldCare.Contexts.SharedContext.Enums;
 using LogService = OldCare.Contexts.SharedContext.Services.Log.Contracts.IService;
@@ -32,7 +32,7 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
     {
         #region Create Aggregate Root
 
-        var persons = new List<Person>();
+        var persons = new List<Person?>();
         
         #endregion
 
@@ -44,7 +44,7 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
         }
         catch (Exception ex)
         {
-            await _logService.LogAsync(ELogType.LocalException, "❌ Ocorreu um erro ao carregar os registros.", "400168D3", ex.Message);
+            await _logService.LogAsync(ELogType.Error, "❌ Ocorreu um erro ao carregar os registros.", "400168D3", ex.Message);
             return new BaseResponse<ResponseData>("Ocorreu um erro ao carregar os registros.", "400168D3");
         }
 
@@ -52,7 +52,7 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
         
         #region Return Success Message
 
-        await _logService.LogAsync(ELogType.LocalApplicationEvent, "📃 Registros obtidos com sucesso", "Pessoas", null);
+        await _logService.LogAsync(ELogType.ApplicationEvent, "📃 Registros obtidos com sucesso", "Pessoas", null);
         return new BaseResponse<ResponseData>(new ResponseData($"Registros obtidos com sucesso.", persons), 201);
 
         #endregion

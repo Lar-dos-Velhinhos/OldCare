@@ -10,7 +10,6 @@ public static class Configuration
     public static SendGridConfiguration SendGrid { get; set; } = new();
     public static AzureConfiguration Azure { get; set; } = new();
     public static GoogleConfiguration Google { get; set; } = new();
-    public static ActiveCampaignConfiguration ActiveCampaign { get; set; } = new();
     public static FacebookConfiguration Facebook { get; set; } = new();
     public static OneSignalConfiguration OneSignal { get; set; } = new();
     public static DiscordConfiguration Discord { get; set; } = new();
@@ -28,21 +27,7 @@ public static class Configuration
         public string InMemoryDatabaseName { get; set; } = string.Empty;
     }
 
-    public class PayPalConfiguration
-    {
-        public string ApiKey { get; set; } = string.Empty;
-        public string ApiUrl { get; set; } = string.Empty;
-        public string ClientId { get; set; } = string.Empty;
-        public string ClientSecret { get; set; } = string.Empty;
-        public string AuthorizationAccessToken => $"{ClientId}:{ClientSecret}".ToBase64();
-    }
-
-    public class PagarMeConfiguration
-    {
-        public string ApiKey { get; set; } = string.Empty;
-        public string ApiUrl { get; set; } = string.Empty;
-    }
-
+    
     public class SendGridConfiguration
     {
         public string ApiKey { get; set; } = string.Empty;
@@ -93,33 +78,6 @@ public static class Configuration
         }
     }
 
-    public class ActiveCampaignConfiguration
-    {
-        public string BaseUrl { get; set; } = string.Empty;
-
-        public string ApiToken { get; set; } = string.Empty;
-
-        public ActiveCampaignCustomFields CustomFields { get; set; } = new();
-        public ActiveCampaignTags Tags { get; set; } = new();
-        public ActiveCampaignLists Lists { get; set; } = new();
-
-        public class ActiveCampaignCustomFields
-        {
-            public string StudentId { get; set; } = string.Empty;
-            public string UserId { get; set; } = string.Empty;
-        }
-
-        public class ActiveCampaignTags
-        {
-            public string UnverifiedEmail { get; set; } = string.Empty;
-        }
-
-        public class ActiveCampaignLists
-        {
-            public string Newsletter { get; set; } = string.Empty;
-        }
-    }
-
     public class FacebookConfiguration
     {
         public string PixelId { get; set; } = string.Empty;
@@ -136,8 +94,10 @@ public static class Configuration
 
         public class DiscordConfigurationWebhooks
         {
-            public string LogsUrl { get; set; } = string.Empty;
-            public string ExceptionsUrl { get; set; } = string.Empty;
+            public string ApplicationEventsLog { get; set; } = string.Empty;
+            public string UserActivitiesLog { get; set; } = string.Empty;
+            public string WarningsLog { get; set; } = string.Empty;
+            public string ErrorsLog { get; set; } = string.Empty;
         }
     }
 }

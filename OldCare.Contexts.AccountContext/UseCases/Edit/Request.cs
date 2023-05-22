@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using OldCare.Contexts.SharedContext.UseCases;
 using MediatR;
-using OldCare.Contexts.SharedContext.ValueObjects;
+using OldCare.Contexts.SharedContext.Entities;
 
 namespace OldCare.Contexts.AccountContext.UseCases.Edit;
 
