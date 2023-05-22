@@ -1,0 +1,8 @@
+@ApiLocal_HostAddress = https://localhost:7048/api/v1
+POST {{ApiLocal_HostAddress}}/Person/get-all
+Content-Type: application/json
+
+{
+    "skip": 0,
+    "take": 10
+}

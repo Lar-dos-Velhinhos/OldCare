@@ -1,6 +1,5 @@
 using System.Text.Json.Serialization;
 using OldCare.Contexts.SharedContext;
-using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace OldCare.API.Extensions;
@@ -28,8 +27,8 @@ public static class AppExtension
             OldCare.Contexts.SharedContext.Services.Log.Service>();
 
         builder.Services.AddTransient<
-            OldCare.Services.Google.ReCaptcha.Contracts.IService,
-            OldCare.Services.Google.ReCaptcha.Service>();
+            Services.Google.ReCaptcha.Contracts.IService,
+            Services.Google.ReCaptcha.Service>();
 
         builder.Services
             .Configure<ApiBehaviorOptions>(x => { x.SuppressModelStateInvalidFilter = true; })
@@ -39,12 +38,10 @@ public static class AppExtension
                 x.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault;
             });
 
-        builder.Services.AddMediatR(
-            typeof(Contexts.AccountContext.Configuration),
-            typeof(Program));
-        
-        builder.Services.AddMediatR(
-            typeof(Contexts.PersonContext.Configuration),
-            typeof(Program));
+        builder.Services.AddMediatR(cfg =>
+            cfg.RegisterServicesFromAssembly(typeof(Contexts.AccountContext.Configuration).Assembly));
+
+        builder.Services.AddMediatR(cfg =>
+            cfg.RegisterServicesFromAssembly(typeof(Contexts.PersonContext.Configuration).Assembly));
     }
 }

@@ -50,7 +50,6 @@ public class Handler : IRequestHandler<Request, BaseResponse<ResponseData>>
 
         #endregion
         
-        
         #region Return Success Message
 
         await _logService.LogAsync(ELogType.LocalApplicationEvent, "📃 Registros obtidos com sucesso", "Pessoas", null);
