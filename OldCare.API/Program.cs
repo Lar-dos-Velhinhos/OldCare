@@ -1,3 +1,4 @@
+using Hangfire;
 using OldCare.API;
 using OldCare.API.Extensions;
 
@@ -28,6 +29,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseHangfireDashboard();
 
 app.MapControllers();
 

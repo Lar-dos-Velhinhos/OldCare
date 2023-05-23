@@ -36,7 +36,7 @@ public static class AppExtension
                 x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
                 x.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault;
             });
-        
+
         builder.Services.AddMediatR(cfg =>
             cfg.RegisterServicesFromAssembly(typeof(Contexts.AccountContext.Configuration).Assembly));
 
